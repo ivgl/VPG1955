@@ -33,3 +33,13 @@
 .bloc-specialty{font-size:13px;font-weight:650;color:#285c56;background:#eaf3f0;border:1px solid #d2e2da;padding:12px;border-radius:10px}
 .country-detail .small-heading{margin-top:16px}
 @media(max-width:620px){.bloc-meter-head strong{font-size:16px}.draft-action{width:100%;justify-content:center}.figures-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Eastern Europe geographic navigation. Modern simplified outlines are illustrative. */
+.europe-map-panel{width:100%;background:radial-gradient(circle at 60% 35%,#f8fbf9,#e7efea);border:1px solid #d8e5dd;border-radius:13px;overflow:hidden;margin-bottom:8px}
+.europe-map-panel svg{display:block;width:100%;height:auto;max-height:490px}
+.europe-country{fill:#d9e2de;stroke:#fbfdfc;stroke-width:1.7}
+.bloc-shape{fill:#9ebdae;cursor:pointer;transition:fill .15s,stroke .15s}
+.bloc-shape:hover,.bloc-shape.is-active{fill:#519584;stroke:#244c4b;stroke-width:3}
+.bloc-map-label{font-size:14px;font-weight:850;fill:#244d47;stroke:#e7f0eb;stroke-width:3px;paint-order:stroke;pointer-events:none}
+.bloc-map-note{font-size:11px;color:#829592;line-height:1.45;margin:5px 0 17px}
+@media(max-width:620px){.europe-map-panel svg{max-height:360px}.bloc-map-label{font-size:15px}}
