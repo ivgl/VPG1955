@@ -173,11 +173,30 @@
     }
   });
 
+  // Map is only a navigational aid. Historical boundaries are simplified.
+  function drawBlocMap(){
+    var geo=window.VPI1955_MAPS&&window.VPI1955_MAPS.europe;
+    if(!geo){$("blocMap").textContent="Карта недоступна";return}
+    var parts=geo.countries.map(function(c){
+      var interactive=c.id!=="context";
+      return '<path class="europe-country '+(interactive?"bloc-shape":"")+'" '+(interactive?'data-map-bloc="'+c.id+'" tabindex="0" role="button" aria-label="'+safe(c.name)+'"':"")+' d="'+c.d+'"><title>'+safe(c.name)+'</title></path>';
+    });
+    parts.push('<path class="europe-country bloc-shape" data-map-bloc="gdr" tabindex="0" role="button" aria-label="ГДР" d="'+geo.gdr+'"><title>ГДР</title></path>');
+    var labels=[["ГДР",260,124],["Польша",445,145],["Чехословакия",346,230],["Венгрия",438,316],["Румыния",593,358],["Болгария",603,454],["Албания",457,531]];
+    labels.forEach(function(p){parts.push('<text class="bloc-map-label" x="'+p[1]+'" y="'+p[2]+'">'+safe(p[0])+'</text>')});
+    $("blocMap").innerHTML=parts.join("");
+    document.querySelectorAll("[data-map-bloc]").forEach(function(el){
+      var activate=function(){selectCountry(el.dataset.mapBloc)};
+      el.addEventListener("click",activate);
+      el.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();activate()}})
+    });
+  }
   $("blocCards").innerHTML=bloc.map(function(x){return '<button type="button" class="bloc-card" data-country="'+x.id+'" aria-pressed="false"><span class="flag">'+x.flag+'</span><span class="bloc-meta"><strong>'+safe(x.name)+'</strong><small>'+safe(x.desc)+'</small></span></button>'}).join("");
   document.querySelectorAll("[data-country]").forEach(function(el){el.addEventListener("click",function(){selectCountry(el.dataset.country)})});
   function selectCountry(id){
     var x=bloc.find(function(y){return y.id===id});if(!x)return;
     document.querySelectorAll("[data-country]").forEach(function(el){var active=el.dataset.country===id;el.classList.toggle("is-active",active);el.setAttribute("aria-pressed",String(active))});
+    document.querySelectorAll("[data-map-bloc]").forEach(function(el){var active=el.dataset.mapBloc===id;el.classList.toggle("is-active",active);el.setAttribute("aria-pressed",String(active))});
     $("countryFlag").textContent=x.flag;$("countryName").textContent=x.name;
     $("countryRelation").textContent=x.relation+" / 100";$("countryPressure").textContent=x.stability+" / 100";
     $("relationFill").style.width=x.relation+"%";$("stabilityFill").style.width=x.stability+"%";
@@ -185,5 +204,6 @@
     $("countryContext").textContent=x.context;$("countrySpecialty").textContent=x.specialty;
     $("countryNear").textContent=x.near;$("countryLong").textContent=x.long;
   }
+  drawBlocMap();
   selectCountry("hun");
 })();
