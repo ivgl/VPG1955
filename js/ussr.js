@@ -78,7 +78,7 @@
     var f=figures.find(function(x){return x.id===id});if(!f)return;
     document.querySelectorAll("[data-figure]").forEach(function(el){el.classList.toggle("is-active",el.dataset.figure===id);el.setAttribute("aria-pressed",String(el.dataset.figure===id))});
     document.querySelectorAll("[data-leader]").forEach(function(el){el.classList.toggle("is-active",el.dataset.leader===id)});
-    $("figureDetail").innerHTML="<strong>"+safe(f.name)+"</strong><p>"+safe(f.detail)+"</p><div class="figure-position"><b>Взгляды и интересы</b><p>"+safe(f.view)+"</p></div><div class="figure-position"><b>О чём можно договариваться</b><p>"+safe(f.interaction)+"</p></div>";
+    $("figureDetail").innerHTML="<strong>"+safe(f.name)+"</strong><p>"+safe(f.detail)+"</p><div class='figure-position'><b>Взгляды и интересы</b><p>"+safe(f.view)+"</p></div><div class='figure-position'><b>О чём можно договариваться</b><p>"+safe(f.interaction)+"</p></div>";
   }
   $("figureButtons").innerHTML=figures.map(function(f){return '<button type="button" class="figure-button" data-figure="'+f.id+'" aria-pressed="false"><b>'+safe(f.name)+'</b><small>'+safe(f.caption)+'</small></button>'}).join("");
   document.querySelectorAll("[data-figure]").forEach(function(el){el.addEventListener("click",function(){selectFigure(el.dataset.figure)})});
