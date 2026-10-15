@@ -103,8 +103,17 @@
     return rows.slice(0,5);
   }
   function renderPlan(){
+    if(!$("planControls").hasChildNodes()){
     $("planControls").innerHTML=planData.map(function(x){return '<div class="plan-row"><div class="plan-row-top"><label for="slider-'+x.id+'">'+safe(x.name)+'</label><span class="value" style="color:'+x.color+'">'+x.value+'</span></div><div class="plan-row-desc">'+safe(x.desc)+'</div><input type="range" min="0" max="100" step="5" value="'+x.value+'" id="slider-'+x.id+'" data-plan="'+x.id+'" aria-label="Условные инвестиционные единицы: '+safe(x.name)+'"></div>'}).join("");
     document.querySelectorAll("[data-plan]").forEach(function(el){el.addEventListener("input",function(){redistribute(el.dataset.plan,el.value)})});
+    } else {
+      planData.forEach(function(x){
+        var slider=$("slider-"+x.id);
+        if(slider)slider.value=x.value;
+        var counter=slider&&slider.closest(".plan-row").querySelector(".value");
+        if(counter)counter.textContent=x.value;
+      });
+    }
     $("planTotal").textContent=planData.reduce(function(a,b){return a+b.value},0);
     $("allocationTrack").innerHTML=planData.map(function(x){return '<span style="width:'+x.value+'%;background:'+x.color+'" title="'+safe(x.name)+' — '+x.value+'"></span>'}).join("");
     $("planSignals").innerHTML=signals().map(function(x){return '<div class="signal '+x.kind+'"><strong>'+safe(x.label)+'</strong><p>'+safe(x.body)+'</p></div>'}).join("");
