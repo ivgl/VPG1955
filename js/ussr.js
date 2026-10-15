@@ -1,5 +1,5 @@
 "use strict";
-// USSR interface draft. All influence shares and national relationship labels are fictional UI fixtures.
+// USSR interface draft. All influence percentages, bloc scores and budget shares are fictional, non-canonical UI fixtures.
 (function(){
   var institutions=[
     {id:"presidium",name:"Президиум ЦК",subtitle:"Коллективные решения",parts:[43,37,20],summary:"Высшее коллективное партийное руководство. Коалиции и личные договорённости важнее одной должности.",access:"Поддержка крупных политических решений, ключевых кадровых перестановок и общего курса.",limit:"Нужны реальные союзники среди членов руководства. Один игрок не распоряжается всем Президиумом."},
@@ -10,23 +10,36 @@
     {id:"security",name:"КГБ",subtitle:"Органы госбезопасности",parts:[35,25,40],summary:"С 1954 года действует Комитет государственной безопасности при Совете министров СССР.",access:"Исполнение законных для игрового режима задач безопасности и работа профильного аппарата.",limit:"Политическое решение не означает автоматическое бесконтрольное подчинение руководства органов."},
     {id:"regions",name:"Партийные организации",subtitle:"Республики и области",parts:[53,25,22],summary:"Региональный партийный аппарат способен поддерживать или тормозить кадровую политику центра.",access:"Организация исполнения директив и работа с партийными кадрами на местах.",limit:"Региональные интересы, хозяйственная ситуация и местные руководители влияют на выполнение решений."}
   ];
+  // NPC links are descriptive and dynamic: no figure has permanently guaranteed alignment.
+  var peopleByInstitution={
+    presidium:["molotov","mikoyan","kaganovich","bulganin"],
+    secretariat:["suslov"],
+    sovmin:["bulganin","mikoyan","kaganovich"],
+    gosplan:["saburov"],
+    army:["bulganin","zhukov"],
+    security:["serov"],
+    regions:["furtseva"]
+  };
   var figures=[
-    {id:"khrushchev",name:"Никита Хрущёв",caption:"Первый секретарь ЦК",detail:"Первый секретарь ЦК КПСС. В игре предполагается один из двух основных игроков СССР. Полномочия партийного руководителя сильны, но требуют поддержки руководящих органов."},
-    {id:"malenkov",name:"Георгий Маленков",caption:"Председатель Совмина",detail:"Председатель Совета министров СССР на 1 января 1955 года. Второй основной игрок, связанный с правительственным управлением и хозяйственной повесткой. Историческая отставка февраля 1955 года не обязательна для игры."},
-    {id:"molotov",name:"Вячеслав Молотов",caption:"Глава МИД",detail:"Опытный участник высшего советского руководства, министр иностранных дел. Его собственные позиции не следует автоматически записывать в лагерь одного из игроков."},
-    {id:"bulganin",name:"Николай Булганин",caption:"Военное руководство",detail:"В начале 1955 года возглавляет Министерство обороны. Может быть важным участником кадровых и государственных коалиций; последующие назначения определяются игровым ходом."},
-    {id:"mikoyan",name:"Анастас Микоян",caption:"Хозяйственное руководство",detail:"Один из заметных руководителей советского государства с большим опытом хозяйственного администрирования. Его поддержка зависит от содержания конкретного решения."},
-    {id:"kaganovich",name:"Лазарь Каганович",caption:"Государственный аппарат",detail:"Влиятельный участник высшего руководства, тесно связанный с хозяйственной и аппаратной системой. Не является автоматическим голосом одной фракции."},
-    {id:"zhukov",name:"Георгий Жуков",caption:"Военная элита",detail:"В начале 1955 года занимает должность первого заместителя министра обороны. Военная поддержка зависит от реальных должностей, приказов и интересов армии."}
+    {id:"molotov",name:"Вячеслав Молотов",caption:"МИД · Президиум ЦК",view:"Осторожность во внешней политике, защита преемственности и сильной роли высшего партийного руководства.",interaction:"Дипломатические инициативы, кадровые коалиции, вопросы международного курса.",detail:"Министр иностранных дел и влиятельный член Президиума ЦК. Способен поддержать или оспорить инициативу независимо от должности её автора."},
+    {id:"bulganin",name:"Николай Булганин",caption:"Министр обороны · Совмин",view:"Сочетает интересы государственных органов и военного управления, ориентируется на исполнимость решений и коалиции руководства.",interaction:"Оборонная политика, назначения, распределение полномочий.",detail:"На 1 января 1955 года — министр обороны СССР. Его последующие назначения в альтернативной игре не предрешены."},
+    {id:"mikoyan",name:"Анастас Микоян",caption:"Совмин · Президиум ЦК",view:"Прагматичное хозяйственное управление, торговля и практическая осуществимость преобразований.",interaction:"Реформы хозяйства, снабжение, торговые переговоры и поиск компромиссов.",detail:"Опытный руководитель, связанный с экономическими ведомствами и высшей политикой. Его позиция зависит от содержания проекта."},
+    {id:"kaganovich",name:"Лазарь Каганович",caption:"Совмин · Президиум ЦК",view:"Сильная административная дисциплина, приоритет управляемости и опыт отраслевого хозяйственного руководства.",interaction:"Промышленная политика, министерства, кадровые назначения.",detail:"Влиятельный участник высшего руководства. Его нельзя автоматически считать постоянным союзником или противником конкретного игрока."},
+    {id:"suslov",name:"Михаил Суслов",caption:"Секретарь ЦК КПСС",view:"Партийная дисциплина, идеологическая последовательность и контроль политической линии.",interaction:"Партийные решения, идеологическая аргументация и кадровая поддержка.",detail:"Секретарь ЦК. Его политические предпочтения учитываются как ориентир, но не дают автоматического согласия на любую инициативу."},
+    {id:"saburov",name:"Максим Сабуров",caption:"Председатель Госплана",view:"Реалистичность плановых заданий, баланс ресурсов и промышленное развитие; исторически сближался с Хрущёвым, но не связан обязательной игровой лояльностью.",interaction:"Пятилетний план, межотраслевой баланс, техническое исполнение программ.",detail:"Возглавляет Госплан на 1 января 1955 года. Историческая реорганизация плановых органов позднее в 1955 году не происходит автоматически."},
+    {id:"zhukov",name:"Георгий Жуков",caption:"Первый замминистра обороны",view:"Боеспособность армии, профессиональное военное руководство и реальные возможности вооружённых сил.",interaction:"Военные реформы, готовность армии, кадровые вопросы Министерства обороны.",detail:"Первый заместитель министра обороны в начале 1955 года. Военный авторитет не равен бесконтрольному управлению армией."},
+    {id:"serov",name:"Иван Серов",caption:"Председатель КГБ",view:"Сохранение управляемости органов безопасности и контроль исполнения поручений руководства.",interaction:"Государственная безопасность, назначение руководителей, аппаратное согласование.",detail:"Председатель КГБ при Совете министров СССР с 1954 года. Его действия ограничены полномочиями и решениями компетентных органов."},
+    {id:"furtseva",name:"Екатерина Фурцева",caption:"Московский горком КПСС",view:"Работа с местным партийным аппаратом, кадровое продвижение и организация решений в крупном политическом центре.",interaction:"Региональная партийная поддержка, кадровые назначения, выполнение директив.",detail:"С ноября 1954 года — первый секретарь Московского городского комитета партии. Была близка к Хрущёву, но её поддержка не гарантируется автоматически."}
   ];
+  // Scores below are NOT historical estimates. Replace only after moderator approves public initial state.
   var bloc=[
-    {id:"gdr",name:"ГДР",flag:"🇩🇪",desc:"Германское направление",relation:"Тесная зависимость*",pressure:"Сохраняются противоречия*",context:"Немецкий вопрос и положение Берлина делают ГДР важнейшим стратегическим направлением. При оценке устойчивости полезно учитывать события 1953 года.",checks:["Права советских войск и доступ к объектам","Экономическая помощь и её реальные поставки","Решения руководства ГДР и реакция общества"],event:"Историческая развилка: воссоединение Германии, положение Берлина и устойчивость власти ГДР не предопределены."},
-    {id:"pol",name:"Польша",flag:"🇵🇱",desc:"Коммуникации и политика",relation:"Близкие отношения*",pressure:"Внутренние противоречия*",context:"Польша — ключевое звено сухопутных коммуникаций, со своей историей и национальными интересами. Сотрудничество не означает полного отсутствия самостоятельной политики.",checks:["Действующие военные и транзитные соглашения","Снабжение и экономические обязательства","Положение в партии и обществе"],event:"Польские политические кризисы могут возникать из собственных внутренних процессов, а не по обязательному историческому расписанию."},
-    {id:"cze",name:"Чехословакия",flag:"🇨🇿",desc:"Промышленная кооперация",relation:"Развитое сотрудничество*",pressure:"Относительная устойчивость*",context:"Крупная индустриальная и оборонно-промышленная база. Кооперация может быть ценной для СССР, если учтены мощности и потребности самой страны.",checks:["Торговые и производственные соглашения","Реальные поставки и технологические программы","Политические позиции руководства"],event:"Развитость промышленности не означает, что любые дополнительные военные поставки можно выполнить без перераспределения ресурсов."},
-    {id:"hun",name:"Венгрия",flag:"🇭🇺",desc:"Реформы и напряжение",relation:"Зависимость от Москвы*",pressure:"Политическая напряжённость*",context:"Конфликты вокруг курса руководства, хозяйственные трудности и вопросы реформ создают сложную ситуацию. Лояльность правительства и отношение общества нужно оценивать отдельно.",checks:["Персональный состав руководства и внутрипартийные споры","Экономическая ситуация и социальные требования","Присутствие советских войск и правовой статус"],event:"Сценарий венгерского кризиса: реформы, протесты и сопротивление могут развиться, но восстание 1956 года не должно возникать автоматически."},
-    {id:"rou",name:"Румыния",flag:"🇷🇴",desc:"Балканские интересы",relation:"Сотрудничество*",pressure:"Вопросы самостоятельности*",context:"Экономическая и военная связь с СССР сочетается с интересами местного руководства. Степень самостоятельности может меняться в ходе партии.",checks:["Базы и статус военного присутствия","Обязательства по поставкам и помощи","Политика правящей партии"],event:"Изменение советских военных обязательств способно повлиять на дипломатические позиции местного руководства."},
-    {id:"bgr",name:"Болгария",flag:"🇧🇬",desc:"Балканское направление",relation:"Близкое сотрудничество*",pressure:"Локальные противоречия*",context:"Сотрудничество с СССР важно для обороны и модернизации; отдельно учитываются местные политические и хозяйственные потребности.",checks:["Военная подготовка и совместные программы","Торговля и экономическая помощь","Балканская дипломатическая обстановка"],event:"Устойчивость союза определяется практическими договорённостями и внутренними условиями, а не одной универсальной шкалой."},
-    {id:"alb",name:"Албания",flag:"🇦🇱",desc:"Изолированная логистика",relation:"Союзническая ориентация*",pressure:"Зависимость от внешней помощи*",context:"Удалённое положение усложняет военное снабжение и инфраструктурные программы. Руководство Албании сохраняет собственные интересы.",checks:["Морская логистика и возможности снабжения","Потребности в военной и экономической помощи","Двусторонние договорённости"],event:"Укрепление присутствия требует реальной логистики, политических договорённостей и ресурсов."}
+    {id:"gdr",name:"ГДР",flag:"🇩🇪",desc:"Германское направление",relation:76,stability:48,context:"Опорное направление советских войск в Центральной Европе, тесно связанное с СССР и германским вопросом.",specialty:"Стратегическая глубина на центральноевропейском направлении, железнодорожная и промышленная инфраструктура.",near:"Общественное недовольство после событий 1953 года и поддержание управляемости хозяйства.",long:"Германский вопрос, зависимость от советского военного присутствия, необходимость экономической устойчивости."},
+    {id:"pol",name:"Польша",flag:"🇵🇱",desc:"Сухопутные коммуникации",relation:74,stability:58,context:"Крупный западный партнёр СССР с тесной военно-политической связью и значимыми национальными интересами.",specialty:"Сухопутный коридор в Центральную Европу, промышленная база, транспорт и снабжение.",near:"Внутрипартийные противоречия и хозяйственные запросы общества.",long:"Согласование интересов Москвы с национальной политикой и экономической самостоятельностью."},
+    {id:"cze",name:"Чехословакия",flag:"🇨🇿",desc:"Индустриальная база",relation:82,stability:72,context:"Промышленно развитое социалистическое государство, связанное с СССР военной и экономической кооперацией.",specialty:"Станкостроение, машиностроение, вооружения и опыт промышленного сотрудничества.",near:"Баланс собственных производственных потребностей и согласованных внешних заказов.",long:"Модернизация индустрии, социальные ожидания и устойчивость планового хозяйства."},
+    {id:"hun",name:"Венгрия",flag:"🇭🇺",desc:"Дунайский узел",relation:66,stability:37,context:"Советское влияние велико, но политические противоречия в руководстве и вопросы экономической политики требуют внимания.",specialty:"Дунайские коммуникации, промышленность и транспортное положение в центре региона.",near:"Споры о реформах, уровень жизни и доверие к правительству.",long:"Отношения центра и общества, самостоятельность политического курса и риск нарастания кризиса. Восстание в 1956 году не предрешено."},
+    {id:"rou",name:"Румыния",flag:"🇷🇴",desc:"Нефть и Чёрное море",relation:72,stability:64,context:"Политическое и военное сотрудничество с СССР сочетается с собственными интересами румынского руководства.",specialty:"Нефтяной сектор, черноморское направление, логистика и промышленная кооперация.",near:"Согласование военного присутствия, поставок и отраслевых потребностей.",long:"Расширение самостоятельности руководства и определение условий экономической зависимости."},
+    {id:"bgr",name:"Болгария",flag:"🇧🇬",desc:"Южный фланг",relation:83,stability:71,context:"Близкое сотрудничество с Москвой на балканском направлении при наличии самостоятельных внутренних задач.",specialty:"Южное стратегическое направление, сельскохозяйственные поставки и региональные коммуникации.",near:"Модернизация экономики и выполнение конкретных договорённостей.",long:"Балканский баланс сил, индустриализация и устойчивость внутренних институтов."},
+    {id:"alb",name:"Албания",flag:"🇦🇱",desc:"Адриатическое направление",relation:75,stability:62,context:"Союзническая ориентация на СССР при географической изолированности и ограниченных внутренних ресурсах.",specialty:"Адриатическое побережье и потенциальные точки морского взаимодействия — только при согласованных правах доступа.",near:"Нехватка кадров, оборудования и сложности снабжения.",long:"Высокая зависимость от помощи и удалённость от основных советских коммуникаций."}
   ];
   var planData=[
     {id:"industry",name:"Тяжёлая промышленность",desc:"Станки, металл, энергетика, новые заводы",value:35,color:"#337c77"},
@@ -58,17 +71,19 @@
     var colors=["var(--party)","var(--gov)","var(--third)"];
     $("instBars").innerHTML=v.parts.map(function(p,i){return '<div class="influence-row"><div class="influence-label"><span>'+names[i]+'</span><b>'+p+'%</b></div><div class="inst-track"><span style="width:'+p+'%;background:'+colors[i]+'"></span></div></div>'}).join("");
     $("instAccess").textContent=v.access;$("instLimit").textContent=v.limit;
+    $("institutionPeople").innerHTML=(peopleByInstitution[id]||[]).map(function(personId){var f=figures.find(function(x){return x.id===personId});return f?'<button class="person-chip" type="button" data-person="'+safe(f.id)+'">'+safe(f.name)+' <span aria-hidden="true">↗</span></button>':""}).join("");
+    document.querySelectorAll("[data-person]").forEach(function(el){el.addEventListener("click",function(){selectFigure(el.dataset.person);$("figureDetail").scrollIntoView({behavior:"smooth",block:"nearest"})})});
   }
   function selectFigure(id){
     var f=figures.find(function(x){return x.id===id});if(!f)return;
     document.querySelectorAll("[data-figure]").forEach(function(el){el.classList.toggle("is-active",el.dataset.figure===id);el.setAttribute("aria-pressed",String(el.dataset.figure===id))});
     document.querySelectorAll("[data-leader]").forEach(function(el){el.classList.toggle("is-active",el.dataset.leader===id)});
-    $("figureDetail").innerHTML="<strong>"+safe(f.name)+"</strong><p>"+safe(f.detail)+"</p>";
+    $("figureDetail").innerHTML="<strong>"+safe(f.name)+"</strong><p>"+safe(f.detail)+"</p><div class="figure-position"><b>Взгляды и интересы</b><p>"+safe(f.view)+"</p></div><div class="figure-position"><b>О чём можно договариваться</b><p>"+safe(f.interaction)+"</p></div>";
   }
   $("figureButtons").innerHTML=figures.map(function(f){return '<button type="button" class="figure-button" data-figure="'+f.id+'" aria-pressed="false"><b>'+safe(f.name)+'</b><small>'+safe(f.caption)+'</small></button>'}).join("");
   document.querySelectorAll("[data-figure]").forEach(function(el){el.addEventListener("click",function(){selectFigure(el.dataset.figure)})});
-  document.querySelectorAll("[data-leader]").forEach(function(el){el.addEventListener("click",function(){selectFigure(el.dataset.leader)})});
-  selectFigure("khrushchev");renderInstitutions();
+  document.querySelectorAll("[data-leader]").forEach(function(el){el.addEventListener("click",function(){var who=el.dataset.leader;document.querySelectorAll("[data-leader]").forEach(function(other){other.classList.toggle("is-active",other===el)});selectInstitution(who==="khrushchev"?"secretariat":"sovmin")})});
+  selectFigure("molotov");renderInstitutions();
 
   function redistribute(id,newValue){
     var i=planData.findIndex(function(x){return x.id===id});if(i<0)return;
@@ -121,15 +136,54 @@
   $("resetPlan").addEventListener("click",function(){[35,25,20,20].forEach(function(v,i){planData[i].value=v});renderPlan()});
   renderPlan();
 
+  // Text is generated locally and never submitted to the judge.
+  function planMessage(){
+    var lines=[
+      "СССР, 1955 год. Проект предложения Госплану (не утверждённая заявка).",
+      "Предлагаю перераспределить 100% условного объёма НОВЫХ капиталовложений:",
+      ...planData.map(function(x){return "— "+x.name+": "+x.value+"%"}),
+      "",
+      "Прошу согласовать объём реальных вложений в G$, источники финансирования, сроки, материалы, инженерные кадры и производственные мощности.",
+      "Приоритеты не означают гарантированного роста выпуска и не заменяют действующие программы.",
+      "Предполагаемые конкретные проекты, исполнители и сроки: [указать в игровом посте]."
+    ];
+    return lines.join("\n");
+  }
+  $("generatePlan").addEventListener("click",function(){
+    $("planDraftText").value=planMessage();
+    $("draftOutput").hidden=false;
+    $("copyPlanStatus").textContent="";
+  });
+  // An edited distribution invalidates a previously generated snapshot.
+  document.querySelectorAll("[data-plan]").forEach(function(el){el.addEventListener("input",function(){if(!$("draftOutput").hidden){$("planDraftText").value=planMessage();$("copyPlanStatus").textContent="Текст пересчитан."}})});
+  $("resetPlan").addEventListener("click",function(){if(!$("draftOutput").hidden){$("planDraftText").value=planMessage();$("copyPlanStatus").textContent="Текст пересчитан."}});
+  $("copyPlan").addEventListener("click",async function(){
+    var value=$("planDraftText").value;
+    try {
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        await navigator.clipboard.writeText(value);
+      }else{
+        $("planDraftText").focus();$("planDraftText").select();
+        if(!document.execCommand("copy"))throw Error("Clipboard is unavailable");
+      }
+      $("copyPlanStatus").textContent="Скопировано";
+    }catch(e){
+      $("planDraftText").focus();$("planDraftText").select();
+      $("copyPlanStatus").textContent="Выделенный текст можно скопировать вручную";
+    }
+  });
+
   $("blocCards").innerHTML=bloc.map(function(x){return '<button type="button" class="bloc-card" data-country="'+x.id+'" aria-pressed="false"><span class="flag">'+x.flag+'</span><span class="bloc-meta"><strong>'+safe(x.name)+'</strong><small>'+safe(x.desc)+'</small></span></button>'}).join("");
   document.querySelectorAll("[data-country]").forEach(function(el){el.addEventListener("click",function(){selectCountry(el.dataset.country)})});
   function selectCountry(id){
     var x=bloc.find(function(y){return y.id===id});if(!x)return;
     document.querySelectorAll("[data-country]").forEach(function(el){var active=el.dataset.country===id;el.classList.toggle("is-active",active);el.setAttribute("aria-pressed",String(active))});
-    $("countryFlag").textContent=x.flag;$("countryName").textContent=x.name;$("countryRelation").textContent=x.relation;$("countryPressure").textContent=x.pressure;
-    $("countryContext").textContent=x.context;
-    $("countryChecklist").innerHTML=x.checks.map(function(t){return "<li>"+safe(t)+"</li>"}).join("");
-    $("countryCrisis").innerHTML="<strong>Потенциальная развилка</strong>"+safe(x.event);
+    $("countryFlag").textContent=x.flag;$("countryName").textContent=x.name;
+    $("countryRelation").textContent=x.relation+" / 100";$("countryPressure").textContent=x.stability+" / 100";
+    $("relationFill").style.width=x.relation+"%";$("stabilityFill").style.width=x.stability+"%";
+    $("relationTrack").setAttribute("aria-valuenow",String(x.relation));$("stabilityTrack").setAttribute("aria-valuenow",String(x.stability));
+    $("countryContext").textContent=x.context;$("countrySpecialty").textContent=x.specialty;
+    $("countryNear").textContent=x.near;$("countryLong").textContent=x.long;
   }
   selectCountry("hun");
 })();

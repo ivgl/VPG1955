@@ -63,12 +63,16 @@
             <p id="instAccess"></p>
             <div class="small-heading" style="margin-top:16px">Что мешает</div>
             <p id="instLimit" class="muted"></p>
+            <div class="divider"></div>
+            <div class="small-heading">Ключевые неигровые руководители</div>
+            <div id="institutionPeople" class="institution-people"></div>
           </aside>
         </div>
 
         <div class="secondary-layout">
           <section class="card figures-card" aria-labelledby="figures-title">
-            <div class="card-head"><div><div class="eyebrow">Политическая элита</div><h3 id="figures-title">Ключевые фигуры</h3></div><span class="micro-tag">Не список всех министров</span></div>
+            <div class="card-head"><div><div class="eyebrow">Политическая элита</div><h3 id="figures-title">Люди, с которыми придётся договариваться</h3></div><span class="micro-tag">Позиции не статичны</span></div>
+            <p class="muted figures-intro">Выбирайте неигровых руководителей ниже или прямо в карточке учреждения. Их интересы могут меняться под влиянием решений игроков.</p>
             <div id="figureButtons" class="figures-grid" role="group" aria-label="Ключевые руководители СССР"></div>
             <div id="figureDetail" class="figure-detail" aria-live="polite"></div>
           </section>
@@ -91,6 +95,16 @@
             <div id="planControls" class="plan-rows"></div>
             <div class="total-line"><span>Распределено</span><strong><span id="planTotal">100</span> / 100</strong></div>
             <div class="stack-track" id="allocationTrack" aria-label="Распределение инвестиций"></div>
+            <div class="plan-draft">
+              <div class="small-heading">Подготовить предложение</div>
+              <p class="muted">Это текст для игрового поста, а не отправка решения и не расходование средств.</p>
+              <button class="draft-action" type="button" id="generatePlan">Сформировать текст для судьи →</button>
+              <div id="draftOutput" hidden>
+                <label class="draft-label" for="planDraftText">Черновик игрового сообщения</label>
+                <textarea id="planDraftText" rows="9" readonly></textarea>
+                <div class="draft-controls"><button type="button" class="reset" id="copyPlan">Копировать текст</button><span id="copyPlanStatus" class="copy-status" role="status"></span></div>
+              </div>
+            </div>
           </section>
           <aside class="card assessment">
             <div class="eyebrow">Качественный прогноз</div><h3>Что стоит проверить судье</h3>
@@ -119,17 +133,20 @@
           </section>
           <aside class="card country-detail">
             <div class="country-identity"><span id="countryFlag" class="big-flag"></span><div><div class="eyebrow">Карточка союзного государства</div><h3 id="countryName"></h3></div></div>
-            <div class="country-facts">
-              <div><span>Отношения с Москвой</span><strong id="countryRelation"></strong></div>
-              <div><span>Внутреннее положение</span><strong id="countryPressure"></strong></div>
+            <div class="bloc-meters">
+              <div class="bloc-meter"><div class="bloc-meter-head"><span>Отношения с Москвой</span><strong id="countryRelation">—</strong></div><div class="bloc-meter-track" id="relationTrack" role="progressbar" aria-label="Отношения с Москвой" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="relationFill"></span></div><small>0 — враждебность · 100 — тесное сотрудничество</small></div>
+              <div class="bloc-meter"><div class="bloc-meter-head"><span>Внутренняя устойчивость</span><strong id="countryPressure">—</strong></div><div class="bloc-meter-track" id="stabilityTrack" role="progressbar" aria-label="Внутренняя устойчивость" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="stabilityFill"></span></div><small>0 — кризис · 100 — устойчивая ситуация</small></div>
             </div>
-            <div class="small-heading">Политический контекст</div><p id="countryContext" class="muted"></p>
+            <div class="bloc-meters-note">Шкалы — демонстрационные индикаторы для будущей карточки. Они не редактируются на сайте.</div>
             <div class="divider"></div>
-            <div class="small-heading">Что проверять в игровом состоянии</div><ul id="countryChecklist" class="checklist"></ul>
-            <div id="countryCrisis" class="country-event"></div>
+            <div class="small-heading">Связь с СССР</div><p id="countryContext" class="muted"></p>
+            <div class="small-heading">Роль страны в блоке</div><p id="countrySpecialty" class="bloc-specialty"></p>
+            <div class="divider"></div>
+            <div class="small-heading">Ближайшие проблемы</div><p id="countryNear" class="muted"></p>
+            <div class="small-heading">Долгосрочные вызовы</div><p id="countryLong" class="muted"></p>
           </aside>
         </div>
-        <p class="section-disclaimer">Статусы в этом черновике — иллюстрации того, как будут выглядеть карточки. Они не отражают официальный уровень лояльности, отсутствуют реальные расчёты отношений или список заключённых игроками договоров. В итоговой версии данные будут поступать из утверждённого публичного состояния ВПИ.</p>
+        <p class="section-disclaimer">Шкалы 0–100 сейчас показывают условные демонстрационные числа, а не утверждённые исторические значения или скрытые судейские показатели. В финальной версии опубликованные данные будут приходить из официального публичного состояния ВПИ. «Роль страны» не означает бесплатного доступа к её ресурсам: требуются действующие соглашения и поставки.</p>
       </section>
     </main>
     <footer class="footer"><span>ВПИ 1955 · СССР · Тестовая визуализация национальных механик</span><a href="../index.html">← Каталог стран</a></footer>
