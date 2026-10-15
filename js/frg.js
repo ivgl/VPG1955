@@ -37,8 +37,11 @@ const armyParts=[["cadres","Личный состав","Кадры и набор
 function renderArmy(){
  let unlocked=completed.has("ministry");
  $("armyLock").textContent=unlocked?"Пробная правовая база создана. Вы можете моделировать развитие организационной системы.":"Разблокируется после пробного завершения этапа «Военное ведомство и правовая база».";
+ if(!$("armyControls").hasChildNodes()){
  $("armyControls").innerHTML=armyParts.map(([id,title,desc])=>'<div class="army-field"><label for="army-'+id+'">'+title+'</label><strong>'+army[id]+' / 4</strong><input id="army-'+id+'" data-army="'+id+'" type="range" min="0" max="4" step="1" value="'+army[id]+'" '+(unlocked?"":"disabled")+'><p class="fine">'+desc+'</p></div>').join("");
  document.querySelectorAll("[data-army]").forEach(s=>s.addEventListener("input",()=>{army[s.dataset.army]=Number(s.value);renderArmy()}));
+ }
+ document.querySelectorAll("[data-army]").forEach(s=>{s.disabled=!unlocked;s.value=army[s.dataset.army];s.closest(".army-field").querySelector("strong").textContent=army[s.dataset.army]+" / 4"});
  const min=Math.min(...Object.values(army)); $("armyGrade").textContent="Этап "+(unlocked?min:0)+" / 4";
  $("armyMeter").style.width=(unlocked?min*25:0)+"%";
  $("armyComment").textContent=unlocked?(min===0?"Недостаточно хотя бы одного критического элемента организации.":min===4?"Условная организационная система сформирована. Готовность частей требует отдельного расчёта.":"Самый отстающий компонент ограничивает развитие всей системы."):"Вооружённые силы ещё не созданы.";
