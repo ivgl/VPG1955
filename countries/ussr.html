@@ -6,6 +6,7 @@
   <meta name="description" content="Черновой интерактивный интерфейс национальных механик СССР для ВПИ 1955.">
   <title>СССР · Национальные механики · ВПИ 1955</title>
   <link rel="stylesheet" href="../css/ussr.css">
+  <script src="../js/geography-1955.js" defer></script>
   <script src="../js/ussr.js" defer></script>
 </head>
 <body>
@@ -128,6 +129,8 @@
         <div class="bloc-layout">
           <section class="card bloc-list-panel">
             <div class="card-head"><div><div class="eyebrow">Советская сфера влияния</div><h3>Выберите государство</h3></div><span class="micro-tag">01.01.1955</span></div>
+            <div class="europe-map-panel"><svg id="blocMap" viewBox="0 0 830 650" role="group" aria-label="Кликабельная карта стран Восточной Европы и ГДР"></svg></div>
+            <div class="bloc-map-note">Выберите страну на карте или в списке. Упрощённые современные географические контуры не точно воспроизводят границы 1955 года.</div>
             <div class="bloc-grid" id="blocCards" role="group" aria-label="Страны Восточной Европы"></div>
             <div class="bloc-note"><b>Статус договора.</b> Организация Варшавского договора исторически основана 14 мая 1955 года. На дату старта игры это ещё не готовая организация. Формирование и условия договора определяются игровыми решениями.</div>
           </section>
