@@ -17,3 +17,20 @@
 .frg-market h3{font-size:16px;margin:6px 0 10px}
 .frg-market .muted{padding:13px;background:#f0f6f2;border-radius:9px}
 @media(max-width:640px){#frgArmyReadiness{grid-template-columns:1fr}}
+
+/* Three clickable territorial shapes instead of clickable constituent states. */
+.geo-region{cursor:pointer;outline:none}
+.geo-region .region-member{stroke:none!important;stroke-width:0!important}
+.geo-region[data-region="frg"] .region-member{fill:#a9cfc4}
+.geo-region[data-region="gdr"] .region-member{fill:#becad4}
+.geo-region[data-region="saar"] .region-member{fill:#e6c994}
+.geo-region:hover .region-member,.geo-region.active .region-member{filter:brightness(.92)}
+.geo-region:focus-visible .region-member{filter:drop-shadow(0 0 3px #31586b)}
+.geo-berlin-background{fill:#b9c6d3;stroke:none;pointer-events:none}
+.geo-region .region-member{pointer-events:none}
+.frg-market-controls{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.frg-market-controls button{padding:8px 11px;border:1px solid #cbded7;border-radius:8px;background:#f1f6f3;color:#406f64;font-weight:750;font-size:11px}
+.frg-market-controls button.active{background:#335d65;color:#fff}
+.frg-market-breakdown{display:grid;gap:8px}
+.frg-market-breakdown>div{background:#eef4f3;border-radius:8px;padding:10px;font-size:12px}
+.frg-market-breakdown strong{display:block;color:#2b6268;font-size:12px}
