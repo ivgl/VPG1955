@@ -1,6 +1,6 @@
-/* PUBLIC DEMONSTRATION ONLY: historical reference points are labelled separately from speculative model values. Not a game save, official state, or judge instruction. */
+/* Demo-only British public UI state. Historical 1954 trade data is separate from scenarios. Percent-GDP programme values are invented for testing, not official or historical expenditure. */
 window.VPI_GBR_DRAFT={
-  "schema_version": "gbr-draft-0.2",
+  "schema_version": "gbr-draft-0.3",
   "country": "GBR",
   "year": 1955,
   "status": "DEMONSTRATION_ONLY",
@@ -21,7 +21,10 @@ window.VPI_GBR_DRAFT={
       "tradeExports": "https://www.ons.gov.uk/economy/nationalaccounts/balanceofpayments/timeseries/bokg/ukea",
       "reserves": "https://www.elibrary.imf.org/view/book/9781616351670/ch02.xml"
     },
-    "methodologicalNote": "$2,701 млрд на конец 1954 г. — показатель официальных резервов в методологии МВФ с учётом позиций ЕПС/МВФ; не все позиции сразу ликвидны для оплаты товаров в долларах. £3,041 млрд импорта и £2,831 млрд экспорта — стоимость мировой торговли товарами в 1954 г. по данным ONS. Они НЕ равны потоку свободных долларов. Чистый поток конвертируемой валюты в сценарии — отдельная демонстрационная оценка."
+    "methodologicalNote": "$2,701 млрд на конец 1954 г. — показатель официальных резервов в методологии МВФ с учётом позиций ЕПС/МВФ; не все позиции сразу ликвидны для оплаты товаров в долларах. £3,041 млрд импорта и £2,831 млрд экспорта — стоимость мировой торговли товарами в 1954 г. по данным ONS. Они НЕ равны потоку свободных долларов. Чистый поток конвертируемой валюты в сценарии — отдельная демонстрационная оценка.",
+    "stressConvertibleExportReceiptsUSD": 0.6,
+    "eligibleSettlementDollarOutflowUSD": 0.4,
+    "stressNote": "0,60 млрд долларов потенциальной конвертируемой выручки и 0,40 млрд подходящих для перевода расчётов — только условные суммы для стресс-теста; не официальные данные 1954/1955."
   },
   "sterling": [
     {
@@ -424,8 +427,8 @@ window.VPI_GBR_DRAFT={
       "pace": 1,
       "agreement": true,
       "baseWorkersK": 14,
-      "gradualCostG": 0.22,
-      "fastCostG": 0.72
+      "gradualPctGDP": 0.22,
+      "fastPctGDP": 0.72
     },
     {
       "id": "ship",
@@ -437,8 +440,8 @@ window.VPI_GBR_DRAFT={
       "pace": 1,
       "agreement": true,
       "baseWorkersK": 11,
-      "gradualCostG": 0.24,
-      "fastCostG": 0.85
+      "gradualPctGDP": 0.24,
+      "fastPctGDP": 0.85
     },
     {
       "id": "textile",
@@ -450,8 +453,8 @@ window.VPI_GBR_DRAFT={
       "pace": 0,
       "agreement": false,
       "baseWorkersK": 9,
-      "gradualCostG": 0.18,
-      "fastCostG": 0.51
+      "gradualPctGDP": 0.18,
+      "fastPctGDP": 0.51
     },
     {
       "id": "cars",
@@ -463,8 +466,8 @@ window.VPI_GBR_DRAFT={
       "pace": 1,
       "agreement": true,
       "baseWorkersK": 11,
-      "gradualCostG": 0.28,
-      "fastCostG": 0.82
+      "gradualPctGDP": 0.28,
+      "fastPctGDP": 0.82
     },
     {
       "id": "aero",
@@ -476,8 +479,8 @@ window.VPI_GBR_DRAFT={
       "pace": 0,
       "agreement": false,
       "baseWorkersK": 7,
-      "gradualCostG": 0.36,
-      "fastCostG": 1.1
+      "gradualPctGDP": 0.36,
+      "fastPctGDP": 1.1
     }
   ],
   "social": {
@@ -487,32 +490,8 @@ window.VPI_GBR_DRAFT={
   },
   "visual_note": "Суммы программ — млрд G$ (пилотные, не официальный бюджет); валютные резервы и торговля — исторические ориентиры 1954, дополненные исключительно демонстрационными сценариями. Статусы и роли баз — исторические описания, не автоматически применяемые бонусы.",
   "economy": {
-    "programBudgetLimitG": 3,
-    "unit": "млрд игровых G$",
-    "socialAnnualCostG": {
-      "health": [
-        0.1,
-        0.28,
-        0.5,
-        0.82,
-        1.23
-      ],
-      "housing": [
-        0.07,
-        0.25,
-        0.48,
-        0.8,
-        1.15
-      ],
-      "wages": [
-        0.03,
-        0.13,
-        0.28,
-        0.46,
-        0.67
-      ]
-    },
-    "budgetNote": "3,00 млрд G$ — не полный бюджет Соединённого Королевства, а демонстрационный годовой лимит ДОПОЛНИТЕЛЬНЫХ программ. Реальный лимит появится после согласования со статистикой страны.",
+    "unit": "дополнительные доли ВВП, %",
+    "budgetNote": "3,0% ВВП — только условный демонстрационный лимит дополнительных программ. Это не реальные бюджетные расходы Британии и не утверждённый предел в игре. Доли рассчитаны для сравнения приоритетов, а не по историческому бюджету.",
     "extraUSDForModernisation": [
       {
         "id": "coal",
@@ -540,6 +519,60 @@ window.VPI_GBR_DRAFT={
         "fast": 0.22
       }
     ],
-    "trainingCostGPerThousand": 0.014
+    "programBudgetLimitPctGDP": 3,
+    "socialAnnualPctGDP": {
+      "health": [
+        0.1,
+        0.28,
+        0.5,
+        0.82,
+        1.23
+      ],
+      "housing": [
+        0.07,
+        0.25,
+        0.48,
+        0.8,
+        1.15
+      ],
+      "wages": [
+        0.03,
+        0.13,
+        0.28,
+        0.46,
+        0.67
+      ]
+    },
+    "trainingCostPctGDPPerThousand": 0.014
+  },
+  "tradeStructure": {
+    "exports": [
+      {
+        "label": "Машины и транспортное оборудование",
+        "detail": "Промышленная продукция и транспортные средства: экспорт требует заказов, ценовой конкурентоспособности и рынков."
+      },
+      {
+        "label": "Текстиль и готовые изделия",
+        "detail": "Традиционные направления экспорта, испытывающие давление новой мировой конкуренции."
+      },
+      {
+        "label": "Химическая продукция",
+        "detail": "Продукция химических заводов и фармацевтических компаний с высокой технологической составляющей."
+      }
+    ],
+    "imports": [
+      {
+        "label": "Продовольствие и сельхозсырьё",
+        "detail": "Британия существенно зависит от международных поставок продовольствия и сырья."
+      },
+      {
+        "label": "Нефть, топливо и промышленные материалы",
+        "detail": "Энергетическая и сырьевая зависимость ограничивает возможность закрыться от внешней торговли."
+      },
+      {
+        "label": "Машины и специализированное оборудование",
+        "detail": "Инвестиционные поставки и комплектующие требуют ресурсов и валютных соглашений."
+      }
+    ]
   }
 };
