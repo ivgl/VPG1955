@@ -1,6 +1,6 @@
-/* Demo-only British public UI state. Historical 1954 trade data is separate from scenarios. Percent-GDP programme values are invented for testing, not official or historical expenditure. */
+/* Public demonstration values, no official post judgement. Trade history distinct from speculative market shocks and GDP programme deltas. */
 window.VPI_GBR_DRAFT={
-  "schema_version": "gbr-draft-0.3",
+  "schema_version": "gbr-draft-0.4",
   "country": "GBR",
   "year": 1955,
   "status": "DEMONSTRATION_ONLY",
@@ -10,18 +10,18 @@ window.VPI_GBR_DRAFT={
     "exports1954GBP": 2.831,
     "tradeReferenceYear": 1954,
     "usdPerGBP": 2.8,
-    "baselineConvertibleFlowUSD": -0.15,
-    "extraDollarImportsUSD": 0.2,
-    "extraDollarReceiptsUSD": 0.1,
+    "baselineConvertibleFlowUSD": 0,
+    "extraDollarImportsUSD": 0,
+    "extraDollarReceiptsUSD": 0,
     "newConfirmedCreditUSD": 0,
-    "otherUSDPayments": 0.05,
+    "otherUSDPayments": 0,
     "unit": "млрд долларов США",
     "sources": {
       "tradeImports": "https://www.ons.gov.uk/economy/nationalaccounts/balanceofpayments/timeseries/bokh/ukea",
       "tradeExports": "https://www.ons.gov.uk/economy/nationalaccounts/balanceofpayments/timeseries/bokg/ukea",
       "reserves": "https://www.elibrary.imf.org/view/book/9781616351670/ch02.xml"
     },
-    "methodologicalNote": "$2,701 млрд на конец 1954 г. — показатель официальных резервов в методологии МВФ с учётом позиций ЕПС/МВФ; не все позиции сразу ликвидны для оплаты товаров в долларах. £3,041 млрд импорта и £2,831 млрд экспорта — стоимость мировой торговли товарами в 1954 г. по данным ONS. Они НЕ равны потоку свободных долларов. Чистый поток конвертируемой валюты в сценарии — отдельная демонстрационная оценка.",
+    "methodologicalNote": "$2,701 млрд на конец 1954 г. — показатель официальных резервов в методологии МВФ с учётом позиций ЕПС/МВФ; не все позиции сразу ликвидны для оплаты товаров в долларах. £3,041 млрд импорта и £2,831 млрд экспорта — стоимость мировой торговли товарами в 1954 г. по данным ONS. Они НЕ равны потоку свободных долларов. Чистый поток конвертируемой валюты в сценарии — отдельная демонстрационная оценка. Сценарный тест 0,60 млрд $ внешней выручки и 0,40 млрд $ переводимых платежей — учебные допущения, а не официальный прогноз. На экране не прогноз всех платежей за год, а иллюстрация чувствительности резервов к заданному шоку.",
     "stressConvertibleExportReceiptsUSD": 0.6,
     "eligibleSettlementDollarOutflowUSD": 0.4,
     "stressNote": "0,60 млрд долларов потенциальной конвертируемой выручки и 0,40 млрд подходящих для перевода расчётов — только условные суммы для стресс-теста; не официальные данные 1954/1955."
@@ -491,7 +491,7 @@ window.VPI_GBR_DRAFT={
   "visual_note": "Суммы программ — млрд G$ (пилотные, не официальный бюджет); валютные резервы и торговля — исторические ориентиры 1954, дополненные исключительно демонстрационными сценариями. Статусы и роли баз — исторические описания, не автоматически применяемые бонусы.",
   "economy": {
     "unit": "дополнительные доли ВВП, %",
-    "budgetNote": "3,0% ВВП — только условный демонстрационный лимит дополнительных программ. Это не реальные бюджетные расходы Британии и не утверждённый предел в игре. Доли рассчитаны для сравнения приоритетов, а не по историческому бюджету.",
+    "budgetNote": "Модель показывает только ИЗМЕНЕНИЕ расходов относительно сохранения существующих социальных обязательств и дополнительные инвестиции. 3% ВВП — условно доступная доля ВВП на программы, не официальный бюджет. Отрицательные значения = предполагаемая экономия и также нуждаются в проверке.",
     "extraUSDForModernisation": [
       {
         "id": "coal",
@@ -519,28 +519,28 @@ window.VPI_GBR_DRAFT={
         "fast": 0.22
       }
     ],
-    "programBudgetLimitPctGDP": 3,
+    "programBudgetLimitPctGDP": 2,
     "socialAnnualPctGDP": {
       "health": [
-        0.1,
-        0.28,
-        0.5,
-        0.82,
-        1.23
+        -0.25,
+        -0.1,
+        0,
+        0.23,
+        0.5
       ],
       "housing": [
-        0.07,
-        0.25,
-        0.48,
-        0.8,
-        1.15
+        -0.2,
+        -0.08,
+        0,
+        0.2,
+        0.48
       ],
       "wages": [
-        0.03,
-        0.13,
-        0.28,
-        0.46,
-        0.67
+        -0.12,
+        -0.04,
+        0,
+        0.1,
+        0.24
       ]
     },
     "trainingCostPctGDPPerThousand": 0.014
