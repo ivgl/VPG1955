@@ -6,9 +6,9 @@ window.VPI_GBR_DRAFT={
   "status": "DEMONSTRATION_ONLY",
   "finance": {
     "reserve": 120,
-    "exportReceipts": 42,
+    "exportReceipts": 40,
     "dollarImports": 70,
-    "externalObligations": 22,
+    "externalObligations": 20,
     "confirmedCredit": 0,
     "unit": "условные валютные единицы",
     "parityInfo": "Исторический фиксированный паритет в 1955 году: £1 = $2,80. Демонстрационные величины ниже не являются реальными резервами."
