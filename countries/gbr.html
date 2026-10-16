@@ -12,56 +12,95 @@
 <div class="hero-chips"><span>Уинстон Черчилль</span><span>Консерваторы</span><span>Стерлинговая зона</span><span>Послевоенный социальный договор</span></div></section>
 <aside class="banner"><b>Черновик, не официальные игровые правила.</b> Все числовые показатели и расчёты демонстрационные. Действия никуда не отправляются и не меняют состояние игры в Google Drive. Историческое будущее страны не предрешено.</aside>
 <nav class="tabs" aria-label="Разделы Британии">
-<button type="button" data-tab="sterling" class="tab current" aria-selected="true"><span>01</span> Фунт и расчёты</button>
-<button type="button" data-tab="empire" class="tab" aria-selected="false"><span>02</span> Цена империи</button>
-<button type="button" data-tab="social" class="tab" aria-selected="false"><span>03</span> Социальный договор</button>
-<button type="button" data-tab="industry" class="tab" aria-selected="false"><span>04</span> Модернизация</button></nav><main>
+<button type="button" data-tab="sterling" class="tab current" aria-selected="true"><span>01</span> Финансы и фунт</button>
+<button type="button" data-tab="empire" class="tab" aria-selected="false"><span>02</span> Базы и союзники</button>
+<button type="button" data-tab="economy" class="tab" aria-selected="false"><span>03</span> Экономика и общество</button>
+</nav><main>
 <section id="sterling" class="pane current">
-<div class="section-heading"><div class="overline">GBR-01 · Валюта и стерлинговая зона</div><h2>Фунт под давлением</h2><p>Британский бюджет и валютная ликвидность — разные вещи. Для импорта нужны реальные долларовые поступления, кредиты или расходы резервов.</p></div>
+<div class="section-heading"><div class="overline">GBR-01 · Внешние расчёты и пределы импорта</div><h2>Сколько Британия может купить?</h2><p>Торговая статистика показывает положение экономики, а валютные резервы — запас для платежей за границу. Проверь, какие дополнительные закупки и кредиты выдержит страна.</p></div>
 <div class="columns">
-<section class="panel"><div class="panel-top"><div><div class="overline">Демонстрационный год</div><h3>Баланс внешних платежей</h3></div><button type="button" class="quiet" id="fxReset">Сбросить</button></div>
-<p class="muted">Все числа — условные единицы, а не реальные долларовые резервы 1955 года.</p>
-<div class="fx-stat-grid"><div class="fx-mini"><span>Резервы на начало</span><strong id="fxStart">—</strong></div><div class="fx-mini"><span>Прогноз на конец</span><strong id="fxEnd">—</strong></div></div>
-<div class="control-stack" id="fxControls"></div>
-<div class="finance-total"><span>Изменение резервов</span><strong id="fxDelta">—</strong></div><div class="bar-track"><span id="fxBar"></span></div><div class="fx-outlook" id="fxOutlook" aria-live="polite"></div>
-<p class="note">Печать фунтов не создаёт долларовые резервы. Внешний кредит улучшает ликвидность, но порождает будущие обязательства.</p></section>
-<aside class="panel"><div class="overline">Два финансовых контура</div><h3>Что учитывать игроку</h3>
-<div class="concept-grid"><div class="concept"><div class="concept-symbol">£</div><div><strong>Внутренний бюджет</strong><p>Налоги, займы, финансирование государственных программ.</p></div></div>
-<div class="concept"><div class="concept-symbol">$</div><div><strong>Внешняя валюта</strong><p>Импорт, резервы, долларовые поступления и кредиты.</p></div></div>
-<div class="concept"><div class="concept-symbol">↔</div><div><strong>Стерлинговая зона</strong><p>Расчёты с партнёрами. Их резервы нельзя объявить ресурсом Лондона.</p></div></div></div>
-<div class="section-subhead"><span>Партнёры по расчётам</span><span class="micro">Выбрать</span></div><div class="partner-pills" id="sterlingPartners"></div><div class="partner-detail" id="sterlingDetail"></div><p class="note" id="fxParInfo"></p></aside></div></section>
+<section class="panel">
+ <div class="panel-top"><div><div class="overline">Опорные данные на начало 1955 года</div><h3>Торговля и золотовалютные резервы</h3></div><button type="button" class="quiet" id="fxReset">Сбросить</button></div>
+ <div class="fx-stat-grid">
+   <div class="fx-mini"><span>Экспорт товаров, 1954</span><strong id="tradeExports">—</strong></div>
+   <div class="fx-mini"><span>Импорт товаров, 1954</span><strong id="tradeImports">—</strong></div>
+   <div class="fx-mini"><span>Баланс торговли товарами</span><strong id="tradeBalance">—</strong></div>
+   <div class="fx-mini"><span>Резервы, конец 1954</span><strong id="fxStart">—</strong></div>
+ </div>
+ <p class="note">Торговые цифры — все страны и валюты (ONS), не только долларовая зона. Значение резервов в методологии МВФ учитывает отдельные расчётные позиции, которые не обязательно мгновенно конвертируемы в доллары.</p>
+ <div class="divider-line"></div>
+ <div class="overline">Пробный план внешних закупок</div><h3>Что изменит игрок</h3>
+ <div class="control-stack" id="fxControls"></div>
+ <div class="fx-forecast">
+    <div><span>Прогноз резерва на конец года</span><strong id="fxEnd">—</strong></div>
+    <div><span>Изменение резервов за ход</span><strong id="fxDelta">—</strong></div>
+    <div><span>Покрытие годового импорта</span><strong id="fxCoverage">—</strong></div>
+    <div><span>Импортных месяцев в запасе</span><strong id="fxMonths">—</strong></div>
+ </div>
+ <div class="bar-track"><span id="fxBar"></span></div><div class="fx-outlook" id="fxOutlook" aria-live="polite"></div>
+ <button type="button" class="draft-action" id="fxGenerate">Сформировать текст финансового предложения</button>
+ <div id="fxDraft" hidden><label for="fxDraftText">Черновик поста</label><textarea rows="7" readonly id="fxDraftText"></textarea><button type="button" class="quiet" id="fxCopy">Копировать</button><span id="fxCopyStatus" role="status"></span></div>
+</section>
+<aside class="panel"><div class="overline">Почему дефицит торговли ≠ дефицит долларов</div><h3>Два связанных, но разных баланса</h3>
+<div class="concept-grid">
+<div class="concept"><div class="concept-symbol">£</div><div><strong>Внутренняя экономика</strong><p>Торговля и государственный бюджет связаны с валютным курсом, но имеют собственные ограничения.</p></div></div>
+<div class="concept"><div class="concept-symbol">$</div><div><strong>Конвертируемые внешние платежи</strong><p>Не весь экспорт приносит свободные доллары; не все резервы можно немедленно направить на импорт.</p></div></div>
+<div class="concept"><div class="concept-symbol">↔</div><div><strong>Стерлинговая зона</strong><p>Партнёры хранят средства в фунтах, но Британия не может объявлять чужие активы своими.</p></div></div>
+</div>
+<div class="section-subhead"><span>Партнёры стерлинговой зоны</span><span class="micro">Просмотр</span></div>
+<div class="partner-pills" id="sterlingPartners"></div><div class="partner-detail" id="sterlingDetail"></div>
+<div class="linked-box"><strong>Привязка к экономике</strong><p>В разделе «Экономика и общество» ускоренная модернизация добавит примерные закупки оборудования за иностранную валюту. Они появятся в этом прогнозе.</p></div>
+<p class="note" id="fxParInfo"></p></aside></div></section>
 <section id="empire" class="pane" hidden>
-<div class="section-heading"><div class="overline">GBR-02 · Международное присутствие</div><h2>Империя на кредит</h2><p>Британская колония, независимый партнёр Содружества и территория с правами по договору — не одно и то же. Выберите точку на карте или в списке.</p></div>
-<div class="columns map-columns"><section class="panel"><div class="panel-top"><div><div class="overline">Мировая сеть 1955</div><h3>Территории, базы, связи</h3></div><span id="mapCount" class="count-tag">—</span></div>
-<div class="world-frame"><svg id="empireMap" viewBox="0 0 960 490" role="group" aria-label="Карта важных точек присутствия Великобритании"></svg></div>
-<div class="map-legend"><span><i class="lg-colony"></i> Британская администрация</span><span><i class="lg-agreement"></i> Договорный доступ</span><span><i class="lg-commonwealth"></i> Независимый партнёр</span></div>
-<p class="note">Географическая основа использует современные упрощённые контуры, не политическую карту границ 1955 года. Показаны не все владения и обязательства.</p>
+<div class="section-heading"><div class="overline">GBR-02 · Заморская сеть</div><h2>Какие возможности даёт каждая база?</h2><p>Не все точки на карте — военные базы и не все союзники подчинены Лондону. Открой узел, чтобы увидеть размер и назначение военного присутствия, правовой доступ, преимущества и проблемы.</p></div>
+<div class="columns map-columns">
+<section class="panel"><div class="panel-top"><div><div class="overline">Военная и дипломатическая сеть, январь 1955</div><h3>Базы, территории, договоры</h3></div><span id="mapCount" class="count-tag">—</span></div>
+<div class="filter-strip" id="baseFilters"><button type="button" data-filter="all" class="filter-chip active">Все точки</button><button type="button" data-filter="military" class="filter-chip">Военные узлы</button><button type="button" data-filter="civil" class="filter-chip">Территории и торговля</button><button type="button" data-filter="partners" class="filter-chip">Независимые партнёры</button></div>
+<div class="world-frame"><svg id="empireMap" viewBox="0 0 960 490" role="group" aria-label="Карта крупных военно-морских узлов, территорий и партнёров Великобритании"></svg></div>
+<div class="map-legend"><span><i class="lg-colony"></i> Британское управление</span><span><i class="lg-agreement"></i> Договорные права</span><span><i class="lg-commonwealth"></i> Суверенный партнёр</span></div>
+<p class="note">Географическая основа современная и схематическая. Значения «крупная», «региональная», «ограниченная» — качественные оценки роли, а не утверждённые игровые бонусы и численность флота.</p>
 <div class="region-buttons" id="territoryButtons"></div></section>
-<aside class="panel place-panel"><div class="overline">Карточка территории</div><h3 id="placeName">—</h3><div id="placeType" class="place-type"></div>
-<div class="dossier-line"><strong>Юридический статус</strong><p id="placeStatus"></p></div><div class="dossier-line"><strong>Что даёт Британии</strong><p id="placeRole"></p></div><div class="dossier-line"><strong>Ближайшая проблема</strong><p id="placeNear"></p></div><div class="dossier-line"><strong>Долгосрочное решение</strong><p id="placeLong"></p></div>
-<div class="soft-warning">Влияние не означает бесплатного доступа к чужим средствам или войскам. Любые права и обязательства зависят от действующих договоров.</div></aside></div></section>
-<section id="social" class="pane" hidden>
-<div class="section-heading"><div class="overline">GBR-03 · Общественный компромисс</div><h2>Цена послевоенного государства</h2><p>Не единая шкала «рынок — профсоюзы», а конкретные решения кабинета: медицинские услуги, жильё, тарифные переговоры и модернизация государственных предприятий.</p></div>
-<div class="columns"><section class="panel"><div class="panel-top"><div><div class="overline">Политический сценарий</div><h3>Приоритеты кабинета</h3></div><button type="button" class="quiet" id="socialReset">Сбросить</button></div>
+<aside class="panel place-panel"><div class="overline">Военно-политическая карточка</div><h3 id="placeName">—</h3><div id="placeType" class="place-type"></div>
+<div class="facility-head"><strong id="placeFacility"></strong><span id="placeScale"></span></div>
+<div class="dossier-line"><strong>Юридический статус</strong><p id="placeStatus"></p></div>
+<div class="dossier-line"><strong>Права доступа</strong><p id="placeAccess"></p></div>
+<div class="dossier-line"><strong>Что даёт Великобритании</strong><p id="placeRole"></p><ul id="placeCapabilities"></ul></div>
+<div class="dossier-line"><strong>Ближайшая задача</strong><p id="placeNear"></p></div>
+<div class="dossier-line"><strong>Долгосрочная проблема</strong><p id="placeLong"></p></div>
+<div class="soft-warning">Военные возможности требуют кораблей, снабжения, оплаты содержания и действующих прав. Никакой автоматической «+1 готовности» только за наличие точки на карте.</div></aside>
+</div></section>
+<section id="economy" class="pane" hidden>
+<div class="section-heading"><div class="overline">GBR-03 · Социальный договор и промышленная модернизация</div><h2>Один бюджет. Два направления расходов.</h2><p>Игрок выбирает между обновлением заводов и социальными программами. Переговоры и переобучение помогают провести реформу, но требуют денег. Перерасход не исчезает при достижении 100%.</p></div>
+<div class="economic-bar panel">
+ <div class="economic-head"><div><div class="overline">Годовой лимит новых программ</div><h3><span id="budgetLimit">—</span> млрд игровых G$</h3></div><button type="button" class="quiet" id="economyReset">Сбросить</button></div>
+ <div class="budget-topline"><div><span>Заявленные расходы</span><strong id="budgetSpent">—</strong></div><div><span>Загрузка лимита</span><strong id="budgetPercent">—</strong></div><div><span>Остаток / непокрытый дефицит</span><strong id="budgetGap">—</strong></div></div>
+ <div class="budget-overflow"><span id="budgetFill"></span></div><p id="budgetExplanation" class="budget-warning"></p>
+ <div class="budget-split"><span id="socialCost">Социальные программы: —</span><span id="modernCost">Промышленные проекты: —</span><span id="retrainCost">Обучение: —</span></div>
+ <p class="note">Лимит 3,00 млрд G$ и цены программ — намеренно пробные, не государственный бюджет Британии. Цифры нужны, чтобы тестировать сам принцип нехватки ресурсов.</p>
+</div>
+<div class="columns economy-cols">
+<section class="panel"><div class="panel-top"><div><div class="overline">Часть A · Общественные программы</div><h3>Послевоенный социальный договор</h3></div></div>
 <div id="socialControls" class="social-controls"></div>
-<p class="note">Каждое изменение потребует законов, финансирования и реального исполнения. Ползунки не осуществляют реформ автоматически.</p>
-<div class="political-frame"><strong>Консерваторы и лейбористы</strong><p>Обе главные партии вынуждены учитывать послевоенные ожидания общества. Споры идут о цене, полномочиях государства, занятости и методах управления существующими институтами.</p></div>
-</section><aside class="panel"><div class="overline">Показатели сценария</div><h3>Политическая цена решений</h3>
-<div id="socialReadouts" class="social-readouts" aria-live="polite"></div><div id="socialNarrative" class="rulebox"></div>
-<div class="linked-box"><strong>Связь с промышленностью</strong><p>Ускоренная перестройка старых предприятий без переобучения создаёт больше конфликтов. Социальные соглашения помогают, но требуют расходов.</p></div></aside></div></section>
-<section id="industry" class="pane" hidden>
-<div class="section-heading"><div class="overline">Промышленная ветвь GBR-03</div><h2>Старая фабрика, новая конкуренция</h2><p>СССР распределяет план, ФРГ расширяет растущие отрасли, Британия перестраивает зрелую промышленность: обновляет оборудование, договаривается о занятости и пытается не потерять экспортные рынки.</p></div>
-<div class="columns"><section class="panel"><div class="panel-top"><div><div class="overline">Промышленные программы</div><h3>Модернизация отраслей</h3></div><span id="projectCount" class="count-tag">—</span></div>
+<p class="note">Консерваторы и лейбористы спорят о финансировании здравоохранения, жилья и занятости. Существование NHS не является необязательным проектом для открытия.</p>
+<div class="section-subhead"><span>Возможные социальные последствия</span></div>
+<div id="socialReadouts" class="social-readouts"></div>
+<div id="socialNarrative" class="rulebox"></div>
+</section>
+<section class="panel"><div class="panel-top"><div><div class="overline">Часть B · Отрасли</div><h3>Старая фабрика, новая конкуренция</h3></div><span id="projectCount" class="count-tag">—</span></div>
 <div class="sector-grid" id="sectorCards"></div>
-<div class="sector-editor"><div class="overline">Выбранная отрасль</div><h3 id="sectorName">—</h3>
-<div class="sector-facts"><div><b>Наследие</b><p id="sectorLegacy"></p></div><div><b>Ограничение</b><p id="sectorLimit"></p></div><div><b>Перспектива</b><p id="sectorOpportunity"></p></div></div>
-<div class="selector-label">Темп программы</div><div id="sectorPaces" class="pace-buttons"></div>
-<label class="checkbox-line"><input type="checkbox" id="sectorLabour"><span>Переговоры и переобучение работников</span></label><p class="note">Выбранные программы — планы игрока, не произведённые товары или начисленные бонусы. Реальный выпуск оценивает судья.</p></div></section>
-<aside class="panel"><div class="overline">Портфель реформ</div><h3>Нельзя ускорить всё одновременно</h3>
-<div class="portfolio-stat"><span>Активные отраслевые программы</span><strong id="activeProjects">—</strong></div>
-<div class="portfolio-stat"><span>Спрос на переобучение</span><strong id="trainingDemand">—</strong></div>
-<div class="portfolio-stat"><span>Вероятность трудовых споров</span><strong id="industrialFriction">—</strong></div>
+<div class="sector-editor"><div class="overline">Выбранное производство</div><h3 id="sectorName"></h3>
+<div class="sector-facts"><div><b>Что уже есть</b><p id="sectorLegacy"></p></div><div><b>Что ограничивает</b><p id="sectorLimit"></p></div><div><b>Что можно модернизировать</b><p id="sectorOpportunity"></p></div></div>
+<div class="selector-label">Скорость перестройки</div><div id="sectorPaces" class="pace-buttons"></div>
+<label class="checkbox-line"><input type="checkbox" id="sectorLabour"><span>Профинансировать переговоры и переобучение</span></label>
+<p class="note">Реальный рост отрасли не возникает автоматически: судья проверяет оборудование, поставки, квалификацию и время.</p>
+</div>
+</section></div>
+<div class="panel portfolio-panel"><div class="panel-top"><div><div class="overline">Общий эффект заявленных программ</div><h3>Сколько промышленность требует от общества</h3></div><span id="activeProjects" class="count-tag">—</span></div>
+<div class="portfolio-grid"><div><span>Требуется переподготовить</span><strong id="trainingDemand">—</strong></div><div><span>Оплачены места на обучение</span><strong id="trainingCovered">—</strong></div><div><span>Доля без программы</span><strong id="trainingUncovered">—</strong></div><div><span>Оценка риска трудовых споров</span><strong id="industrialFriction">—</strong></div></div>
 <div id="portfolioMessage" class="portfolio-message" aria-live="polite"></div>
-<div class="rulebox"><strong>Почему это не Госплан</strong><p>Правительство может финансировать, регулировать и договариваться, но не директивно распределять весь выпуск частных компаний.</p></div>
-<div class="linked-box"><strong>Отличие от ФРГ</strong><p>ФРГ экспериментирует с ростом мощностей и дефицитом кадров; Британия — с переоснащением существующих предприятий, переходными издержками и отношениями с профсоюзами.</p></div></aside></div></section></main>
+<button type="button" class="draft-action" id="economyGenerate">Сформировать проект экономического поста</button>
+<div id="economyDraft" hidden><label for="economyDraftText">Текст для судьи</label><textarea id="economyDraftText" rows="10" readonly></textarea><button type="button" class="quiet" id="economyCopy">Копировать</button><span id="economyCopyStatus" role="status"></span></div>
+</div>
+</section>
+</main>
 <footer><span>ВПИ 1955 · Великобритания · Черновик</span><span>Данные: <code>data/gbr-draft.js</code></span><a href="../index.html">← Каталог государств</a></footer></div></body></html>
