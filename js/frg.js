@@ -97,12 +97,27 @@ const dossier={
 let activeRegion="frg";
 function makeMap(){
  const geo=window.VPI1955_MAPS?.germany;if(!geo){$("germanMap").textContent="Не удалось загрузить географическую основу";return}
- const parts=geo.states.map(s=>'<path tabindex="0" role="button" aria-label="'+safe(s.name)+' — '+(s.region==="west"?"ФРГ":s.region==="east"?"ГДР":s.region==="saar"?"Саар":"Берлин")+'" class="geo-path" data-region="'+(s.region==="west"?"frg":s.region==="east"?"gdr":s.region)+'" d="'+s.d+'"><title>'+safe(s.name)+'</title></path>');
- parts.push('<text class="map-label" x="198" y="332">ФРГ</text><text class="map-label" x="423" y="324">ГДР</text>');
- parts.push('<path class="map-label-line" d="M135,425 L88,449"/><text class="map-label secondary" x="33" y="466">Саар</text>');
- parts.push('<circle class="map-pin" role="button" tabindex="0" aria-label="Западный Берлин" data-region="berlin" cx="446" cy="199" r="10"/><path class="map-label-line" d="M456,189 L496,164"/><text class="map-label secondary" x="497" y="161">Берлин</text>');
- $("germanMap").innerHTML=parts.join("");
- document.querySelectorAll("[data-region]").forEach(el=>{const activate=()=>chooseRegion(el.dataset.region);el.addEventListener("click",activate);el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();activate()}})});
+ const regions=[
+  ["frg","ФРГ","west"],
+  ["gdr","ГДР","east"],
+  ["saar","Саар","saar"]
+ ];
+ const grouped=regions.map(([id,title,code])=>{
+   const shapes=geo.states.filter(s=>s.region===code).map(s=>'<path class="region-member" d="'+s.d+'"></path>').join("");
+   return '<g data-region="'+id+'" class="geo-region" role="button" tabindex="0" aria-label="'+title+'"><title>'+title+'</title>'+shapes+'</g>';
+ });
+ // Berlin state outline is only a geographical backdrop; 1955 West Berlin is a distinct sector, indicated by a separate pin.
+ const berlin=geo.states.filter(s=>s.region==="berlin").map(s=>'<path class="geo-berlin-background" d="'+s.d+'"></path>').join("");
+ grouped.push(berlin);
+ grouped.push('<text class="map-label" x="198" y="332">ФРГ</text><text class="map-label" x="423" y="324">ГДР</text>');
+ grouped.push('<path class="map-label-line" d="M135,425 L88,449"/><text class="map-label secondary" x="33" y="466">Саар</text>');
+ grouped.push('<circle class="map-pin" role="button" tabindex="0" aria-label="Западный Берлин" data-region="berlin" cx="446" cy="199" r="10"/><path class="map-label-line" d="M456,189 L496,164"/><text class="map-label secondary" x="497" y="161">Берлин</text>');
+ $("germanMap").innerHTML=grouped.join("");
+ document.querySelectorAll("#germanMap [data-region]").forEach(el=>{
+   const activate=()=>chooseRegion(el.dataset.region);
+   el.addEventListener("click",activate);
+   el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();activate()}});
+ });
  chooseRegion("frg");
 }
 function chooseRegion(id){
