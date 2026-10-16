@@ -117,6 +117,18 @@
     else add("Сельское хозяйство","Значение имеют урожай, техника, стимулы и продовольственные запасы.");
     return rows.slice(0,5);
   }
+  function updateDependencies(){
+    var v=Object.fromEntries(planData.map(function(x){return [x.id,x.value]}));
+    var rows=[
+      ["Металл, энергетика и станки","Поставляют оборудование обороне, сельскому хозяйству и гражданским заводам.",v.industry],
+      ["Вооружения и оборонные программы","Нужны не только заявки обороны, но и металл, комплектующие, инженеры.",Math.min(v.defense,v.industry)],
+      ["Тракторостроение и аграрная техника","Требуют мощностей тяжёлой промышленности и вложений в село.",Math.min(v.agriculture,v.industry)],
+      ["Производство товаров и строительство","Потребительская отрасль нуждается в машинах, энергии и транспорте.",Math.min(v.civil,v.industry)]
+    ];
+    $("industryDependencies").innerHTML=rows.map(function(r){
+      return '<div class="industry-link"><strong>'+safe(r[0])+'</strong><span>'+safe(r[1])+'</span><small>Меньший из связанных приоритетов: '+r[2]+'/100 условных единиц (не физический выпуск)</small></div>';
+    }).join("");
+  }
   function renderPlan(){
     if(!$("planControls").hasChildNodes()){
     $("planControls").innerHTML=planData.map(function(x){return '<div class="plan-row"><div class="plan-row-top"><label for="slider-'+x.id+'">'+safe(x.name)+'</label><span class="value" style="color:'+x.color+'">'+x.value+'</span></div><div class="plan-row-desc">'+safe(x.desc)+'</div><input type="range" min="0" max="100" step="5" value="'+x.value+'" id="slider-'+x.id+'" data-plan="'+x.id+'" aria-label="Условные инвестиционные единицы: '+safe(x.name)+'"></div>'}).join("");
@@ -132,6 +144,7 @@
     $("planTotal").textContent=planData.reduce(function(a,b){return a+b.value},0);
     $("allocationTrack").innerHTML=planData.map(function(x){return '<span style="width:'+x.value+'%;background:'+x.color+'" title="'+safe(x.name)+' — '+x.value+'"></span>'}).join("");
     $("planSignals").innerHTML=signals().map(function(x){return '<div class="signal '+x.kind+'"><strong>'+safe(x.label)+'</strong><p>'+safe(x.body)+'</p></div>'}).join("");
+    updateDependencies();
   }
   $("resetPlan").addEventListener("click",function(){[35,25,20,20].forEach(function(v,i){planData[i].value=v});renderPlan()});
   renderPlan();
@@ -182,9 +195,15 @@
       return '<path class="europe-country '+(interactive?"bloc-shape":"")+'" '+(interactive?'data-map-bloc="'+c.id+'" tabindex="0" role="button" aria-label="'+safe(c.name)+'"':"")+' d="'+c.d+'"><title>'+safe(c.name)+'</title></path>';
     });
     parts.push('<path class="europe-country bloc-shape" data-map-bloc="gdr" tabindex="0" role="button" aria-label="ГДР" d="'+geo.gdr+'"><title>ГДР</title></path>');
-    var labels=[["ГДР",260,124],["Польша",445,145],["Чехословакия",346,230],["Венгрия",438,316],["Румыния",593,358],["Болгария",603,454],["Албания",457,531]];
+    var labels=[["ГДР",260,124],["Польша",445,145],["Чехословакия",346,230],["Венгрия",438,316],["Румыния",593,358],["Болгария",603,454],["Албания",457,531],["Югославия",360,444]];
     labels.forEach(function(p){parts.push('<text class="bloc-map-label" x="'+p[1]+'" y="'+p[2]+'">'+safe(p[0])+'</text>')});
     $("blocMap").innerHTML=parts.join("");
+    var yug=["Croatia","Slovenia","Bosnia and Herzegovina","Republic of Serbia","Macedonia","Montenegro"];
+    document.querySelectorAll("#blocMap path.europe-country").forEach(function(p){
+      var t=p.querySelector("title");if(!t)return;
+      if(yug.indexOf(t.textContent)>=0)p.classList.add("historic-yug");
+      if(t.textContent==="Czech Republic"||t.textContent==="Slovakia")p.classList.add("historic-cze");
+    });
     document.querySelectorAll("[data-map-bloc]").forEach(function(el){
       var activate=function(){selectCountry(el.dataset.mapBloc)};
       el.addEventListener("click",activate);
