@@ -16,3 +16,11 @@
 .usa-map-legend span{display:flex;align-items:center;gap:5px}
 .usa-map-legend i{width:11px;height:11px;border-radius:2px;display:inline-block}.usa-map-legend .mandatory{background:#dfaba5}.usa-map-legend .allowed{background:#e7ca92}.usa-map-legend .other{background:#d5e0e1}
 @media(max-width:880px){.usa-civil-grid{grid-template-columns:1fr}}@media(max-width:520px){#usaStateGeo{min-height:180px}.usa-map-pills button{font-size:10px}}
+
+/* Verified party seat totals; ideological caucus ranges are illustrative. */
+.usa-seats-panel{border:1px solid #d6e2df;border-radius:11px;background:#f9fcfb;padding:13px;margin:11px 0}
+.usa-seats-row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;font-size:12px;margin:11px 0 6px}.usa-seats-row strong{font-size:12px}.usa-seats-row span{color:#61747c}
+.usa-seats-track{display:flex;width:100%;height:14px;overflow:hidden;border-radius:20px;background:#e9eef0}.usa-seats-track span:first-child{background:#44819b}.usa-seats-track span:nth-child(2){background:#ac7471}
+.usa-bloc-estimate{display:grid;gap:5px;padding:10px;background:#f1f6f4;border-radius:9px;font-size:11px;margin-top:12px}.usa-bloc-estimate span{color:#607b80;line-height:1.55}
+.usa-alliances #usaEuropeMap{min-height:260px}
+.usa-europe-pin{stroke-width:3.5}
