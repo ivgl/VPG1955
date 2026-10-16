@@ -360,5 +360,5 @@ document.addEventListener("keydown",e=>{
 });
 window.VPI_COUNTRY_V2={enhance};
 const d=window.VPI_COUNTRY_CONFIG;
-if(d)for(const t of d.tabs){const pane=$("pane-"+t.id);if(pane)enhance(d,t,pane,{allocation:null})}
+if(d)for(const t of d.tabs){const pane=$("pane-"+t.id);if(pane)enhance(d,t,pane,{allocation:window.VPI_REMAINING_SESSION?.allocation||null})}
 })();
