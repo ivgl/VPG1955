@@ -13,3 +13,50 @@
 footer{border-top:1px solid var(--line);padding:24px 0 33px;display:flex;justify-content:space-between;gap:13px;flex-wrap:wrap;color:#8a9aa0;font-size:11px}footer a{font-weight:750;color:var(--blue);text-decoration:none}
 @media(max-width:1040px){.columns,.map-columns{grid-template-columns:1fr}.world-frame svg{max-height:600px}.map-legend{gap:9px}}@media(max-width:620px){.page{padding:0 14px}.mast{padding:17px 0}.site-name{order:3;width:100%;font-size:11px}.hero{padding:34px 0 25px}.hero>p{font-size:14px}.tabs{gap:3px}.tab{font-size:12px;padding:9px 10px}.tab span{display:none}.pane{padding-top:22px}.panel{padding:15px}.fx-stat-grid{gap:8px}.sector-grid{grid-template-columns:1fr 1fr}.sector-card{min-height:112px;padding:12px}.region-buttons{gap:5px}.region-pill{font-size:10px}.world-frame svg{min-height:190px}.map-legend{font-size:10px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;scroll-behavior:auto!important}}
+/* GBR round two: budget overrun, clear FX metrics, base utility and combined programme screen. */
+[hidden]{display:none!important}
+.divider-line{height:1px;background:var(--line);margin:20px 0}
+.fx-stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.fx-mini strong{font-size:19px;line-height:1.26}
+.fx-forecast{margin:21px 0 13px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.fx-forecast>div{padding:12px;background:#f0f5f4;border-radius:10px;display:grid;gap:7px}
+.fx-forecast span{font-size:11px;color:#6e838c}
+.fx-forecast strong{font-size:16px;color:var(--navy);font-variant-numeric:tabular-nums}
+.draft-action{background:var(--blue);color:#fff;border-radius:9px;padding:11px 15px;border:1px solid var(--blue);font-weight:800;font-size:12px;margin-top:18px}
+.draft-action:hover{background:#20445a}
+#fxDraft,#economyDraft{margin-top:14px}
+#fxDraft label,#economyDraft label{font-size:12px;font-weight:800;display:block;margin-bottom:8px}
+#fxDraft textarea,#economyDraft textarea{resize:vertical;max-width:100%;width:100%;border:1px solid #c3d6d6;color:var(--ink);border-radius:10px;background:#fafdfe;padding:12px;font-size:12px;line-height:1.65;display:block;margin-bottom:10px}
+#fxCopyStatus,#economyCopyStatus{font-size:11px;color:var(--blue);margin-left:9px}
+.filter-strip{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:16px}
+.filter-chip{font-size:11px;color:#5a7784;background:#eef3f2;border:1px solid #d6e3df;padding:7px 11px;border-radius:25px;font-weight:800}
+.filter-chip.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.world-point.home{fill:#455f87}
+.region-pill[hidden]{display:none}
+.facility-head{border:1px solid #dce7e6;background:#f0f6f5;padding:12px;border-radius:11px;display:grid;gap:4px;margin:10px 0}
+.facility-head strong{font-size:12px;color:var(--navy)}
+.facility-head span{font-size:11px;color:#628178}
+.dossier-line ul{padding-left:18px;margin:8px 0 0;color:#637f87;font-size:12px}
+.dossier-line li{margin:5px 0}
+.economic-bar{margin-bottom:16px}
+.economic-head{display:flex;justify-content:space-between;align-items:start;gap:16px}
+.economic-head h3{font-size:21px;margin-top:5px}
+.budget-topline{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:17px 0}
+.budget-topline>div{background:#f3f7f6;padding:13px;border-radius:10px;display:grid;gap:8px}
+.budget-topline span{font-size:11px;color:#728892}
+.budget-topline strong{font-size:18px;line-height:1.2;font-variant-numeric:tabular-nums;color:var(--navy)}
+.budget-topline strong.warning{color:var(--wine)}
+.budget-overflow{height:17px;background:#e4eaeb;border-radius:14px;overflow:hidden}
+.budget-overflow span{display:block;width:0;height:100%;background:linear-gradient(90deg,#5aa098,#366e91);transition:width .15s}
+.budget-overflow span.over{background:linear-gradient(90deg,#d09b66,#a84d59)}
+.budget-warning{font-size:12px;margin:12px 0 9px;color:#607b87}
+.budget-split{display:flex;gap:9px;flex-wrap:wrap;margin-top:13px}
+.budget-split span{background:#ecf2f1;color:#567783;padding:6px 10px;font-size:11px;font-weight:750;border-radius:20px}
+.economy-cols{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.portfolio-panel{margin-top:16px}
+.portfolio-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.portfolio-grid>div{background:#f3f7f6;border-radius:10px;padding:13px;display:grid;gap:9px}
+.portfolio-grid span{font-size:11px;color:#69828b}
+.portfolio-grid strong{font-size:18px;color:var(--navy);font-variant-numeric:tabular-nums}
+@media(max-width:1050px){.economy-cols{grid-template-columns:1fr}.portfolio-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.fx-mini strong{font-size:16px}.fx-forecast strong{font-size:14px}.budget-topline{grid-template-columns:1fr}.budget-topline>div{display:flex;justify-content:space-between;align-items:center}.budget-topline strong{font-size:15px}.portfolio-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.filter-strip{gap:5px}.filter-chip{font-size:10px;padding:6px 8px}.economic-head{align-items:center}}
