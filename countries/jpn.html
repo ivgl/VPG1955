@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Япония · Национальные механики · ВПИ 1955</title><meta name="description" content="Япония 1955: партии Хатоямы, промышленная модернизация и островное снабжение. Интерактивный черновик ВПИ.">
+<link rel="stylesheet" href="../css/jpn.css"><script src="../data/jpn-draft.js" defer></script><script src="../js/jpn-map.js" defer></script><script src="../js/jpn.js" defer></script></head>
+<body><div class="page">
+<header class="mast"><a href="../index.html" class="back">← К государствам</a><span class="brand">ВПИ <strong>1955</strong> <span>НАЦИОНАЛЬНЫЕ МЕХАНИКИ</span></span><span class="tag">ЧЕРНОВИК · JPN 0.1</span></header>
+<section class="hero"><div class="eyebrow">Япония · 1 января 1955 года</div>
+<h1>Промышленность<br><em>на островах.</em></h1>
+<p>Политический кабинет ищет поддержку, банки — надёжные проекты, заводы — валюту и технологии, а портам требуется доставить сырьё. Японское экономическое чудо ещё нужно построить.</p>
+<div class="chips"><span>Премьер-министр Итиро Хатояма</span><span>Демократическая партия Японии</span><span>Контроль иностранной валюты</span><span>Промышленное восстановление</span></div></section>
+<aside class="notice"><b>Интерактивный справочник, а не панель исполнения решений.</b> Выборы, банковские соглашения и модернизация совершаются через игровые посты и судейские вердикты. Сайт помогает изучить ситуацию и составить предложение; исторические события после старта не обязательны. Числа, не подтверждённые в каноническом состоянии, не выдумываются.</aside>
+<nav class="tabs" aria-label="Национальные механики Японии">
+<button type="button" data-tab="politics" class="tab current" aria-selected="true"><small>01</small> Политика и партии</button>
+<button type="button" data-tab="industry" class="tab" aria-selected="false"><small>02</small> Экспортная машина</button>
+<button type="button" data-tab="islands" class="tab" aria-selected="false"><small>03</small> Островная энергетика</button>
+</nav>
+<main>
+<section id="politics" class="pane current">
+<div class="heading"><div class="eyebrow">JPN-01 · Два консервативных берега</div><h2>Новая партия не рождается нажатием кнопки</h2><p>Демократы Хатоямы и либералы ещё соперничают. Внутри каждой силы существуют собственные лидеры и интересы. Ни объединение консерваторов, ни объединение социалистов пока не произошло.</p></div>
+<div class="columns">
+<section class="card">
+<div class="card-head"><div><div class="eyebrow">Палата представителей · ситуация 1955</div><h3>Политические группы</h3></div><span class="pill">Без выдуманных мандатов</span></div>
+<div class="seat-unknown"><span class="seat-mark">?</span><div><strong>Точное распределение мест после раскола и слияний — уточняется</strong><p id="jpnSeatsNote"></p></div></div>
+<div id="partyButtons" class="party-list"></div><p class="fine">Избирательные результаты 1953 года нельзя механически приписать новым партиям ноября 1954-го. Парламентское большинство и состав правительства определяются подтверждёнными депутатами и процедурой.</p>
+</section>
+<aside class="card">
+<div class="eyebrow">Выбранная политическая сила</div><h3 id="partyName">—</h3><div id="partyLeader" class="detail-emphasis"></div>
+<div class="detail"><strong>Политическая позиция</strong><p id="partyPosition"></p></div>
+<div class="detail"><strong>О чём можно договориться</strong><p id="partyPossible"></p></div>
+<div class="detail"><strong>Что мешает соглашению</strong><p id="partyObstacle"></p></div>
+<div class="accordions"><div class="eyebrow">Темы будущих переговоров</div><div id="negotiationTopics" class="topics"></div></div>
+<div class="scenario-box"><strong>Черновик переговорной позиции</strong><p id="negotiationOutput">Выберите тему — появится идея для игрового поста.</p></div>
+</aside></div>
+</section>
+<section id="industry" class="pane" hidden>
+<div class="heading"><div class="eyebrow">JPN-02 + JPN-04 · Банки, промышленность, валютные лицензии</div><h2>Экспортная машина</h2><p>Вместо очков индустриализации — конкретный проект. Японское государство может влиять на направление кредита и импорт валютного оборудования, но не распоряжается всеми частными фирмами и не создаёт покупателей из воздуха.</p></div>
+<div class="columns industry-columns"><section class="card">
+<div class="card-head"><div><div class="eyebrow">Выберите отрасль</div><h3>Пять промышленных направлений</h3></div><span class="pill">Состояние на старте</span></div>
+<div id="sectorButtons" class="sector-grid"></div>
+<div class="sector-detail"><div class="eyebrow">Выбранная отрасль</div><h3 id="sectorTitle">—</h3><p class="lead" id="sectorBase"></p><div class="sector-facts">
+<div><strong>Что необходимо импортировать</strong><p id="sectorImports"></p></div>
+<div><strong>Реальные источники средств</strong><p id="sectorFinance"></p></div>
+<div><strong>Кому продавать продукцию</strong><p id="sectorMarket"></p></div>
+<div><strong>Главное препятствие</strong><p id="sectorLimit"></p></div></div>
+<button type="button" id="sectorHub" class="link-action">Показать логистический узел на карте <span>↗</span></button>
+</div></section>
+<aside class="card">
+<div class="eyebrow">Составить экономическое предложение</div><h3>Как поддержать отрасль?</h3>
+<div id="financeTools" class="finance-tools"></div>
+<div class="detail"><strong>Импортные разрешения</strong><p>Валютное распределение и импортные лицензии действуют отдельно от банковского кредита. Точный режим каждого товара нужно проверять.</p><div id="licenceButtons" class="licences"></div><p id="licenceNote" class="detail-emphasis"></p></div>
+<div class="detail"><strong>Что нужно обеспечить на практике</strong><div id="projectChecks" class="project-checks"></div></div>
+<div id="projectPreview" class="scenario-box" aria-live="polite"></div>
+<button type="button" class="primary" id="industryDraftButton">Сформировать черновик поста</button>
+<div class="draft-wrap" id="industryDraft" hidden><label for="industryDraftText">Текст предложения игрока</label><textarea id="industryDraftText" readonly rows="11"></textarea><button type="button" class="quiet" id="industryCopy">Копировать</button><span role="status" id="industryCopyStatus"></span></div>
+</aside></div></section>
+<section id="islands" class="pane" hidden>
+<div class="heading"><div class="eyebrow">JPN-05 · Островная энергетика и логистика</div><h2>Завод работает, если груз дошёл до порта</h2><p>У Японии есть угольные шахты, гидроэнергетика и сильная портовая сеть, но тяжёлая промышленность зависит от внешних поставок железной руды, оборудования и топлива. Изучайте узлы на карте и пробуйте разные сценарии снабжения.</p></div>
+<div class="columns map-columns">
+<section class="card map-card">
+<div class="card-head"><div><div class="eyebrow">География производства</div><h3>Промышленные центры и порты</h3></div><span class="pill">Япония, 1955</span></div>
+<div class="map-frame"><svg id="japanMap" viewBox="0 0 755 760" role="group" aria-label="Кликабельная карта промышленных и портовых узлов Японии"></svg></div>
+<div class="map-legend"><span><i class="legend-port"></i> Порт или промышленный район</span><span><i class="legend-affected"></i> Затронут выбранным сценарием</span></div>
+<p class="fine" id="japanMapNote"></p>
+<div id="portButtons" class="port-buttons"></div>
+</section>
+<aside class="card">
+<div class="eyebrow">Выбранный узел</div><h3 id="portName">—</h3><span class="pill" id="portArea"></span>
+<div class="detail"><strong>Экономическая роль</strong><p id="portSpecialty"></p></div>
+<div class="detail"><strong>Что ограничивает работу</strong><p id="portDependency"></p></div>
+<div class="detail"><strong>Действия игрока</strong><p id="portOptions"></p></div>
+<div class="divider"></div>
+<div class="eyebrow">Стресс-сценарий поставок</div><h3>Где возникнет узкое место?</h3>
+<div id="shockButtons" class="shock-buttons"></div><div class="shock-explanation" id="shockResult" aria-live="polite"></div>
+<div class="source-box"><strong>Не забываем про внутренние ресурсы</strong><p>Уголь Хоккайдо и Кюсю, гидроэнергия, каботаж и железные дороги могут смягчать зависимость от импорта. Но строительство новых линий требует денег и времени.</p></div>
+</aside></div></section>
+</main><footer><span>ВПИ 1955 · Япония · черновик</span><span>Данные: <code>data/jpn-draft.js</code></span><a href="../index.html">← К каталогу стран</a></footer>
+</div></body></html>
