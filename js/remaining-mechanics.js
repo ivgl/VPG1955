@@ -126,6 +126,7 @@
   const content=t.kind==="projects"?projects(t):t.kind==="map"?mapTab(t):t.kind==="allocation"?allocation(t):dossier(t);
   pane.innerHTML='<div class="section-header"><div class="eyebrow">'+escapeHtml(t.code)+'</div><h2>'+escapeHtml(t.headline)+'</h2><p>'+escapeHtml(t.intro)+'</p></div>'+content;
   if(draftOpen[t.id])displayDraft(t);
+  window.VPI_COUNTRY_V2?.enhance?.(d,t,pane);
  }
  function draftText(t){
   if(t.kind==="allocation"){
