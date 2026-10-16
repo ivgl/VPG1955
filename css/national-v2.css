@@ -10,3 +10,5 @@
 @media(max-width:560px){.v2-box{padding:14px}.v2-head h2{font-size:29px}.v2-choices{grid-template-columns:1fr 1fr}.v2-choices button{min-height:51px}.v2-coalition-list{grid-template-columns:1fr 1fr}.v2-seat-groups{grid-template-columns:1fr 1fr}.v2-timeline,.v2-phase{flex-wrap:wrap}.v2-timeline small,.v2-phase small{max-width:100%;margin-left:40px}.v2-slider>span{flex-wrap:wrap}.v2-chipline button{font-size:10px}}
 
 .v2-historical-states{margin:16px 0;background:#f3f8f5;border:1px solid #dceae2;border-radius:10px;padding:11px;color:#4d7068}.v2-historical-states summary{cursor:pointer;font-size:12px;font-weight:850}.v2-historical-states div{padding:10px 0;border-bottom:1px solid #dce7e0;font-size:11px}.v2-historical-states div p,.v2-historical-states>p{margin:3px 0;font-size:11px;color:#6d8982}
+
+.v2-allocation-item em{font-size:10px;font-style:normal;margin-left:7px;font-variant-numeric:tabular-nums}.v2-loser{color:#a05253}.v2-winner{color:#4c8b67}.v2-allocation-item small.v2-political-price{background:#fff6f2;border-left:2px solid #c58a7d;padding:5px 7px;color:#916c60;margin-top:6px}
