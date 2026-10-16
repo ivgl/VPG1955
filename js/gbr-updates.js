@@ -46,21 +46,13 @@ const budgetInfo=document.createElement("div");budgetInfo.className="gbr-budget-
 budgetInfo.innerHTML='<strong>Как пользоваться балансом</strong><p>«Сохранение» социальных обязательств = изменение 0% ВВП. Расширение NHS, жилья или гарантий требует дополнительных расходов; сокращение даёт условную экономию, но повышает политические риски. Отдельные проекты переоснащения и подготовки кадров конкурируют за тот же ограниченный ресурс.</p><div id="gbrBudgetParts"></div><p class="note">Расходы — примерные доли ВВП, а не фактический бюджет или подтверждённая стоимость реформ.</p>';
 $("budgetExplanation").after(budgetInfo);
 function budgetParts(){
- const policy=state.economy.socialAnnualPctGDP;
- let soc=["health","housing","wages"].reduce((sum,id)=>sum+policy[id][Number($("policy-"+id).value)],0);
- let capital=0,training=0;
- for(const b of document.querySelectorAll("#sectorCards [data-sector]")){
-  const sector=state.industries.find(x=>x.id===b.dataset.sector);if(!sector)continue;
-  const label=b.querySelector(".pace-indicator")?.textContent?.trim();
-  const selected=label==="Ускоренная"?2:label==="Постепенная"?1:0;
-  capital+=selected===2?sector.fastPctGDP:selected===1?sector.gradualPctGDP:0;
-  const trainees=selected===2?sector.baseWorkersK:selected===1?sector.baseWorkersK*.5:0;
-  const paid=(b.classList.contains("active")?$("sectorLabour").checked:sector.agreement);
-  if(paid)training+=trainees*state.economy.trainingCostPctGDPPerThousand;
- }
- const net=soc+capital+training,limit=state.economy.programBudgetLimitPctGDP;
- const items=[["Изменение соцрасходов",soc],["Переоснащение отраслей",capital],["Переобучение",training]];
- $("gbrBudgetParts").innerHTML=items.map(x=>'<div class="gbr-budget-part"><span>'+x[0]+'</span><strong>'+(x[1]>0?"+":"")+fmt(x[1])+'% ВВП</strong></div>').join("")+'<div class="gbr-budget-part total"><span>Всего относительно исходного уровня</span><strong>'+fmt(net)+'% из '+fmt(limit)+'% ВВП</strong></div>';
+ const sources=[
+ ["Изменение социальных расходов",$("socialCost").textContent],
+ ["Переоснащение отраслей",$("modernCost").textContent],
+ ["Переобучение работников",$("retrainCost").textContent]
+ ];
+ $("gbrBudgetParts").innerHTML=sources.map(x=>'<div class="gbr-budget-part"><span>'+x[0]+'</span><strong>'+x[1].split(":").slice(1).join(":").trim()+'</strong></div>').join("")+
+ '<div class="gbr-budget-part total"><span>Всего дополнительных расходов</span><strong>'+$("budgetSpent").textContent+' из '+$("budgetLimit").textContent+'% ВВП</strong></div>';
 }
 const party=document.createElement("div");party.className="gbr-party-outlook";
 $("socialNarrative").after(party);
