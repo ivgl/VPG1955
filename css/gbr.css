@@ -83,3 +83,6 @@ footer{border-top:1px solid var(--line);padding:24px 0 33px;display:flex;justify
 .gbr-party-outlook strong{font-size:12px}
 .gbr-party-outlook p,.gbr-party-outlook small{font-size:11px;color:#5a7372}
 @media(max-width:650px){.gbr-trade-cols{grid-template-columns:1fr}}
+
+/* The currency screen is a reference and optional stress test, not a hidden budget-application form. */
+#fxGenerate,#fxReset,#fxDraft{display:none!important}
