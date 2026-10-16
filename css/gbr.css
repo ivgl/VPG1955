@@ -62,3 +62,24 @@ footer{border-top:1px solid var(--line);padding:24px 0 33px;display:flex;justify
 @media(max-width:620px){.fx-mini strong{font-size:16px}.fx-forecast strong{font-size:14px}.budget-topline{grid-template-columns:1fr}.budget-topline>div{display:flex;justify-content:space-between;align-items:center}.budget-topline strong{font-size:15px}.portfolio-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.filter-strip{gap:5px}.filter-chip{font-size:10px;padding:6px 8px}.economic-head{align-items:center}}
 
 .map-legend .lg-home{background:#455f87}
+
+/* Britain now offers reference-and-stress estimates, rather than mandatory FX planning sliders. */
+#fxControls[hidden]{display:none!important}
+.gbr-chips{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0}
+.gbr-chips button{border-radius:8px;padding:8px 11px;background:#f1f5f5;color:#486879;border:1px solid #d5e2e1;font-size:11px;font-weight:750}
+.gbr-chips button.active{background:var(--navy);border-color:var(--navy);color:#fff}
+.gbr-stress-result{background:#eaf5ef;border-radius:9px;padding:14px;color:#496b5c;font-size:12px;line-height:1.6}
+.gbr-stress{margin-bottom:17px}
+.gbr-trade-structure{margin:14px 0 20px}
+.gbr-trade-cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.gbr-trade-cols h4{margin:0 0 7px;font-size:13px;color:var(--blue)}
+.gbr-trade-sector{border-top:1px solid #e2eae6;padding:10px 0}
+.gbr-trade-sector strong{font-size:11px;color:var(--navy)}
+.gbr-trade-sector p{font-size:11px;color:var(--muted);margin:5px 0 0}
+.gbr-sterling-experiment{padding:13px;background:#f4f7f6;border:1px solid #dfe9e6;border-radius:10px}
+.gbr-sterling-experiment h3{font-size:16px;margin:6px 0}
+.gbr-sterling-experiment p{font-size:11px;line-height:1.55;color:var(--muted)}
+.gbr-party-outlook{background:#f2f6f4;border:1px solid #deebe3;border-radius:10px;padding:14px;margin:15px 0}
+.gbr-party-outlook strong{font-size:12px}
+.gbr-party-outlook p,.gbr-party-outlook small{font-size:11px;color:#5a7372}
+@media(max-width:650px){.gbr-trade-cols{grid-template-columns:1fr}}
