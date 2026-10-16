@@ -24,6 +24,7 @@ const topics=[
 ];
 let partyId="dem",topicId="coalition";
 $("jpnSeatsNote").textContent=d.seatsNote;
+$("jpnElectionNote").textContent=d.nextElection;
 $("partyButtons").innerHTML=d.parties.map(p=>'<button type="button" class="party-button" data-party="'+p.id+'"><strong>'+escapeHtml(p.name)+'</strong><span>'+escapeHtml(p.leader)+'</span></button>').join("");
 $("negotiationTopics").innerHTML=topics.map(t=>'<button type="button" class="topic-btn" data-topic="'+t.id+'">'+escapeHtml(t.label)+'</button>').join("");
 function renderPolitics(){
