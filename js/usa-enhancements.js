@@ -16,6 +16,18 @@ const factions=[
 ];
 const factionRoot=document.querySelector(".factions");
 if(factionRoot){
+ const seats=document.createElement("section");seats.className="usa-seats-panel";
+ seats.innerHTML='<div class="label">Арифметика 84-го Конгресса · 3 января 1955</div>'+
+ '<div class="usa-seats-row"><strong>Палата представителей</strong><span>232 демократа · 203 республиканца</span></div>'+
+ '<div class="usa-seats-track"><span style="width:53.33%" title="Демократы: 232"></span><span style="width:46.67%" title="Республиканцы: 203"></span></div>'+
+ '<div class="usa-seats-row"><strong>Сенат</strong><span>48 демократов · 47 республиканцев · 1 независимый</span></div>'+
+ '<div class="usa-seats-track"><span style="width:50%" title="Демократы: 48"></span><span style="width:48.96%" title="Республиканцы: 47"></span><span style="width:1.04%;background:#b3b8bf" title="Независимый: 1"></span></div>'+
+ '<p class="micro">Абсолютное большинство: 218 мест в Палате, 49 голосов из 96 в Сенате (при полном составе голосующих; при равенстве возможна роль вице-президента). Партийные места установлены, фракции не имеют официальной поимённой численности.</p>'+
+ '<div class="usa-bloc-estimate"><b>Южные демократы: ориентировочно 85–110 представителей</b><span>Широкая региональная игровая оценка, не проверенный поимённый подсчёт и не единая дисциплинированная фракция. Остальные демократы — примерно 122–147. По каждому закону позиции могут различаться.</span></div>';
+ factionRoot.parentElement.insertBefore(seats,factionRoot);
+}
+
+if(factionRoot){
  factionRoot.innerHTML=factions.map(x=>'<button type="button" class="faction usa-faction" data-usa-faction="'+x.id+'"><b>'+escapeHtml(x.name)+'</b><span>'+escapeHtml(x.sub)+'</span></button>').join("");
  const detail=document.createElement("div");detail.className="usa-focus";detail.id="usFactionInfo";factionRoot.after(detail);
  function selectFaction(id){const x=factions.find(z=>z.id===id);if(!x)return;detail.innerHTML="<strong>"+escapeHtml(x.name)+"</strong><p>"+escapeHtml(x.t)+"</p>";factionRoot.querySelectorAll("[data-usa-faction]").forEach(b=>b.classList.toggle("active",b.dataset.usaFaction===id))}
