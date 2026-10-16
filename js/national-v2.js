@@ -1,0 +1,364 @@
+"use strict";
+/* Country-specific gameplay surfaces. Proposal scenarios never mutate canonical data. */
+(function(){
+const G=window.VPI_V2_GEO||{},base=window.VPI_REMAINING_GEO||{};
+const $=id=>document.getElementById(id);
+const esc=x=>String(x??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const fmt=n=>Number(n).toLocaleString("ru-RU",{maximumFractionDigits:1});
+const stores={};
+function state(code){return stores[code]??(stores[code]={focus:0,mode:0,education:45,staff:35,food:45,local:50,central:50,training:45,credit:45,irrigation:30,north:65,audit:35,law:45,private:35,budget:100,canal:100,toll:10,compensation:25,loan:40,officers:65,clerks:35,immigrants:25,homes:20,water:25,jobs:18,reserve:40,days:30,wages:55,project:0,market:0,stage:0,coalition:[],selected:null})}
+const heading=(ey,title,desc)=>'<div class="v2-head"><div class="eyebrow">'+esc(ey)+'</div><h2>'+esc(title)+'</h2><p>'+esc(desc)+'</p></div>';
+const panel=(title,body)=>'<section class="v2-box"><h3>'+esc(title)+'</h3>'+body+'</section>';
+const note=(title,body)=>'<div class="v2-note"><strong>'+esc(title)+'</strong><p>'+esc(body)+'</p></div>';
+const pct=(label,n)=>'<div class="v2-stat"><span>'+esc(label)+'</span><strong>'+esc(n)+'</strong></div>';
+const bar=(n,color,rest=false)=>'<div class="v2-track"><span style="width:'+Math.max(0,Math.min(100,n))+'%;background:'+ (color||"var(--national-accent)") +'"></span></div>';
+const slider=(name,label,min,max,step,val,desc)=>'<label class="v2-slider"><span><strong>'+esc(label)+'</strong><b data-val="'+name+'">'+fmt(val)+'</b></span><input type="range" data-v2-range="'+name+'" min="'+min+'" max="'+max+'" step="'+step+'" value="'+val+'"><small>'+esc(desc)+'</small></label>';
+const choose=(key,list,s)=>'<div class="v2-choices">'+list.map((x,i)=>'<button type="button" data-v2-choose="'+key+':'+i+'" class="'+(s[key]===i?'active':'')+'">'+esc(x)+'</button>').join("")+'</div>';
+const geoCountry=(code,points,s,opts={})=>{
+ const g=base[code];if(!g)return "";
+ const p=([lon,lat])=>[Math.round(lon*g.transform.cos*g.transform.scale+g.transform.offsetX),Math.round(-lat*g.transform.scale+g.transform.offsetY)];
+ const bg=g.shapes.map(x=>'<path class="v2-land" d="'+x.d+'"></path>').join("");
+ const places=points.map((x,i)=>{const [cx,cy]=p([x.lon,x.lat]);return '<g class="v2-pin'+(i===s.focus?' active':'')+'" role="button" tabindex="0" data-v2-pin="'+i+'"><circle cx="'+cx+'" cy="'+cy+'" r="10"/><title>'+esc(x.name)+'</title></g>'}).join("");
+ const extra=opts.canal?(()=>{const points=[[32.3,31.25],[32.35,30.8],[32.4,30.58],[32.55,29.96]].map(p);return '<polyline points="'+points.map(x=>x.join(",")).join(" ")+'" class="v2-canal"/>'})():"";
+ return '<svg class="v2-map" viewBox="0 0 700 460" aria-label="Карта промышленных и политических узлов">'+bg+extra+places+'</svg>';
+};
+const nodeChooser=(items,s)=>'<div class="v2-chipline">'+items.map((x,i)=>'<button type="button" data-v2-pin="'+i+'" class="'+(s.focus===i?'active':'')+'">'+esc(x.name)+'</button>').join("")+'</div>';
+const renderDraft=(s,code,t,text)=>{
+ let has= s.draftFor===t;
+ return '<div class="v2-draft"><button type="button" data-v2-draft="'+esc(t)+'" class="v2-primary">Сформировать предложение для поста</button>'+
+ (has?'<textarea readonly rows="8" id="v2-draft-text">'+esc(text)+'</textarea><button class="v2-secondary" type="button" data-v2-copy="'+esc(t)+'">Копировать</button><span id="v2-copy-status"></span>':'')+'</div>';
+};
+function seatChart(title,groups,total,threshold,selected,desc){
+ const max=groups.reduce((a,b)=>a+b.seats,0);
+ return '<div class="v2-seat-chamber"><div class="v2-seat-title"><strong>'+esc(title)+'</strong><span>'+max+' мест · для большинства '+threshold+'</span></div>'+
+ '<div class="v2-stacked">'+groups.map(g=>'<span title="'+esc(g.name)+': '+g.seats+'" style="background:'+g.color+';width:'+(g.seats/total*100)+'%"></span>').join("")+'</div>'+
+ '<div class="v2-seat-groups">'+groups.map((g,i)=>'<button type="button" data-v2-party="'+i+'" class="'+(i===selected?'active':'')+'"><i style="background:'+g.color+'"></i><span>'+esc(g.name)+'</span><strong>'+g.seats+'</strong></button>').join("")+'</div>'+
+ (desc?'<p class="v2-muted">'+esc(desc)+'</p>':'')+'</div>';
+}
+const IsraeliKnesset=[
+{name:"МАПАЙ",seats:45,color:"#5a80a2"},{name:"Общие сионисты",seats:20,color:"#9bb8ca"},{name:"МАПАМ",seats:15,color:"#c4878d"},
+{name:"Поалей ха-Мизрахи",seats:8,color:"#98b49f"},{name:"Херут",seats:8,color:"#c59773"},{name:"МАКИ",seats:5,color:"#a05e62"},
+{name:"Прогрессисты",seats:4,color:"#b7a8c7"},{name:"Другие списки",seats:15,color:"#bec7c1"}
+];
+const itaChamber=[{name:"ХДП",seats:263,color:"#5e93ad"},{name:"ИКП",seats:143,color:"#bc787e"},{name:"ИСП",seats:75,color:"#d6abae"},
+{name:"МСИ",seats:28,color:"#a69ba6"},{name:"Монархисты",seats:30,color:"#ceb787"},{name:"СДПИ",seats:19,color:"#92a9b8"},
+{name:"Либералы",seats:13,color:"#76aaa0"},{name:"Смешанная группа",seats:18,color:"#b3b9b8"}];
+const itaSenate=[{name:"ХДП",seats:111,color:"#5e93ad"},{name:"ИКП",seats:50,color:"#bc787e"},{name:"ИСП",seats:28,color:"#d6abae"},
+{name:"Либ.-соц.-респ.",seats:10,color:"#76aaa0"},{name:"МСИ",seats:9,color:"#a69ba6"},{name:"Монархисты",seats:13,color:"#ceb787"},
+{name:"Независимые левые",seats:9,color:"#b1a0ae"},{name:"Смешанная",seats:13,color:"#b3b9b8"}];
+function coalition(code,s){
+ const italy=code==="ita",groups=italy?itaChamber:IsraeliKnesset;
+ const total=italy?589:120;
+ const chosen=s.coalition||[];
+ const sum=groups.reduce((a,g,i)=>a+(chosen.includes(i)?g.seats:0),0);
+ const details=italy?"Выбор групп ниже — пример переговорного блока по составу Палаты депутатов. Для настоящего кабинета требуется отдельная проверка Сената.":"Выбор групп показывает арифметику избранного Кнессета, но не гарантирует их голосов. В течение созыва были изменения фракций.";
+ let left=italy?seatChart("Палата депутатов · состояние на конец 1954",itaChamber,589,295,s.focus,"Наличие вакансий и состава на конкретное заседание учитывается при голосовании."):
+ seatChart("II Кнессет · мандаты выборов июля 1951",IsraeliKnesset,120,61,s.focus,"Следующие реальные выборы: 26 июля 1955. До них сохраняется действующий II Кнессет.");
+ if(italy)left+=seatChart("Сенат · состояние на конец 1954",itaSenate,243,122,s.focus,"Включая пожизненных сенаторов; порог простого большинства показан для полного состава 243.");
+ let options=groups.map((g,i)=>'<label class="v2-coalition-row"><input type="checkbox" data-v2-coalition="'+i+'" '+(chosen.includes(i)?'checked':'')+'><span>'+esc(g.name)+'</span><b>'+g.seats+'</b></label>').join("");
+ return heading(italy?"Политический баланс 1955 · две палаты":"Политическая система · второй Кнессет",italy?"Большинство в одной палате недостаточно":"61 голос, чтобы иметь собственное большинство",italy?"Кабинет Марио Шельбы зависит от поддержки депутатов и сенаторов. Выборы нового парламента по реальной хронологии — 1958 год.":"Кабинет Моше Шарета действует до новых выборов. Парламентские споры меняют коалицию, а не автоматически назначают другую дату голосования.")+
+ '<div class="v2-two"><div>'+panel("Кто занимает места",left)+'</div><div>'+panel("Соберите переговорный блок",
+ '<div class="v2-coalition-list">'+options+'</div>'+pct("Объединённые мандаты",sum+" / "+total)+bar(sum/total*100)+note(sum>=(italy?295:61)?"Арифметическое большинство":"Поддержки недостаточно",sum>=(italy?295:61)?details:"Не хватает "+((italy?295:61)-sum)+" голосов для абсолютного большинства первой палаты. "+details)
+ +renderDraft(s,code,"coalition",code.toUpperCase()+" 1955. Предлагается поддержка фракций: "+chosen.map(i=>groups[i].name).join(", ")+". В первой палате "+sum+" мандатов. Необходимо политическое соглашение и проверка состава обеих палат/действующей коалиции."))+'</div></div>';
+}
+function education(code,s,indian){
+ const phases=indian?["Начальные школы","Технические училища","Подготовка инженеров","Ввод оборудования"]:["Школьное образование","Техникумы и курсы","Инженеры и переводчики","Реальный выпуск завода"];
+ const skilled=Math.min(100,Math.round((s.education*0.5+s.staff*0.5)));
+ const works=Math.min(skilled,s.local,100-s.food+40);
+ const social=indian?"Государство не управляет всеми частными предприятиями: нужны соглашения с банками и фирмами.":"Повышение темпа стройки требует продовольствия для городских рабочих и транспорта.";
+ const steps=phases.map((p,i)=>'<div class="v2-timeline"><span>0'+(i+1)+'</span><strong>'+esc(p)+'</strong><small>'+["Начать с людей","Подготовить преподавателей и мастеров","Пригласить и обучить специалистов","Строить по календарю ввода"][i]+'</small></div>').join("");
+ return heading(code==="chn"?"КНР · индустриализация и образование":"Индия · пятилетка, монсун и кадры",indian?"Завод требует не только государственной лицензии":"Сталь начинается в школе и техникуме","Это модель планирования кадров и производственных связей, а не начисление промышленных очков. Реальные сроки строительства зависят от проекта и судейского вердикта.")+
+ '<div class="v2-two"><div>'+panel("Как создаётся промышленная компетенция",'<div class="v2-timelines">'+steps+'</div>'+
+ note("Узкое место",social))+'</div><div>'+panel("Проверьте собственный проект",
+ slider("education","Масштаб программы технического образования",0,100,5,s.education,"Больше школ — больше расходов сегодня; кадры появляются через годы.")+
+ slider("staff","Поддержка иностранных преподавателей и инженеров",0,100,5,s.staff,"Контракты, языковая подготовка и местные ассистенты.")+
+ slider("local","Оборудование, энергия и транспорт",0,100,5,s.local,"Мощности должны быть оплачены и физически доступны.")+
+ slider("food","Нагрузка сельского хозяйства и снабжения",0,100,5,s.food,"Рост города требует продуктов и продовольственной логистики.")+
+ pct("Условная согласованность узких мест",Math.max(0,Math.min(100,Math.round(works)))+"/100")+
+ bar(works)+note("Что ограничивает программу",works===skilled?"Нехватка подготовленных специалистов":"Слабое звено — материалы, транспорт либо продовольствие. Высокие инвестиции в завод не исправляют его автоматически.")+
+ renderDraft(s,code,"education","Программа развития кадров и промышленности: образование "+s.education+"/100, приглашённые специалисты "+s.staff+"/100, снабжение "+s.local+"/100, аграрная нагрузка "+s.food+"/100. Попросить судью установить проект, стоимость и сроки в официальном состоянии."))+'</div></div>';
+}
+function province(code,s,t){
+ const indian=code==="ind";
+ const opts=indian?["Больше автономии регионов","Более единое управление","Реформа с переговорами"]:["Региональные пилоты","Единая кампания","Учёт промышленности и села"];
+ const items=t.items,view=items[s.focus%items.length];
+ const modes=indian?[
+  ["Децентрализация","Региональные власти быстрее решают задачи на месте, но общенациональные реформы нуждаются в координации."],
+  ["Централизация","Общий план проще согласовать на верхнем уровне, но региональные языковые и административные конфликты усложняют исполнение."],
+  ["Договорный федерализм","Соглашения со штатами медленнее в подготовке, но дают более устойчивое исполнение реформ."]
+ ]:[
+  ["Пилот","В начале разворачивается ограниченная программа, но результаты можно измерить и исправить."],
+  ["Форсаж","Быстрый охват увеличивает потребность в местных чиновниках, продовольствии и проверках."],
+  ["Разные региональные стратегии","Промышленным районам нужны транспорт и рабочие; сельским — урожай, цены и кооперация."]
+ ];
+ return heading(indian?"Реорганизация штатов 1955":"КНР · индустриальные и аграрные районы",
+  indian?"Местная власть меняет цену реформы":"Одинаковый приказ даёт неодинаковый результат",
+  indian?"В 1955 году действуют Андхра и Хайдарабад как отдельные штаты; ни Андхра-Прадеш, ни нынешние границы Махараштры не предрешены.":"Промышленный Северо-Восток и аграрные внутренние районы нуждаются в разных людях, материалах и политических соглашениях.")+
+ '<div class="v2-two"><div>'+panel("География реальных различий",geoCountry(code,items,s)+nodeChooser(items,s)+
+ '<div class="v2-detail"><strong>'+esc(view.name)+'</strong><p>'+esc(view.status)+" · "+esc(view.issue)+'</p><p>'+esc(view.action)+'</p></div>')+'</div><div>'+
+ panel("Выберите принцип реформы",choose("mode",opts,s)+note(modes[s.mode][0],modes[s.mode][1])+
+ slider("central",indian?"Роль центра в исполнении":"Нагрузка централизованного аппарата",0,100,5,s.central,"Выбор курса, а не уже проведённое изменение правового статуса.")+
+ '<div class="v2-cause"><strong>'+(indian?"Что надо сделать до новой карты штатов":"Что нужно для реального охвата кампании")+'</strong><p>'+(indian?"Конституционная процедура, заключение комиссии, консультации и перенос учреждений.":"Подготовить местные кадры, учёт хозяйств, снабжение, бюджет и обратную связь.")+'</p></div>'+
+ renderDraft(s,code,"province",view.name+". Предложена стратегия: "+opts[s.mode]+". Роль центра: "+s.central+"/100. "+modes[s.mode][1]+" Описать юридическую процедуру, кадры и сроки."))+'</div></div>';
+}
+function recognition(code,s){
+ const acts=["Дипломатические признания и миссии","Переговоры с ключевыми членами ООН","Проект решения Генеральной Ассамблеи","Реакция стран, сохраняющих признание КР на Тайване"];
+ const details=[
+ "Соглашения о признании и посольства. Публичная позиция каждого государства учитывается отдельно.",
+ "Расположение постоянного китайского места зависит от международного голосования и позиций держав.",
+ "Нужны реально согласованные голоса государств, процедура и решение органов ООН, а не заполнение шкалы в одиночку.",
+ "Китайская Республика сохраняет свои институты на Тайване; её согласие и позиция США не исчезают по нажатию."
+ ];
+ return heading("Международные вехи · Китайское место в ООН","Признание — результат дипломатии, а не шкала прогресса","В 1955 году место Китая в ООН занимает Китайская Республика. КНР может добиваться международной поддержки и изменения представительства, но нуждается в конкретных голосованиях и договорах.")+
+ '<div class="v2-two"><div>'+panel("Дорожная карта возможной дипломатической кампании",
+ acts.map((a,i)=>'<button type="button" class="v2-milestone'+(s.focus===i?' active':'')+'" data-v2-pin="'+i+'"><span>0'+(i+1)+'</span><strong>'+esc(a)+'</strong></button>').join("")+
+ note("На карте важно не число галочек","Каждый результат — признание конкретного государства, позиция на голосовании или реально принятая резолюция."))+'</div><div>'+panel(acts[s.focus%4],
+ '<p>'+esc(details[s.focus%4])+'</p>'+pct("Подтверждённый прогресс","Определяется договорами и голосованиями")+
+ '<div class="v2-cause">Дипломатические альтернативы: новые признания, торговые представительства, переговоры об участии в органах ООН, урегулирование международных разногласий.</div>'+
+ renderDraft(s,code,"recognition","Предложение дипломатической инициативы КНР по вопросу: "+acts[s.focus%4]+". Участники, цели, правовая процедура, позиции внешних игроков и реальные условия голосования требуют согласования."))+'</div></div>';
+}
+function suez(code,s){
+ const egypt=base.egy,toll=s.canal,operating=25,comp=s.compensation;const revenue=toll-operating-Math.round(toll*comp/100);
+ const upfront=100;
+ const places=[
+ {name:"Порт-Саид",lon:32.3,lat:31.27},{name:"Исмаилия",lon:32.27,lat:30.6},{name:"Суэц",lon:32.55,lat:29.97},{name:"Каир",lon:31.24,lat:30.04}
+ ];
+ const geo=geoCountry("egy",places,s,{canal:true});
+ const modes=["Компания сохраняет управление","Переговоры об увеличении египетской доли","Гипотетический государственный контроль"];
+ const infos=[
+ "Сборы остаются в хозяйственной системе компании; Египет получает только предусмотренные существующими договорами платежи, а не всю выручку.",
+ "Договор может изменить долю дохода и состав управления, но требует согласия сторон, а иногда компенсаций.",
+ "Нужно управлять персоналом, обслуживать канал, принять обязательства и учитывать иностранную реакцию; валовой транзит не становится чистым доходом."
+ ];
+ return heading("Суэцкий канал · права, деньги, инфраструктура","Почему владение каналом стоит дипломатического кризиса","Иностранное управление обеспечивает огромную транзитную артерию. Доход Египта зависит от прав компании и договоров, а потенциальный больший контроль приносит и эксплуатационные расходы, и политическую цену.")+
+ '<div class="v2-two"><div>'+panel("Канал на карте Египта",geo+nodeChooser(places,s)+note("Юридическая точка отсчёта","1954: концессия Суэцкой компании продолжает действовать, вывод британских войск из зоны канала — отдельный процесс по соглашению октября 1954 года."))+'</div><div>'+
+ panel("Модель доходов при разных правах",choose("mode",modes,s)+note("Выбранный путь",infos[s.mode])+
+ '<div class="v2-two-mini">'+slider("canal","Гипотетические сборы за период, условные единицы",50,200,10,s.canal,"Не реальные доходы Суэцкой компании 1955 года.")+
+ slider("compensation","Условная доля компенсаций и иных обязательств",0,60,5,s.compensation,"Только для сравнения вариантов договора.")+'</div>'+
+ pct("Валовой транзит в модели",fmt(toll))+
+ pct("Условные эксплуатационные затраты",operating)+
+ pct("Резерв на компенсации и обязательства",Math.round(toll*comp/100))+
+ pct("Остаток после затрат в сценарии полного контроля",fmt(revenue))+
+ bar(revenue/200*100)+note("Почему это не реальный египетский бюджет","Пока компания остаётся владельцем концессии, эта сумма не может автоматически оказаться в казне. При контроле надо учитывать тарифы, обслуживание, долги и реакцию пользователей.")+
+ renderDraft(s,code,"suez","Египет 1955. Суэц: путь «"+modes[s.mode]+"». Определить договорные права, эксплуатационные расходы, персонал, компенсации и международную реакцию. Сценарные "+toll+" единиц сборов не являются официальным доходом."))+'</div></div>';
+}
+function egyptNile(code,s){
+ const paths=["Договориться о кредитах","Провести проектные и геологические работы","Строительство и оборудование","Ввод энерго- и ирригационных очередей"];
+ const programmes=["Высотная Асуанская плотина","Обновление орошения","Хлопковый экспорт"];
+ const outputs=[
+ {today:"Не производит новую электроэнергию в момент подписания кредита.",after:"После строительства — регулируемый сток, новые ирригационные возможности и генерация в пределах мощности.",requires:"Кредиторы, иностранное оборудование, инженерные работы, социальные последствия и многолетний срок."},
+ {today:"Существующие каналы требуют ремонта; расширение площади не происходит сразу.",after:"После ввода и нескольких сельхозсезонов возможно устойчивое водоснабжение отдельных районов.",requires:"Ремонт насосов, вода, дренаж и агрономические службы."},
+ {today:"Хлопок даёт часть внешней валюты, но цены и урожай не устанавливаются приказом.",after:"Подтверждённые долгосрочные контракты могут покрыть часть импорта оборудования.",requires:"Сезон, мировой спрос, валюта платежа и портовая логистика."}
+ ];
+ let d=outputs[s.project%3];
+ return heading("Нил, стройки и хлопок","Кредит платят раньше, чем плотина даёт ток","Новый высотный гидроузел не строится за один год. Можно делить проект на очереди, учитывать стоимость подготовки и показывать, что появится только после фактического ввода.")+
+ '<div class="v2-two"><div>'+panel("Три альтернативных инвестиционных приоритета",choose("project",programmes,s)+
+ '<div class="v2-phases">'+paths.map((x,i)=>'<div class="v2-phase"><b>0'+(i+1)+'</b><span>'+esc(x)+'</span><small>'+(i>=2?"Потребует следующих игровых лет":"Возможно начать подготовку сразу")+'</small></div>').join("")+'</div>'+
+ note("Что проект даст после реализации",d.after))+'</div><div>'+panel("Цена до результата",slider("loan","Объём долгового финансирования в условной программе",0,100,5,s.loan,"Больший кредит ускоряет доступ к оборудованию, но создаёт платежи раньше доходов.")+
+ slider("irrigation","Доля программы, выделенная на сельское водоснабжение",0,100,5,s.irrigation,"Приоритет воды vs энергетики изменяет проекты, но не реальные цифры выпуска.")+
+ pct("Потребность в валюте и машинах",s.loan>65?"Высокая":"Требует проверки")+
+ pct("Новые мощности в текущем году","Не вводятся автоматически")+
+ note("Основные обязательства",d.requires)+
+ renderDraft(s,code,"nile",programmes[s.project%3]+". Предлагаемое долговое финансирование "+s.loan+"/100, ирригационный приоритет "+s.irrigation+"/100. Указать сумму, кредитора, техническую мощность, переселение, сроки и календарь государственных расходов."))+'</div></div>';
+}
+function officers(code,s){
+ const dominance=s.officers,expertise=s.clerks;
+ const army=dominance,execution=Math.round((100-dominance)*.45+expertise*.55);
+ return heading("Революционное руководство и исполнение","Скорость приказа не равна скорости строительства","Военное руководство контролирует ключевые политические решения, но министерства отвечают за финансовый учёт, земельную реформу и реальное исполнение производственных программ.")+
+ '<div class="v2-two"><div>'+panel("Кто принимает решения",
+ slider("officers","Роль офицерского руководства",0,100,5,s.officers,"Чем выше централизация командования, тем меньше возможности гражданских органов оспаривать приказ.")+
+ slider("clerks","Профессиональная гражданская администрация",0,100,5,s.clerks,"Требует кадровой подготовки, стабильности учреждений и ресурсов.")+
+ pct("Условная скорость чрезвычайных приказов",army+"/100")+bar(army)+
+ pct("Условная способность исполнить хозяйственный проект",execution+"/100")+bar(execution))+'</div><div>'+
+ panel("Политическая цена курса",note("Приоритет сильного офицерского центра",dominance>65?"Решения безопасности принимаются быстро, но гражданские специалисты могут оказаться вне подготовки планов.":"Институты имеют больше пространства для согласования хозяйственных решений.")+
+ note("Вариант усиления министерств",expertise>55?"Растут возможности контроля бюджета, закупок и отраслевых проектов; это не означает отказа от политической роли офицеров.":"Без профессиональных кадров реформы рискуют оставаться декларациями.")+
+ '<div class="v2-cause">Игровой инструмент: назначения, уставы учреждений, школы государственных служащих, правила аудита и исполнения договоров.</div>'+
+ renderDraft(s,code,"officers","Египет 1955: курс на офицерское руководство "+dominance+"/100 и развитие гражданских ведомств "+expertise+"/100. Определить реальные кадры, полномочия, бюджет и исполнение реформ."))+'</div></div>';
+}
+function worldMap(code,s,title,intro){
+ const list=G.nam||[],v=list[s.focus%list.length];
+ const nodes=list.map((x,i)=>'<g role="button" tabindex="0" data-v2-pin="'+i+'" class="v2-world-pin'+(s.focus===i?' active':'')+'"><circle cx="'+x.x+'" cy="'+x.y+'" r="5"></circle><title>'+esc(x.name)+'</title></g>').join("");
+ const svg='<svg class="v2-world" viewBox="0 0 720 360"><path class="v2-world-land" d="'+G.world.path+'"></path>'+nodes+'</svg>';
+ const modes=code==="yug"?["Экономические договоры без эксклюзивности","Нормализация отношений с СССР","Региональные соглашения с Грецией и Турцией"]:["Азиатско-африканские консультации","Торговля с Западом и Востоком","Совместные заявления о суверенитете"];
+ return heading("Международная сеть · переговоры с реальными партнёрами",title,intro)+
+ '<div class="v2-two"><div>'+panel("Политические и торговые контакты на карте",svg+nodeChooser(list,s)+
+ '<p class="v2-muted">Географические координаты показывают направления дипломатии, не существование уже заключённого союза. Движение неприсоединения 1961 года ещё не существует.</p>')+'</div><div>'+panel(v.name,
+ '<p>'+esc(v.theme)+'</p><div class="v2-section-label">Какой курс предложить?</div>'+choose("mode",modes,s)+
+ note("Условия выбранного направления",code==="yug"?"Югославия может заключать отдельные договоры, но не может одновременно распоряжаться несовместимыми гарантиями других сторон.":"Индия может сохранить самостоятельность и сотрудничать с разными партнёрами, если условия кредитов и соглашений не исключают друг друга.")+
+ '<div class="v2-cause">Для соглашения указать: экономический предмет, сторону, стоимость, валюту, сроки, политические условия и переговорную позицию.</div>'+
+ renderDraft(s,code,"world",code.toUpperCase()+" 1955. Переговоры с: "+v.name+". Курс: "+modes[s.mode]+". Цель: "+v.theme+". Требуется согласие другой стороны и реальный договор."))+'</div></div>';
+}
+function israelHousing(code,s){
+ const arrivals=s.immigrants*1000,homes=s.homes*1000,jobs=s.jobs*1000;
+ const household=Math.ceil(arrivals/4),housingDeficit=Math.max(0,household-homes),employmentGap=Math.max(0,arrivals-jobs);
+ const waterOK=s.water>=s.homes;
+ const cities=[{name:"Хайфа",lon:34.98,lat:32.8},{name:"Тель-Авив",lon:34.79,lat:32.08},{name:"Иерусалим",lon:35.22,lat:31.77},{name:"Беэр-Шева",lon:34.8,lat:31.25}];
+ return heading("Абсорбция · жильё · вода · рынок труда","Принять людей легче, чем обеспечить условия для жизни","Израиль на старте насчитывает около 1,57 млн жителей (игровая стартовая база). Новое население увеличивает будущий рынок труда, но требует сегодня жилья, воды, школ, рабочих мест и кредитов.")+
+ '<div class="v2-two"><div>'+panel("Где потребуются новые сети и жильё",geoCountry("isr",cities,s)+nodeChooser(cities,s)+
+ note("Региональные задачи",["Порт, производство, рабочие места и жильё для прибывших.","Крупнейшая городская агломерация: дорогая земля, жильё и транспорт.","Особый правовой статус города, жильё и инфраструктура.","Земли и хозяйственное освоение упираются в водоснабжение."][s.focus%4]))+'</div><div>'+
+ panel("Согласуйте четыре программы",slider("immigrants","Новые прибывшие, тысяч человек (условный сценарий)",0,120,5,s.immigrants,"Число задаётся для модели, не прогноз миграции.")+
+ slider("homes","Новые жилищные места, тысяч жителей в год",0,120,5,s.homes,"Считаем вместимость жилья в людях, а не количество квартир.")+
+ slider("jobs","Рабочие места и обучение, тысяч человек",0,120,5,s.jobs,"Проекты фирм должны быть реально оплачены и выполнены.")+
+ slider("water","Доступная дополнительная коммунальная мощность, условная шкала",0,120,5,s.water,"Водный баланс надо проверять физически и юридически.")+
+ pct("Потребность в новых местах для проживания",fmt(arrivals))+
+ pct("Необеспечённые жилищные места",fmt(Math.max(0,arrivals-homes)))+
+ pct("Люди без предусмотренных рабочих мест",fmt(employmentGap))+
+ pct("Вода для заявленного жилфонда",waterOK?"Согласована по шкале":"Узкое место")+
+ note("Финансирование","Бюджет строительства, подтверждённые иностранные переводы, займы, импортные материалы. Без них заселение не исполняется.")+
+ renderDraft(s,code,"people","Израиль: план на "+fmt(arrivals)+" новых жителей, размещение "+fmt(homes)+", рабочие места "+fmt(jobs)+". Предусмотреть реальные бюджеты, строительство, снабжение водой, обучение и сроки."))+'</div></div>';
+}
+function israelDefense(code,s){
+ const n=Math.round(s.reserve*1000),days=s.days,workerYears=Math.round(n*days/365),v=G.levant.points[s.focus%G.levant.points.length];
+ const pts=G.levant.points.map((x,i)=>'<g role="button" tabindex="0" data-v2-pin="'+i+'" class="v2-world-pin'+(i===s.focus?' active':'')+'"><circle cx="'+x.x+'" cy="'+x.y+'" r="8"></circle><title>'+esc(x.name)+'</title></g>').join("");
+ return heading("Оборона и экономическая цена резервистов","Человек не может одновременно быть на заводе и на сборах","В 1955 году действуют соглашения о перемирии с соседями; граница и режим безопасности требуют отдельной дипломатии. Мобилизация имеет прямую стоимость в человеко-годах и в бюджетном снабжении.")+
+ '<div class="v2-two"><div>'+panel("Соседи и линии перемирия",
+ '<svg class="v2-levant" viewBox="'+G.levant.viewBox+'"><path class="v2-land" d="'+G.levant.path+'"></path>'+pts+'</svg>'+nodeChooser(G.levant.points,s)+
+ note(v.name,v.issue))+'</div><div>'+
+ panel("Что отдаёт экономика за учения",
+ slider("reserve","Условно призываемые резервисты, тысяч человек",0,120,5,s.reserve,"Это число сценария, а не официальный наличный состав армии.")+
+ slider("days","Продолжительность сборов, дней",0,90,5,s.days,"Большие сборы требуют расходов и замены работников.")+
+ pct("Люди на сборах",fmt(n))+
+ pct("Рабочие человеко-годы, не отработанные на предприятиях",fmt(workerYears))+
+ bar(Math.max(0,100-workerYears/1000))+
+ note("Альтернатива большему призыву","Подготовка кадров, обучение более малых подразделений, договоры поставок и дипломатическая деэскалация — разные посты и разные сроки.")+
+ renderDraft(s,code,"security","Израиль: рассмотреть "+fmt(n)+" резервистов на "+days+" дней; оценка потерь труда "+fmt(workerYears)+" человеко-лет. Сторона границы: "+v.name+". Уточнить военное снабжение, стоимость и позицию соседей."))+'</div></div>';
+}
+function italyDivide(code,s,t){
+ const north=s.north,south=100-north,capNorth=Math.round(north*1.35),capSouth=Math.round(south*.75);
+ const audited=100-s.audit;
+ const region=t.items[s.focus%t.items.length];
+ return heading("Касса Юга · инвестиции и неравенство","На Севере деньги возвращаются быстрее. Юг нуждается в большем основании роста.","Быстрее модернизировать существующие фабрики Милана и Турина или финансировать инфраструктуру Кампании, Апулии и Сицилии? Сравним краткосрочную отдачу и долгосрочное сближение.")+
+ '<div class="v2-two"><div>'+panel("Промышленная география",geoCountry("ita",t.items,s)+nodeChooser(t.items,s)+
+ note(region.name,region.issue+" "+region.action))+'</div><div>'+
+ panel("Пробный приоритет инвестиционной программы",
+ slider("north","Доля условного инвестфонда, направленная на Север, %",0,100,5,s.north,"Остаток фонда предназначен для Юга. Это не реальный бюджет Cassa.")+
+ slider("audit","Условный риск неэффективного подряда и локального захвата, %",0,60,5,s.audit,"Риск не равен неизбежному хищению и должен подтверждаться по каждому проекту.")+
+ pct("Север / Юг",north+"% / "+south+"%")+
+ pct("Краткосрочная отдача северных промышленных проектов (демо)",capNorth+" усл. ед.")+
+ pct("Краткосрочный ввод южных проектов (демо)",capSouth+" усл. ед.")+
+ pct("Южные программы после условных рисков исполнения",Math.round(capSouth*audited/100)+" усл. ед.")+
+ note("Почему Юг нельзя просто не финансировать","Север даёт более быстрый выпуск на уже существующей базе. Инфраструктура Юга создаёт будущие условия для сближения, занятости и уменьшения миграционного давления. Но это требует контроля подрядов и местных органов.")+
+ renderDraft(s,code,"regions","Италия: условное направление инвестиций "+north+"% Север, "+south+"% Юг. Контроль исполнения, аудит и строительный цикл. Необходимо указать проекты, бюджеты и соглашения Cassa per il Mezzogiorno."))+'</div></div>';
+}
+function italyHoldings(code,s,t){
+ const items=t.choices,it=items[s.project%items.length];
+ const financing=["Капитал и финансовые обязательства IRI","Энергетические программы ENI","Торговые переговоры ЕОУС","Договор с профсоюзами"];
+ const external=["Производство и кредит","Добыча, сырьё и импорт энергии","Тарифы и взаимный доступ к рынкам угля и стали","Кадры, зарплаты и условия труда"];
+ return heading("IRI / ENI / Европа / профсоюзы","Государственная компания может инвестировать — и разориться","Здесь решения государства проходят через собственность предприятий, банковские обязательства, международную торговлю и реальные договоры работников, а не через четыре универсальные кнопки.")+
+ '<div class="v2-two"><div>'+panel("Экономические институты",choose("project",items.map(x=>x.title),s)+
+ '<div class="v2-detail"><strong>'+esc(it.asset)+'</strong><p>'+esc(it.issue)+'</p></div>'+
+ note("Что должно существовать до прибыли",it.conditions.join("; ")))+'</div><div>'+
+ panel("Цена выбранной политики",
+ '<div class="v2-section-label">'+esc(financing[s.project%4])+'</div>'+
+ slider("credit","Доля нового проекта, предполагаемая в заёмных средствах, %",0,100,5,s.credit,"Чем выше долг, тем сильнее будущие платежи предприятия.")+
+ slider("training","Доля капитала на переподготовку, %",0,100,5,s.training,"Рост квалификации не создаётся в момент выплаты.")+
+ pct("Заявленное долговое финансирование",s.credit+"%")+
+ pct("Переговорная часть",external[s.project%4])+
+ note("Проверить, прежде чем писать вердикт",it.impact)+
+ renderDraft(s,code,"holdings","Италия: направление "+it.title+", долг "+s.credit+"%, подготовка кадров "+s.training+"%. Предусмотреть источники, рынки, долговые обязательства, условия работников и сроки."))+'</div></div>';
+}
+function yugWorkers(code,s){
+ const wage=s.wages,invest=100-wage,product=Math.round(invest*.75+s.training*.25);
+ return heading("Рабочее самоуправление в Югославии","Рабочий совет решает между доходом сегодня и заводом завтра","Доля заработка коллектива и фонд предприятия конкурируют за один условный результат. Самоуправление может увеличить вовлечённость работников, но ограничить быстрый инвестиционный темп, если прибыль расходуется на текущее потребление.")+
+ '<div class="v2-two"><div>'+panel("На что совет направляет заработанный доход",
+ slider("wages","Выплаты коллективу из условных 100 единиц, %",0,100,5,s.wages,"Остаток условно доступен для накопления и обновления оборудования.")+
+ slider("training","Внимание к подготовке кадров",0,100,5,s.training,"Требуется соглашение о времени учёбы, инструкторах и средствах.")+
+ pct("Текущие доходы работников",wage+" усл. ед.")+
+ pct("Фонд оборудования и резервов",invest+" усл. ед.")+
+ pct("Условная готовность к техническому обновлению",product+"/100")+
+ bar(invest)+note("Главная развилка","Большие выплаты повышают интерес работников к предприятию, но уменьшают самофинансирование модернизации. Ускорение может потребовать кредита, снижения выплат или согласия совета."))+'</div><div>'+
+ panel("Как выглядит настоящий пост",
+ '<div class="v2-phases">'+["Правление предлагает инвестиции","Рабочий совет обсуждает перераспределение дохода","Банк проверяет кредит","Предприятие исполняет план по кварталам"].map((x,i)=>'<div class="v2-phase"><b>0'+(i+1)+'</b><span>'+esc(x)+'</span></div>').join("")+'</div>'+
+ note("Не все предприятия одинаковые","Тяжёлая промышленность, текстиль и транспорт отличаются по составу работников, собственным фондам, заказам и экспортным возможностям.")+
+ renderDraft(s,code,"workers","Югославия: распределение условного результата предприятия "+wage+"% коллективу и "+invest+"% в фонд развития, программа кадров "+s.training+"/100. Провести решение рабочего совета, кредит, сроки и договоры."))+'</div></div>';
+}
+function yugFund(code,s,t,ctrl){
+ const old=ctrl?.allocation;if(!old)return "";
+ const items=t.items,sum=Object.values(old).reduce((a,b)=>a+b,0);
+ const presets=[
+ {title:"По населению (демо)",arr:[8,22,16,42,3,9],description:"Учитывает относительную численность жителей республик. Не равно историческому бюджету."},
+ {title:"Выравнивание (демо)",arr:[9,18,24,32,7,10],description:"Больше средств для инфраструктурно отстающих районов, меньше немедленная отдача."},
+ {title:"Промышленная отдача (демо)",arr:[15,27,18,30,3,7],description:"Больший фокус на уже развитых производственных узлах."}
+ ];
+ const modes=presets.map(x=>x.title),mode=s.mode;
+ const allocations=items.map(it=>'<div class="v2-allocation-item"><b>'+esc(it.name)+'</b><span>'+old[it.id]+'%</span>'+bar(old[it.id])+'<small>'+esc(it.needs)+'</small></div>').join("");
+ return heading("Федеральный фонд · шесть республик","Перераспределение денег создаёт политического проигравшего","Белград не может бесконечно увеличивать вложения в каждом регионе: сумма фонда ограничена, а республики имеют собственные интересы и органы власти. Сценарии ниже — модели распределения, не опубликованные реальные бюджетные проценты 1955 года.")+
+ '<div class="v2-two"><div>'+panel("Бюджетный баланс республик",
+ '<div class="geo-frame">'+(function(){const m=base.yug;return '<svg class="v2-map" viewBox="0 0 700 460">'+m.shapes.map(x=>'<path class="v2-land" d="'+x.d+'"></path>').join("")+'</svg>'})()+'</div>'+allocations+
+ pct("Распределено",sum+"%")+
+ note("Статус цифр","До утверждения исходного федерального бюджета это учебные доли. Их стоит окончательно сбалансировать по населению, реальным инвестициям и полномочиям 1955 года."))+'</div><div>'+
+ panel("Три стратегии федерации",choose("mode",modes,s)+
+ note(presets[mode].title,presets[mode].description)+
+ '<button type="button" class="v2-primary" data-v2-preset="'+mode+'">Применить распределение к пробному фонду</button>'+
+ '<div class="v2-section-label">Договорённости республик</div><div class="v2-cause">Прежде чем перераспределять деньги, нужны предмет проекта, соглашения затронутых республик, орган принятия решения и последствия для общего бюджета. Увеличение доли региона уменьшает другую долю.</div>'+
+ note("После выбора стратегии","Сумма остаётся 100%; оценка согласия республик не возникает автоматически. Система не переводит проценты в реальные деньги без официального фонда.")+
+ renderDraft(s,code,"federation","Югославия 1955: альтернативное распределение федерального фонда "+items.map(it=>it.name+" "+old[it.id]+"%").join(", ")+". Требуется согласование компетенций, суммы и инвестпроектов."))+'</div></div>';
+}
+function view(code,t,s,ctrl){
+ switch(code+"."+t.id){
+  case "chn.industry":return education(code,s,false);
+  case "chn.provinces":return province(code,s,t);
+  case "chn.world":return recognition(code,s);
+  case "egy.suez":return suez(code,s);
+  case "egy.nile":return egyptNile(code,s);
+  case "egy.power":return officers(code,s);
+  case "ind.federation":return province(code,s,t);
+  case "ind.plan":return education(code,s,true);
+  case "ind.world":return worldMap(code,s,"Неприсоединение начинается с договоров","У Индии есть дипломатические контакты с разными странами, но ни один партнёр не обязан принимать предложенные условия. Новые альянсы и конференции не создаются автоматически.");
+  case "isr.knesset":return coalition(code,s);
+  case "isr.people":return israelHousing(code,s);
+  case "isr.security":return israelDefense(code,s);
+  case "ita.coalition":return coalition(code,s);
+  case "ita.regions":return italyDivide(code,s,t);
+  case "ita.holdings":return italyHoldings(code,s,t);
+  case "yug.workers":return yugWorkers(code,s);
+  case "yug.federation":return yugFund(code,s,t,ctrl);
+  case "yug.world":return worldMap(code,s,"Независимый социализм между блоками","Тито после раскола с СССР может вести отдельные торговые и дипломатические линии, не превращая Югославию в автоматического участника ни одного лагеря.");
+ }
+ return null;
+}
+const active={};
+function enhance(d,t,pane,ctrl){
+ const s=state(d.code),key=d.code+"."+t.id;
+ if(!active[key])active[key]={d,t,pane,ctrl};else Object.assign(active[key],{d,t,pane,ctrl});
+ const body=view(d.code,t,s,ctrl);
+ if(body) {pane.innerHTML=body;pane.classList.add("v2-enhanced")}
+}
+function updateCurrent(){
+ const code=document.body.dataset.country,hash=location.hash.slice(1),d=window.VPI_COUNTRY_CONFIG;
+ const tab=d?.tabs.find(x=>x.id===hash)||d?.tabs[0];if(!tab)return;
+ const record=active[code+"."+tab.id];if(record)enhance(record.d,record.t,record.pane,record.ctrl);
+}
+document.addEventListener("click",e=>{
+ const target=e.target.closest("[data-v2-pin],[data-v2-choose],[data-v2-party],[data-v2-coalition],[data-v2-draft],[data-v2-copy],[data-v2-preset]");
+ if(!target)return;
+ const code=document.body.dataset.country,s=state(code);
+ if(target.dataset.v2Pin!==undefined)s.focus=Number(target.dataset.v2Pin);
+ if(target.dataset.v2Choose){const [name,index]=target.dataset.v2Choose.split(":");s[name]=Number(index);s.focus=0;}
+ if(target.dataset.v2Party!==undefined)s.focus=Number(target.dataset.v2Party);
+ if(target.dataset.v2Coalition!==undefined){const id=Number(target.dataset.v2Coalition);if(s.coalition.includes(id))s.coalition=s.coalition.filter(x=>x!==id);else s.coalition.push(id)}
+ if(target.dataset.v2Draft!==undefined)s.draftFor=target.dataset.v2Draft;
+ if(target.dataset.v2Preset!==undefined){
+  const t=window.VPI_COUNTRY_CONFIG.tabs.find(x=>x.kind==="allocation"),record=active[code+"."+t.id];
+  const presets=[[8,22,16,42,3,9],[9,18,24,32,7,10],[15,27,18,30,3,7]];
+  const arr=presets[Number(target.dataset.v2Preset)];
+  if(record?.ctrl?.allocation&&arr)t.items.forEach((it,i)=>record.ctrl.allocation[it.id]=arr[i]);
+ }
+ if(target.dataset.v2Copy!==undefined){
+  const field=document.querySelector(".pane.current .v2-draft textarea"),status=document.querySelector(".pane.current #v2-copy-status");
+  if(field){if(navigator.clipboard?.writeText)navigator.clipboard.writeText(field.value).then(()=>{if(status)status.textContent="Скопировано";}).catch(()=>{field.focus();field.select()});else{field.focus();field.select();}}
+  return;
+ }
+ updateCurrent();
+});
+document.addEventListener("change",e=>{
+ const name=e.target.dataset?.v2Range;
+ if(name){const s=state(document.body.dataset.country);s[name]=Number(e.target.value);updateCurrent();}
+});
+document.addEventListener("keydown",e=>{
+ if((e.key==="Enter"||e.key===" ")&&e.target.matches?.("[data-v2-pin]")){e.preventDefault();e.target.click()}
+});
+window.VPI_COUNTRY_V2={enhance};
+const d=window.VPI_COUNTRY_CONFIG;
+if(d)for(const t of d.tabs){const pane=$("pane-"+t.id);if(pane)enhance(d,t,pane,{allocation:null})}
+})();
