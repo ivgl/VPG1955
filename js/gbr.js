@@ -19,7 +19,7 @@ function openTab(id){
 document.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>openTab(b.dataset.tab)));
 const initialHash=location.hash.slice(1);if(sectionNames.includes(initialHash))openTab(initialHash);
 
-// A completed post remains a proposal. Currency reserves are USD bn; programme costs are GAME G$ bn.
+// A completed post remains a proposal. Currency reserves are USD bn; programme costs are GAME% ВВП bn.
 const fxInputs=[
  ["extraDollarImportsUSD","Новые валютные закупки","Дополнительные импортные контракты, млрд $",0,3,.05],
  ["extraDollarReceiptsUSD","Дополнительные валютные доходы","Подтверждённый экспорт или другие поступления, млрд $",0,3,.05],
@@ -148,7 +148,7 @@ function selectPlace(id){
 }
 drawEmpire();
 
-// Integrated budget, industrial costs and social compromise. All G$ values are illustrative.
+// Integrated budget, industrial costs and social compromise. All% ВВП values are illustrative.
 const labels=["Сокращение","Ограничение","Поддержание","Расширение","Ускорение"];
 const socialFields=[
  ["health","Медицина / NHS","Финансирование существующей системы здравоохранения"],
@@ -158,16 +158,16 @@ const socialFields=[
 const paces=["Без перестройки","Постепенная","Ускоренная"];
 let selectedSector="coal";
 function socialCost(){
- return socialFields.reduce((s,[id])=>s+d.economy.socialAnnualCostG[id][d.social[id]],0);
+ return socialFields.reduce((s,[id])=>s+d.economy.socialAnnualPctGDP[id][d.social[id]],0);
 }
-function retoolCost(s){return s.pace===1?s.gradualCostG:s.pace===2?s.fastCostG:0}
+function retoolCost(s){return s.pace===1?s.gradualPctGDP:s.pace===2?s.fastPctGDP:0}
 function needK(s){return s.pace===1?s.baseWorkersK*.5:s.pace===2?s.baseWorkersK:0}
 function budget(){
  let manufacturing=d.industries.reduce((v,s)=>v+retoolCost(s),0);
  let need=d.industries.reduce((v,s)=>v+needK(s),0);
  let covered=d.industries.reduce((v,s)=>v+(s.agreement?needK(s):0),0);
- let training=covered*d.economy.trainingCostGPerThousand;
- let social=socialCost(),total=social+manufacturing+training,limit=d.economy.programBudgetLimitG;
+ let training=covered*d.economy.trainingCostPctGDPPerThousand;
+ let social=socialCost(),total=social+manufacturing+training,limit=d.economy.programBudgetLimitPctGDP;
  let deficit=Math.max(0,total-limit);
  return {social,manufacturing,training,need,covered,uncovered:need-covered,total,limit,deficit,percent:total/limit*100};
 }
@@ -189,21 +189,21 @@ $("sectorLabour").addEventListener("change",()=>{const s=d.industries.find(x=>x.
 function renderEconomy(){
  const b=budget();
  $("budgetLimit").textContent=number(b.limit);
- $("budgetSpent").textContent=number(b.total)+" млрд G$";
+ $("budgetSpent").textContent=number(b.total)+" % ВВП";
  $("budgetPercent").textContent=number(b.percent,0)+"%";
- $("budgetGap").textContent=b.deficit>0?"Дефицит "+number(b.deficit)+" млрд G$":"Остаток "+number(b.limit-b.total)+" млрд G$";
+ $("budgetGap").textContent=b.deficit>0?"Дефицит "+number(b.deficit)+" % ВВП":"Остаток "+number(b.limit-b.total)+" % ВВП";
  $("budgetGap").classList.toggle("warning",b.deficit>0);
  $("budgetFill").style.width=bound(b.percent,0,100)+"%";
  $("budgetFill").classList.toggle("over",b.percent>100);
  $("budgetExplanation").textContent=b.deficit>0?
-  "Заявленные дополнительные программы превышают доступный лимит на "+number(b.deficit)+" млрд G$. Их нельзя считать оплаченными до одобрения дополнительных доходов, займа, сокращения других расходов или пересмотра плана.":
-  "Остаток программы "+number(b.limit-b.total)+" млрд G$. Суммы и источники финансирования необходимо согласовать с действующим бюджетом.";
- $("socialCost").textContent="Социальная политика: "+number(b.social)+" G$";
- $("modernCost").textContent="Модернизация: "+number(b.manufacturing)+" G$";
- $("retrainCost").textContent="Переобучение: "+number(b.training)+" G$";
+  "Заявленные дополнительные программы превышают доступный лимит на "+number(b.deficit)+" % ВВП. Их нельзя считать оплаченными до одобрения дополнительных доходов, займа, сокращения других расходов или пересмотра плана.":
+  "Остаток программы "+number(b.limit-b.total)+" % ВВП. Суммы и источники финансирования необходимо согласовать с действующим бюджетом.";
+ $("socialCost").textContent="Социальная политика: "+number(b.social)+"% ВВП";
+ $("modernCost").textContent="Модернизация: "+number(b.manufacturing)+"% ВВП";
+ $("retrainCost").textContent="Переобучение: "+number(b.training)+"% ВВП";
  socialFields.forEach(([id])=>{
   $("policy-"+id).value=d.social[id];
-  document.querySelector('[data-policy-value="'+id+'"]').textContent=labels[d.social[id]]+" · "+number(d.economy.socialAnnualCostG[id][d.social[id]])+" G$";
+  document.querySelector('[data-policy-value="'+id+'"]').textContent=labels[d.social[id]]+" · "+number(d.economy.socialAnnualPctGDP[id][d.social[id]])+"% ВВП";
  });
  const s=d.social;const conflictRatio=b.need?b.uncovered/b.need:0;
  const support=bound(Math.round(25+10*s.health+9*s.housing+7*s.wages-30*conflictRatio-Math.max(0,b.percent-100)*.16));
@@ -217,7 +217,7 @@ function renderEconomy(){
   ["Риск трудовых споров",friction,"Реальные последствия определяет судья."]
  ];
  $("socialReadouts").innerHTML=readouts.map(([label,v,note])=>'<div class="score-row"><div class="score-top"><span>'+esc(label)+'</span><strong>'+v+'/100</strong></div><div class="score-track"><span style="width:'+v+'%"></span></div><small>'+esc(note)+'</small></div>').join("");
- $("socialNarrative").innerHTML="<strong>Связь двух политик</strong><p>Переподготовка "+number(b.covered,1)+" тыс. работников стоит "+number(b.training,3)+" млрд G$ и требует времени. Без соглашений могут остаться "+number(b.uncovered,1)+" тыс. затронутых работников. Правительственная поддержка профсоюзов не заменяет отраслевые переговоры.</p>";
+ $("socialNarrative").innerHTML="<strong>Связь двух политик</strong><p>Переподготовка "+number(b.covered,1)+" тыс. работников стоит "+number(b.training,3)+" % ВВП и требует времени. Без соглашений могут остаться "+number(b.uncovered,1)+" тыс. затронутых работников. Правительственная поддержка профсоюзов не заменяет отраслевые переговоры.</p>";
  $("projectCount").textContent=d.industries.filter(x=>x.pace>0).length+" / "+d.industries.length+" программ";
  $("activeProjects").textContent=d.industries.filter(x=>x.pace>0).length+" отраслей";
  $("trainingDemand").textContent=number(b.need,1)+" тыс. чел.";
@@ -233,10 +233,10 @@ function economyProposal(){
  const b=budget();
  return [
   "Великобритания, "+d.year+" год. Проект новой экономической программы.",
-  "Лимит новых программ (демо): "+number(b.limit)+" млрд G$.",
-  ...socialFields.map(([id,label])=>label+": "+labels[d.social[id]]+" ("+number(d.economy.socialAnnualCostG[id][d.social[id]])+" млрд G$)"),
-  ...d.industries.filter(s=>s.pace>0).map(s=>"Отрасль "+s.name+": "+paces[s.pace]+", капитал "+number(retoolCost(s))+" млрд G$, переобучение "+(s.agreement?"предусмотрено":"не предусмотрено")),
-  "Заявлено всего: "+number(b.total)+" млрд G$; непокрытый дефицит: "+number(b.deficit)+" млрд G$.",
+  "Лимит новых программ (демо): "+number(b.limit)+" % ВВП.",
+  ...socialFields.map(([id,label])=>label+": "+labels[d.social[id]]+" ("+number(d.economy.socialAnnualPctGDP[id][d.social[id]])+" % ВВП)"),
+  ...d.industries.filter(s=>s.pace>0).map(s=>"Отрасль "+s.name+": "+paces[s.pace]+", капитал "+number(retoolCost(s))+" % ВВП, переобучение "+(s.agreement?"предусмотрено":"не предусмотрено")),
+  "Заявлено всего: "+number(b.total)+" % ВВП; непокрытый дефицит: "+number(b.deficit)+" % ВВП.",
   "Работники к переподготовке: "+number(b.need,1)+" тыс.; оплаченные места: "+number(b.covered,1)+" тыс.",
   "Дополнительное импортное оборудование: "+number(modernImportUSD(),3)+" млрд $.",
   "Прошу судью проверить ресурсы, источники финансирования, согласия профсоюзов, законы и календарь реализации.",
