@@ -6,7 +6,7 @@
 <title>ФРГ · Национальные механики · ВПИ 1955</title>
 <link rel="stylesheet" href="../css/frg.css">
 <script src="../js/geography-1955.js" defer></script>
-<script src="../js/frg.js" defer></script>
+<script src="../js/frg.js" defer></script><script src="../js/frg-updates.js" defer></script>
 </head>
 <body>
 <div class="shell">
@@ -42,7 +42,7 @@
 <div class="panel-header"><div><div class="eyebrow">После открытия прав на создание войск</div><h3>Организационная готовность армии</h3></div><span id="armyGrade" class="number-pill"></span></div>
 <p class="muted">Здесь отдельно учитываются инструкторы и личный состав, вооружение, казармы и снабжение. Формирование армии не равно готовности боевых соединений.</p>
 <div id="armyLock" class="lockline"></div>
-<div class="army-grid" id="armyControls"></div>
+<div class="army-grid" id="armyControls"></div><div class="frg-army-document"><div class="eyebrow">Публичное состояние на 01.01.1955</div><div id="frgArmyReadiness"></div><p class="fine">Это сведения о сформированных структурах, а не рычаг моментального повышения боеготовности. Чтобы они изменились, судья должен подтвердить создание кадров, инфраструктуры и соединений по игровым постам.</p></div>
 <div class="army-footer"><div class="mini-meter"><span id="armyMeter"></span></div><strong id="armyComment"></strong></div>
 </div>
 </section>
@@ -60,7 +60,7 @@
 <div id="labourMessage" class="labour-message"></div>
 <div class="resource-control"><div class="inline-label"><label for="training">Подготовка специалистов</label><strong id="trainingValue"></strong></div><input id="training" type="range" min="0" max="30" step="5" value="15"><p class="fine">Расширение учебных мест требует денег и времени; выпускники появляются не мгновенно.</p></div>
 <div class="resource-control"><div class="inline-label"><label for="migration">Привлечение работников по соглашениям</label><strong id="migrationValue"></strong></div><input id="migration" type="range" min="0" max="30" step="5" value="10"><p class="fine">Нужны международные договорённости, жильё и социальная интеграция. Значение отражает только возможный сценарий.</p></div>
-<div class="resource-tags"><span>Станки и материалы</span><span>Энергетика</span><span>Кредиты</span><span>Экспортный спрос</span></div>
+<div class="resource-tags"><span>Станки и материалы</span><span>Энергетика</span><span>Кредиты</span><span>Экспортный спрос</span></div><div class="frg-market"><div class="eyebrow">Спрос и структурные ограничения</div><h3>Кому продавать выросший выпуск?</h3><div id="frgMarketMessage" class="muted"></div><div id="frgMarketContext" class="fine"></div></div>
 </aside></div>
 </section>
 
@@ -85,7 +85,7 @@
 <section class="panel map-panel"><div class="panel-header"><div><div class="eyebrow">Географический ориентир</div><h3>Разделённая Германия</h3></div><span class="mini-muted">Нажимайте на регионы</span></div>
 <div class="map-frame"><svg id="germanMap" viewBox="0 0 650 570" role="group" aria-label="Кликабельная схема ФРГ, ГДР, Саара и Берлина"></svg></div>
 <div class="map-legend"><span><i class="lg-frg"></i> ФРГ</span><span><i class="lg-gdr"></i> ГДР</span><span><i class="lg-saar"></i> Саар</span><span><i class="lg-berlin"></i> Западный Берлин</span></div>
-<p class="fine">Географическая основа использует современные упрощённые контуры земель. Она не является точной картой административных границ 1955 года. Западный Берлин обозначен символом, без реконструкции границ секторов.</p>
+<p class="fine">Рисунок сглаживает внутренние границы ФРГ и ГДР, показывая их едиными территориями. Географические контуры приблизительны и не являются точной картой юридических границ января 1955 года. Западный Берлин обозначен символом, без реконструкции границ секторов.</p>
 </section>
 <aside class="panel dossier"><div class="eyebrow">Территориальная карточка</div><h3 id="geoTitle"></h3>
 <div class="dossier-status" id="geoStatus"></div>
