@@ -86,3 +86,15 @@ footer{border-top:1px solid var(--line);padding:24px 0 33px;display:flex;justify
 
 /* The currency screen is a reference and optional stress test, not a hidden budget-application form. */
 #fxGenerate,#fxReset,#fxDraft{display:none!important}
+
+/* Make UK programme trade-offs visible next to percent-of-GDP totals. */
+.gbr-budget-guide{margin-top:15px;padding:15px;border:1px solid #d5e5dc;border-radius:11px;background:#f0f6f2;font-size:12px}
+.gbr-budget-guide>strong{display:block;color:#385f56}
+.gbr-budget-guide p{color:#5c7871;margin:6px 0 11px}
+.gbr-budget-part{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid #dbe8e0;font-size:12px}
+.gbr-budget-part span{color:#5c7772}
+.gbr-budget-part strong{font-variant-numeric:tabular-nums;color:#244c4b}
+.gbr-budget-part.total{border-bottom:none;font-weight:800}
+.gbr-budget-part.total strong{color:#2c6c64}
+.gbr-party-outlook{margin:14px 0;padding:14px}
+@media(max-width:620px){.gbr-budget-part{font-size:11px}.gbr-budget-guide{padding:11px}}
