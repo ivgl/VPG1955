@@ -119,7 +119,7 @@
    '<button type="button" class="primary-btn" data-transfer="1">Перенести долю</button><div role="status" id="allocFeedback" class="soft-note">Распределение — пробная записка о приоритетах. Реальный фонд и правомочность утверждает судья.</div>'+
    '<div class="section-title">Зачем республике средства</div><div class="entry"><b>'+escapeHtml(valueOf(t)?.name)+'</b><p>'+escapeHtml(valueOf(t)?.needs)+'</p></div>'+
    '<div class="entry"><b>Вероятный спор</b><p>'+escapeHtml(valueOf(t)?.tension)+'</p></div>'+
-   '<button type="button" class="outline-btn" data-compose="'+t.id+'">Сформировать предложение по фонду</button><div class="draft-host" id="draft-'+t.id+'" '+(!draftOpen[t.id]?'hidden':'')+'></div></aside></div>';
+   '<button type="button" class="outline-btn" data-reset-alloc="1">Восстановить демонстрационный фонд</button><br><button type="button" class="outline-btn" data-compose="'+t.id+'">Сформировать предложение по фонду</button><div class="draft-host" id="draft-'+t.id+'" '+(!draftOpen[t.id]?'hidden':'')+'></div></aside></div>';
  }
  function render(t){
   const pane=$("pane-"+t.id);if(!pane)return;
@@ -185,7 +185,8 @@
   const scene=e.target.closest("[data-scenario]");if(scene){scenarioSelected[scene.dataset.section]=scene.dataset.scenario;render(d.tabs.find(x=>x.id===scene.dataset.section));return}
   const compose=e.target.closest("[data-compose]");if(compose){const id=compose.dataset.compose;draftOpen[id]=true;displayDraft(d.tabs.find(x=>x.id===id));return}
   const copyBtn=e.target.closest("[data-copy]");if(copyBtn){copy(d.tabs.find(x=>x.id===copyBtn.dataset.copy));return}
-  const t=e.target.closest("[data-transfer]");if(t)transfer();
+  const t=e.target.closest("[data-transfer]");if(t){transfer();return}
+  if(e.target.closest("[data-reset-alloc]")){shares.items.forEach(x=>alloc[x.id]=x.value);render(shares);$("allocFeedback").textContent="Демонстрационное распределение восстановлено (100%).";}
  });
  document.addEventListener("keydown",e=>{
   if((e.key==="Enter"||e.key===" ")&&e.target.matches?.("[data-map-id]")){
