@@ -3,7 +3,7 @@
 <meta name="description" content="Британия 1955: фунт, международная сеть, социальный договор и модернизация промышленности.">
 <title>Великобритания · ВПИ 1955</title>
 <link rel="stylesheet" href="../css/gbr.css">
-<script src="../data/gbr-draft.js" defer></script><script src="../js/gbr-world.js" defer></script><script src="../js/gbr.js" defer></script>
+<script src="../data/gbr-draft.js" defer></script><script src="../js/gbr-world.js" defer></script><script src="../js/gbr.js" defer></script><script src="../js/gbr-updates.js" defer></script>
 </head><body><div class="page">
 <header class="mast"><a href="../index.html" class="back-link">← Все государства</a><div class="site-name">ВПИ <strong>1955</strong> <span>НАЦИОНАЛЬНЫЕ МЕХАНИКИ</span></div><span class="draft-tag">ПРОТОТИП · GBR/01</span></header>
 <section class="hero"><div class="overline">Соединённое Королевство · 1 января 1955 года</div>
@@ -29,8 +29,8 @@
  </div>
  <p class="note">Торговые цифры — все страны и валюты (ONS), не только долларовая зона. Значение резервов в методологии МВФ учитывает отдельные расчётные позиции, которые не обязательно мгновенно конвертируемы в доллары.</p>
  <div class="divider-line"></div>
- <div class="overline">Пробный план внешних закупок</div><h3>Что изменит игрок</h3>
- <div class="control-stack" id="fxControls"></div>
+ <div class="overline">Справка и сценарные риски</div><h3>Что произойдёт при валютном шоке?</h3>
+ <div class="control-stack" id="fxControls" hidden></div><div id="gbrStressPanel" class="gbr-stress"></div>
  <div class="fx-forecast">
     <div><span>Прогноз резерва на конец года</span><strong id="fxEnd">—</strong></div>
     <div><span>Изменение резервов за ход</span><strong id="fxDelta">—</strong></div>
@@ -41,15 +41,15 @@
  <button type="button" class="draft-action" id="fxGenerate">Сформировать текст финансового предложения</button>
  <div id="fxDraft" hidden><label for="fxDraftText">Черновик поста</label><textarea rows="7" readonly id="fxDraftText"></textarea><button type="button" class="quiet" id="fxCopy">Копировать</button><span id="fxCopyStatus" role="status"></span></div>
 </section>
-<aside class="panel"><div class="overline">Почему дефицит торговли ≠ дефицит долларов</div><h3>Два связанных, но разных баланса</h3>
-<div class="concept-grid">
+<aside class="panel"><div class="overline">Рынки и хозяйственные связи</div><h3>Что Британия продаёт и покупает</h3>
+<div class="concept-grid" hidden>
 <div class="concept"><div class="concept-symbol">£</div><div><strong>Внутренняя экономика</strong><p>Торговля и государственный бюджет связаны с валютным курсом, но имеют собственные ограничения.</p></div></div>
 <div class="concept"><div class="concept-symbol">$</div><div><strong>Конвертируемые внешние платежи</strong><p>Не весь экспорт приносит свободные доллары; не все резервы можно немедленно направить на импорт.</p></div></div>
 <div class="concept"><div class="concept-symbol">↔</div><div><strong>Стерлинговая зона</strong><p>Партнёры хранят средства в фунтах, но Британия не может объявлять чужие активы своими.</p></div></div>
 </div>
-<div class="section-subhead"><span>Партнёры стерлинговой зоны</span><span class="micro">Просмотр</span></div>
+<div id="gbrTradeStructure" class="gbr-trade-structure"></div><div class="section-subhead"><span>Партнёры стерлинговой зоны</span><span class="micro">Просмотр</span></div>
 <div class="partner-pills" id="sterlingPartners"></div><div class="partner-detail" id="sterlingDetail"></div>
-<div class="linked-box"><strong>Привязка к экономике</strong><p>В разделе «Экономика и общество» ускоренная модернизация добавит примерные закупки оборудования за иностранную валюту. Они появятся в этом прогнозе.</p></div>
+<div id="gbrSterlingExperiment" class="gbr-sterling-experiment"></div><div class="linked-box"><strong>Привязка к экономике</strong><p>В разделе «Экономика и общество» ускоренная модернизация добавит примерные закупки оборудования за иностранную валюту. Они появятся в этом прогнозе.</p></div>
 <p class="note" id="fxParInfo"></p></aside></div></section>
 <section id="empire" class="pane" hidden>
 <div class="section-heading"><div class="overline">GBR-02 · Заморская сеть</div><h2>Какие возможности даёт каждая база?</h2><p>Не все точки на карте — военные базы и не все союзники подчинены Лондону. Открой узел, чтобы увидеть размер и назначение военного присутствия, правовой доступ, преимущества и проблемы.</p></div>
@@ -72,11 +72,11 @@
 <section id="economy" class="pane" hidden>
 <div class="section-heading"><div class="overline">GBR-03 · Социальный договор и промышленная модернизация</div><h2>Один бюджет. Два направления расходов.</h2><p>Игрок выбирает между обновлением заводов и социальными программами. Переговоры и переобучение помогают провести реформу, но требуют денег. Перерасход не исчезает при достижении 100%.</p></div>
 <div class="economic-bar panel">
- <div class="economic-head"><div><div class="overline">Годовой лимит новых программ</div><h3><span id="budgetLimit">—</span> млрд игровых G$</h3></div><button type="button" class="quiet" id="economyReset">Сбросить</button></div>
+ <div class="economic-head"><div><div class="overline">Годовой лимит новых программ</div><h3><span id="budgetLimit">—</span> % ВВП в условном сценарии</h3></div><button type="button" class="quiet" id="economyReset">Сбросить</button></div>
  <div class="budget-topline"><div><span>Заявленные расходы</span><strong id="budgetSpent">—</strong></div><div><span>Загрузка лимита</span><strong id="budgetPercent">—</strong></div><div><span>Остаток / непокрытый дефицит</span><strong id="budgetGap">—</strong></div></div>
  <div class="budget-overflow"><span id="budgetFill"></span></div><p id="budgetExplanation" class="budget-warning"></p>
  <div class="budget-split"><span id="socialCost">Социальные программы: —</span><span id="modernCost">Промышленные проекты: —</span><span id="retrainCost">Обучение: —</span></div>
- <p class="note">Лимит 3,00 млрд G$ и цены программ — намеренно пробные, не государственный бюджет Британии. Цифры нужны, чтобы тестировать сам принцип нехватки ресурсов.</p>
+ <p class="note">Лимит и доли ВВП — условный сценарий дополнительных программ, а не реальные бюджетные статьи или официальный баланс 1955 года. Цифры нужны, чтобы тестировать сам принцип нехватки ресурсов.</p>
 </div>
 <div class="columns economy-cols">
 <section class="panel"><div class="panel-top"><div><div class="overline">Часть A · Общественные программы</div><h3>Послевоенный социальный договор</h3></div></div>
