@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Франция · Четвёртая республика · ВПИ 1955</title>
+<meta name="description" content="Франция 1955: Четвёртая республика, Алжир, ЕОУС, франк и индикативная модернизация. Черновик национальных механик.">
+<link rel="stylesheet" href="../css/fra.css">
+<script src="../js/geography-1955.js" defer></script>
+<script src="../data/fra-draft.js" defer></script>
+<script src="../js/fra-map.js" defer></script>
+<script src="../js/fra.js" defer></script>
+</head><body><div class="page">
+<header class="mast"><a href="../index.html" class="back">← Каталог государств</a><span class="brand">ВПИ <strong>1955</strong> / НАЦИОНАЛЬНЫЕ МЕХАНИКИ</span><span class="prototype">ЧЕРНОВИК · FRA 0.1</span></header>
+<section class="hero"><span class="eyebrow">Французская республика · 1 января 1955 года</span>
+<h1>Республика ищет<br><em>устойчивость.</em></h1>
+<p>Франция обладает промышленностью, колониальными обязательствами и влиянием в Европе. Но её кабинет зависит от парламентских сделок, а кризисы на заморских территориях требуют одновременно политики, денег и решений армии.</p>
+<div class="hero-pills"><span>Президент Рене Коти</span><span>Председатель Совета министров Пьер Мендес-Франс</span><span>Четвёртая республика</span><span>ЕОУС с 1952 года</span></div></section>
+<aside class="warning"><strong>Проект интерфейса, не официальный игровой результат.</strong> Парламентские цифры — датированная справка по 1951 году, а не подсчёт актуальной коалиции 1955 года. Никаких изменений по нажатию кнопок и никаких обязательных событий после 1 января 1955 года.</aside>
+<nav class="tabs" aria-label="Механики Франции">
+<button type="button" data-tab="parliament" class="tab current" aria-selected="true"><span>01</span> Республика</button>
+<button type="button" data-tab="algeria" class="tab" aria-selected="false"><span>02</span> Алжир</button>
+<button type="button" data-tab="europe" class="tab" aria-selected="false"><span>03</span> Европа</button>
+<button type="button" data-tab="planning" class="tab" aria-selected="false"><span>04</span> Франк и план</button>
+</nav><main>
+<section id="parliament" class="pane current"><div class="head"><span class="eyebrow">FRA-01 · Республика на песке</span><h2>Кабинет существует, пока есть согласие</h2><p>Фракции Национального собрания могут поддержать конкретный бюджет и разойтись по Алжиру, европейским договорам или экономике. Не существует одной кнопки «добиться большинства».</p></div>
+<div class="columns">
+<section class="card"><div class="row-head"><div><span class="eyebrow">Политические силы</span><h3>Национальное собрание</h3></div><span class="small-tag">Справка: июль 1951</span></div>
+<div id="fraParliamentStack" class="stack-graph" role="img" aria-label="Историческое распределение парламентских групп в 1951 году"></div><div id="fraPartyButtons" class="party-grid"></div>
+<p class="tiny">В 1955 году фракции и персональный состав изменились, особенно среди голлистов. Числа ниже не позволяют автоматически проводить голосования 1955 года.</p></section>
+<aside class="card"><span class="eyebrow">Политические переговоры</span><h3 id="fraPartyName">Выберите фракцию</h3><div id="fraPartyCount" class="party-count"></div>
+<p id="fraPartyStance" class="detail-text"></p><div class="line"></div><strong>О чём договариваться</strong><p id="fraPartyDeal" class="detail-text"></p>
+<label class="check-deal"><input type="checkbox" id="fraPartyInclude">Рассмотреть как партнёра по конкретному законопроекту</label>
+<div class="coalition-panel"><div class="eyebrow">Условный список для переговоров</div><strong id="fraCoalitionSum">—</strong><p id="fraCoalitionNames">—</p><small>Сумма мандатов 1951 года нужна только для ориентира. Она НЕ заменяет действительный состав 1955 года, процедуру инвеституры и реальное голосование.</small></div>
+<button type="button" id="fraCoalitionReset" class="quiet">Очистить выбор</button></aside></div></section>
+<section id="algeria" class="pane" hidden><div class="head"><span class="eyebrow">FRA-02 · Алжирский узел</span><h2>Одна территория — разные политические интересы</h2><p>Алжир в правовой системе Франции не просто обычная иностранная колония: здесь действуют французские департаменты с глубоко неравными социальными и политическими условиями. Конфликт начался до старта игры, но дальнейшая эскалация не предрешена.</p></div>
+<div class="columns"><section class="card"><div class="row-head"><div><span class="eyebrow">Географический ориентир</span><h3>Алжирские департаменты</h3></div><span class="small-tag">1955</span></div>
+<svg id="fraAlgeriaMap" viewBox="0 0 660 410" role="group" aria-label="Карта Алжира с тремя основными центрами"></svg>
+<div id="fraAlgeriaPlaces" class="location-list"></div>
+<div id="fraLocationNote" class="map-info">Выберите центр на карте</div>
+<p class="tiny">Современная географическая подложка, не точная схема юридических границ трёх департаментов 1955 года. Иные алжирские территории и Сахара не сведены к этим трём городам.</p></section>
+<aside class="card"><span class="eyebrow">Политические акторы</span><h3>С кем придётся взаимодействовать</h3><div id="fraAlgeriaActors" class="actor-list"></div>
+<div class="actor-info"><strong id="fraActorName"></strong><p id="fraActorFocus"></p><div class="line"></div><strong>Направления решений</strong><p id="fraActorMoves"></p></div>
+<p class="tiny">Переговоры с одним актором не означают поддержки остальных. Армейская безопасность, местная администрация и гражданские права рассматриваются раздельно.</p></aside></div></section>
+<section id="europe" class="pane" hidden><div class="head"><span class="eyebrow">FRA-03 · Европа как выход</span><h2>Общий рынок начинается с договоров</h2><p>На 1 января 1955 года действует ЕОУС для угля и стали. Общего рынка всех товаров и будущей ЕЭС ещё нет. Франция может предлагать новые соглашения, но каждый участник обладает собственным правом согласия.</p></div>
+<div class="columns"><section class="card"><div class="row-head"><div><span class="eyebrow">Шесть государств-участников ЕОУС</span><h3>Экономические связи</h3></div><span class="small-tag">1952 → 1955</span></div>
+<svg id="fraEuropeMap" role="group" viewBox="0 0 830 650" aria-label="Кликабельная европейская карта государств ЕОУС"></svg>
+<div id="fraEuropeanPartners" class="partner-pills"></div>
+<p class="tiny">Современная географическая подложка — ориентир, не юридическая карта 1955 года. Люксембург может отображаться условной точкой. Статус Саара и Берлина требует отдельного учёта.</p></section>
+<aside class="card"><span class="eyebrow">Двусторонние интересы</span><h3 id="fraEuropeName"></h3><span class="small-tag" id="fraEuropeStatus"></span><p id="fraEuropeSubject" class="detail-text"></p>
+<div class="line"></div><h4>Что игрок может сделать</h4><div class="choices"><div><strong>Секторальный договор</strong><p>Согласовать доступ к рынку определённого товара, а не автоматически всей экономики.</p></div><div><strong>Компенсация потерь</strong><p>Помочь отраслям, которые столкнутся с импортной конкуренцией.</p></div><div><strong>Совместный проект</strong><p>Финансирование, патенты и сроки требуют соглашения обоих государств.</p></div></div>
+<p class="tiny">Исторический будущий договор не создаётся автоматически: политическая интеграция зависит от переговоров игроков.</p></aside></div></section>
+<section id="planning" class="pane" hidden><div class="head"><span class="eyebrow">FRA-04 + FRA-05 · Франк и индикативная модернизация</span><h2>Планировать, не командуя фабрикой</h2><p>Французское государство может направлять кредиты и госзаказы в рамках послевоенного планирования, но предприятия, банки, оборудование и валютный импорт сохраняют собственные ограничения.</p></div>
+<div class="columns">
+<section class="card"><div class="row-head"><div><span class="eyebrow">Второй послевоенный план · 1954–1957</span><h3>Отраслевые проекты</h3></div><span class="small-tag">Сценарий</span></div><div id="fraSectorChoices" class="sector-grid"></div>
+<div class="line"></div><h3 id="fraSectorTitle"></h3><p class="detail-text" id="fraSectorAsset"></p><div class="subdetail"><strong>Узкое место</strong><p id="fraSectorLimit"></p></div><div class="subdetail"><strong>Как продвинуться</strong><p id="fraSectorStep"></p></div>
+<label for="fraCofinance">Предполагаемое частное софинансирование</label><input type="range" id="fraCofinance" min="0" max="75" step="5" value="30"><div class="cofinance-readout"><strong id="fraCofinanceValue"></strong><span id="fraCofinanceText"></span></div><p class="tiny">Число — намерение игрока, а не выданный частный кредит. Реальное участие требуется подтвердить соглашениями и доступностью капитала.</p>
+</section>
+<aside class="card"><span class="eyebrow">Дефицит валюты и топлива</span><h3>Какие поставки важны</h3><div class="actor-list" id="fraImports"></div>
+<div class="actor-info"><strong id="fraImportTitle"></strong><p id="fraImportPressure"></p><div class="line"></div><strong>Возможные действия</strong><p id="fraImportNegotiations"></p></div>
+<div class="line"></div><h4>Предварительное предложение</h4><p class="tiny">Сформируйте текст, чтобы затем самостоятельно оформить полноценный игровой пост.</p>
+<button type="button" class="primary" id="fraDraftGenerate">Сформировать черновик для судьи</button>
+<div id="fraDraft" hidden><label for="fraDraftText">Текст-помощник</label><textarea id="fraDraftText" readonly rows="10"></textarea><button type="button" class="quiet" id="fraCopy">Копировать</button><span id="fraCopyStatus" role="status"></span></div>
+</aside></div></section>
+</main>
+<footer><span>ВПИ 1955 · Франция · черновик, не канон</span><span>Данные интерфейса: data/fra-draft.js</span><a href="../index.html">← Все страны</a></footer>
+</div></body></html>
