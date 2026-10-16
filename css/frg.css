@@ -3,3 +3,17 @@
 @media(max-width:1050px){.layout-2,.map-layout{grid-template-columns:1fr}.army-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.map-frame{min-height:400px}.map-frame svg{max-height:500px}}
 @media(max-width:600px){.shell{padding:0 14px}.header{padding:12px 0}.site-name{order:3;width:100%;font-size:11px}.hero{padding:33px 0 25px}.hero>p{font-size:14px}.section-title{display:block}.section-title .subtle-button,.section-title .small-chip{margin-top:13px;display:inline-block}.panel{padding:15px}.tab{padding:10px 11px;font-size:12px}.tab small{display:none}.army-grid,.industry-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.growth-btn{font-size:9px}.society-institutions{grid-template-columns:1fr}.map-frame{min-height:310px}.map-legend{gap:8px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;scroll-behavior:auto!important}}
+/* Group 1955 West and East Germany visually, without modern interior administrative borders. */
+.geo-path,.geo-path[data-region="frg"],.geo-path[data-region="gdr"]{stroke:none!important}
+.geo-path:hover,.geo-path.active{stroke:none!important;filter:brightness(1.13)}
+.geo-path[data-region="saar"]{stroke:#8a633a!important;stroke-width:1.8!important}
+.frg-army-document{margin-top:19px;border-top:1px solid #d9e4e1;padding-top:16px}
+#armyControls{display:none}
+#frgArmyReadiness{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:11px}
+.frg-ready-row{padding:12px;background:#eff5f2;border:1px solid #d8e6df;border-radius:9px;display:grid;gap:6px}
+.frg-ready-row strong{font-size:12px;color:#366b65}
+.frg-ready-row span{font-size:11px;line-height:1.5;color:#718783}
+.frg-market{margin-top:17px;border-top:1px solid #dae5df;padding-top:18px}
+.frg-market h3{font-size:16px;margin:6px 0 10px}
+.frg-market .muted{padding:13px;background:#f0f6f2;border-radius:9px}
+@media(max-width:640px){#frgArmyReadiness{grid-template-columns:1fr}}
