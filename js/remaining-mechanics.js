@@ -21,6 +21,7 @@
  });
  const shares=d.tabs.find(t=>t.kind==="allocation");
  const alloc=shares?Object.fromEntries(shares.items.map(x=>[x.id,x.value])):null;
+ window.VPI_REMAINING_SESSION={allocation:alloc};
  const valueOf=t=>(t.items||t.choices||[]).find(x=>x.id===selected[t.id]);
  const icons={dossier:"landmark",projects:"factory",map:"map-pinned",allocation:"layers"};
  function openTab(id){
