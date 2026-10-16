@@ -1,0 +1,18 @@
+/* USA 1955: documentary maps and group descriptions. */
+.usa-faction{font:inherit;text-align:left;width:100%;background:#f8fbfa;cursor:pointer}.usa-faction:hover,.usa-faction.active{background:#e4f2eb;border-color:#81ada0}.usa-focus{padding:14px;border:1px solid #d0e0dd;background:#edf5f2;color:#476772;border-radius:12px;margin:10px 0 15px;font-size:13px}.usa-focus p{margin:6px 0 0}
+#usaEuropeMap,#usaStateGeo{display:block;width:100%;height:auto;background:radial-gradient(circle at 48% 33%,#f3faf7,#e0ecec);border:1px solid #cfdddd;border-radius:12px;margin:14px 0;max-height:500px}
+.usa-europe-shape{fill:#cdded9;stroke:#f9fbfb;stroke-width:1.3}
+.usa-europe-pin{fill:#a55c55;stroke:white;stroke-width:2;cursor:pointer;transition:fill .14s}
+.usa-europe-pin.active,.usa-europe-pin:hover{fill:#367f77;stroke:#244c55;stroke-width:3}
+.usa-map-pills{display:flex;gap:7px;flex-wrap:wrap;margin:14px 0}
+.usa-map-pills button{padding:7px 10px;border-radius:9px;background:#f7fbf9;border:1px solid #d7e4df;color:#476774;font-size:11px;font-weight:750}
+.usa-map-pills button.active,.usa-map-pills button:hover{background:#dceee6;border-color:#89b5a4}
+.usa-civil-grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(245px,1fr);gap:15px}
+.usa-state-shape{fill:#d5e0e1;stroke:#fbfcfc;stroke-width:1.2;cursor:pointer}
+.usa-state-shape[data-law="обязательная"]{fill:#dfaba5}
+.usa-state-shape[data-law="разрешена"]{fill:#e7ca92}
+.usa-state-shape:hover,.usa-state-shape.active{stroke:#26566b;stroke-width:3}
+.usa-map-legend{display:flex;gap:12px;flex-wrap:wrap;margin:15px 0;font-size:11px;color:#637987}
+.usa-map-legend span{display:flex;align-items:center;gap:5px}
+.usa-map-legend i{width:11px;height:11px;border-radius:2px;display:inline-block}.usa-map-legend .mandatory{background:#dfaba5}.usa-map-legend .allowed{background:#e7ca92}.usa-map-legend .other{background:#d5e0e1}
+@media(max-width:880px){.usa-civil-grid{grid-template-columns:1fr}}@media(max-width:520px){#usaStateGeo{min-height:180px}.usa-map-pills button{font-size:10px}}
