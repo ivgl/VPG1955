@@ -109,7 +109,7 @@
   const total=Object.values(alloc).reduce((a,b)=>a+b,0);
   const regions=t.items.map(x=>'<div class="allocation-row"><div class="allocation-top"><button type="button" data-select="'+x.id+'" data-section="'+t.id+'" class="allocation-name">'+escapeHtml(x.name)+'</button><strong>'+alloc[x.id]+'%</strong></div><div class="alloc-bar"><span style="width:'+alloc[x.id]+'%"></span></div><small>'+escapeHtml(x.needs)+'</small></div>').join("");
   const from=selected[t.id]||t.items[0].id;
-  return '<div class="split"><section class="panel"><div class="eyebrow">Проект деления единого фонда</div><h3>Шесть получателей, сумма 100%</h3>'+regions+
+  return '<div class="split"><section class="panel"><div class="eyebrow">Проект деления единого фонда</div><h3>Шесть получателей, сумма 100%</h3><div class="geo-frame">'+mapSVG(t)+'</div><p class="fine">Современные приблизительные контуры республик как географический ориентир; это не точная карта границ и полномочий 1955 года.</p>'+regions+
    '<div class="total-strip">Всего распределено <b>'+total+'%</b> · свободных дополнительных денег от изменения доли не появляется</div>'+
    '<p class="fine">'+escapeHtml(t.fundNote)+'</p></section>'+
    '<aside class="panel detail-panel"><div class="eyebrow">Перенос между республиками</div><h3>Каждое увеличение имеет источник</h3>'+
