@@ -43,3 +43,11 @@
 .bloc-map-label{font-size:14px;font-weight:850;fill:#244d47;stroke:#e7f0eb;stroke-width:3px;paint-order:stroke;pointer-events:none}
 .bloc-map-note{font-size:11px;color:#829592;line-height:1.45;margin:5px 0 17px}
 @media(max-width:620px){.europe-map-panel svg{max-height:360px}.bloc-map-label{font-size:15px}}
+
+/* Visual outline grouping: Yugoslavia and Czechoslovakia were undivided in January 1955. */
+.europe-country.historic-yug{fill:#b6c5bc;stroke:#b6c5bc;stroke-width:.6}
+.europe-country.historic-cze{stroke:#9ebdae;stroke-width:.5}
+.industry-links{display:grid;gap:8px;margin:10px 0 18px}
+.industry-link{padding:10px;background:#f3f7f4;border:1px solid #dce9e0;border-radius:8px;display:grid;gap:4px}
+.industry-link strong{font-size:12px;color:#285d54}
+.industry-link span,.industry-link small{font-size:11px;color:#718982}
