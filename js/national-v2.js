@@ -36,7 +36,7 @@ function seatChart(title,groups,total,threshold,selected,desc){
  (desc?'<p class="v2-muted">'+esc(desc)+'</p>':'')+'</div>';
 }
 const IsraeliKnesset=[
-{name:"МАПАЙ",seats:45,color:"#5a80a2"},{name:"Общие сионисты",seats:20,color:"#9bb8ca"},{name:"МАПАМ",seats:15,color:"#c4878d"},
+{name:"МАПАЙ",seats:45,color:"#5a80a2"},{name:"Общие сионисты",seats:20,color:"#9bb8ca"},{name:"МАПАМ / Ахдут ха-Авода (список 1951)",seats:15,color:"#c4878d"},
 {name:"Поалей ха-Мизрахи",seats:8,color:"#98b49f"},{name:"Херут",seats:8,color:"#c59773"},{name:"МАКИ",seats:5,color:"#a05e62"},
 {name:"Прогрессисты",seats:4,color:"#b7a8c7"},{name:"Другие списки",seats:15,color:"#bec7c1"}
 ];
