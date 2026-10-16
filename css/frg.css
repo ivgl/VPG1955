@@ -27,7 +27,7 @@
 .geo-region:hover .region-member,.geo-region.active .region-member{filter:brightness(.92)}
 .geo-region:focus-visible .region-member{filter:drop-shadow(0 0 3px #31586b)}
 .geo-berlin-background{fill:#b9c6d3;stroke:none;pointer-events:none}
-.geo-region .region-member{pointer-events:none}
+.geo-region .region-member{pointer-events:visiblePainted}
 .frg-market-controls{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
 .frg-market-controls button{padding:8px 11px;border:1px solid #cbded7;border-radius:8px;background:#f1f6f3;color:#406f64;font-weight:750;font-size:11px}
 .frg-market-controls button.active{background:#335d65;color:#fff}
