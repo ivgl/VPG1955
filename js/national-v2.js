@@ -55,10 +55,13 @@ function coalition(code,s){
  let left=italy?seatChart("Палата депутатов · состояние на конец 1954",itaChamber,589,295,s.focus,"Наличие вакансий и состава на конкретное заседание учитывается при голосовании."):
  seatChart("II Кнессет · мандаты выборов июля 1951",IsraeliKnesset,120,61,s.focus,"Следующие реальные выборы: 26 июля 1955. До них сохраняется действующий II Кнессет.");
  if(italy)left+=seatChart("Сенат · состояние на конец 1954",itaSenate,243,122,s.focus,"Включая пожизненных сенаторов; порог простого большинства показан для полного состава 243.");
+ const focusId=s.focus % groups.length;
+ const selectedParty=groups[focusId];
+ const partyBio=window.VPI_COUNTRY_V3?.bio?.(code,focusId)||"";
  let options=groups.map((g,i)=>'<label class="v2-coalition-row"><input type="checkbox" data-v2-coalition="'+i+'" '+(chosen.includes(i)?'checked':'')+'><span>'+esc(g.name)+'</span><b>'+g.seats+'</b></label>').join("");
  return heading(italy?"Политический баланс 1955 · две палаты":"Политическая система · второй Кнессет",italy?"Большинство в одной палате недостаточно":"61 голос, чтобы иметь собственное большинство",italy?"Кабинет Марио Шельбы зависит от поддержки депутатов и сенаторов. Выборы нового парламента по реальной хронологии — 1958 год.":"Кабинет Моше Шарета действует до новых выборов. Парламентские споры меняют коалицию, а не автоматически назначают другую дату голосования.")+
  '<div class="v2-two"><div>'+panel("Кто занимает места",left)+'</div><div>'+panel("Соберите переговорный блок",
- '<div class="v2-coalition-list">'+options+'</div>'+pct("Объединённые мандаты",sum+" / "+total)+bar(sum/total*100)+note(sum>=(italy?295:61)?"Арифметическое большинство":"Поддержки недостаточно",sum>=(italy?295:61)?details:"Не хватает "+((italy?295:61)-sum)+" голосов для абсолютного большинства первой палаты. "+details)
+ '<div class="v3-party-summary"><strong>'+esc(selectedParty.name)+'</strong><p>'+esc(partyBio)+'</p></div><div class="v2-coalition-list">'+options+'</div>'+pct("Объединённые мандаты",sum+" / "+total)+bar(sum/total*100)+note(sum>=(italy?295:61)?"Арифметическое большинство":"Поддержки недостаточно",sum>=(italy?295:61)?details:"Не хватает "+((italy?295:61)-sum)+" голосов для абсолютного большинства первой палаты. "+details)
  +renderDraft(s,code,"coalition",code.toUpperCase()+" 1955. Предлагается поддержка фракций: "+chosen.map(i=>groups[i].name).join(", ")+". В первой палате "+sum+" мандатов. Необходимо политическое соглашение и проверка состава обеих палат/действующей коалиции."))+'</div></div>';
 }
 function education(code,s,indian){
@@ -302,6 +305,8 @@ function yugFund(code,s,t,ctrl){
  renderDraft(s,code,"federation","Югославия 1955: альтернативное распределение федерального фонда "+items.map(it=>it.name+" "+old[it.id]+"%").join(", ")+". Требуется согласование компетенций, суммы и инвестпроектов."))+'</div></div>';
 }
 function view(code,t,s,ctrl){
+ const v3=window.VPI_COUNTRY_V3?.render?.(code,t,s,ctrl,{heading,panel,note,pct,bar,slider,choose,geoCountry,nodeChooser,renderDraft,seatChart,esc,fmt,G,base});
+ if(typeof v3==="string")return v3;
  switch(code+"."+t.id){
   case "chn.industry":return education(code,s,false);
   case "chn.provinces":return province(code,s,t);
