@@ -24,8 +24,6 @@
       <div class="intro-meta"><span>Два советских игрока</span><span>Один бюджет</span><span>История после 1955 года — альтернативная</span></div>
     </section>
 
-    </div>
-
     <nav class="tabs" aria-label="Разделы механик СССР">
       <button class="tab is-active" type="button" data-tab="politics" aria-selected="true"><span class="tab-number">01</span> Политическая система</button>
       <button class="tab" type="button" data-tab="gosplan" aria-selected="false"><span class="tab-number">02</span> Госплан</button>
@@ -34,7 +32,7 @@
 
     <main>
       <section id="politics" class="pane is-active" aria-labelledby="politics-title">
-        <div class="section-head"><div><div class="eyebrow">01 / Политическая система</div><h2 id="politics-title">Не два правительства. Две группы влияния.</h2><p>Кликайте по органам власти и руководителям, чтобы увидеть возможную структуру принятия решений. Персональные коалиции не гарантируют контроль над целым учреждением.</p></div><span class="info-chip">Роли на 01.01.1955</span></div>
+        <div class="section-head"><div><div class="eyebrow">01 / Политическая система</div><h2 id="politics-title">Не два правительства. Две группы влияния.</h2><p>Исследуйте, какие органы определяют политику, кто руководит их работой и как согласовываются решения между партийными и государственными институтами.</p></div><span class="info-chip">Роли на 01.01.1955</span></div>
 
         <div class="leaders">
           <button class="leader leader--party is-active" type="button" data-leader="khrushchev">
@@ -50,49 +48,44 @@
         <div class="political-layout">
           <div class="card diagram-panel">
             <div class="card-head"><div><div class="eyebrow">Карта учреждений</div><h3>Кто на что влияет</h3></div><span class="micro-tag">Выберите учреждение</span></div>
-            <div class="legend"><span><i class="legend-dot party"></i> Партийная группа</span><span><i class="legend-dot government"></i> Правительственная группа</span><span><i class="legend-dot independent"></i> Другие центры</span></div>
+            <div class="legend"><span><i class="legend-dot party"></i> Партийная группа</span><span><i class="legend-dot government"></i> Правительственная группа</span><span><i class="legend-dot independent"></i> Руководители ведомств и институтов</span></div>
             <div id="institutions" class="institution-grid" role="group" aria-label="Институты власти СССР"></div>
-            <div class="diagram-foot">Диаграмма показывает условный баланс политического влияния. Сумма сегментов в каждой карточке — 100%. Это не результат исторического исследования и не утверждённые игровые значения.</div>
+            <div class="diagram-foot">Разные органы опираются на партийную вертикаль, правительство и собственное руководство. Цвета обозначают характер участия, а не проценты власти. Руководители вне двух игроков могут поддержать любую сторону — в зависимости от вопроса.</div>
           </div>
           <aside class="card detail-panel">
-            <div class="eyebrow">Выбранное учреждение</div><h3 id="instName"></h3>
-            <p id="instSummary" class="muted"></p>
-            <div class="small-heading">Условное влияние на решение</div>
-            <div id="instBars" class="influence-bars"></div>
-            <div class="divider"></div>
-            <div class="small-heading">Что даёт контроль</div>
-            <p id="instAccess"></p>
-            <div class="small-heading" style="margin-top:16px">Что мешает</div>
-            <p id="instLimit" class="muted"></p>
-            <div class="divider"></div>
-            <div class="small-heading">Ключевые неигровые руководители</div>
-            <div id="institutionPeople" class="institution-people"></div>
+            <div class="institution-overview">
+              <div class="eyebrow">Выбранное учреждение</div><h3 id="instName"></h3>
+              <p id="instSummary" class="muted"></p>
+              <div class="small-heading">Какие решения здесь принимаются</div>
+              <p id="instAccess"></p>
+              <div class="divider"></div>
+              <div class="small-heading">Связанные руководители</div>
+              <div id="institutionPeople" class="institution-people"></div>
+            </div>
+            <div class="institution-roles">
+              <div class="small-heading">Участники решений</div>
+              <div id="instBars" class="influence-bars"></div>
+              <p class="role-hint">Ведомственные руководители не принадлежат автоматически ни Хрущёву, ни Маленкову. Их поддержка зависит от содержания инициативы.</p>
+            </div>
           </aside>
         </div>
 
         <div class="secondary-layout">
           <section class="card figures-card" aria-labelledby="figures-title">
-            <div class="card-head"><div><div class="eyebrow">Политическая элита</div><h3 id="figures-title">Люди, с которыми придётся договариваться</h3></div><span class="micro-tag">Позиции не статичны</span></div>
-            <p class="muted figures-intro">Выбирайте неигровых руководителей ниже или прямо в карточке учреждения. Их интересы могут меняться под влиянием решений игроков.</p>
+            <div class="card-head"><div><div class="eyebrow">Политическая элита</div><h3 id="figures-title">Девять ключевых руководителей</h3></div><span class="micro-tag">Выберите человека</span></div>
+            <p class="muted figures-intro">Выберите руководителя, чтобы увидеть его должность, интересы и возможные темы для переговоров. Фигуры связаны с учреждениями выше.</p>
             <div id="figureButtons" class="figures-grid" role="group" aria-label="Ключевые руководители СССР"></div>
             <div id="figureDetail" class="figure-detail" aria-live="polite"></div>
           </section>
-          <aside class="card mechanic-card">
-            <div class="eyebrow">Как это будет работать в игре</div><h3>Действие ≠ автоматический успех</h3>
-            <div class="game-step"><span>1</span><p>Игрок предлагает кадровое или политическое решение.</p></div>
-            <div class="game-step"><span>2</span><p>Судья проверяет полномочия, поддержку и возможное сопротивление.</p></div>
-            <div class="game-step"><span>3</span><p>Решение проходит, изменяется или блокируется. При смене должности игрок не выбывает автоматически.</p></div>
-            <div class="soft-alert">Армия и госбезопасность — самостоятельные институты, а не «личные войска» одного из игроков.</div>
-          </aside>
         </div>
       </section>
 
       <section id="gosplan" class="pane" aria-labelledby="gosplan-title" hidden>
-        <div class="section-head"><div><div class="eyebrow">02 / Экономика</div><h2 id="gosplan-title">Цена хозяйственных приоритетов</h2><p>Перераспределяйте условные новые капиталовложения. Рост потребления не бесплатен, но и одно только расширение тяжёлой промышленности не гарантирует благополучия.</p></div><span class="info-chip">Пробный баланс</span></div>
+        <div class="section-head"><div><div class="eyebrow">02 / Экономика</div><h2 id="gosplan-title">Цена хозяйственных приоритетов</h2><p>Перераспределяйте условные новые капиталовложения. Рост потребления не бесплатен, но и одно только расширение тяжёлой промышленности не гарантирует благополучия.</p></div><span class="info-chip">Хозяйственные приоритеты</span></div>
         <div class="planning-layout">
           <section class="card plan-controls">
-            <div class="card-head"><div><div class="eyebrow">Демонстрационный план</div><h3>100 единиц новых вложений</h3></div><button type="button" class="reset" id="resetPlan">Сбросить</button></div>
-            <p class="muted">Это не доли ВВП и не реальные расходы СССР в 1955 году. Передвиньте ползунок — остальные статьи автоматически перераспределятся, чтобы сумма оставалась равна 100.</p>
+            <div class="card-head"><div><div class="eyebrow">Капиталовложения</div><h3>100 единиц новых вложений</h3></div><button type="button" class="reset" id="resetPlan">Сбросить</button></div>
+            <p class="muted">Распределите 100 условных частей новых капиталовложений между отраслями. Изменение одного направления перераспределяет остальные и показывает конкуренцию за ресурсы.</p>
             <div id="planControls" class="plan-rows"></div>
             <div class="total-line"><span>Распределено</span><strong><span id="planTotal">100</span> / 100</strong></div>
             <div class="stack-track" id="allocationTrack" aria-label="Распределение инвестиций"></div>
@@ -113,7 +106,7 @@
             <div class="divider"></div>
             <div class="small-heading">Почему оборона зависит от промышленности</div>
             <p class="muted">Военные программы потребляют станки, металл, электроэнергию и инженеров. Существующие мощности могут работать какое-то время, но долгосрочное расширение оборонного производства требует промышленной базы.</p>
-            <div class="small-heading">Промышленные узкие места при выбранном плане</div><div id="industryDependencies" class="industry-links"></div><div class="soft-alert">Предупреждения формируются по условным порогам макета. Они не начисляют игровые бонусы, штрафы или прирост ВВП.</div>
+            <div class="small-heading">Промышленные узкие места при выбранном плане</div><div id="industryDependencies" class="industry-links"></div><div class="soft-alert">Сигналы помогают заметить дефицит оборудования, кадров и снабжения при выбранных хозяйственных приоритетах.</div>
           </aside>
         </div>
         <div class="dependency">
@@ -125,31 +118,28 @@
       </section>
 
       <section id="bloc" class="pane" aria-labelledby="bloc-title" hidden>
-        <div class="section-head"><div><div class="eyebrow">03 / Союзные государства</div><h2 id="bloc-title">Восточноевропейская дуга</h2><p>Никаких кнопок «повысить лояльность». Выберите страну, чтобы посмотреть отношения, внутренние риски и существующие обязательства. Политика проводится обычными игровыми постами.</p></div><span class="info-chip">7 стран</span></div>
+        <div class="section-head"><div><div class="eyebrow">03 / Восточная Европа</div><h2 id="bloc-title">Восточноевропейская дуга</h2><p>От ГДР до Албании: разные политические режимы, промышленность, национальные интересы и стратегические направления. Выберите государство и изучите, какие возможности и сложности оно создаёт для советской политики.</p></div><span class="info-chip">7 государств</span></div>
         <div class="bloc-layout">
           <section class="card bloc-list-panel">
             <div class="card-head"><div><div class="eyebrow">Советская сфера влияния</div><h3>Выберите государство</h3></div><span class="micro-tag">01.01.1955</span></div>
             <div class="europe-map-panel"><svg id="blocMap" viewBox="0 0 830 650" role="group" aria-label="Кликабельная карта стран Восточной Европы и ГДР"></svg></div>
-            <div class="bloc-map-note">Выберите страну на карте или в списке. Чехословакия и Югославия показаны как единые государства 1955 года (Югославия не входит в блок). Географические очертания схематичны: источники основаны на современной карте.</div>
+            <div class="bloc-map-note">Чехословакия и Югославия показаны как единые государства; Украина, Белоруссия и Молдавия объединены цветом СССР. Югославия не входит в советскую сферу союзнических обязательств. Контуры карты приближённые.</div>
             <div class="bloc-grid" id="blocCards" role="group" aria-label="Страны Восточной Европы"></div>
-            <div class="bloc-note"><b>Статус договора.</b> Организация Варшавского договора исторически основана 14 мая 1955 года. На дату старта игры это ещё не готовая организация. Формирование и условия договора определяются игровыми решениями.</div>
+            <div class="bloc-note"><b>Договоры на старте.</b> На 1 января 1955 года страны связаны с Москвой различными двусторонними соглашениями. Варшавский договор исторически был подписан 14 мая 1955 года, но в игровом мире он ещё может принять другую форму или не появиться.</div>
           </section>
           <aside class="card country-detail">
             <div class="country-identity"><span id="countryFlag" class="big-flag"></span><div><div class="eyebrow">Карточка союзного государства</div><h3 id="countryName"></h3></div></div>
-            <div class="bloc-meters">
-              <div class="bloc-meter"><div class="bloc-meter-head"><span>Отношения с Москвой</span><strong id="countryRelation">—</strong></div><div class="bloc-meter-track" id="relationTrack" role="progressbar" aria-label="Отношения с Москвой" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="relationFill"></span></div><small>0 — враждебность · 100 — тесное сотрудничество</small></div>
-              <div class="bloc-meter"><div class="bloc-meter-head"><span>Внутренняя устойчивость</span><strong id="countryPressure">—</strong></div><div class="bloc-meter-track" id="stabilityTrack" role="progressbar" aria-label="Внутренняя устойчивость" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="stabilityFill"></span></div><small>0 — кризис · 100 — устойчивая ситуация</small></div>
-            </div>
-            <div class="bloc-meters-note">Шкалы — демонстрационные индикаторы для будущей карточки. Они не редактируются на сайте.</div>
+            <div class="bloc-facts"><div><span>Политические отношения</span><strong id="countryRelation"></strong></div><div><span>Внутренняя обстановка</span><strong id="countryPressure"></strong></div></div>
             <div class="divider"></div>
             <div class="small-heading">Связь с СССР</div><p id="countryContext" class="muted"></p>
             <div class="small-heading">Роль страны в блоке</div><p id="countrySpecialty" class="bloc-specialty"></p>
             <div class="divider"></div>
             <div class="small-heading">Ближайшие проблемы</div><p id="countryNear" class="muted"></p>
             <div class="small-heading">Долгосрочные вызовы</div><p id="countryLong" class="muted"></p>
+            <div class="divider"></div><div class="small-heading">Что может предпринять СССР</div><p id="countryLevers" class="bloc-specialty"></p>
           </aside>
         </div>
-        <p class="section-disclaimer">Шкалы 0–100 сейчас показывают условные демонстрационные числа, а не утверждённые исторические значения или скрытые судейские показатели. В финальной версии опубликованные данные будут приходить из официального публичного состояния ВПИ. «Роль страны» не означает бесплатного доступа к её ресурсам: требуются действующие соглашения и поставки.</p>
+        <p class="bloc-footnote">На начало 1955 года страны региона связаны с Москвой разными двусторонними договорами и хозяйственными соглашениями. Общей Организации Варшавского договора ещё нет.</p>
       </section>
     </main>
     <footer class="footer"><span>ВПИ 1955 · СССР · Национальные механики</span><a href="../index.html">← Каталог стран</a></footer>

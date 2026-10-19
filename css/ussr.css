@@ -51,3 +51,103 @@
 .industry-link{padding:10px;background:#f3f7f4;border:1px solid #dce9e0;border-radius:8px;display:grid;gap:4px}
 .industry-link strong{font-size:12px;color:#285d54}
 .industry-link span,.industry-link small{font-size:11px;color:#718982}
+
+/* СССР: финальная компоновка институтов и адаптация под ноутбуки */
+.page{max-width:1170px;width:100%;padding-inline:clamp(14px,2.1vw,25px)}
+.page,main,.pane,.card,.diagram-panel,.figures-card,.bloc-list-panel,.country-detail{min-width:0}
+body{overflow-x:hidden}
+.intro{padding:37px 0 25px}
+.intro h1{font-size:clamp(34px,4.5vw,56px)}
+.tabs{flex-wrap:wrap;gap:6px;margin:22px 0 24px}
+.tab{font-size:13px;padding:10px 14px;min-width:0}
+.section-head{gap:14px}
+.political-layout,.secondary-layout{grid-template-columns:minmax(0,1fr)}
+.diagram-panel{padding:21px}
+.institution-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:10px}
+.institution{grid-column:span 3;min-width:0;min-height:105px;gap:13px;border-left:4px solid #9bada8;padding:15px 13px 13px;justify-content:space-between}
+.institution:nth-child(n+5){grid-column:span 4}
+.institution--party{border-left-color:var(--party)}
+.institution--government{border-left-color:var(--gov)}
+.institution--collective{border-left-color:#8e9f9a}
+.institution--institutional{border-left-color:#8799a9}
+.inst-card-top{display:flex;align-items:start;justify-content:space-between;gap:8px;width:100%}
+.inst-title{min-height:0;font-size:14px;line-height:1.3}
+.inst-chevron{font-size:15px;font-weight:800;color:#73968c;line-height:1}
+.institution small{margin-top:auto;font-size:11px;line-height:1.4}
+.institution.is-active{background:#eaf4ef;box-shadow:0 0 0 1px #7ab3a8}
+.diagram-foot{margin-top:17px;padding-top:12px;color:#657980;font-size:12px}
+.legend{gap:10px 18px;margin:0 0 16px;font-size:11px}
+.detail-panel{display:grid;grid-template-columns:minmax(0,.86fr) minmax(0,1.15fr);column-gap:26px;align-items:start;padding:22px}
+.institution-overview,.institution-roles{min-width:0}
+.institution-overview h3{font-size:24px;margin-top:5px}
+.institution-overview .muted{line-height:1.6;margin:11px 0 22px;font-size:13px}
+.institution-overview>.small-heading{margin-top:16px}
+.institution-overview>p:not(.muted){font-size:13px;color:#45616a;line-height:1.6}
+.institution-roles{border-left:1px solid var(--border);padding-left:24px}
+.influence-bars{display:grid;grid-template-columns:1fr;gap:8px;margin:12px 0}
+.influence-role{display:flex;align-items:flex-start;gap:12px;background:#f8faf9;border:1px solid #e2e9e6;border-radius:11px;padding:12px}
+.influence-role .role-indicator{display:block;width:5px;min-height:49px;flex:0 0 5px;border-radius:5px;background:#899da6}
+.influence-role--party .role-indicator{background:var(--party)}
+.influence-role--government .role-indicator{background:var(--gov)}
+.influence-role--institutional .role-indicator{background:var(--third)}
+.influence-role strong{display:block;color:#2a5156;font-size:12px;margin-bottom:4px}
+.influence-role p{font-size:12px;color:#637680;line-height:1.55;margin:0}
+.role-hint{font-size:11px;color:#6c8086;line-height:1.6;background:#f2f6f4;border-left:3px solid #bacfc6;padding:10px 12px;margin-top:10px}
+.institution-people{gap:7px}
+.person-chip{padding:7px 10px;font-size:11px}
+.figures-card{padding:23px}
+.figures-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.figure-button{min-height:84px;padding:14px;gap:7px;background:#f9fbfa}
+.figure-button:hover{border-color:#8db4a9;background:#f0f7f4}
+.figure-button.is-active{box-shadow:inset 3px 0 0 var(--party)}
+.figure-button b{font-size:14px;letter-spacing:-.01em}
+.figure-button small{font-size:11px;line-height:1.3}
+.figure-detail{margin-top:18px;padding:19px;line-height:1.6}
+.figure-detail strong{font-size:16px}
+.figure-detail p{font-size:13px}
+.figure-position{margin-top:13px}
+.figures-intro{font-size:13px;line-height:1.6}
+.planning-layout{grid-template-columns:minmax(0,1.28fr) minmax(290px,.95fr);gap:15px}
+.bloc-layout{grid-template-columns:minmax(0,1.27fr) minmax(300px,.95fr);gap:15px}
+.europe-map-panel{max-width:760px;margin:0 auto 10px}
+.europe-map-panel svg{max-height:510px}
+.europe-country.historic-cze{fill:#9ebdae;stroke:none;stroke-width:0}
+.europe-country.historic-yug{fill:#c1cbc5;stroke:none;stroke-width:0}
+.europe-country.soviet-territory{fill:#bccfc7;stroke:none;stroke-width:0}
+.europe-country.historic-gdr{fill:#9ebdae;stroke:none;stroke-width:0}
+.europe-country.bloc-shape.is-active{fill:#519584}
+.europe-country.bloc-shape:hover{fill:#519584}
+.bloc-map-label{font-size:12px;stroke-width:2px}
+.bloc-map-label.soviet-label{font-size:17px;letter-spacing:.12em;fill:#537b6b}
+.bloc-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:5px 0 23px}
+.bloc-facts div{display:flex;flex-direction:column;gap:6px;padding:12px;background:#f0f6f3;border:1px solid #dce7e2;border-radius:11px;min-width:0}
+.bloc-facts span{font-size:11px;color:#658078;font-weight:750}
+.bloc-facts strong{font-size:12px;line-height:1.45;color:#264d49;overflow-wrap:anywhere}
+.country-detail p{font-size:13px;line-height:1.6}
+.country-detail .small-heading{margin-top:18px}
+.bloc-note{line-height:1.65}
+.bloc-footnote{color:#708783;font-size:12px;line-height:1.6;margin-top:13px}
+@media(max-width:1060px){
+ .political-layout,.secondary-layout,.planning-layout,.bloc-layout{grid-template-columns:minmax(0,1fr)}
+ .institution-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .institution,.institution:nth-child(n+5){grid-column:auto}
+ .institution:last-child{grid-column:1/-1}
+ .figures-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .europe-map-panel{max-width:740px}
+}
+@media(max-width:720px){
+ .detail-panel{grid-template-columns:1fr;gap:16px}
+ .institution-roles{border-left:0;border-top:1px solid var(--border);padding:17px 0 0}
+ .section-head{display:block}
+ .section-head .info-chip{display:inline-flex;margin-top:13px}
+ .figures-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .bloc-facts{grid-template-columns:1fr}
+}
+@media(max-width:440px){
+ .institution-grid{grid-template-columns:1fr}
+ .institution:last-child{grid-column:auto}
+ .figures-grid{grid-template-columns:1fr}
+ .tabs{flex-wrap:nowrap;overflow-x:auto}
+ .tab{white-space:nowrap;flex:none}
+ .figure-button{min-height:65px}
+}
