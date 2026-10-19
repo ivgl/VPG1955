@@ -1,0 +1,162 @@
+"use strict";
+(function(){
+const base=window.VPI_GBR_DRAFT,atlas=window.VPI_GBR_ATLAS_1955,world=window.VPI_GBR_WORLD;
+if(!base||!atlas){console.error("GBR atlas data missing");return}
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const money=(v,dec=3)=>Number(v).toLocaleString("ru-RU",{minimumFractionDigits:dec,maximumFractionDigits:dec});
+const tabs=["sterling","empire","economy"];
+let currentTab="sterling",selectedFx="dollar",selectedPartner=0,selectedPlace="suez",selectedIndustry="ship",selectedSocial="labour",worldFilter="all";
+function switchTab(id,move=true){
+ if(!tabs.includes(id))return;
+ currentTab=id;
+ document.querySelectorAll("[data-gbr-tab]").forEach(el=>{const active=el.dataset.gbrTab===id;el.classList.toggle("active",active);el.setAttribute("aria-selected",String(active))});
+ document.querySelectorAll(".pane").forEach(el=>{const active=el.id===id;el.classList.toggle("active",active);el.hidden=!active});
+ document.querySelectorAll(".connection-link").forEach(el=>el.classList.toggle("active",el.dataset.jump===id));
+ try{history.replaceState(null,"","#"+id)}catch{}
+ if(move)document.querySelector("nav.tabs")?.scrollIntoView({behavior:"smooth",block:"start"});
+}
+document.querySelectorAll("[data-gbr-tab]").forEach(el=>el.addEventListener("click",()=>switchTab(el.dataset.gbrTab,false)));
+document.addEventListener("click",e=>{
+ const jump=e.target.closest("[data-jump]");
+ if(jump){switchTab(jump.dataset.jump,true);return}
+ const anchor=e.target.closest("[data-jump-anchor]");
+ if(anchor){$(anchor.dataset.jumpAnchor)?.scrollIntoView({behavior:"smooth",block:"start"})}
+});
+// Shared parliamentary widget is retained, but placed with the social/political institutions.
+const parliament=document.getElementById("vpi-parliament-gbr");
+if(parliament && $("gbrParliamentSlot")){$("gbrParliamentSlot").appendChild(parliament)}
+const fi=base.finance;
+const balance=fi.exports1954GBP-fi.imports1954GBP;
+const stats=[
+ {name:"Экспорт товаров · 1954",value:"£"+money(fi.exports1954GBP)+" млрд",note:"Мировая торговля товарами"},
+ {name:"Импорт товаров · 1954",value:"£"+money(fi.imports1954GBP)+" млрд",note:"Продовольствие, сырьё, техника"},
+ {name:"Баланс торговли товарами",value:(balance<0?"−£":"£")+money(Math.abs(balance))+" млрд",note:"Экспорт за вычетом импорта",highlight:true},
+ {name:"Внешние резервы · конец 1954",value:"$"+money(fi.reserveUSD)+" млрд",note:"Статистическая серия международных резервов"}
+];
+$("sterlingStats").innerHTML=stats.map(s=>'<div class="stat-tile'+(s.highlight?" subdued":"")+'"><span>'+esc(s.name)+'</span><strong>'+esc(s.value)+'</strong><small>'+esc(s.note)+'</small></div>').join("");
+function renderFx(){
+ $("fxNodes").innerHTML=atlas.financeLinks.map(x=>'<button type="button" data-finance="'+esc(x.key)+'" class="fx-node'+(x.key===selectedFx?" active":"")+'" aria-pressed="'+(x.key===selectedFx)+'"><span>'+esc(x.title)+'</span><i aria-hidden="true">↗</i></button>').join("");
+ const x=atlas.financeLinks.find(y=>y.key===selectedFx)||atlas.financeLinks[0];
+ $("fxDetailTitle").textContent=x.title;$("fxDetailDesc").textContent=x.desc;
+ $("fxDetailActors").textContent=x.actors;$("fxDetailAction").textContent=x.action;
+ $("fxNodes").querySelectorAll("[data-finance]").forEach(b=>b.onclick=()=>{selectedFx=b.dataset.finance;renderFx()});
+}
+renderFx();
+const trade=base.tradeStructure||{exports:[],imports:[]};
+$("tradeGrid").innerHTML=[
+ {label:"Экспорт · источники валютной выручки",items:trade.exports,cls:"export"},
+ {label:"Импорт · зависимость внутренней экономики",items:trade.imports,cls:"import"}
+].map(col=>'<div class="trade-column '+col.cls+'"><div class="trade-column-head"><i></i><b>'+esc(col.label)+'</b></div>'+col.items.map((x,i)=>'<div class="trade-item"><span class="trade-item-no">0'+(i+1)+'</span><div><strong>'+esc(x.label)+'</strong><p>'+esc(x.detail)+'</p></div></div>').join("")+'</div>').join("");
+function renderPartners(){
+ const x=base.sterling[selectedPartner],extra=atlas.partnerNotes[x.name]||{};
+ $("partnerButtons").innerHTML=base.sterling.map((p,i)=>'<button type="button" data-partner="'+i+'" class="'+(i===selectedPartner?"active":"")+'" aria-pressed="'+(i===selectedPartner)+'"><span>'+esc(p.name)+'</span><i>↗</i></button>').join("");
+ $("partnerName").textContent=x.name;$("partnerStatus").textContent=x.status;
+ $("partnerFocus").textContent=extra.focus||x.info;
+ $("partnerTrade").textContent=extra.imports||"Торговые и финансовые расчёты между правительствами и компаниями.";
+ $("partnerRisk").textContent=extra.risks||x.info;
+ $("partnerLevers").textContent=extra.levers||"Переговоры о торговле и международных расчётах.";
+ $("partnerButtons").querySelectorAll("[data-partner]").forEach(b=>b.onclick=()=>{selectedPartner=Number(b.dataset.partner);renderPartners()});
+}
+renderPartners();
+const filters=[
+ ["all","Все объекты"],
+ ["colony","Территории"],
+ ["agreement","По договорам"],
+ ["commonwealth","Партнёры"],
+ ["home","Базы метрополии"]
+];
+function isShown(x){return worldFilter==="all"||x.type===worldFilter}
+const project=(lon,lat)=>[(lon+180)*960/360,(84-lat)*490/168];
+function shapeType(t){return ["colony","agreement","commonwealth","home"].includes(t.type)?t.type:"agreement"}
+function renderWorld(){
+ if(!world?.paths){$("empireMap").innerHTML='<text x="480" y="245" text-anchor="middle">Карта недоступна</text>';return}
+ const background=world.paths.map(x=>'<path class="world-shape" d="'+x.d+'"><title>'+esc(x.name)+'</title></path>').join("");
+ const points=base.territories.map(t=>{const [x,y]=project(t.lon,t.lat);const cls="world-point "+shapeType(t);
+  return '<circle class="'+cls+'" data-map-place="'+esc(t.id)+'" tabindex="0" role="button" aria-label="'+esc(t.name)+'" cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="7"><title>'+esc(t.name)+'</title></circle>';
+ }).join("");
+ $("empireMap").innerHTML=background+points+'<text id="mapSelectedLabel" class="map-selected-label" x="20" y="468"></text>';
+ $("empireMap").querySelectorAll("[data-map-place]").forEach(el=>{
+  const go=()=>choosePlace(el.dataset.mapPlace);
+  el.addEventListener("click",go);
+  el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go()}});
+ });
+ $("territoryButtons").innerHTML=base.territories.map(t=>'<button type="button" class="node-button" data-node-place="'+esc(t.id)+'"><span>'+esc(t.name)+'</span></button>').join("");
+ $("territoryButtons").querySelectorAll("[data-node-place]").forEach(el=>el.onclick=()=>choosePlace(el.dataset.nodePlace));
+ $("baseFilters").innerHTML=filters.map(([key,label])=>'<button type="button" data-world-filter="'+key+'">'+label+'</button>').join("");
+ $("baseFilters").querySelectorAll("[data-world-filter]").forEach(el=>el.onclick=()=>{worldFilter=el.dataset.worldFilter;refreshWorldFilter()});
+ refreshWorldFilter();choosePlace(selectedPlace);
+}
+function refreshWorldFilter(){
+ $("baseFilters").querySelectorAll("[data-world-filter]").forEach(el=>{let a=el.dataset.worldFilter===worldFilter;el.classList.toggle("active",a);el.setAttribute("aria-pressed",String(a))});
+ base.territories.forEach(t=>{let visible=isShown(t);
+  const marker=$("empireMap").querySelector('[data-map-place="'+t.id+'"]');
+  const node=$("territoryButtons").querySelector('[data-node-place="'+t.id+'"]');
+  if(marker)marker.style.display=visible?"":"none";
+  if(node)node.hidden=!visible;
+ });
+ $("empireTotal").textContent=base.territories.filter(isShown).length+" / "+base.territories.length+" объектов";
+}
+function renderTags(id,arr,cls="clean-list"){ $(id).innerHTML=(arr||[]).map(x=>'<li>'+esc(x)+'</li>').join("")}
+function choosePlace(id){
+ const t=base.territories.find(x=>x.id===id);if(!t)return;
+ selectedPlace=id;
+ if(!isShown(t)){worldFilter="all";refreshWorldFilter()}
+ const more=atlas.territoryNotes[id]||{stakeholders:[],frictions:[],options:[],links:[]};
+ const labels={colony:"Зависимая территория",agreement:"Договорные права",commonwealth:"Независимый партнёр",home:"Метрополия"};
+ $("placeName").textContent=t.name;$("placeType").textContent=labels[t.type]||t.type;
+ $("placeIssue").textContent=more.issue||t.role;
+ $("placeFacility").textContent=t.facility||"Военные и гражданские коммуникации";
+ $("placeScale").textContent=t.baseSize||"Роль зависит от объекта";
+ $("placeLegal").textContent=t.status+". "+t.access+".";
+ $("placeRole").textContent=t.role;
+ renderTags("placeStakeholders",more.stakeholders);renderTags("placeFrictions",more.frictions);
+ renderTags("placeOptions",more.options);
+ $("placeLinks").innerHTML=(more.links||[]).map(link=>{
+  const destination=base.territories.find(x=>x.id===link);return destination?'<button type="button" data-related="'+esc(link)+'">'+esc(destination.name)+' ↗</button>':""
+ }).join("");
+ $("placeLinks").querySelectorAll("[data-related]").forEach(b=>b.onclick=()=>choosePlace(b.dataset.related));
+ $("territoryButtons").querySelectorAll("[data-node-place]").forEach(b=>b.classList.toggle("active",b.dataset.nodePlace===id));
+ $("empireMap").querySelectorAll("[data-map-place]").forEach(el=>{const active=el.dataset.mapPlace===id;el.classList.toggle("active",active);el.setAttribute("r",active?"10":"7")});
+ $("mapSelectedLabel").textContent="Выбрано: "+t.name;
+}
+renderWorld();
+const industries=base.industries;
+const industryNames={coal:"Уголь",ship:"Судостроение",textile:"Текстиль",cars:"Автомобили",aero:"Авиация"};
+function renderIndustries(){
+ $("industryButtons").innerHTML=industries.map((x,i)=>'<button type="button" data-industry="'+esc(x.id)+'" class="'+(selectedIndustry===x.id?"active":"")+'" aria-pressed="'+(selectedIndustry===x.id)+'"><small>0'+(i+1)+'</small><b>'+esc(industryNames[x.id]||x.name)+'</b><span>'+esc(x.tag)+'</span></button>').join("");
+ const x=industries.find(y=>y.id===selectedIndustry)||industries[0],v=atlas.sectorNotes[x.id];
+ $("industryName").textContent=x.name;
+ $("industryIntro").textContent=x.asset;
+ $("industryRegion").textContent="Основные районы · "+v.region;
+ $("industryOwner").textContent=v.ownership;
+ $("industryProblems").textContent=x.limitation+". "+v.pressure;
+ $("industryTrade").textContent=v.trade;
+ const renderPills=(id,items)=>$(id).innerHTML=items.map(a=>'<span>'+esc(a)+'</span>').join("");
+ renderPills("industryActors",v.groups);renderPills("industryInputs",v.inputs);
+ $("industryOptions").innerHTML=v.choices.map((a,i)=>'<div><small>Возможность '+(i+1)+'</small><strong>'+esc(a)+'</strong></div>').join("");
+ $("industryPressure").textContent="Политический риск: "+v.pressure;
+ const link=v.connection==="empire"?"empire":"sterling";
+ $("industryConnection").dataset.jump=link;
+ $("industryConnection").textContent=link==="empire"?"Как это связано с базами и флотом →":"Как это связано с торговлей и фунтом →";
+ $("industryButtons").querySelectorAll("[data-industry]").forEach(b=>b.onclick=()=>{selectedIndustry=b.dataset.industry;renderIndustries()});
+}
+renderIndustries();
+const socials=atlas.socialNotes,keys=Object.keys(socials);
+function renderSocial(){
+ $("socialButtons").innerHTML=keys.map((key,i)=>{
+  let d=socials[key];return '<button type="button" data-social="'+key+'" class="'+(selectedSocial===key?"active":"")+'" aria-pressed="'+(selectedSocial===key)+'"><small>0'+(i+1)+'</small><span><strong>'+esc(d.title)+'</strong><em>'+esc(d.sub)+'</em></span><i aria-hidden="true">↗</i></button>'
+ }).join("");
+ const x=socials[selectedSocial];
+ $("socialTitle").textContent=x.title;$("socialStatus").textContent=x.status;
+ $("socialSubtitle").textContent=x.sub;
+ $("socialForces").innerHTML=x.forces.map(a=>'<span>'+esc(a)+'</span>').join("");
+ $("socialTension").textContent=x.tension;
+ $("socialOpportunity").textContent=x.opportunity;
+ $("socialButtons").querySelectorAll("[data-social]").forEach(b=>b.onclick=()=>{selectedSocial=b.dataset.social;renderSocial()});
+}
+renderSocial();
+$("gbrSources").innerHTML=atlas.sourceLinks.map(s=>'<a href="'+esc(s.url)+'" target="_blank" rel="noopener noreferrer">'+esc(s.title)+' ↗</a>').join("");
+let hash=location.hash.replace("#","");
+switchTab(tabs.includes(hash)?hash:"sterling",false);
+})();

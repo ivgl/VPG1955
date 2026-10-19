@@ -1,109 +1,122 @@
 <!doctype html>
-<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Британия 1955: фунт, международная сеть, социальный договор и модернизация промышленности.">
-<title>Великобритания · ВПИ 1955</title>
-<link rel="stylesheet" href="../css/gbr.css">
-<script src="../data/gbr-draft.js" defer></script><script src="../js/gbr-world.js" defer></script><script src="../js/gbr.js" defer></script><script src="../js/gbr-updates.js" defer></script>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Великобритания в ВПИ 1955: валютная система, торговля, имперская сеть, промышленность, общество и парламент.">
+<title>Великобритания · Национальные механики · ВПИ 1955</title>
+<link rel="stylesheet" href="../css/gbr-v2.css">
 <link rel="stylesheet" href="../css/parliament-1955.css">
+<script src="../data/gbr-draft.js" defer></script>
+<script src="../data/gbr-atlas-1955.js" defer></script>
+<script src="../js/gbr-world.js" defer></script>
 <script src="../data/parliaments-1955.js" defer></script>
 <script src="../js/parliament-1955.js" data-parliament="gbr" defer></script>
-</head><body><div class="page">
-<header class="mast"><a href="../index.html" class="back-link">← Все государства</a><div class="site-name">ВПИ <strong>1955</strong> <span>НАЦИОНАЛЬНЫЕ МЕХАНИКИ</span></div></header>
-<section class="hero"><div class="overline">Соединённое Королевство · 1 января 1955 года</div>
-<h1>Мировые обязательства.<br><em>Ограниченные возможности.</em></h1>
-<p>Британия остаётся международной державой, но содержание заморских баз, устойчивость фунта и обновление экономики требуют разных, зачастую конкурирующих решений.</p>
-<div class="hero-chips"><span>Уинстон Черчилль</span><span>Консерваторы</span><span>Стерлинговая зона</span><span>Послевоенный социальный договор</span></div></section>
+<script src="../js/gbr-v2.js" defer></script>
+</head>
+<body>
+<div class="site-wrap">
+<header class="mast">
+  <a href="../index.html" class="mast-back">← Все страны</a>
+  <span class="mast-brand">ВПИ <strong>1955</strong> / НАЦИОНАЛЬНЫЕ МЕХАНИКИ</span>
+</header>
+<section class="hero">
+  <div class="hero-kicker"><span class="hero-dot"></span> СОЕДИНЁННОЕ КОРОЛЕВСТВО <span class="hero-date">1 января 1955 года</span></div>
+  <div class="hero-columns"><div>
+    <h1>Мировая держава.<br><em>Ограниченные ресурсы.</em></h1>
+    <p class="hero-lead">Фунт соединяет мировые рынки. Британский флот связывает океаны. Но каждое решение зависит от промышленности, общества и государств, которые уже не всегда согласны следовать Лондону.</p>
+  </div>
+  <div class="hero-brief"><span class="eyebrow">На старте игры</span><div class="hero-brief-line"><b>Уинстон Черчилль</b><span>Премьер-министр</span></div><div class="hero-brief-line"><b>Консерваторы</b><span>Большинство в Палате общин</span></div><div class="hero-brief-line"><b>Стерлинговая зона</b><span>Связанные, но неодинаковые партнёры</span></div></div></div>
+</section>
+<section class="connections" aria-label="Как связаны три механики">
+  <button type="button" class="connection-link" data-jump="sterling"><span class="connection-no">01 / ДЕНЬГИ</span><b>Фунт и торговля</b><small>Валютные расчёты, рынки, импорт</small><span class="connection-arrow">↗</span></button>
+  <div class="connection-divider" aria-hidden="true">↔</div>
+  <button type="button" class="connection-link" data-jump="empire"><span class="connection-no">02 / МИР</span><b>Империя и союзники</b><small>Базы, территории, договоры</small><span class="connection-arrow">↗</span></button>
+  <div class="connection-divider" aria-hidden="true">↔</div>
+  <button type="button" class="connection-link" data-jump="economy"><span class="connection-no">03 / СТРАНА</span><b>Промышленность и общество</b><small>Люди, отрасли, политический компромисс</small><span class="connection-arrow">↗</span></button>
+</section>
+<nav class="tabs" aria-label="Разделы механик Великобритании">
+  <button type="button" data-gbr-tab="sterling" class="tab active" aria-selected="true"><span>01</span> Фунт и мировая торговля</button>
+  <button type="button" data-gbr-tab="empire" class="tab" aria-selected="false"><span>02</span> Империя и союзная сеть</button>
+  <button type="button" data-gbr-tab="economy" class="tab" aria-selected="false"><span>03</span> Промышленность и общество</button>
+</nav>
+<main>
+<section id="sterling" class="pane active" aria-labelledby="sterling-title">
+  <div class="section-heading"><div><span class="eyebrow">01 / МЕЖДУНАРОДНЫЕ ФИНАНСЫ</span><h2 id="sterling-title">Фунт — больше, чем британская валюта</h2><p>Британия может вести торговлю в фунтах, но для некоторых закупок ей необходимы конвертируемые средства. Важны не только размеры резервов, но и правила расчётов, экспорт и доверие партнёров.</p></div><span class="section-badge">Внешняя торговля · 1954</span></div>
+  <div class="stat-grid" id="sterlingStats" aria-label="Торговые ориентиры"></div>
+  <p class="source-note">Товарные экспорт и импорт выражены в фунтах; золотовалютные резервы — в долларах по отдельно определённой статистической серии. Это разные величины, их нельзя прямо вычитать друг из друга.</p>
+  <div class="two-col finance-grid">
+    <section class="panel"><div class="panel-head"><div><span class="eyebrow">Платёжная система</span><h3>Откуда возникает валютное ограничение</h3></div></div>
+      <div class="fx-system">
+        <div class="fx-hub"><span class="fx-symbol">£</span><div><strong>Лондон</strong><small>Банк Англии · Казначейство · коммерческие банки</small></div></div>
+        <div class="fx-branch-grid" id="fxNodes"></div>
+      </div>
+      <p class="fine-note">Выберите расчётное направление: каждый режим даёт преимущества в торговле, но связан с собственными обязательствами и контрагентами.</p>
+    </section>
+    <aside class="panel finance-dossier" id="fxDetail" aria-live="polite"><span class="eyebrow">Выбранная связь</span><h3 id="fxDetailTitle"></h3><p class="primary-text" id="fxDetailDesc"></p><div class="dossier-mini"><b>С кем приходится договариваться</b><p id="fxDetailActors"></p></div><div class="dossier-mini"><b>Политические возможности</b><p id="fxDetailAction"></p></div></aside>
+  </div>
+  <div class="panel section-block">
+    <div class="panel-head"><div><span class="eyebrow">Торговые зависимости</span><h3>Что Британия продаёт и что ей необходимо покупать</h3></div><span class="panel-hint">Без вымышленных долей</span></div>
+    <div class="trade-grid" id="tradeGrid"></div>
+  </div>
+  <div class="two-col partners-grid">
+    <section class="panel"><div class="panel-head"><div><span class="eyebrow">Стерлинговая сеть</span><h3>Партнёры — не британская казна</h3></div></div>
+      <p class="muted">Одни участники независимы, другие находятся под британским управлением. Переговоры, валютные ограничения и торговля не подменяют их собственных интересов.</p>
+      <div class="sterling-hub"><div class="hub-britain">Великобритания <span>£</span></div><div class="hub-links" id="partnerButtons"></div></div>
+    </section>
+    <aside class="panel partner-detail" aria-live="polite"><span class="eyebrow">Государство или территория</span><h3 id="partnerName"></h3><div class="state-tag" id="partnerStatus"></div><p class="primary-text" id="partnerFocus"></p><div class="dossier-mini"><b>Экономические интересы</b><p id="partnerTrade"></p></div><div class="dossier-mini"><b>Где возникают разногласия</b><p id="partnerRisk"></p></div><div class="dossier-mini"><b>Возможности для британской политики</b><p id="partnerLevers"></p></div><button type="button" class="text-link" data-jump="empire">Перейти к мировой сети →</button></aside>
+  </div>
+  <div class="context-banner"><span class="banner-glyph">↗</span><div><b>Связь с промышленностью</b><p>Более конкурентоспособные товары и суда способны укреплять экспорт. Но новые станки, энергия и сырьё сами требуют внешних закупок, а их валютный режим зависит от партнёра.</p></div><button type="button" data-jump="economy">Посмотреть отрасли →</button></div>
+</section>
 
-<nav class="tabs" aria-label="Разделы Британии">
-<button type="button" data-tab="sterling" class="tab current" aria-selected="true"><span>01</span> Финансы и фунт</button>
-<button type="button" data-tab="empire" class="tab" aria-selected="false"><span>02</span> Базы и союзники</button>
-<button type="button" data-tab="economy" class="tab" aria-selected="false"><span>03</span> Экономика и общество</button>
-</nav><main>
-<section id="sterling" class="pane current">
-<div class="section-heading"><div class="overline">GBR-01 · Внешние расчёты и пределы импорта</div><h2>Сколько Британия может купить?</h2><p>Торговая статистика показывает положение экономики, а валютные резервы — запас для платежей за границу. Проверь, какие дополнительные закупки и кредиты выдержит страна.</p></div>
-<div class="columns">
-<section class="panel">
- <div class="panel-top"><div><div class="overline">Опорные данные на начало 1955 года</div><h3>Торговля и золотовалютные резервы</h3></div><button type="button" class="quiet" id="fxReset">Сбросить</button></div>
- <div class="fx-stat-grid">
-   <div class="fx-mini"><span>Экспорт товаров, 1954</span><strong id="tradeExports">—</strong></div>
-   <div class="fx-mini"><span>Импорт товаров, 1954</span><strong id="tradeImports">—</strong></div>
-   <div class="fx-mini"><span>Баланс торговли товарами</span><strong id="tradeBalance">—</strong></div>
-   <div class="fx-mini"><span>Резервы, конец 1954</span><strong id="fxStart">—</strong></div>
- </div>
- <p class="note">Торговые цифры — все страны и валюты (ONS), не только долларовая зона. Значение резервов в методологии МВФ учитывает отдельные расчётные позиции, которые не обязательно мгновенно конвертируемы в доллары.</p>
- <div class="divider-line"></div>
- <div class="overline">Справка и сценарные риски</div><h3>Что произойдёт при валютном шоке?</h3>
- <div class="control-stack" id="fxControls" hidden></div><div id="gbrStressPanel" class="gbr-stress"></div>
- <div class="fx-forecast">
-    <div><span>Сценарный остаток на конец года</span><strong id="fxEnd">—</strong></div>
-    <div><span>Изменение при условных операциях</span><strong id="fxDelta">—</strong></div>
-    <div><span>Резервы / весь импорт товаров</span><strong id="fxCoverage">—</strong></div>
-    <div><span>Условных месяцев импорта</span><strong id="fxMonths">—</strong></div>
- </div>
- <div class="bar-track"><span id="fxBar"></span></div><div class="fx-outlook" id="fxOutlook" aria-live="polite"></div>
- <button type="button" class="draft-action" id="fxGenerate">Сформировать текст финансового предложения</button>
- <div id="fxDraft" hidden><label for="fxDraftText">Черновик поста</label><textarea rows="7" readonly id="fxDraftText"></textarea><button type="button" class="quiet" id="fxCopy">Копировать</button><span id="fxCopyStatus" role="status"></span></div>
+<section id="empire" class="pane" aria-labelledby="empire-title" hidden>
+  <div class="section-heading"><div><span class="eyebrow">02 / БЕЗОПАСНОСТЬ И СУВЕРЕНИТЕТ</span><h2 id="empire-title">Империя — это не одна система подчинения</h2><p>Где-то Лондон управляет территорией, где-то размещает флот по соглашению, а где-то договаривается с независимым государством. Права доступа, местная политика и торговля могут быть важнее размеров базы.</p></div><span class="section-badge" id="empireTotal">19 объектов</span></div>
+  <div class="status-triptych">
+    <div><span class="status-icon">I</span><b>Под британским управлением</b><p>Колонии, местные правительства и процессы самоуправления.</p></div>
+    <div><span class="status-icon">II</span><b>Договорное присутствие</b><p>Суверенитет принимающей стороны и оговорённые права базирования.</p></div>
+    <div><span class="status-icon">III</span><b>Суверенные партнёры</b><p>Торговля, Содружество и дипломатия на основе соглашений.</p></div>
+  </div>
+  <div class="two-col empire-layout">
+    <section class="panel map-panel"><div class="panel-head"><div><span class="eyebrow">Мировая сеть Британии</span><h3>Точки присутствия и политические связи</h3></div></div>
+      <div class="map-filters" id="baseFilters" role="group" aria-label="Тип территории"></div>
+      <div class="world-frame"><svg id="empireMap" viewBox="0 0 960 490" role="group" aria-label="Мировая карта британских баз, территорий и партнёров"></svg></div>
+      <div class="map-legend"><span><i class="dot-home"></i> Метрополия</span><span><i class="dot-colony"></i> Зависимые территории</span><span><i class="dot-agreement"></i> Договорное присутствие</span><span><i class="dot-commonwealth"></i> Независимые партнёры</span></div>
+      <p class="fine-note">Точки отражают политико-географические связи на начало 1955 года; очертания карты схематичны. Объекты доступны также в списке.</p>
+      <div class="node-list" id="territoryButtons"></div>
+    </section>
+    <aside class="panel empire-detail" aria-live="polite"><span class="eyebrow">Политическое досье</span><h3 id="placeName"></h3><div class="state-tag" id="placeType"></div><h4 id="placeIssue" class="dossier-subtitle"></h4>
+      <div class="two-facts"><div><span>Функция узла</span><b id="placeFacility"></b></div><div><span>Масштаб присутствия</span><b id="placeScale"></b></div></div>
+      <div class="dossier-mini"><b>Правовой статус и доступ</b><p id="placeLegal"></p></div>
+      <div class="dossier-mini"><b>Стратегическое значение</b><p id="placeRole"></p></div>
+      <div class="dossier-mini"><b>Кто влияет на решения</b><ul id="placeStakeholders" class="clean-list"></ul></div>
+      <div class="dossier-mini"><b>Вопросы, способные вызвать конфликт</b><ul id="placeFrictions" class="clean-list"></ul></div>
+      <div class="dossier-mini"><b>Направления для политики Лондона</b><ul id="placeOptions" class="clean-list opportunity-list"></ul></div>
+      <div class="related-heading">Связанные узлы</div><div id="placeLinks" class="related-links"></div>
+    </aside>
+  </div>
+  <div class="context-banner"><span class="banner-glyph">£</span><div><b>Связь с фунтом и бюджетом</b><p>Зарубежная сеть приносит рынки, коммуникации и союзные возможности, но её содержание и политические кризисы могут создавать новые внешние и внутренние обязательства.</p></div><button type="button" data-jump="sterling">Фунт и расчёты →</button></div>
 </section>
-<aside class="panel"><div class="overline">Рынки и хозяйственные связи</div><h3>Что Британия продаёт и покупает</h3>
-<div class="concept-grid" hidden>
-<div class="concept"><div class="concept-symbol">£</div><div><strong>Внутренняя экономика</strong><p>Торговля и государственный бюджет связаны с валютным курсом, но имеют собственные ограничения.</p></div></div>
-<div class="concept"><div class="concept-symbol">$</div><div><strong>Конвертируемые внешние платежи</strong><p>Не весь экспорт приносит свободные доллары; не все резервы можно немедленно направить на импорт.</p></div></div>
-<div class="concept"><div class="concept-symbol">↔</div><div><strong>Стерлинговая зона</strong><p>Партнёры хранят средства в фунтах, но Британия не может объявлять чужие активы своими.</p></div></div>
-</div>
-<div id="gbrTradeStructure" class="gbr-trade-structure"></div><div class="section-subhead"><span>Партнёры стерлинговой зоны</span><span class="micro">Просмотр</span></div>
-<div class="partner-pills" id="sterlingPartners"></div><div class="partner-detail" id="sterlingDetail"></div>
-<div id="gbrSterlingExperiment" class="gbr-sterling-experiment"></div><div class="linked-box"><strong>Привязка к экономике</strong><p>В разделе «Экономика и общество» ускоренная модернизация добавит примерные закупки оборудования за иностранную валюту. Они появятся в этом прогнозе.</p></div>
-<p class="note" id="fxParInfo"></p></aside></div></section>
-<section id="empire" class="pane" hidden>
-<div class="section-heading"><div class="overline">GBR-02 · Заморская сеть</div><h2>Какие возможности даёт каждая база?</h2><p>Не все точки на карте — военные базы и не все союзники подчинены Лондону. Открой узел, чтобы увидеть размер и назначение военного присутствия, правовой доступ, преимущества и проблемы.</p></div>
-<div class="columns map-columns">
-<section class="panel"><div class="panel-top"><div><div class="overline">Военная и дипломатическая сеть, январь 1955</div><h3>Базы, территории, договоры</h3></div><span id="mapCount" class="count-tag">—</span></div>
-<div class="filter-strip" id="baseFilters"><button type="button" data-filter="all" class="filter-chip active">Все точки</button><button type="button" data-filter="military" class="filter-chip">Военные узлы</button><button type="button" data-filter="civil" class="filter-chip">Территории и торговля</button><button type="button" data-filter="partners" class="filter-chip">Независимые партнёры</button></div>
-<div class="world-frame"><svg id="empireMap" viewBox="0 0 960 490" role="group" aria-label="Карта крупных военно-морских узлов, территорий и партнёров Великобритании"></svg></div>
-<div class="map-legend"><span><i class="lg-colony"></i> Британское управление</span><span><i class="lg-agreement"></i> Договорные права</span><span><i class="lg-commonwealth"></i> Суверенный партнёр</span><span><i class="lg-home"></i> Метрополия</span></div>
-<p class="note">Географическая основа современная и схематическая. Значения «крупная», «региональная», «ограниченная» — качественные оценки роли, а не утверждённые игровые бонусы и численность флота.</p>
-<div class="region-buttons" id="territoryButtons"></div></section>
-<aside class="panel place-panel"><div class="overline">Военно-политическая карточка</div><h3 id="placeName">—</h3><div id="placeType" class="place-type"></div>
-<div class="facility-head"><strong id="placeFacility"></strong><span id="placeScale"></span></div>
-<div class="dossier-line"><strong>Юридический статус</strong><p id="placeStatus"></p></div>
-<div class="dossier-line"><strong>Права доступа</strong><p id="placeAccess"></p></div>
-<div class="dossier-line"><strong>Что даёт Великобритании</strong><p id="placeRole"></p><ul id="placeCapabilities"></ul></div>
-<div class="dossier-line"><strong>Ближайшая задача</strong><p id="placeNear"></p></div>
-<div class="dossier-line"><strong>Долгосрочная проблема</strong><p id="placeLong"></p></div>
-<div class="soft-warning">Военные возможности требуют кораблей, снабжения, оплаты содержания и действующих прав. Никакой автоматической «+1 готовности» только за наличие точки на карте.</div></aside>
-</div></section>
-<section id="economy" class="pane" hidden>
-<div class="section-heading"><div class="overline">GBR-03 · Социальный договор и промышленная модернизация</div><h2>Один бюджет. Два направления расходов.</h2><p>Сначала оценивайте дополнительные расходы или экономию относительно сохранения существующей системы. Затем выбирайте отраслевые программы — модернизация, обучение работников и социальная политика конкурируют за ограниченные возможности государства.</p></div>
-<div class="economic-bar panel">
- <div class="economic-head"><div><div class="overline">Условный годовой ресурс дополнительных программ</div><h3><span id="budgetLimit">—</span> % ВВП в условном сценарии</h3></div><button type="button" class="quiet" id="economyReset">Сбросить</button></div>
- <div class="budget-topline"><div><span>Изменение расходов</span><strong id="budgetSpent">—</strong></div><div><span>Загрузка лимита</span><strong id="budgetPercent">—</strong></div><div><span>Остаток / непокрытый дефицит</span><strong id="budgetGap">—</strong></div></div>
- <div class="budget-overflow"><span id="budgetFill"></span></div><p id="budgetExplanation" class="budget-warning"></p>
- <div class="budget-split"><span id="socialCost">Социальные программы: —</span><span id="modernCost">Промышленные проекты: —</span><span id="retrainCost">Обучение: —</span></div>
- <p class="note">Лимит и доли ВВП — условный сценарий дополнительных программ, а не реальные бюджетные статьи или официальный баланс 1955 года. Цифры нужны, чтобы тестировать сам принцип нехватки ресурсов.</p>
-</div>
-<div class="columns economy-cols">
-<section class="panel"><div class="panel-top"><div><div class="overline">Часть A · Общественные программы</div><h3>Послевоенный социальный договор</h3></div></div>
-<div id="socialControls" class="social-controls"></div>
-<p class="note">Консерваторы и лейбористы спорят о финансировании здравоохранения, жилья и занятости. Существование NHS не является необязательным проектом для открытия.</p>
-<div class="section-subhead"><span>Возможные социальные последствия</span></div>
-<div id="socialReadouts" class="social-readouts"></div>
-<div id="socialNarrative" class="rulebox"></div>
-</section>
-<section class="panel"><div class="panel-top"><div><div class="overline">Часть B · Отрасли</div><h3>Старая фабрика, новая конкуренция</h3></div><span id="projectCount" class="count-tag">—</span></div>
-<div class="sector-grid" id="sectorCards"></div>
-<div class="sector-editor"><div class="overline">Выбранное производство</div><h3 id="sectorName"></h3>
-<div class="sector-facts"><div><b>Что уже есть</b><p id="sectorLegacy"></p></div><div><b>Что ограничивает</b><p id="sectorLimit"></p></div><div><b>Что можно модернизировать</b><p id="sectorOpportunity"></p></div></div>
-<div class="selector-label">Скорость перестройки</div><div id="sectorPaces" class="pace-buttons"></div>
-<label class="checkbox-line"><input type="checkbox" id="sectorLabour"><span>Профинансировать переговоры и переобучение</span></label>
-<p class="note">Реальный рост отрасли не возникает автоматически: судья проверяет оборудование, поставки, квалификацию и время.</p>
-</div>
-</section></div>
-<div class="panel portfolio-panel"><div class="panel-top"><div><div class="overline">Общий эффект заявленных программ</div><h3>Сколько промышленность требует от общества</h3></div><span id="activeProjects" class="count-tag">—</span></div>
-<div class="portfolio-grid"><div><span>Требуется переподготовить</span><strong id="trainingDemand">—</strong></div><div><span>Оплачены места на обучение</span><strong id="trainingCovered">—</strong></div><div><span>Доля без программы</span><strong id="trainingUncovered">—</strong></div><div><span>Оценка риска трудовых споров</span><strong id="industrialFriction">—</strong></div></div>
-<div id="portfolioMessage" class="portfolio-message" aria-live="polite"></div>
-<button type="button" class="draft-action" id="economyGenerate">Сформировать проект экономического поста</button>
-<div id="economyDraft" hidden><label for="economyDraftText">Текст для судьи</label><textarea id="economyDraftText" rows="10" readonly></textarea><button type="button" class="quiet" id="economyCopy">Копировать</button><span id="economyCopyStatus" role="status"></span></div>
-</div>
+
+<section id="economy" class="pane" aria-labelledby="economy-title" hidden>
+  <div class="section-heading"><div><span class="eyebrow">03 / ВНУТРЕННИЙ КУРС</span><h2 id="economy-title">Новая промышленность. Старые обязательства.</h2><p>Государство одновременно хочет увеличить производительность, сохранить занятость, конкурировать на экспортных рынках и обеспечить работу послевоенных социальных институтов. У каждого решения есть сторонники и противники.</p></div><span class="section-badge">Смешанная экономика</span></div>
+  <div class="panel parliament-strip"><div><span class="eyebrow">Политическая основа</span><h3>Консервативное большинство и сильная лейбористская оппозиция</h3><p>Даже при большинстве в Палате общин реформы зависят от кабинета, профсоюзов, администрации и отношений с обществом. Парламентские силы можно изучить ниже.</p></div><button type="button" class="text-link" data-jump-anchor="gbrParliamentSlot">К парламенту ↓</button></div>
+  <div class="panel section-block">
+    <div class="panel-head"><div><span class="eyebrow">Пять производственных систем</span><h3>Британская промышленность</h3></div><span class="panel-hint">Выберите отрасль</span></div>
+    <div class="industry-pickers" id="industryButtons"></div>
+    <div class="industry-detail" aria-live="polite">
+      <div class="industry-hero"><span class="eyebrow">Промышленный профиль · 1955</span><h3 id="industryName"></h3><p id="industryIntro"></p><div id="industryRegion" class="region-pill"></div></div>
+      <div class="industry-data-grid"><div><span>Управление и собственность</span><p id="industryOwner"></p></div><div><span>Узкие места</span><p id="industryProblems"></p></div><div><span>Экспорт и международные связи</span><p id="industryTrade"></p></div></div>
+      <div class="industry-lower"><div><b class="block-label">Ключевые группы интересов</b><div id="industryActors" class="stakeholder-list"></div></div><div><b class="block-label">Что требует обновления</b><div id="industryInputs" class="stakeholder-list"></div></div></div>
+      <div class="industry-decisions"><b>Какие реформы возможны</b><div id="industryOptions" class="option-grid"></div><p id="industryPressure" class="industry-pressure"></p><button id="industryConnection" type="button" class="text-link"></button></div>
+    </div>
+  </div>
+  <div class="two-col social-grid">
+    <section class="panel"><div class="panel-head"><div><span class="eyebrow">Общественный компромисс</span><h3>Четыре института, которые нельзя игнорировать</h3></div></div><p class="muted">Общество не делится на две кнопки «сократить» и «расширить». У каждой реформы есть собственные группы интересов и способы реализации.</p><div id="socialButtons" class="social-buttons"></div></section>
+    <aside class="panel social-dossier" aria-live="polite"><span class="eyebrow">Выбранная система</span><h3 id="socialTitle"></h3><div class="state-tag" id="socialStatus"></div><p id="socialSubtitle" class="primary-text"></p><div class="dossier-mini"><b>Ключевые участники</b><div id="socialForces" class="stakeholder-list"></div></div><div class="dossier-mini"><b>Главное противоречие</b><p id="socialTension"></p></div><div class="dossier-mini"><b>Какие изменения возможны</b><p id="socialOpportunity"></p></div></aside>
+  </div>
+  <div class="policy-connections"><div><span class="eyebrow">Одно решение — три системы</span><h3>Почему экономическая реформа не остаётся только экономической</h3></div><div class="policy-chain"><button data-jump="economy"><strong>Заводы</strong><small>Модернизация и занятость</small></button><span aria-hidden="true">→</span><button data-jump="sterling"><strong>Внешняя торговля</strong><small>Оборудование и экспорт</small></button><span aria-hidden="true">→</span><button data-jump="empire"><strong>Зарубежные связи</strong><small>Рынки и договоры</small></button></div></div>
+  <div id="gbrParliamentSlot" class="parliament-slot"></div>
 </section>
 </main>
-<footer><span>ВПИ 1955 · Великобритания · Национальные механики</span><a href="../index.html">← Каталог государств</a></footer></div></body></html>
+<footer class="footer"><div><b>ВПИ 1955 · Великобритания</b><p>Национальные механики · исходная дата 1 января 1955 года</p></div><div class="footer-sources"><b>Исторические источники</b><div id="gbrSources"></div></div><a href="../index.html">← Все государства</a></footer>
+</div></body></html>
