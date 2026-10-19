@@ -42,31 +42,34 @@
 </nav>
 <main>
 <section id="sterling" class="pane active" aria-labelledby="sterling-title">
-  <div class="section-heading"><div><span class="eyebrow">01 / МЕЖДУНАРОДНЫЕ ФИНАНСЫ</span><h2 id="sterling-title">Фунт — больше, чем британская валюта</h2><p>Британия может вести торговлю в фунтах, но для некоторых закупок ей необходимы конвертируемые средства. Важны не только размеры резервов, но и правила расчётов, экспорт и доверие партнёров.</p></div><span class="section-badge">Внешняя торговля · 1954</span></div>
+  <div class="section-heading"><div><span class="eyebrow">01 / МЕЖДУНАРОДНЫЕ ФИНАНСЫ</span><h2 id="sterling-title">Фунт, торговый разрыв и долларовая проблема</h2><p>Британия импортирует больше, чем экспортирует. Внутри стерлинговой зоны значительная часть платежей проходит в фунтах, но закупки в долларовой зоне требуют конвертируемых средств. Устойчивость фунта зависит и от торговли, и от доверия его зарубежных держателей.</p></div><span class="section-badge">Игровые показатели · 1.01.1955</span></div>
   <div class="stat-grid" id="sterlingStats" aria-label="Торговые ориентиры"></div>
-  <p class="source-note">Товарные экспорт и импорт выражены в фунтах; золотовалютные резервы — в долларах по отдельно определённой статистической серии. Это разные величины, их нельзя прямо вычитать друг из друга.</p>
+  <p class="source-note">G$ — единица игровой экономики ВПИ. Она позволяет сравнивать экспорт, импорт и резервы, но не означает наличие такого же количества свободных долларов США.</p>
+  <div class="currency-logic">
+    <div><span>ТОРГОВЫЙ РАЗРЫВ</span><h3>Импорт превосходит экспорт</h3><p>Отрицательное сальдо требует покрытия другими внешними поступлениями или финансовыми операциями. Оно не означает автоматического сокращения резервов на ту же сумму.</p></div>
+    <div><span>ДОЛЛАРОВОЕ ОГРАНИЧЕНИЕ</span><h3>Не вся выручка подходит для любого платежа</h3><p>За закупки в долларовой зоне нужны доллары либо приемлемая конвертируемая валюта. Даже большая сумма фунтовых поступлений не всегда позволяет получить нужные зарубежные товары.</p></div>
+  </div>
   <div class="two-col finance-grid">
-    <section class="panel"><div class="panel-head"><div><span class="eyebrow">Платёжная система</span><h3>Откуда возникает валютное ограничение</h3></div></div>
+    <section class="panel"><div class="panel-head"><div><span class="eyebrow">Валютная система</span><h3>Четыре стороны одной проблемы</h3></div></div>
       <div class="fx-system">
         <div class="fx-hub"><span class="fx-symbol">£</span><div><strong>Лондон</strong><small>Банк Англии · Казначейство · коммерческие банки</small></div></div>
         <div class="fx-branch-grid" id="fxNodes"></div>
       </div>
-      <p class="fine-note">Выберите расчётное направление: каждый режим даёт преимущества в торговле, но связан с собственными обязательствами и контрагентами.</p>
+      <p class="fine-note">Выберите тему, чтобы увидеть конкретный платёжный барьер и инструменты британской политики.</p>
     </section>
-    <aside class="panel finance-dossier" id="fxDetail" aria-live="polite"><span class="eyebrow">Выбранная связь</span><h3 id="fxDetailTitle"></h3><p class="primary-text" id="fxDetailDesc"></p><div class="dossier-mini"><b>С кем приходится договариваться</b><p id="fxDetailActors"></p></div><div class="dossier-mini"><b>Политические возможности</b><p id="fxDetailAction"></p></div></aside>
+    <aside class="panel finance-dossier" id="fxDetail" aria-live="polite"><span class="eyebrow">Денежное ограничение</span><h3 id="fxDetailTitle"></h3><p class="primary-text" id="fxDetailSubtitle"></p><div class="dossier-mini"><b>Что ограничивает Великобританию</b><p id="fxDetailConstraint"></p></div><div class="dossier-mini"><b>Как устроена система</b><p id="fxDetailMechanism"></p></div><div class="dossier-mini"><b>Какими решениями можно влиять</b><p id="fxDetailPolicy"></p></div></aside>
   </div>
   <div class="panel section-block">
-    <div class="panel-head"><div><span class="eyebrow">Торговые зависимости</span><h3>Что Британия продаёт и что ей необходимо покупать</h3></div><span class="panel-hint">Без вымышленных долей</span></div>
-    <div class="trade-grid" id="tradeGrid"></div>
+    <div class="panel-head"><div><span class="eyebrow">Торговые зависимости</span><h3>Что Британия продаёт и что ей необходимо покупать</h3></div><span class="panel-hint">Игровая структура и отраслевые зависимости</span></div>
+    <div class="trade-grid" id="tradeGrid"></div><p class="trade-clarity"><b>Почему техника встречается по обе стороны торговли?</b> Британия экспортирует машины и транспорт, но одновременно закупает специализированные станки, технологии и комплектующие. В игровой структуре группа «машины и технологии» составляет <b>35% экспорта и 17% импорта</b>: это не обязательно одни и те же изделия.</p>
   </div>
-  <div class="two-col partners-grid">
-    <section class="panel"><div class="panel-head"><div><span class="eyebrow">Стерлинговая сеть</span><h3>Партнёры — не британская казна</h3></div></div>
-      <p class="muted">Одни участники независимы, другие находятся под британским управлением. Переговоры, валютные ограничения и торговля не подменяют их собственных интересов.</p>
-      <div class="sterling-hub"><div class="hub-britain">Великобритания <span>£</span></div><div class="hub-links" id="partnerButtons"></div></div>
-    </section>
-    <aside class="panel partner-detail" aria-live="polite"><span class="eyebrow">Государство или территория</span><h3 id="partnerName"></h3><div class="state-tag" id="partnerStatus"></div><p class="primary-text" id="partnerFocus"></p><div class="dossier-mini"><b>Экономические интересы</b><p id="partnerTrade"></p></div><div class="dossier-mini"><b>Где возникают разногласия</b><p id="partnerRisk"></p></div><div class="dossier-mini"><b>Возможности для британской политики</b><p id="partnerLevers"></p></div><button type="button" class="text-link" data-jump="empire">Перейти к мировой сети →</button></aside>
+  <div class="panel sterling-area-summary">
+    <div><span class="eyebrow">Стерлинговая зона</span><h3>Почему её устойчивость важна Лондону</h3>
+      <p>Внутри зоны значительная часть торговли и переводов проходила через фунт. Валютные ограничения и общий механизм золотых и долларовых средств помогали обеспечивать покупки за пределами зоны.</p>
+      <p>Устойчивый фунт поддерживает торговые связи и роль Лондона как финансового центра. Недоверие к фунту или требования обменять накопленные стерлинговые средства на доллары могут осложнить всю систему.</p>
+      <div class="sterling-members"><span>Участники и связанные территории:</span><b>Индия</b><b>Австралия</b><b>Пакистан</b><b>Цейлон</b><b>Малайя</b></div>
+    </div><div class="sterling-area-points"><div><b>Преимущество</b><p>Торговля в фунтах поддерживает международный спрос на стерлинги и финансовые связи.</p></div><div><b>Уязвимость</b><p>Закупки за доллары и требования держателей фунтовых остатков создают давление на валютные ресурсы.</p></div></div>
   </div>
-  <div class="context-banner"><span class="banner-glyph">↗</span><div><b>Связь с промышленностью</b><p>Более конкурентоспособные товары и суда способны укреплять экспорт. Но новые станки, энергия и сырьё сами требуют внешних закупок, а их валютный режим зависит от партнёра.</p></div><button type="button" data-jump="economy">Посмотреть отрасли →</button></div>
 </section>
 
 <section id="empire" class="pane" aria-labelledby="empire-title" hidden>
@@ -99,7 +102,7 @@
 
 <section id="economy" class="pane" aria-labelledby="economy-title" hidden>
   <div class="section-heading"><div><span class="eyebrow">03 / ВНУТРЕННИЙ КУРС</span><h2 id="economy-title">Новая промышленность. Старые обязательства.</h2><p>Государство одновременно хочет увеличить производительность, сохранить занятость, конкурировать на экспортных рынках и обеспечить работу послевоенных социальных институтов. У каждого решения есть сторонники и противники.</p></div><span class="section-badge">Смешанная экономика</span></div>
-  <div class="panel parliament-strip"><div><span class="eyebrow">Политическая основа</span><h3>Консервативное большинство и сильная лейбористская оппозиция</h3><p>Даже при большинстве в Палате общин реформы зависят от кабинета, профсоюзов, администрации и отношений с обществом. Парламентские силы можно изучить ниже.</p></div><button type="button" class="text-link" data-jump-anchor="gbrParliamentSlot">К парламенту ↓</button></div>
+  <div class="panel parliament-strip"><div><span class="eyebrow">Политическая основа</span><h3>Консервативное большинство и сильная лейбористская оппозиция</h3><p>Даже при большинстве в Палате общин реформы зависят от кабинета, профсоюзов, администрации и отношений с обществом. Парламентские силы можно изучить ниже.</p></div><button type="button" class="text-link" data-jump-anchor="vpi-parliament-gbr">К парламенту ↑</button></div>
   <div class="panel section-block">
     <div class="panel-head"><div><span class="eyebrow">Пять производственных систем</span><h3>Британская промышленность</h3></div><span class="panel-hint">Выберите отрасль</span></div>
     <div class="industry-pickers" id="industryButtons"></div>
@@ -107,15 +110,14 @@
       <div class="industry-hero"><span class="eyebrow">Промышленный профиль · 1955</span><h3 id="industryName"></h3><p id="industryIntro"></p><div id="industryRegion" class="region-pill"></div></div>
       <div class="industry-data-grid"><div><span>Управление и собственность</span><p id="industryOwner"></p></div><div><span>Узкие места</span><p id="industryProblems"></p></div><div><span>Экспорт и международные связи</span><p id="industryTrade"></p></div></div>
       <div class="industry-lower"><div><b class="block-label">Ключевые группы интересов</b><div id="industryActors" class="stakeholder-list"></div></div><div><b class="block-label">Что требует обновления</b><div id="industryInputs" class="stakeholder-list"></div></div></div>
-      <div class="industry-decisions"><b>Какие реформы возможны</b><div id="industryOptions" class="option-grid"></div><p id="industryPressure" class="industry-pressure"></p><button id="industryConnection" type="button" class="text-link"></button></div>
+      <div class="industry-decisions"><b>Какие реформы возможны</b><div id="industryOptions" class="option-grid"></div><p id="industryPressure" class="industry-pressure"></p></div>
     </div>
   </div>
   <div class="two-col social-grid">
     <section class="panel"><div class="panel-head"><div><span class="eyebrow">Общественный компромисс</span><h3>Четыре института, которые нельзя игнорировать</h3></div></div><p class="muted">Общество не делится на две кнопки «сократить» и «расширить». У каждой реформы есть собственные группы интересов и способы реализации.</p><div id="socialButtons" class="social-buttons"></div></section>
     <aside class="panel social-dossier" aria-live="polite"><span class="eyebrow">Выбранная система</span><h3 id="socialTitle"></h3><div class="state-tag" id="socialStatus"></div><p id="socialSubtitle" class="primary-text"></p><div class="dossier-mini"><b>Ключевые участники</b><div id="socialForces" class="stakeholder-list"></div></div><div class="dossier-mini"><b>Главное противоречие</b><p id="socialTension"></p></div><div class="dossier-mini"><b>Какие изменения возможны</b><p id="socialOpportunity"></p></div></aside>
   </div>
-  <div class="policy-connections"><div><span class="eyebrow">Одно решение — три системы</span><h3>Почему экономическая реформа не остаётся только экономической</h3></div><div class="policy-chain"><button data-jump="economy"><strong>Заводы</strong><small>Модернизация и занятость</small></button><span aria-hidden="true">→</span><button data-jump="sterling"><strong>Внешняя торговля</strong><small>Оборудование и экспорт</small></button><span aria-hidden="true">→</span><button data-jump="empire"><strong>Зарубежные связи</strong><small>Рынки и договоры</small></button></div></div>
-  <div id="gbrParliamentSlot" class="parliament-slot"></div>
+
 </section>
 </main>
 <footer class="footer"><div><b>ВПИ 1955 · Великобритания</b><p>Национальные механики · исходная дата 1 января 1955 года</p></div><div class="footer-sources"><b>Исторические источники</b><div id="gbrSources"></div></div><a href="../index.html">← Все государства</a></footer>

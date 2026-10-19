@@ -6,7 +6,7 @@ const $=id=>document.getElementById(id);
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const money=(v,dec=3)=>Number(v).toLocaleString("ru-RU",{minimumFractionDigits:dec,maximumFractionDigits:dec});
 const tabs=["sterling","empire","economy"];
-let currentTab="sterling",selectedFx="dollar",selectedPartner=0,selectedPlace="suez",selectedIndustry="ship",selectedSocial="labour",worldFilter="all";
+let currentTab="sterling",selectedFx="dollar",selectedPlace="suez",selectedIndustry="ship",selectedSocial="labour",worldFilter="all";
 function switchTab(id,move=true){
  if(!tabs.includes(id))return;
  currentTab=id;
@@ -23,23 +23,26 @@ document.addEventListener("click",e=>{
  const anchor=e.target.closest("[data-jump-anchor]");
  if(anchor){$(anchor.dataset.jumpAnchor)?.scrollIntoView({behavior:"smooth",block:"start"})}
 });
-// Shared parliamentary widget is retained, but placed with the social/political institutions.
+// Парламент задаёт политическую рамку и расположен до национальных механик.
 const parliament=document.getElementById("vpi-parliament-gbr");
-if(parliament && $("gbrParliamentSlot")){$("gbrParliamentSlot").appendChild(parliament)}
-const fi=base.finance;
-const balance=fi.exports1954GBP-fi.imports1954GBP;
+const linksStart=document.querySelector(".connections");
+if(parliament && linksStart)linksStart.parentNode.insertBefore(parliament,linksStart);
+const fi=atlas.gameState;
 const stats=[
- {name:"Экспорт товаров · 1954",value:"£"+money(fi.exports1954GBP)+" млрд",note:"Мировая торговля товарами"},
- {name:"Импорт товаров · 1954",value:"£"+money(fi.imports1954GBP)+" млрд",note:"Продовольствие, сырьё, техника"},
- {name:"Баланс торговли товарами",value:(balance<0?"−£":"£")+money(Math.abs(balance))+" млрд",note:"Экспорт за вычетом импорта",highlight:true},
- {name:"Внешние резервы · конец 1954",value:"$"+money(fi.reserveUSD)+" млрд",note:"Статистическая серия международных резервов"}
+ {name:"Экспорт · 1955",value:money(fi.exports)+" млрд G$",note:"Внешние поставки, игровая экономика"},
+ {name:"Импорт · 1955",value:money(fi.imports)+" млрд G$",note:"Закупки товаров и услуг"},
+ {name:"Сальдо внешней торговли",value:(fi.netExports<0?"−":"+")+money(Math.abs(fi.netExports))+" млрд G$",note:"Экспорт минус импорт",highlight:true},
+ {name:"Резервы · старт 1955",value:money(fi.reserves)+" млрд G$",note:"Игровой внешний резерв, не долларовая наличность"}
 ];
 $("sterlingStats").innerHTML=stats.map(s=>'<div class="stat-tile'+(s.highlight?" subdued":"")+'"><span>'+esc(s.name)+'</span><strong>'+esc(s.value)+'</strong><small>'+esc(s.note)+'</small></div>').join("");
 function renderFx(){
- $("fxNodes").innerHTML=atlas.financeLinks.map(x=>'<button type="button" data-finance="'+esc(x.key)+'" class="fx-node'+(x.key===selectedFx?" active":"")+'" aria-pressed="'+(x.key===selectedFx)+'"><span>'+esc(x.title)+'</span><i aria-hidden="true">↗</i></button>').join("");
+ $("fxNodes").innerHTML=atlas.financeLinks.map(x=>'<button type="button" data-finance="'+esc(x.key)+'" class="fx-node'+(x.key===selectedFx?" active":"")+'" aria-pressed="'+(x.key===selectedFx)+'"><span><b>'+esc(x.title)+'</b><small>'+esc(x.subtitle)+'</small></span><i aria-hidden="true">↗</i></button>').join("");
  const x=atlas.financeLinks.find(y=>y.key===selectedFx)||atlas.financeLinks[0];
- $("fxDetailTitle").textContent=x.title;$("fxDetailDesc").textContent=x.desc;
- $("fxDetailActors").textContent=x.actors;$("fxDetailAction").textContent=x.action;
+ $("fxDetailTitle").textContent=x.title;
+ $("fxDetailSubtitle").textContent=x.subtitle;
+ $("fxDetailConstraint").textContent=x.constraint;
+ $("fxDetailMechanism").textContent=x.mechanism;
+ $("fxDetailPolicy").textContent=x.policy;
  $("fxNodes").querySelectorAll("[data-finance]").forEach(b=>b.onclick=()=>{selectedFx=b.dataset.finance;renderFx()});
 }
 renderFx();
@@ -48,17 +51,6 @@ $("tradeGrid").innerHTML=[
  {label:"Экспорт · источники валютной выручки",items:trade.exports,cls:"export"},
  {label:"Импорт · зависимость внутренней экономики",items:trade.imports,cls:"import"}
 ].map(col=>'<div class="trade-column '+col.cls+'"><div class="trade-column-head"><i></i><b>'+esc(col.label)+'</b></div>'+col.items.map((x,i)=>'<div class="trade-item"><span class="trade-item-no">0'+(i+1)+'</span><div><strong>'+esc(x.label)+'</strong><p>'+esc(x.detail)+'</p></div></div>').join("")+'</div>').join("");
-function renderPartners(){
- const x=base.sterling[selectedPartner],extra=atlas.partnerNotes[x.name]||{};
- $("partnerButtons").innerHTML=base.sterling.map((p,i)=>'<button type="button" data-partner="'+i+'" class="'+(i===selectedPartner?"active":"")+'" aria-pressed="'+(i===selectedPartner)+'"><span>'+esc(p.name)+'</span><i>↗</i></button>').join("");
- $("partnerName").textContent=x.name;$("partnerStatus").textContent=x.status;
- $("partnerFocus").textContent=extra.focus||x.info;
- $("partnerTrade").textContent=extra.imports||"Торговые и финансовые расчёты между правительствами и компаниями.";
- $("partnerRisk").textContent=extra.risks||x.info;
- $("partnerLevers").textContent=extra.levers||"Переговоры о торговле и международных расчётах.";
- $("partnerButtons").querySelectorAll("[data-partner]").forEach(b=>b.onclick=()=>{selectedPartner=Number(b.dataset.partner);renderPartners()});
-}
-renderPartners();
 const filters=[
  ["all","Все объекты"],
  ["colony","Территории"],
@@ -136,9 +128,6 @@ function renderIndustries(){
  renderPills("industryActors",v.groups);renderPills("industryInputs",v.inputs);
  $("industryOptions").innerHTML=v.choices.map((a,i)=>'<div><small>Возможность '+(i+1)+'</small><strong>'+esc(a)+'</strong></div>').join("");
  $("industryPressure").textContent="Политический риск: "+v.pressure;
- const link=v.connection==="empire"?"empire":"sterling";
- $("industryConnection").dataset.jump=link;
- $("industryConnection").textContent=link==="empire"?"Как это связано с базами и флотом →":"Как это связано с торговлей и фунтом →";
  $("industryButtons").querySelectorAll("[data-industry]").forEach(b=>b.onclick=()=>{selectedIndustry=b.dataset.industry;renderIndustries()});
 }
 renderIndustries();
