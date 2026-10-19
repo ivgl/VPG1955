@@ -151,3 +151,64 @@ body{overflow-x:hidden}
  .tab{white-space:nowrap;flex:none}
  .figure-button{min-height:65px}
 }
+
+/* Читаемая расстановка сил: отдельные карточки и баланс каждой группы. */
+.diagram-panel{background:#f5f8f6;padding:24px}
+.institution-grid{gap:16px;align-items:stretch}
+.institution{min-height:158px;padding:17px 16px;gap:14px;justify-content:initial;background:#fff;border:1px solid #d0ddda;border-left:4px solid #8fa5a1;border-radius:13px;box-shadow:0 4px 14px rgba(19,52,47,.055);transition:border-color .16s,box-shadow .16s,transform .16s}
+.institution:hover{box-shadow:0 8px 22px rgba(22,74,65,.12);transform:translateY(-2px);border-color:#80aa9e}
+.institution.is-active{background:#edf7f2;border-color:#5b9b84;box-shadow:0 0 0 2px #a3cbb9,0 7px 18px rgba(21,80,66,.085)}
+.institution--party{border-left-color:var(--party)}
+.institution--government{border-left-color:var(--gov)}
+.institution--collective{border-left-color:#7faba0}
+.institution--institutional{border-left-color:var(--third)}
+.institution small{font-size:11px;color:#6b7f87;margin:0}
+.inst-card-balance{display:grid;gap:8px;margin-top:auto;width:100%}
+.inst-card-balance .inst-track{height:11px;background:#e7eeeb}
+.inst-card-figures{display:flex;justify-content:space-between;gap:5px;font-size:10px;font-weight:850;font-variant-numeric:tabular-nums;color:#6d8088}
+.inst-card-figures span:first-child{color:var(--party)}
+.inst-card-figures span:nth-child(2){color:#a87847}
+.inst-card-figures span:last-child{color:#657985}
+.diagram-foot{background:#edf2f0;border-left:3px solid #93b3aa;padding:12px 14px;margin-top:19px;border-top:none;border-radius:0 9px 9px 0;color:#60777a;font-size:12px}
+.diagram-foot b{color:#315950}
+.inst-lead{background:#e8f3ef;color:#276459;font-size:12px;font-weight:750;padding:8px 11px;border-radius:8px;margin:12px 0 13px;line-height:1.5}
+.influence-bars{gap:11px}
+.influence-role{display:grid;gap:7px;padding:14px;border-radius:10px}
+.influence-role-top{display:flex;align-items:center;gap:9px;min-width:0}
+.influence-role-top .role-indicator{width:7px;height:13px;min-height:13px;flex:0 0 7px;border-radius:3px}
+.influence-role-top strong{flex:1;min-width:0;font-size:12px;margin:0}
+.influence-role-top b{font-size:15px;font-variant-numeric:tabular-nums;color:#284c51;white-space:nowrap}
+.influence-role .influence-mini-track{height:9px;border-radius:99px;overflow:hidden;background:#e5ebe8}
+.influence-mini-track span{display:block;height:100%;background:var(--party);border-radius:99px}
+.influence-role--government .influence-mini-track span{background:var(--gov)}
+.influence-role--institutional .influence-mini-track span{background:var(--third)}
+.influence-role p{margin:1px 0 0;line-height:1.5}
+.role-hint{padding:12px 13px;font-size:12px}
+@media(max-width:1060px){
+ .institution-grid{gap:13px}
+ .institution{min-height:151px}
+}
+@media(max-width:500px){
+ .diagram-panel{padding:15px}
+ .institution{min-height:145px}
+ .institution-grid{gap:11px}
+ .inst-card-figures{font-size:10px}
+}
+/* Контуры политических государств: единая область наведения и видимая внешняя граница. */
+.europe-map-panel{background:#f0f5f0;border:1px solid #d9e4dc}
+.europe-country{stroke:#f8fbf8;stroke-width:2;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.europe-country.historic-cze{fill:#a8c6b8;stroke:#f8fbf8;stroke-width:2.4;cursor:pointer}
+.europe-country.historic-gdr{fill:#93b8a9;stroke:#f8fbf8;stroke-width:2.4;cursor:pointer}
+.europe-country.soviet-territory{fill:#c3d8cd;stroke:#f8fbf8;stroke-width:2.4;pointer-events:none}
+.europe-country.historic-yug{fill:#c1cac4;stroke:#f8fbf8;stroke-width:2.2;pointer-events:none}
+.europe-country.bloc-shape{stroke:#f8fbf8;stroke-width:2.2}
+.europe-country.bloc-shape.is-active,.europe-country.bloc-shape:hover{fill:#438c78;stroke:#194f44;stroke-width:2.9}
+.bloc-map-label{stroke:#f8fbf8;stroke-width:3.3;fill:#2c5750}
+.bloc-map-label.soviet-label{fill:#4b7864;stroke:#e5f0e7;stroke-width:3}
+.bloc-meters{display:grid;gap:17px;margin:11px 0 4px}
+.bloc-meter{padding:13px;background:#f3f8f5;border:1px solid #dfe9e2;border-radius:12px}
+.bloc-meter-head{font-size:12px;color:#4e6963;margin-bottom:9px}
+.bloc-meter-head strong{font-size:17px;color:#205c53}
+.bloc-meter-track{height:12px;background:#dfe9e4}
+.bloc-meter-context{font-size:12px;color:#53736b;line-height:1.5;margin:9px 0 0!important}
+.bloc-scores-note{margin:12px 0 15px!important;color:#78918a;font-size:11px!important;line-height:1.55!important}

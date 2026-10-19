@@ -7,6 +7,7 @@
   <title>СССР · Национальные механики · ВПИ 1955</title>
   <link rel="stylesheet" href="../css/ussr.css">
   <script src="../js/geography-1955.js" defer></script>
+  <script src="../data/ussr-map-unions-1955.js" defer></script>
   <script src="../js/ussr.js" defer></script>
 </head>
 <body>
@@ -48,13 +49,13 @@
         <div class="political-layout">
           <div class="card diagram-panel">
             <div class="card-head"><div><div class="eyebrow">Карта учреждений</div><h3>Кто на что влияет</h3></div><span class="micro-tag">Выберите учреждение</span></div>
-            <div class="legend"><span><i class="legend-dot party"></i> Партийная группа</span><span><i class="legend-dot government"></i> Правительственная группа</span><span><i class="legend-dot independent"></i> Руководители ведомств и институтов</span></div>
+            <div class="legend"><span><i class="legend-dot party"></i> Партийная группа</span><span><i class="legend-dot government"></i> Правительственная группа</span><span><i class="legend-dot independent"></i> Самостоятельные руководители</span></div>
             <div id="institutions" class="institution-grid" role="group" aria-label="Институты власти СССР"></div>
-            <div class="diagram-foot">Разные органы опираются на партийную вертикаль, правительство и собственное руководство. Цвета обозначают характер участия, а не проценты власти. Руководители вне двух игроков могут поддержать любую сторону — в зависимости от вопроса.</div>
+            <div class="diagram-foot"><b>Как читать баланс:</b> числа показывают стартовую оценку политической опоры в учреждении, а не формальное распределение должностей или гарантированные голоса. Серая доля принадлежит самостоятельным руководителям: она не свободна и может перейти к поддержке любой стороны только через конкретные решения и договорённости.</div>
           </div>
           <aside class="card detail-panel">
             <div class="institution-overview">
-              <div class="eyebrow">Выбранное учреждение</div><h3 id="instName"></h3>
+              <div class="eyebrow">Выбранное учреждение</div><h3 id="instName"></h3><div class="inst-lead" id="instLead"></div>
               <p id="instSummary" class="muted"></p>
               <div class="small-heading">Какие решения здесь принимаются</div>
               <p id="instAccess"></p>
@@ -63,9 +64,9 @@
               <div id="institutionPeople" class="institution-people"></div>
             </div>
             <div class="institution-roles">
-              <div class="small-heading">Участники решений</div>
+              <div class="small-heading">Баланс политической опоры</div>
               <div id="instBars" class="influence-bars"></div>
-              <p class="role-hint">Ведомственные руководители не принадлежат автоматически ни Хрущёву, ни Маленкову. Их поддержка зависит от содержания инициативы.</p>
+              <p class="role-hint">Это стартовый баланс для переговоров, а не вероятность победы. Самостоятельные руководители учитываются отдельно от обеих групп.</p>
             </div>
           </aside>
         </div>
@@ -129,7 +130,10 @@
           </section>
           <aside class="card country-detail">
             <div class="country-identity"><span id="countryFlag" class="big-flag"></span><div><div class="eyebrow">Карточка союзного государства</div><h3 id="countryName"></h3></div></div>
-            <div class="bloc-facts"><div><span>Политические отношения</span><strong id="countryRelation"></strong></div><div><span>Внутренняя обстановка</span><strong id="countryPressure"></strong></div></div>
+            <div class="bloc-meters">
+              <div class="bloc-meter"><div class="bloc-meter-head"><span>Связь с Москвой</span><strong id="countryRelation">—</strong></div><div class="bloc-meter-track" id="relationTrack" role="progressbar" aria-label="Связь с Москвой" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="relationFill"></span></div><p class="bloc-meter-context" id="countryRelationLabel"></p></div>
+              <div class="bloc-meter"><div class="bloc-meter-head"><span>Внутренняя устойчивость</span><strong id="countryPressure">—</strong></div><div class="bloc-meter-track" id="stabilityTrack" role="progressbar" aria-label="Внутренняя устойчивость" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="stabilityFill"></span></div><p class="bloc-meter-context" id="countryPressureLabel"></p></div>
+            </div><p class="bloc-scores-note">Шкалы отражают стартовую игровую оценку отношений и обстановки: они помогают сравнивать страны, но не заменяют их политические интересы.</p>
             <div class="divider"></div>
             <div class="small-heading">Связь с СССР</div><p id="countryContext" class="muted"></p>
             <div class="small-heading">Роль страны в блоке</div><p id="countrySpecialty" class="bloc-specialty"></p>
