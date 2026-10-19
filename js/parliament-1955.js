@@ -62,7 +62,7 @@
       '<div class="vpi-parl-big">'+number(g.seats)+'<span> из '+number(total)+' мест</span></div>'+
       '<div class="vpi-parl-meter"><span style="background:'+g.color+';width:'+((g.seats/total)*100).toFixed(1)+'%"></span></div>'+
       '<p>'+safe(g.summary)+'</p>'+
-      '<div class="vpi-parl-stip"><strong>Важное уточнение</strong><p>Числа и политическая принадлежность относятся к датированному парламентскому снимку. При изменении коалиций по ходу игры учитываются последующие действия и официальные вердикты.</p></div>'+
+      
       '<div class="vpi-parl-sources"><strong>Источники</strong>'+d.sources.map(u=>'<a href="'+safe(u)+'" target="_blank" rel="noopener noreferrer">Результаты и парламентская история ↗</a>').join("")+'</div>'+
     '</aside></div>';
   }

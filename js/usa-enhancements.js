@@ -1,51 +1,20 @@
 "use strict";
-/* Player-facing supplementary maps and coalition reference. Read-only: official state comes from judge's public snapshot, not clicks. */
 (function(){
-const geo=window.VPI_USA_MAPS;if(!geo)return;
-const escapeHtml=x=>String(x).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const originalStates=(typeof STATES!=="undefined"?STATES:[]);
-const statesById=new Map(originalStates.map(s=>[s.id,s]));
-const names=Object.fromEntries("Alabama:AL|Arizona:AZ|Arkansas:AR|California:CA|Colorado:CO|Connecticut:CT|Delaware:DE|Florida:FL|Georgia:GA|Idaho:ID|Illinois:IL|Indiana:IN|Iowa:IA|Kansas:KS|Kentucky:KY|Louisiana:LA|Maine:ME|Maryland:MD|Massachusetts:MA|Michigan:MI|Minnesota:MN|Mississippi:MS|Missouri:MO|Montana:MT|Nebraska:NE|Nevada:NV|New Hampshire:NH|New Jersey:NJ|New Mexico:NM|New York:NY|North Carolina:NC|North Dakota:ND|Ohio:OH|Oklahoma:OK|Oregon:OR|Pennsylvania:PA|Rhode Island:RI|South Carolina:SC|South Dakota:SD|Tennessee:TN|Texas:TX|Utah:UT|Vermont:VT|Virginia:VA|Washington:WA|West Virginia:WV|Wisconsin:WI|Wyoming:WY|District of Columbia:DC".split("|").map(x=>x.split(":")));
-// Factions: qualitative people/policy links, not invented vote counts.
-const factions=[
- {id:"south",name:"Южные демократы",sub:"Консервативные региональные политики",t:"Сильные позиции в некоторых комитетах, защита сегрегации и прав штатов. Возможны индивидуальные сделки по бюджету, сельскому хозяйству и инфраструктуре — но не автоматическая поддержка гражданских прав."},
- {id:"liberal",name:"Либеральные демократы",sub:"Северные и западные реформаторы",t:"Часто выступают за федеральные гражданские права, социальные программы и трудовое законодательство. Конкретная поддержка зависит от состава коалиции и текста законопроекта."},
- {id:"urban",name:"Городские демократы",sub:"Муниципальные союзы и профсоюзные сети",t:"Влияют на занятость, городские инвестиции и представительство разных общин. Это не единая дисциплинированная фракция, а полезное направление политических переговоров."},
- {id:"moderate",name:"Умеренные республиканцы",sub:"Часть политического крыла Эйзенхауэра",t:"Готовы искать межпартийные компромиссы по федеральным законам и управлению. Позиции различаются по налогам, социальной политике и полномочиям Вашингтона."},
- {id:"conservative",name:"Консервативные республиканцы",sub:"Ограничение расходов и федеральных полномочий",t:"Возможен конфликт с умеренными членами собственной партии по государственным программам. По некоторым темам позиции могут совпадать с консервативными демократами."}
-];
-const factionRoot=document.querySelector(".factions");
-if(factionRoot){
- const seats=document.createElement("section");seats.className="usa-seats-panel";
- seats.innerHTML='<div class="label">Арифметика 84-го Конгресса · 3 января 1955</div>'+
- '<div class="usa-seats-row"><strong>Палата представителей</strong><span>232 демократа · 203 республиканца</span></div>'+
- '<div class="usa-seats-track"><span style="width:53.33%" title="Демократы: 232"></span><span style="width:46.67%" title="Республиканцы: 203"></span></div>'+
- '<div class="usa-seats-row"><strong>Сенат</strong><span>48 демократов · 47 республиканцев · 1 независимый</span></div>'+
- '<div class="usa-seats-track"><span style="width:50%" title="Демократы: 48"></span><span style="width:48.96%" title="Республиканцы: 47"></span><span style="width:1.04%;background:#b3b8bf" title="Независимый: 1"></span></div>'+
- '<p class="micro">Абсолютное большинство: 218 мест в Палате, 49 голосов из 96 в Сенате (при полном составе голосующих; при равенстве возможна роль вице-президента). Партийные места установлены, фракции не имеют официальной поимённой численности.</p>'+
- '<div class="usa-bloc-estimate"><b>Южные демократы: ориентировочно 85–110 представителей</b><span>Широкая региональная игровая оценка, не проверенный поимённый подсчёт и не единая дисциплинированная фракция. Остальные демократы — примерно 122–147. По каждому закону позиции могут различаться.</span></div>';
- factionRoot.parentElement.insertBefore(seats,factionRoot);
-}
-
-if(factionRoot){
- factionRoot.innerHTML=factions.map(x=>'<button type="button" class="faction usa-faction" data-usa-faction="'+x.id+'"><b>'+escapeHtml(x.name)+'</b><span>'+escapeHtml(x.sub)+'</span></button>').join("");
- const detail=document.createElement("div");detail.className="usa-focus";detail.id="usFactionInfo";factionRoot.after(detail);
- function selectFaction(id){const x=factions.find(z=>z.id===id);if(!x)return;detail.innerHTML="<strong>"+escapeHtml(x.name)+"</strong><p>"+escapeHtml(x.t)+"</p>";factionRoot.querySelectorAll("[data-usa-faction]").forEach(b=>b.classList.toggle("active",b.dataset.usaFaction===id))}
- factionRoot.querySelectorAll("[data-usa-faction]").forEach(b=>b.addEventListener("click",()=>selectFaction(b.dataset.usaFaction)));
- selectFaction("south");
-}
-// Geolocated European alliance assets, NOT guaranteed bonuses.
-const bases=[
- {id:"keflavik",title:"Кефлавик",country:"Исландия",lon:-22.6,lat:63.98,kind:"Авиабаза и обеспечение трансатлантических коммуникаций",status:"Двустороннее соглашение исландской стороны о размещении сил; финансирование не означает владение территорией."},
- {id:"lakenheath",title:"RAF Lakenheath",country:"Великобритания",lon:.56,lat:52.41,kind:"Американская авиация, база на британской территории",status:"Доступ в рамках англо-американских договорённостей, условия определяет принимающая сторона."},
- {id:"wiesbaden",title:"Висбаден — Рейн-Майн",country:"ФРГ",lon:8.23,lat:50.05,kind:"Военно-воздушные объекты, снабжение и переброска сил",status:"Западная Германия начала 1955 года ещё не обладает полностью вступившим в силу новым суверенным статусом."},
- {id:"laon",title:"Лаон",country:"Франция",lon:3.6,lat:49.57,kind:"Авиабаза НАТО во Франции",status:"Базирование зависит от двусторонних прав, французского государства и союзных договорённостей."},
- {id:"aviano",title:"Авиано",country:"Италия",lon:12.61,lat:46.03,kind:"Авиационный опорный пункт в Южной Европе",status:"Союзное размещение и инфраструктура не создают автоматически новые самолёты или расчёты."},
- {id:"spain",title:"Испанские соглашения",country:"Испания",lon:-3.46,lat:40.47,kind:"Соглашения 1953 года, развитие будущей базы в Торрехоне",status:"На январь 1955 года сеть строится; не считать будущие объекты полностью действующими."}
+ const geo=window.VPI_USA_MAPS;
+ if(!geo)return;
+ const escapeHtml=x=>String(x).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+ const bases=[
+ {id:"keflavik",title:"Кефлавик",country:"Исландия",lon:-22.6,lat:63.98,kind:"Авиабаза и обеспечение трансатлантических коммуникаций",status:"Оборонное соглашение 1951 года. Трансатлантическое обеспечение и противолодочная оборона."},
+ {id:"lakenheath",title:"RAF Lakenheath",country:"Великобритания",lon:.56,lat:52.41,kind:"Стратегическая авиация США и трансатлантические переброски через британский аэродром",status:"Действующее англо-американское сотрудничество и авиационное размещение."},
+ {id:"wiesbaden",title:"Висбаден",country:"ФРГ",lon:8.32,lat:50.05,kind:"Американская авиабаза и штабные структуры USAFE",status:"Действующий узел американских ВВС в западной Германии."},
+  {id:"rheinmain",title:"Рейн-Майн",country:"ФРГ",lon:8.56,lat:50.03,kind:"Грузовая и пассажирская авиалогистика возле Франкфурта",status:"Транспортные перевозки и снабжение американского присутствия в Европе."},
+ {id:"laon",title:"Лаон",country:"Франция",lon:3.6,lat:49.57,kind:"Авиабаза НАТО во Франции",status:"Размещение в рамках союзнических соглашений с Францией."},
+ {id:"aviano",title:"Авиано",country:"Италия",lon:12.61,lat:46.03,kind:"Аэродром союзной авиации, соглашение об использовании от октября 1954 года",status:"Открытие постоянного присутствия американской стороны намечено на февраль 1955 года."},
+ {id:"spain",title:"Испанские соглашения",country:"Испания",lon:-3.46,lat:40.47,kind:"Испано-американские соглашения 1953 года о строительстве аэродромов",status:"Торрехон — согласованная программа развития авиационной инфраструктуры."}
 ];
 const allied=document.getElementById("allies"),firstStack=allied?.querySelector(".stack");
 if(firstStack){
- firstStack.insertAdjacentHTML("afterbegin",'<article class="card usa-alliances"><div class="secthead"><div><div class="label">Европейское направление</div><h2>Сеть американских военных узлов</h2></div><span class="badge dark">Карта</span></div><p>Нажмите объект: карта показывает действующий тип доступа, международные ограничения и стратегическую задачу.</p><svg id="usaEuropeMap" viewBox="0 0 960 500" aria-label="Географическая карта американских объектов в Европе"></svg><div class="usa-map-pills" id="usaBaseChoices"></div><div class="usa-focus" id="usaBaseDetail"></div><p class="micro" id="usaBaseSupport"></p></article>');
+ firstStack.insertAdjacentHTML("afterbegin",'<article class="card usa-alliances"><div class="secthead"><div><div class="label">Европейское направление</div><h2>Сеть американских военных узлов</h2></div><span class="badge dark">Карта</span></div><p>Выберите объект, чтобы изучить его стратегическую задачу и союзные договорённости.</p><svg id="usaEuropeMap" viewBox="0 0 960 500" aria-label="Географическая карта американских объектов в Европе"></svg><div class="usa-map-pills" id="usaBaseChoices"></div><div class="usa-focus" id="usaBaseDetail"></div><p class="micro" id="usaBaseSupport"></p></article>');
  const pr=(lon,lat)=>[(lon+25)*13.4,(72-lat)*12.5];
  const continent=geo.westernEurope.countries.map(c=>'<path class="usa-europe-shape" d="'+c.path+'"><title>'+escapeHtml(c.name)+'</title></path>').join("");
  const pins=bases.map(b=>{const [x,y]=pr(b.lon,b.lat);return '<circle role="button" tabindex="0" data-us-base="'+b.id+'" cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="8" class="usa-europe-pin" aria-label="'+escapeHtml(b.title)+'"><title>'+escapeHtml(b.title)+'</title></circle>'}).join("");
@@ -60,30 +29,8 @@ if(firstStack){
   b.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();fn()}});
  });
  const slider=document.getElementById("allySlider"),msg=document.getElementById("usaBaseSupport");
- const update=()=>{const pct=Number(slider?.value||0);msg.textContent="Сценарные расходы на союзную сеть: "+pct.toFixed(1).replace(".",",")+"% ВВП. Повышение расходов может финансировать подготовку, обслуживание и соглашения, но конкретные объекты и права меняются только по игровым постам и вердиктам."};
+ const update=()=>{const pct=Number(slider?.value||0);msg.textContent="Поддержка союзной сети: "+pct.toFixed(1).replace(".",",")+"% ВВП. Направления расходов: аэродромы, склады, связь, обучение и поставки партнёрам."};
  slider?.addEventListener("input",update);update();choose("wiesbaden");
 }
-// Civil-rights geography. The old gamey progress controls are superseded; legacy script ran before this enhancement.
-const civil=document.getElementById("civil");
-if(civil){
- civil.innerHTML='<div class="usa-civil-grid"><article class="card"><div class="secthead"><div><div class="label">Юридическая и политическая карта</div><h2>Десегрегация школ по штатам</h2></div><span class="badge dark">Справочник 1955</span></div><p class="description">Различайте законодательное положение до решения Верховного суда 1954 года, фактическое исполнение после решения и сопротивление местных властей. Никаких очков, которые нужно накопить для права провести реформу.</p><div class="usa-map-legend"><span><i class="mandatory"></i> Прежний закон требовал сегрегацию</span><span><i class="allowed"></i> Ранее допускалась</span><span><i class="other"></i> Отдельной оценки пока нет</span></div><svg id="usaStateGeo" viewBox="0 0 990 470" role="group" aria-label="Карта 48 штатов и округа Колумбия"></svg><p class="micro">Аляска и Гавайи в январе 1955 года ещё не имеют статуса штатов. Географические контуры современные, политико-правовое содержание относится к исходному 1955 году.</p><div id="usaStateChoices" class="usa-map-pills"></div></article><article class="card"><div class="label">Выбранная территория</div><h2 id="usaStateName">—</h2><span id="usaStateLaw" class="badge dark">—</span><p id="usaStateInfo"></p><div class="line"></div><h3>Что может предпринять игрок</h3><p>Инициировать федеральное законодательство, договариваться с конгрессменами, обращаться в суды, защищать школьников, финансировать инфраструктуру или искать политический компромисс. Результаты зависят от полномочий и ситуации в конкретном штате.</p><p class="micro">Нельзя по одному цвету определять фактическое положение всех школ: требуется отдельный подтверждённый игровой статус.</p></article></div>';
- const svg=document.getElementById("usaStateGeo");
- svg.innerHTML=geo.usStates.states.map(s=>{
-  const code=names[s.name]||"?",record=statesById.get(code),law=record?.law||"нет подтверждённой оценки";
-  return '<path tabindex="0" role="button" data-usa-state="'+escapeHtml(code)+'" data-law="'+escapeHtml(law)+'" class="usa-state-shape" d="'+s.path+'" aria-label="'+escapeHtml(s.name)+'"><title>'+escapeHtml(s.name)+'</title></path>';
- }).join("");
- const focused=originalStates;document.getElementById("usaStateChoices").innerHTML=focused.map(s=>'<button type="button" data-us-quick="'+s.id+'">'+escapeHtml(s.name)+'</button>').join("");
- function showState(code){
-  const x=originalStates.find(x=>x.id===code),name=geo.usStates.states.find(s=>names[s.name]===code)?.name||code;
-  document.getElementById("usaStateName").textContent=x?x.name:name;
-  document.getElementById("usaStateLaw").textContent=x?(x.law==="обязательная"?"Исторически обязательная сегрегация":"Исторически разрешённая сегрегация"):"Нужна отдельная исходная проверка";
-  document.getElementById("usaStateInfo").textContent=x?"В исходном прототипе сопротивление властей оценивалось как «"+x.resistance+"». Это качественный ориентир, не автоматический модификатор. Фактический ход интеграции школ в игровом 1955 году пока не утверждён.":"Штат или федеральный округ показан для географической полноты. Точный школьный правовой и фактический статус в нашем публичном стартовом состоянии пока не заполнен.";
-  document.querySelectorAll("[data-usa-state],[data-us-quick]").forEach(b=>b.classList.toggle("active",b.dataset.usaState===code||b.dataset.usQuick===code));
- }
- document.querySelectorAll("[data-usa-state],[data-us-quick]").forEach(b=>{
-  const cb=()=>showState(b.dataset.usaState||b.dataset.usQuick);b.addEventListener("click",cb);
-  b.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();cb()}});
- });
- showState("TX");
-}
+
 })();

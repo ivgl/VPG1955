@@ -24,3 +24,39 @@
 .usa-bloc-estimate{display:grid;gap:5px;padding:10px;background:#f1f6f4;border-radius:9px;font-size:11px;margin-top:12px}.usa-bloc-estimate span{color:#607b80;line-height:1.55}
 .usa-alliances #usaEuropeMap{min-height:260px}
 .usa-europe-pin{stroke-width:3.5}
+
+/* Congress: one interactive coalition per chamber. */
+#politics .stack{gap:16px}
+#usaCoalitionRoot{margin-top:14px}
+.usa-topics{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+.usa-topics button{border:1px solid #bfd4d2;background:#f6faf9;color:#295569;border-radius:9px;padding:10px 12px;font-weight:700;font-size:12px}
+.usa-topics button.active,.usa-topics button:hover{background:#dbece5;border-color:#569985;color:#125b51}
+.usa-chamber-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:16px 0}
+.usa-chamber{min-width:0}
+.usa-vote-track{height:14px;border-radius:20px;background:#eddcda;display:flex;overflow:hidden;margin:13px 0 8px}
+.usa-vote-track span{display:block;background:#4f9a86;transition:width .2s}
+.usa-vote-track .waiting{background:#e4ba6b}
+.usa-majority-msg{padding:9px 11px;border-radius:8px;background:#e5efec;color:#315966;font-size:12px;margin:12px 0}
+.usa-vote-group{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;border-bottom:1px solid #e1e8e7;padding:13px 0}
+.usa-vote-group>div:first-child{display:flex;flex-direction:column;gap:3px}
+.usa-vote-group b{font-size:13px}
+.usa-vote-group small{color:#60717f;font-size:11px}
+.usa-vote-buttons{display:flex;flex-wrap:wrap;gap:3px}
+.usa-vote-buttons button{border:1px solid #c6d5d2;border-radius:6px;background:white;padding:7px 8px;font-size:10px;color:#475d68}
+.usa-vote-buttons button.active.yes{background:#cfe9dc;border-color:#64a58b;color:#175943}
+.usa-vote-buttons button.active.maybe{background:#f9ebc9;border-color:#d7af62;color:#755118}
+.usa-vote-buttons button.active.no{background:#f6ddd9;border-color:#c78c84;color:#753d35}
+.usa-election-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:14px 0}
+.usa-election-strip>div{display:flex;flex-direction:column;gap:2px;padding:11px;border-radius:9px;background:#eef5f2}
+.usa-election-strip strong{font-size:22px;line-height:1.2;font-variant-numeric:tabular-nums}
+.usa-election-strip span{color:#5d717d;font-size:11px}
+.usa-state-shape.target{fill:#62b793;stroke:#1f694e;stroke-width:3}
+.usa-map-pills button.target{background:#c9ead7;border-color:#5da381;color:#165942}
+#usaCivilPlanner .card{min-width:0}
+#usaCivilPlanner .usa-civil-grid{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr)}
+#usaCivilPlanner .usa-civil-grid>.card:last-child{grid-column:1/-1}
+#usaCivilPlanner .listStates{min-height:28px}
+#usaCivilPlanner .inputline{flex-wrap:wrap}
+@media(max-width:1100px){.usa-chamber-grid{grid-template-columns:1fr}}
+@media(max-width:880px){#usaCivilPlanner .usa-civil-grid{grid-template-columns:1fr}#usaCivilPlanner .usa-civil-grid>.card:last-child{grid-column:auto}}
+@media(max-width:600px){.usa-vote-group{grid-template-columns:1fr}.usa-election-strip strong{font-size:18px}}
