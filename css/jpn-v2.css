@@ -352,3 +352,46 @@ a{color:#2c6d66}
  .jpn-industry-controls .industry-btn b{font-size:10.5px}
  .jpn-workflow-steps small{font-size:10px}
 }
+
+/* October 2026 layout revision: geography and chain on the left,
+   decisions and consequences on the right. Visuals only; no game-state edits. */
+.jpn-selection-ribbon{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:-2px 0 14px;padding:10px 15px;border:1px solid #d7e6db;border-radius:10px;background:#f5faf6}
+.jpn-selection-ribbon>span{font-size:10px;text-transform:uppercase;letter-spacing:.065em;font-weight:850;color:#54846c;margin-right:5px}
+.jpn-selection-ribbon>div{display:flex;align-items:baseline;gap:6px;padding:5px 9px;background:#fff;border:1px solid #e1ebe3;border-radius:7px;min-width:0}
+.jpn-selection-ribbon small{font-size:10px;color:#83978b}
+.jpn-selection-ribbon strong{font-size:11px;color:#32725b;overflow-wrap:anywhere}
+.jpn-industry-workspace{grid-template-columns:minmax(0,1.16fr) minmax(0,.84fr);grid-template-areas:"map controls" "cycle impact";align-items:start;gap:15px}
+.jpn-industry-workspace>.industry-map{grid-area:map}
+.jpn-industry-workspace>.jpn-industry-controls{grid-area:controls}
+.jpn-industry-workspace>.jpn-cycle-workspace{grid-area:cycle;min-width:0;margin:0}
+.jpn-industry-workspace>.jpn-impact-workspace{grid-area:impact;min-width:0;margin:0}
+.jpn-cycle-workspace .supply-loop{grid-template-columns:repeat(3,minmax(0,1fr))}
+.jpn-cycle-workspace .loop-stage:nth-child(3):after{content:none}
+.jpn-cycle-workspace .loop-stage:nth-child(6):after{content:none}
+.jpn-cycle-workspace .loop-stage{min-height:92px}
+.jpn-cycle-return{font-size:10.5px;line-height:1.6;color:#5e8470;background:#f0f7f1;border:1px dashed #c6dccd;border-radius:8px;padding:10px 12px;margin:11px 0 2px}
+.jpn-cycle-workspace .loop-info{grid-template-columns:1fr;gap:10px}
+.jpn-cycle-workspace .loop-info h4{font-size:17px}
+.jpn-impact-workspace{padding-top:19px;border-top:1px solid #dbe8df}
+.jpn-impact-workspace .cascade-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.jpn-impact-workspace .cascade-step{padding:11px}
+.jpn-impact-workspace .cascade-step p{font-size:11px;line-height:1.65}
+.jpn-impact-workspace .jpn-impact-head{align-items:flex-start}
+.jpn-impact-workspace .jpn-impact-head h4{line-height:1.35}
+@media(max-width:1080px){
+ .jpn-industry-workspace{grid-template-columns:minmax(0,1fr);grid-template-areas:"map" "controls" "cycle" "impact"}
+ .jpn-cycle-workspace .loop-info{grid-template-columns:1fr minmax(220px,.7fr)}
+ .jpn-impact-workspace .cascade-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media(max-width:750px){
+ .jpn-cycle-workspace .loop-info{grid-template-columns:1fr}
+ .jpn-impact-workspace .cascade-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:480px){
+ .jpn-selection-ribbon>span{width:100%}
+ .jpn-selection-ribbon>div{flex:1 1 45%;flex-wrap:wrap}
+ .jpn-cycle-workspace .supply-loop{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .jpn-cycle-workspace .loop-stage:nth-child(3):after{content:"→"}
+ .jpn-cycle-workspace .loop-stage:nth-child(2n):after{content:none}
+ .jpn-impact-workspace .cascade-grid{grid-template-columns:1fr}
+}
