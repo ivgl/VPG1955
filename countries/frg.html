@@ -1,69 +1,95 @@
-<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="ФРГ 1955: суверенитет, Бундесвер, промышленное чудо и социальный рынок, германский вопрос, федерация и земли.">
-<title>ФРГ · национальные механики · ВПИ 1955</title>
-<link rel="stylesheet" href="../css/frg-v2.css">
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="ФРГ 1955: внешние полномочия и армия, промышленный рост и социальный рынок, германский вопрос и Берлин.">
+<title>ФРГ · ВПИ 1955 · национальные механики</title>
+<link rel="stylesheet" href="../css/frg-v3.css">
 <link rel="stylesheet" href="../css/parliament-1955.css">
-<script src="../data/frg-atlas-1955.js" defer></script>
+<script src="../data/frg-atlas-1955-v3.js" defer></script>
 <script src="../js/geography-1955.js" defer></script>
 <script src="../data/parliaments-1955.js" defer></script>
 <script src="../js/parliament-1955.js" data-parliament="frg" defer></script>
-<script src="../js/frg-v2.js" defer></script>
-</head><body><div class="shell">
+<script src="../js/frg-v3.js" defer></script>
+</head>
+<body><div class="shell">
 <header class="mast"><a href="../index.html">← Каталог государств</a><span>ВПИ <b>1955</b> / НАЦИОНАЛЬНЫЕ МЕХАНИКИ</span></header>
-<section class="hero"><span class="eyebrow">Федеративная Республика Германия · 01.01.1955</span>
-<h1>Экономическая мощь.<br><em>Ещё не полный суверенитет.</em></h1>
-<p>Бонн строит промышленную державу, возвращает политические полномочия и одновременно отвечает за судьбу разделённой Германии. Новая армия, растущие заводы, социальный компромисс и самостоятельность земель требуют разных согласований.</p>
-<div class="hero-tags"><span><b>Канцлер</b> Конрад Аденауэр</span><span><b>Экономика</b> Людвиг Эрхард</span><span><b>Столица</b> Бонн</span><span><b>Оборона</b> Аппарат Бланка</span></div></section>
-<nav class="tabs" aria-label="Четыре механики ФРГ">
-<button type="button" class="tab active" data-tab="sovereignty" aria-selected="true"><small>01</small> Суверенитет и армия</button>
-<button type="button" class="tab" data-tab="economy" aria-selected="false"><small>02</small> Экономическое чудо</button>
-<button type="button" class="tab" data-tab="division" aria-selected="false"><small>03</small> Германский вопрос</button>
-<button type="button" class="tab" data-tab="federation" aria-selected="false"><small>04</small> Федерация и земли</button>
+<section class="hero">
+<span class="eyebrow">Федеративная Республика Германия / январь 1955 года</span>
+<h1>Строить державу.<br><em>В условиях разделения.</em></h1>
+<p>Федеративная Республика располагает сильной промышленной базой, но её внешние полномочия, оборона, связи с Восточной Германией и положение Берлина определяются системой договоров и интересов других держав. Внутри страны рост требует компромисса между бизнесом, работниками и землями.</p>
+<div class="hero-tags"><span><b>Канцлер</b> Конрад Аденауэр</span><span><b>Экономика</b> Людвиг Эрхард</span><span><b>Правительство</b> Бонн</span><span><b>Армия</b> Не учреждена</span></div>
+</section>
+<nav class="tabs" aria-label="Национальные механики ФРГ">
+<button type="button" class="tab active" data-tab="sovereignty" aria-selected="true"><span>01</span> Суверенитет</button>
+<button type="button" class="tab" data-tab="economy" aria-selected="false"><span>02</span> Экономика и общество</button>
+<button type="button" class="tab" data-tab="division" aria-selected="false"><span>03</span> Германский вопрос</button>
 </nav>
 <main>
-<section class="pane active" id="sovereignty">
-<div class="section-heading"><span class="eyebrow">01 / Бонн и западные союзники</span><h2>Государство возвращает себе полномочия</h2>
-<p>Парижские соглашения подписаны в октябре 1954 года, но ещё не вступили в силу. Вопрос не сводится к тому, чтобы «открыть» армию: стране нужны правовые полномочия, союзнические договорённости, кадры, вооружение и контроль парламента.</p></div>
-<div class="status-band"><div><small>Парижские соглашения</small><b>Подписаны</b></div><div><small>Федеральные вооружённые силы</small><b>Не учреждены</b></div><div><small>Военное планирование</small><b>Аппарат Бланка</b></div><div><small>Бундестаг</small><b>Действующий 2-й созыв</b></div></div>
-<div class="grid-strategy">
-<section class="panel"><div class="panel-head"><div><span class="eyebrow">Кабинет стратегических решений</span><h3>Предмет переговоров и законов</h3></div></div><div id="frgSecurityTopics" class="decision-list"></div>
-</section>
-<aside class="panel strategy-detail"><span class="eyebrow">Досье инициативы</span><h3 id="frgSecurityTitle"></h3><div id="frgSecurityState" class="status-pill"></div><p class="lead" id="frgSecurityLead"></p>
-<div class="detail-section"><b>Что необходимо</b><ul class="text-list" id="frgSecurityNeeds"></ul></div><div class="detail-section"><b>Кто участвует</b><div class="stake-pills" id="frgSecurityStake"></div></div>
-</aside></div>
-<section class="panel proposal"><div class="panel-head"><div><span class="eyebrow">Пакет возможных решений</span><h3>Как действовать Бонну</h3></div></div><div class="proposal-grid" id="frgSecurityOptions"></div><div id="frgSecurityCross" class="crosslinks"></div></section>
-<div class="join-note"><b>Перевооружение и западная интеграция затрагивают германский вопрос:</b> укрепление безопасности ФРГ меняет условия переговоров о судьбе Германии, но не решает статус ГДР и Берлина.</div></section>
-
-<section class="pane" id="economy" hidden>
-<div class="section-heading"><span class="eyebrow">02 / Социальная рыночная экономика</span><h2>Машина экономического чуда</h2><p>Быстрый промышленный рост зависит не только от инвестиций. Немецкая специфика — конкуренция, экспортные контракты, участие работников в управлении предприятиями и послевоенные социальные обязательства.</p></div>
-<div id="frgEcoMetrics" class="metrics"></div>
-<div class="economy-top">
-<section class="panel sectors-panel"><div class="panel-head"><div><span class="eyebrow">Промышленные узлы</span><h3>Отрасли и география роста</h3></div></div><div id="frgSectorButtons" class="sectors-grid"></div><div class="sector-focus">
-<span class="eyebrow">Выбранная отрасль</span><h3 id="frgSectorName"></h3><div id="frgSectorPlace" class="small-chip"></div><p id="frgSectorHook"></p><b>Что ограничивает расширение выпуска</b><p id="frgSectorBottleneck"></p></div></section>
-<aside class="panel sector-dossier"><span class="eyebrow">Условия модернизации</span><h3>Кто, что и чем обеспечивает</h3>
-<div class="detail-section"><b>Потребности производства</b><ul id="frgSectorNeeds" class="text-list"></ul></div><div class="detail-section"><b>Участники решений</b><div id="frgSectorActors" class="stake-pills"></div></div><div class="detail-section"><b>Связанные отрасли</b><div id="frgSectorDeps" class="crosslinks"></div></div></aside></div>
-<section class="panel proposal"><div class="panel-head"><div><span class="eyebrow">Правительственная повестка</span><h3>Возможные промышленные инициативы</h3></div></div><div id="frgSectorLevers" class="proposal-grid"></div><div id="frgSectorLeverDetail" class="selected-outcome"></div><div id="frgSectorCross" class="crosslinks"></div></section>
-<section class="panel social-panel"><div class="panel-head"><div><span class="eyebrow">Социальный компромисс</span><h3>Институты, которые удерживают рост</h3></div><span class="small-chip">Не шкала «рынок — социальная защита»</span></div>
-<div id="frgSocialButtons" class="social-buttons"></div><div class="social-detail"><div><span class="eyebrow">Действующие правила и проекты</span><h4 id="frgSocialTitle"></h4><div id="frgSocialStatus" class="status-pill"></div><p id="frgSocialTradeoff"></p><b>Заинтересованные стороны</b><div id="frgSocialActors" class="stake-pills"></div></div><div><b>Какие предложения можно внести</b><ul id="frgSocialChoices" class="text-list benefit"></ul><div id="frgSocialLink" class="crosslinks"></div></div></div>
-</section></section>
-
-<section class="pane" id="division" hidden><div class="section-heading"><span class="eyebrow">03 / Дипломатия разделённой страны</span><h2>Одна нация, несколько правовых режимов</h2><p>Западный Берлин, ГДР и Саар требуют принципиально разных решений. Бонн не может распоряжаться ни правами западных держав в Берлине, ни администрацией Восточной Германии, ни статусом Саара единолично.</p></div>
-<div class="germany-workspace">
-<section class="panel map-panel"><div class="panel-head"><div><span class="eyebrow">Германские территории и узлы</span><h3>Карта политического вопроса</h3></div></div><div class="map-frame"><svg id="frgDivisionMap" viewBox="0 0 650 570" role="group" aria-label="ФРГ, ГДР, Саар и Западный Берлин"></svg></div><div class="map-key"><span><i class="west"></i> ФРГ</span><span><i class="east"></i> ГДР</span><span><i class="saar"></i> Саар</span><span><i class="berlin"></i> Западный Берлин</span></div><p class="fine">Регионы обозначают основные политические и административные пространства. Западный Берлин показан отдельной меткой; его сектора и маршруты отображаются в досье.</p>
-<div id="frgRegionButtons" class="map-actions"></div></section>
-<aside class="panel geo-dossier"><span class="eyebrow">Территориальная политика</span><h3 id="frgRegionTitle"></h3><div id="frgRegionStatus" class="status-pill"></div><p class="lead" id="frgRegionSubtitle"></p><p id="frgRegionCore"></p>
-<div class="detail-section"><b>Уязвимые места</b><ul class="text-list danger-list" id="frgRegionRisks"></ul></div><div class="detail-section"><b>С кем необходимо договариваться</b><div id="frgRegionPartners" class="stake-pills"></div></div></aside></div>
-<section class="panel proposal"><div class="panel-head"><div><span class="eyebrow">Практические политические решения</span><h3>Варианты дипломатической линии</h3></div></div><div id="frgDivisionOptions" class="proposal-grid"></div><div id="frgDivisionCross" class="crosslinks"></div></section>
-<section class="panel berlin-card"><div class="panel-head"><div><span class="eyebrow">Особое положение</span><h3>Западный Берлин: не только точка на карте</h3></div></div>
-<div class="berlin-routes"><div><span>01</span><b>Автомобильные дороги</b><p>Транзитные процедуры и договорённости о доступе.</p></div><div><span>02</span><b>Железные дороги</b><p>Снабжение города и перевозки через восточную территорию.</p></div><div><span>03</span><b>Водные пути</b><p>Грузы, порты и использование каналов.</p></div><div><span>04</span><b>Воздушные коридоры</b><p>Особые права западных союзников и воздушное сообщение.</p></div></div><button type="button" class="text-link" data-region-link="berlin">Открыть досье Западного Берлина →</button></section>
+<section id="sovereignty" class="pane active">
+<div class="section-heading"><span class="eyebrow">01 / Полномочия, союзники и Бундестаг</span><h2>Три направления возвращения суверенитета</h2>
+<p>Парижские соглашения уже подписаны, однако их юридическое действие, создание федеральных вооружённых сил и парламентское оформление новых полномочий — три разные задачи. Ни одну нельзя решить только заявлением канцлера.</p></div>
+<div class="status-ribbon"><div><small>Парижские соглашения</small><strong>Подписаны</strong><span>Октябрь 1954</span></div><div><small>Действующие военнослужащие</small><strong>0</strong><span>Федеральной армии нет</span></div><div><small>Военная подготовка</small><strong>Аппарат Бланка</strong><span>Организация ведомства</span></div><div><small>Законодательная опора</small><strong>Бундестаг</strong><span>2-й созыв</span></div></div>
+<div class="section-label"><span>01—03</span><h3>Государственные направления и главные препятствия</h3></div>
+<div id="frgTracks" class="tracks"></div>
+<div class="joining"><b>Общая дилемма Бонна</b><p>Расширение самостоятельности связано с западными соглашениями и новым военным бюджетом. Берлин, отношения с ГДР и вопрос объединения остаются предметом международных переговоров, а не исключительно федерального законодательства.</p><button type="button" data-jump="division" class="text-link">Перейти к германскому вопросу →</button></div>
 </section>
 
-<section class="pane" id="federation" hidden><div class="section-heading"><span class="eyebrow">04 / Федерализм</span><h2>Бонн принимает закон. Земли обеспечивают его действие.</h2><p>У ФРГ девять федеральных земель со своими правительствами. Бундесрат представляет именно земельные кабинеты, а полномочия образования, административного исполнения и части финансов распределены между несколькими уровнями власти.</p></div>
-<div class="federal-intro"><div><b>9 земель</b><small>Действующий состав федерации</small></div><div><b>Бундесрат</b><small>Представляет правительства земель</small></div><div><b>Западный Берлин</b><small>Особый статус, не обычная голосующая земля</small></div><div><b>Саар</b><small>Вне состава ФРГ на старте</small></div></div>
-<div class="federal-columns">
-<section class="panel federal-map-panel"><div class="panel-head"><div><span class="eyebrow">Федеральные земли · январь 1955</span><h3>Региональные интересы</h3></div></div><div class="map-frame"><svg id="frgFederalMap" viewBox="0 0 650 570" role="group" aria-label="Девять земель ФРГ, статус Саара и Берлина отмечен отдельно"></svg></div><div id="frgLandButtons" class="land-buttons"></div><p class="fine">Географическая подложка отображает расположение земель. Саар и Западный Берлин выделены отдельно, вне состава девяти земель.</p></section>
-<aside class="panel land-dossier"><span class="eyebrow">Региональное досье</span><h3 id="frgLandName"></h3><div class="small-chip" id="frgLandFocus"></div><div class="detail-section"><b>Региональные запросы</b><ul id="frgLandNeeds" class="text-list"></ul></div><div class="detail-section"><b>Полномочия земли</b><p id="frgLandAuthority"></p></div><div class="detail-section"><b>Связанные экономические направления</b><div id="frgLandSectors" class="crosslinks"></div></div></aside></div>
-<section class="panel federal-cases"><div class="panel-head"><div><span class="eyebrow">Исполнение федерального решения</span><h3>Где требуется согласие и координация</h3></div></div><div id="frgFederalCaseButtons" class="federal-case-buttons"></div><div class="case-dossier"><div><span class="eyebrow">Выбранный проект</span><h4 id="frgCaseTitle"></h4><p id="frgCaseQuestion"></p><b>Уровни принятия решений</b><ol id="frgCaseLevels" class="levels"></ol></div><div><b>Что может помешать</b><ul id="frgCaseBarriers" class="text-list danger-list"></ul><div class="federal-rule">Участие Бундесрата зависит от вида законопроекта: для одних решений необходимо согласие земельной палаты, для других действует процедура возражения.</div><button type="button" class="text-link" id="frgCaseJump">Посмотреть связанную отрасль →</button></div></div></section>
-</section></main>
-<footer class="footer"><div><b>ФРГ · ВПИ 1955</b><p>Политические и экономические механики · 1 января 1955 года</p></div><div><b>Документы и исторические источники</b><div id="frgSources" class="source-links"></div></div><a href="../index.html">← Все страны</a></footer>
+<section id="economy" class="pane" hidden>
+<div class="section-heading"><span class="eyebrow">02 / Производство, кредит и труд</span><h2>Как устроено экономическое чудо</h2><p>Рурская сталь, энергия, станки, автомобили, химия и жильё образуют связанную производственную систему. Увеличить выпуск одной отрасли недостаточно, если ограничивающая её цепочка остаётся прежней.</p></div>
+<div id="frgMetrics" class="metrics"></div>
+<section class="panel industrial-overview">
+<div class="panel-heading"><div><span class="eyebrow">Промышленная структура</span><h3>Производственные связи ФРГ</h3></div><span class="small-tag">Выберите узел цепочки</span></div>
+<div class="network-layout">
+<div class="network-visual"><div class="network-label">Материалы, оборудование и рабочая сила</div><div id="frgNetwork" class="network"></div><div class="network-caption">Связи показывают потребности отраслей в ресурсах и инфраструктуре, а не фиксированное распределение всех поставок.</div></div>
+<aside class="network-brief"><span class="eyebrow">Главный ограничитель</span><h4 id="frgBottleneckTitle"></h4><p id="frgBottleneck"></p><div class="network-rationale"><b>Какие решения придётся согласовывать</b><p id="frgNegotiation"></p></div><div class="crosslinks" id="frgSectorLinks"></div></aside>
+</div>
+</section>
+<section class="panel industry-focus">
+<div class="panel-heading"><div><span class="eyebrow">Досье промышленного узла</span><h3 id="frgIndustryTitle"></h3></div><div class="small-tag" id="frgIndustryPlace"></div></div>
+<p class="industry-lead" id="frgIndustryRole"></p>
+<div class="material-grid">
+<div class="material-card"><b><span class="material-marker input"></span>Что необходимо для выпуска</b><ul class="bullets" id="frgInputs"></ul></div>
+<div class="material-card"><b><span class="material-marker output"></span>Куда идёт продукция и эффект</b><ul class="bullets" id="frgOutputs"></ul></div>
+<div class="material-card"><b>Заинтересованные организации</b><div id="frgActors" class="stakeholders"></div></div>
+</div>
+<div class="federal-hook"><span>РЕГИОНАЛЬНЫЙ УРОВЕНЬ</span><p id="frgSectorFederal"></p></div>
+</section>
+<section class="panel institutions">
+<div class="panel-heading"><div><span class="eyebrow">Социальная рыночная экономика</span><h3>Четыре действующие проблемы и института</h3></div></div>
+<div id="frgInstitutions" class="institutions-grid"></div>
+</section>
+<section class="panel regional-law">
+<div class="panel-heading"><div><span class="eyebrow">Федерализм внутри экономики</span><h3>Где решение Бонна встречается с полномочиями земель</h3></div></div>
+<div id="frgFederalBridges" class="bridges"></div>
+</section>
+</section>
+
+<section id="division" class="pane" hidden>
+<div class="section-heading"><span class="eyebrow">03 / Берлин, Восточная Германия и Саар</span><h2>Германский вопрос — система разных прав</h2>
+<p>Берлинские коммуникации регулируются союзными соглашениями. Отношения с ГДР затрагивают СССР и межзональные контакты. Саар связан с Францией и рынком угля и стали. У каждой задачи свой круг участников и предел полномочий Бонна.</p></div>
+<div class="division-workspace">
+<section class="panel division-map-panel">
+<div class="panel-heading"><div><span class="eyebrow">Германия и особые территории</span><h3>Карта политического положения</h3></div></div>
+<div class="map-frame"><svg id="frgMap" viewBox="0 0 650 570" aria-label="ФРГ, ГДР, Саар, Западный Берлин" role="group"></svg></div>
+<div class="map-legend"><span><i class="frg"></i> ФРГ</span><span><i class="gdr"></i> ГДР</span><span><i class="saar"></i> Саар</span><span><i class="berlin"></i> Западный Берлин</span></div>
+<p class="map-foot">Карта показывает политические пространства и ключевые узлы. Западный Берлин обозначен отдельно; его особые права и маршруты описаны справа.</p>
+<div id="frgTerritoryNav" class="territory-buttons"></div>
+</section>
+<aside class="panel division-dossier">
+<span class="eyebrow">Территориальное досье</span><h3 id="frgTerritoryTitle"></h3><span class="status" id="frgTerritoryStatus"></span>
+<p id="frgTerritoryCore" class="lead"></p>
+<div class="primary-obstacle"><span>ГЛАВНОЕ ОГРАНИЧЕНИЕ</span><p id="frgTerritoryObstacle"></p></div>
+<div class="detail-section"><b>С кем согласовывать</b><div id="frgTerritoryPartners" class="stakeholders"></div></div>
+<div class="detail-section"><b>Ключевые риски</b><ul id="frgTerritoryRisks" class="bullets"></ul></div>
+</aside>
+</div>
+<section class="panel interfaces">
+<div class="panel-heading"><div><span class="eyebrow">Практическая сторона выбранного вопроса</span><h3 id="frgInterfacesTitle"></h3></div></div>
+<div id="frgInterfaces" class="interfaces-grid"></div>
+<div class="division-bottom"><p id="frgTerritoryDecision"></p><button type="button" data-jump="sovereignty" class="text-link">Полномочия и союзники Бонна →</button></div>
+</section>
+</section>
+</main>
+<footer class="footer"><div><b>ВПИ 1955 · Федеративная Республика Германия</b><p>Государственные механики · январь 1955 года</p></div><div><b>Документы и исторические источники</b><div class="sources" id="frgSources"></div></div><a href="../index.html">← Каталог</a></footer>
 </div></body></html>
