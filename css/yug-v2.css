@@ -1,0 +1,95 @@
+@import url("./chn-v2.css");
+:root{--bg:#f3f2f0;--paper:#fffdfa;--ink:#373540;--muted:#7a7981;--red:#92637c;--jade:#716b95;--sage:#f2eff6;--line:#e5e1e8;--gold:#bea47b;--shadow:0 8px 22px rgba(63,52,80,.04)}
+body{background:var(--bg);color:var(--ink)}.eyebrow{color:#9d6680}.hero h1 em{color:#756b94}.hero-tags span{border-color:#e3dfe6;background:#f4f0f4;color:#746b7d}
+.tab.active,.tab:hover{border-color:#c5b5d3;background:#eee8f3;color:#735880}.tab small{color:#9d89ab}.panel-head h3{color:#685976}.hint{color:#8e8893}
+.yug-tag{color:#9a7891;font-size:10.5px;font-weight:800;line-height:1.6}
+.yug-stats{grid-template-columns:repeat(4,minmax(0,1fr))}.yug-stats .stat{min-height:107px}.yug-stats .stat strong{color:#766492;font-size:21px}
+.yug-choice-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.yug-choice-grid button{min-width:0;min-height:85px;padding:13px;background:#fbfafa;border:1px solid #e4e1e6;border-radius:10px;text-align:left;display:flex;flex-direction:column;gap:6px}
+.yug-choice-grid button small{font-size:10px;color:#a5929a;line-height:1.4}.yug-choice-grid button strong{font-size:12px;color:#786885;line-height:1.5}
+.yug-choice-grid button:hover,.yug-choice-grid button.active{background:#f1eaf6;border-color:#c2afd3}.yug-choice-grid button.active strong{color:#6e527e}
+.yug-enterprise-dossier,.yug-serbia-layout,.yug-world-layout,.yug-federation-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:17px}
+.yug-enterprise-dossier{margin-top:13px;padding:16px;border:1px solid #e4e0ea;border-radius:10px;background:#f8f6f9}
+.yug-enterprise-dossier h4,.yug-republic-detail h4,.yug-serbia-dossier h4,.yug-world-dossier h4{color:#715c80;font-size:22px;letter-spacing:-.04em;line-height:1.3;margin:5px 0 7px}
+.yug-enterprise-dossier p{color:#777482;font-size:11.5px;line-height:1.8;margin:7px 0}
+.yug-enterprise-dossier>div:nth-child(2){border-left:2px solid #d9cadf;padding-left:15px}
+.yug-enterprise-dossier b,.yug-republic-detail b,.yug-serbia-dossier b,.yug-world-dossier b{color:#7d638d;font-size:11px}
+.yug-budget-panel{border-top:3px solid #ad92b5}
+.yug-budget-notice{background:#f7f1e9;border-left:3px solid #c9a684;border-radius:0 8px 8px 0;padding:12px 14px;margin-bottom:15px}
+.yug-budget-notice b{font-size:11px;color:#a58263}.yug-budget-notice p{font-size:11.5px;color:#837e79;line-height:1.8;margin:5px 0}
+.yug-budget-workbench{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:17px}
+.yug-budget-control{border:1px solid #e3dfea;border-radius:10px;padding:15px;background:#faf8fc}
+.yug-slider-label{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:13px}
+.yug-slider-label label{font-size:11.5px;font-weight:800;color:#715e85}
+.yug-slider-label output{font-size:24px;font-weight:900;letter-spacing:-.05em;color:#765b91;font-variant-numeric:tabular-nums}
+.yug-budget-control input[type=range]{appearance:none;-webkit-appearance:none;width:100%;height:11px;background:linear-gradient(to right,#9b7dae 0 var(--fill,35%),#e2d9e8 var(--fill,35%) 100%);border-radius:999px;cursor:pointer}
+.yug-budget-control input[type=range]::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:23px;height:23px;background:white;border:4px solid #906ba9;border-radius:50%;box-shadow:0 1px 4px #bfb0c7}
+.yug-budget-control input[type=range]::-moz-range-thumb{width:17px;height:17px;background:#fff;border:4px solid #906ba9;border-radius:50%}
+.yug-slider-ends{display:flex;justify-content:space-between;color:#9b94a3;font-size:10px;margin:10px 0 16px}
+.yug-worker-voices{display:flex;flex-direction:column;gap:8px}
+.yug-worker-voices>div{padding:10px;border:1px solid #e6e0eb;background:#fff;border-radius:7px}
+.yug-worker-voices b{font-size:11px;color:#80668b}.yug-worker-voices p{color:#8d8494;font-size:10.5px;line-height:1.65;margin:4px 0 0}
+.yug-budget-output{border:1px solid #e2dfea;border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:14px}
+.yug-budget-stack{display:flex;align-items:stretch;overflow:hidden;width:100%;height:30px;border-radius:7px;background:#e7e4e9}
+.yug-budget-stack>div{height:100%;transition:width .14s}
+.yug-budget-wage,.yug-color.wage{background:#a97b9a}.yug-budget-invest,.yug-color.invest{background:#6b9b99}.yug-budget-public,.yug-color.public{background:#c4a67e}
+.yug-budget-legend{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+.yug-budget-legend>div{min-width:0;display:flex;flex-direction:column;gap:5px;background:#f8f8f8;border:1px solid #ece8ed;border-radius:8px;padding:11px}
+.yug-color{width:25px;height:4px;border-radius:6px;display:block}
+.yug-budget-legend b{color:#635775;font-size:21px;letter-spacing:-.035em;font-variant-numeric:tabular-nums}
+.yug-budget-legend small{font-size:10px;color:#96909a;line-height:1.5}
+.yug-budget-warning{padding:12px;background:#f3eef4;border-left:3px solid #ac8fab;border-radius:0 8px 8px 0;margin-top:auto}
+.yug-budget-warning b{color:#84658f;font-size:11px}.yug-budget-warning p{color:#7e7685;font-size:11px;line-height:1.8;margin:5px 0}
+.yug-footnote{font-size:10.5px;line-height:1.8;color:#96909a;margin:12px 0 0}
+.yug-share-banner{display:flex;align-items:baseline;gap:13px;flex-wrap:wrap;margin-bottom:12px;background:#f7f4f9;border:1px solid #e7e1eb;border-radius:9px;padding:10px 13px}
+.yug-share-banner b{font-size:13px;color:#715883}.yug-share-banner span{font-size:10.5px;color:#928899}
+.yug-federal-bar{display:flex;overflow:hidden;height:23px;border-radius:8px;background:#e5e0e9;margin-bottom:15px}
+.yug-federal-bar>div{height:100%;min-width:0;transition:width .1s}
+.yug-republic-sliders{display:flex;flex-direction:column;gap:7px}
+.yug-republic-row,.yug-serbia-row{border:1px solid #e5e2ea;border-radius:9px;padding:9px 11px;background:#f9f8fa;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:9px;align-items:center}
+.yug-republic-row.selected,.yug-serbia-row.selected{background:#f0eaf4;border-color:#c5b2d3}
+.yug-republic-row>button,.yug-serbia-row>button{border:0;background:none;min-width:0;text-align:left;display:flex;flex-direction:column;gap:3px;padding:2px}
+.yug-republic-row>button strong,.yug-serbia-row>button strong{font-size:11.5px;color:#786388;line-height:1.4}
+.yug-republic-row>button small,.yug-serbia-row>button small{font-size:10px;color:#988b9a;line-height:1.5}
+.yug-range-small,.yug-serbia-row label{display:flex;align-items:center;gap:8px}
+.yug-range-small input,.yug-serbia-row input{width:100%;min-width:0;accent-color:#987da9;cursor:pointer}
+.yug-range-small output,.yug-serbia-row output{min-width:34px;font-size:11px;font-weight:850;color:#79688c;text-align:right;font-variant-numeric:tabular-nums}
+.yug-republic-detail,.yug-serbia-dossier,.yug-world-dossier{padding:18px;border:1px solid #e7e2e9;border-radius:10px;background:#faf8fb}
+.yug-republic-detail>div,.yug-serbia-dossier>div,.yug-world-dossier>div{margin-top:14px;padding-top:12px;border-top:1px solid #e8e2ec}
+.yug-republic-detail p,.yug-serbia-dossier p,.yug-world-dossier p{font-size:11.5px;color:#827a88;line-height:1.8;margin:6px 0}
+.yug-serbia-prompt{background:#f6f0e9;border-left:3px solid #c5a785;border-radius:0 9px 9px 0;padding:12px!important}
+.yug-serbia-prompt b{color:#9a795e}.yug-serbia-prompt button{border:1px solid #dac6ae;border-radius:8px;background:#fffdf9;font-size:11px;font-weight:800;color:#926b56;padding:9px 11px}
+.yug-serbia-intro{color:#7b7583;font-size:11.5px;line-height:1.8;margin:0 0 14px}
+.yug-serbia-structure{background:#f3f0f5;padding:11px;border-radius:10px;border:1px solid #e4ddec;margin-bottom:12px}
+.yug-serbia-parent{font-weight:850;font-size:12px;text-align:center;padding:10px;background:#e8dfee;border-radius:8px;color:#765d89}
+.yug-serbia-parent span{display:block;font-size:10px;font-weight:600;color:#95849e}
+.yug-serbia-branches{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;padding-top:16px}
+.yug-serbia-branches>div{position:relative;text-align:center;padding:10px 5px;border:1px solid #e2ddea;background:#fff;border-radius:8px;font-size:10.5px;line-height:1.45;color:#846d92;font-weight:800}
+.yug-serbia-branches>div:before{content:"";position:absolute;top:-16px;left:50%;height:15px;border-left:1px solid #b9a8c6}
+.yug-serbia-branches small{display:block;font-size:9.5px;font-weight:550;color:#9c91a1}
+.yug-serbia-sliders{display:flex;flex-direction:column;gap:7px}
+.yug-nonaligned-banner{background:linear-gradient(120deg,#f0e9f6,#f5f2ef);border:1px solid #e3dce8;border-radius:12px;padding:17px 21px;margin-bottom:15px}
+.yug-nonaligned-banner h3{font-size:20px;letter-spacing:-.04em;color:#755d87;margin:5px 0 7px}
+.yug-nonaligned-banner p{font-size:11.5px;color:#8b8190;line-height:1.8;margin:0}
+.yug-network{border:1px solid #e1dde8;border-radius:10px;overflow:hidden;background:#f0f2f0}
+.yug-network svg{display:block;width:100%;height:auto}
+.yug-network-link{stroke:#b8aabd;stroke-width:1.6;stroke-dasharray:4 6;fill:none}
+.yug-network-center{fill:#8c6d93;stroke:#fff;stroke-width:4}
+.yug-network-center-text{font-size:12px;fill:#fff;font-weight:850}
+.yug-network-pin{cursor:pointer}
+.yug-network-pin circle{fill:#b4a3be;stroke:#fff;stroke-width:3}
+.yug-network-pin.active circle,.yug-network-pin:hover circle{fill:#886598;stroke-width:4}
+.yug-network-pin text{font-size:11px;fill:#766280;font-weight:850;paint-order:stroke;stroke:#f1f2f0;stroke-width:3;pointer-events:none}
+.yug-world-options{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.yug-world-options button{border:1px solid #e2dcea;background:#fbfafc;color:#866b95;font-size:10.5px;font-weight:800;border-radius:7px;padding:7px 9px}
+.yug-world-options button.active,.yug-world-options button:hover{background:#f0e6f5;border-color:#baa2c9;color:#79558e}
+.yug-world-detail{margin-top:12px;background:#f5f0f7;border-left:3px solid #ae91b9;padding:12px 14px;border-radius:0 8px 8px 0}
+.yug-world-detail b{font-size:11px;color:#80628d}.yug-world-detail p{color:#85798d;font-size:11.5px;line-height:1.8;margin:5px 0}
+.yug-nonaligned-note{border:1px solid #e2dbe7;padding:13px 16px;border-radius:9px;color:#867d8e;background:#faf9fa;font-size:11.5px;line-height:1.8}
+.footer{border-top:1px solid var(--line);padding:24px 0 34px;margin-top:25px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:#968d99;font-size:11px}
+.footer p{color:#a399a5;font-size:10.5px}.footer a{color:#7c6488;text-decoration:none}.sources{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}.sources a{font-size:10px;text-decoration:none;color:#836d8d;border:1px solid #e3dce7;background:#fff;padding:6px 9px;border-radius:7px}
+@media(max-width:1050px){.yug-federation-layout,.yug-world-layout{grid-template-columns:1fr}.yug-world-layout .yug-network{max-width:720px}.yug-stats .stat strong{font-size:20px}}
+@media(max-width:740px){.yug-budget-workbench,.yug-enterprise-dossier,.yug-serbia-layout{grid-template-columns:1fr}.yug-enterprise-dossier>div:nth-child(2){border-left:0;border-top:1px solid #d9cadf;padding-left:0;padding-top:12px}.yug-choice-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.yug-choice-grid button:last-child:nth-child(odd){grid-column:1 / -1}.yug-worker-voices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}.yug-budget-control{padding:15px}}
+@media(max-width:540px){.yug-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.yug-worker-voices,.yug-budget-legend{grid-template-columns:1fr}.yug-worker-voices{display:flex}.yug-budget-legend{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}.yug-budget-legend b{font-size:17px}.yug-budget-legend small{font-size:9px}.yug-republic-row,.yug-serbia-row{grid-template-columns:1fr}.yug-republic-row>button,.yug-serbia-row>button{flex-direction:row;flex-wrap:wrap;align-items:baseline;gap:7px}.yug-serbia-branches>div{font-size:9.5px}}
+@media(max-width:435px){.shell{padding:0 13px}.topbar{min-height:65px}.topbrand{font-size:9px}.hero{padding:28px 0 19px}.hero h1{font-size:36px}.tab{font-size:10.5px;padding:10px}.panel{padding:15px}.yug-choice-grid{grid-template-columns:1fr}.yug-choice-grid button:last-child:nth-child(odd){grid-column:auto}.yug-choice-grid button{min-height:66px}.yug-network-pin text{font-size:9px}.yug-serbia-branches{grid-template-columns:1fr}.yug-serbia-branches>div:before{display:none}.yug-budget-legend{grid-template-columns:1fr 1fr}.yug-budget-legend>div:last-child{grid-column:1/-1}.yug-share-banner{gap:5px}}
+@media(prefers-reduced-motion:reduce){.yug-budget-stack>div,.yug-federal-bar>div{transition:none}}
