@@ -1,67 +1,64 @@
 <!doctype html>
-<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Франция · Четвёртая республика · ВПИ 1955</title>
-<meta name="description" content="Франция 1955: Четвёртая республика, Алжир, ЕОУС, франк и индикативная модернизация. Национальные механики.">
-<link rel="stylesheet" href="../css/fra.css">
-<script src="../js/geography-1955.js" defer></script>
-<script src="../data/fra-draft.js" defer></script>
-<script src="../js/fra-map.js" defer></script>
-<script src="../js/fra.js" defer></script>
+<html lang="ru"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Франция 1955: фракции Национального собрания, политическая карта Алжира, Европа ЕОУС и французское планирование.">
+<title>Франция · IV Республика · ВПИ 1955</title>
+<link rel="stylesheet" href="../css/fra-v2.css">
 <link rel="stylesheet" href="../css/parliament-1955.css">
+<script src="../data/fra-draft.js" defer></script>
+<script src="../data/fra-atlas-1955.js" defer></script>
+<script src="../js/fra-map.js" defer></script>
+<script src="../js/geography-1955.js" defer></script>
 <script src="../data/parliaments-1955.js" defer></script>
 <script src="../js/parliament-1955.js" data-parliament="fra" defer></script>
+<script src="../js/fra-v2.js" defer></script>
 </head><body><div class="page">
-<header class="mast"><a href="../index.html" class="back">← Каталог государств</a><span class="brand">ВПИ <strong>1955</strong> / НАЦИОНАЛЬНЫЕ МЕХАНИКИ</span></header>
-<section class="hero"><span class="eyebrow">Французская республика · 1 января 1955 года</span>
-<h1>Республика ищет<br><em>устойчивость.</em></h1>
-<p>Франция обладает промышленностью, колониальными обязательствами и влиянием в Европе. Но её кабинет зависит от парламентских сделок, а кризисы на заморских территориях требуют одновременно политики, денег и решений армии.</p>
-<div class="hero-pills"><span>Президент Рене Коти</span><span>Председатель Совета министров Пьер Мендес-Франс</span><span>Четвёртая республика</span><span>ЕОУС с 1952 года</span></div></section>
-
-<nav class="tabs" aria-label="Механики Франции">
-<button type="button" data-tab="parliament" class="tab current" aria-selected="true"><span>01</span> Республика</button>
-<button type="button" data-tab="algeria" class="tab" aria-selected="false"><span>02</span> Алжир</button>
-<button type="button" data-tab="europe" class="tab" aria-selected="false"><span>03</span> Европа</button>
-<button type="button" data-tab="planning" class="tab" aria-selected="false"><span>04</span> Франк и план</button>
-</nav><main>
-<section id="parliament" class="pane current"><div class="head"><span class="eyebrow">FRA-01 · Республика на песке</span><h2>Кабинет существует, пока есть согласие</h2><p>Фракции Национального собрания могут поддержать конкретный бюджет и разойтись по Алжиру, европейским договорам или экономике. Не существует одной кнопки «добиться большинства».</p></div>
-<div class="columns">
-<section class="card"><div class="row-head"><div><span class="eyebrow">Политические силы</span><h3>Национальное собрание</h3></div><span class="small-tag">Справка: июль 1951</span></div>
-<div id="fraParliamentStack" class="stack-graph" role="img" aria-label="Историческое распределение парламентских групп в 1951 году"></div><div id="fraPartyButtons" class="party-grid"></div>
-<p class="tiny">В 1955 году фракции и персональный состав изменились, особенно среди голлистов. Числа ниже не позволяют автоматически проводить голосования 1955 года.</p></section>
-<aside class="card"><span class="eyebrow">Политические переговоры</span><h3 id="fraPartyName">Выберите фракцию</h3><div id="fraPartyCount" class="party-count"></div>
-<p id="fraPartyStance" class="detail-text"></p><div class="line"></div><strong>О чём договариваться</strong><p id="fraPartyDeal" class="detail-text"></p>
-<label class="check-deal"><input type="checkbox" id="fraPartyInclude">Рассмотреть как партнёра по конкретному законопроекту</label>
-<div class="coalition-panel"><div class="eyebrow">Условный список для переговоров</div><strong id="fraCoalitionSum">—</strong><p id="fraCoalitionNames">—</p><small>Сумма мандатов 1951 года нужна только для ориентира. Она НЕ заменяет действительный состав 1955 года, процедуру инвеституры и реальное голосование.</small></div>
-<button type="button" id="fraCoalitionReset" class="quiet">Очистить выбор</button></aside></div></section>
-<section id="algeria" class="pane" hidden><div class="head"><span class="eyebrow">FRA-02 · Алжирский узел</span><h2>Одна территория — разные политические интересы</h2><p>Алжир в правовой системе Франции не просто обычная иностранная колония: здесь действуют французские департаменты с глубоко неравными социальными и политическими условиями. Конфликт начался до старта игры, но дальнейшая эскалация не предрешена.</p></div>
-<div class="columns"><section class="card"><div class="row-head"><div><span class="eyebrow">Географический ориентир</span><h3>Алжирские департаменты</h3></div><span class="small-tag">1955</span></div>
-<svg id="fraAlgeriaMap" viewBox="0 0 660 410" role="group" aria-label="Карта Алжира с тремя основными центрами"></svg>
-<div id="fraAlgeriaPlaces" class="location-list"></div>
-<div id="fraLocationNote" class="map-info">Выберите центр на карте</div>
-<p class="tiny">Современная географическая подложка, не точная схема юридических границ трёх департаментов 1955 года. Иные алжирские территории и Сахара не сведены к этим трём городам.</p></section>
-<aside class="card"><span class="eyebrow">Политические акторы</span><h3>С кем придётся взаимодействовать</h3><div id="fraAlgeriaActors" class="actor-list"></div>
-<div class="actor-info"><strong id="fraActorName"></strong><p id="fraActorFocus"></p><div class="line"></div><strong>Направления решений</strong><p id="fraActorMoves"></p></div>
-<p class="tiny">Переговоры с одним актором не означают поддержки остальных. Армейская безопасность, местная администрация и гражданские права рассматриваются раздельно.</p></aside></div></section>
-<section id="europe" class="pane" hidden><div class="head"><span class="eyebrow">FRA-03 · Европа как выход</span><h2>Общий рынок начинается с договоров</h2><p>На 1 января 1955 года действует ЕОУС для угля и стали. Общего рынка всех товаров и будущей ЕЭС ещё нет. Франция может предлагать новые соглашения, но каждый участник обладает собственным правом согласия.</p></div>
-<div class="columns"><section class="card"><div class="row-head"><div><span class="eyebrow">Шесть государств-участников ЕОУС</span><h3>Экономические связи</h3></div><span class="small-tag">1952 → 1955</span></div>
-<svg id="fraEuropeMap" role="group" viewBox="0 0 830 650" aria-label="Кликабельная европейская карта государств ЕОУС"></svg>
-<div id="fraEuropeanPartners" class="partner-pills"></div>
-<p class="tiny">Современная географическая подложка — ориентир, не юридическая карта 1955 года. Люксембург может отображаться условной точкой. Статус Саара и Берлина требует отдельного учёта.</p></section>
-<aside class="card"><span class="eyebrow">Двусторонние интересы</span><h3 id="fraEuropeName"></h3><span class="small-tag" id="fraEuropeStatus"></span><p id="fraEuropeSubject" class="detail-text"></p>
-<div class="line"></div><h4>Что игрок может сделать</h4><div class="choices"><div><strong>Секторальный договор</strong><p>Согласовать доступ к рынку определённого товара, а не автоматически всей экономики.</p></div><div><strong>Компенсация потерь</strong><p>Помочь отраслям, которые столкнутся с импортной конкуренцией.</p></div><div><strong>Совместный проект</strong><p>Финансирование, патенты и сроки требуют соглашения обоих государств.</p></div></div>
-<p class="tiny">Исторический будущий договор не создаётся автоматически: политическая интеграция зависит от переговоров игроков.</p></aside></div></section>
-<section id="planning" class="pane" hidden><div class="head"><span class="eyebrow">FRA-04 + FRA-05 · Франк и индикативная модернизация</span><h2>Планировать, не командуя фабрикой</h2><p>Французское государство может направлять кредиты и госзаказы в рамках послевоенного планирования, но предприятия, банки, оборудование и валютный импорт сохраняют собственные ограничения.</p></div>
-<div class="columns">
-<section class="card"><div class="row-head"><div><span class="eyebrow">Второй послевоенный план · 1954–1957</span><h3>Отраслевые проекты</h3></div><span class="small-tag">Сценарий</span></div><div id="fraSectorChoices" class="sector-grid"></div>
-<div class="line"></div><h3 id="fraSectorTitle"></h3><p class="detail-text" id="fraSectorAsset"></p><div class="subdetail"><strong>Узкое место</strong><p id="fraSectorLimit"></p></div><div class="subdetail"><strong>Как продвинуться</strong><p id="fraSectorStep"></p></div>
-<label for="fraCofinance">Предполагаемое частное софинансирование</label><input type="range" id="fraCofinance" min="0" max="75" step="5" value="30"><div class="cofinance-readout"><strong id="fraCofinanceValue"></strong><span id="fraCofinanceText"></span></div><p class="tiny">Число — намерение игрока, а не выданный частный кредит. Реальное участие требуется подтвердить соглашениями и доступностью капитала.</p>
+<header class="mast"><a class="back" href="../index.html">← Каталог государств</a><span class="brand">ВПИ <strong>1955</strong> / НАЦИОНАЛЬНЫЕ МЕХАНИКИ</span></header>
+<section class="hero"><div class="eyebrow">Французская республика / 01.01.1955</div><h1>Сильное государство.<br><em>Хрупкое большинство.</em></h1><p>Франция способна строить заводы, определять европейскую политику и управлять обширной администрацией. Но кабинет зависит от меняющихся союзов, а алжирский конфликт связывает безопасность, гражданские права и судьбу правительства.</p>
+<div class="hero-chips"><span><b>Президент</b> Рене Коти</span><span><b>Председатель Совета</b> Пьер Мендес-Франс</span><span><b>Политический строй</b> IV Республика</span><span><b>Действующий договор</b> ЕОУС</span></div></section>
+<nav class="tabs" aria-label="Механики Франции"><button type="button" data-tab="parliament" aria-selected="true" class="tab current"><span>01</span> Кабинет и Ассамблея</button><button type="button" data-tab="algeria" aria-selected="false" class="tab"><span>02</span> Алжир</button><button type="button" data-tab="europe" aria-selected="false" class="tab"><span>03</span> Европейский выбор</button><button type="button" data-tab="planning" aria-selected="false" class="tab"><span>04</span> Французский план</button></nav>
+<main>
+<section id="parliament" class="pane current"><div class="section-heading"><span class="eyebrow">01 / Четвёртая республика</span><h2>Одно собрание — разные большинства</h2><p>Фракция может поддержать социальную реформу, но не доверять премьеру. Составьте политическую комбинацию по конкретному вопросу и посмотрите, где предстоят самые трудные переговоры.</p></div>
+<div class="political-principle"><span class="principle-mark">!</span><p><b>Как считать:</b> мандаты — справочный состав после выборов 1951 года, не установленное число голосов на 1 января 1955 года. Позиции партий — исторически обоснованные направления разногласий, а не дисциплинированные голоса. Итог голосования определяется игрой.</p></div>
+<div class="issue-top card"><div class="card-heading"><div><div class="eyebrow">Законопроект и переговоры</div><h3>Выберите предмет голосования</h3></div><span class="soft-tag">Позиции сохраняются отдельно для каждой темы</span></div><div id="fraIssueButtons" class="issue-selector"></div><p id="fraIssueQuestion" class="issue-question"></p><div class="issue-caution" id="fraIssueConflict"></div></div>
+<div class="political-columns">
+ <section class="card parties-panel"><div class="card-heading"><div><span class="eyebrow">Восемь парламентских групп</span><h3>Кого привлекать к голосованию</h3></div><span class="soft-tag">Историческая опора · 1951</span></div>
+ <div class="vote-guide"><span><i class="vote-yes"></i> Поддержка</span><span><i class="vote-maybe"></i> Переговоры</span><span><i class="vote-no"></i> Не рассчитывать</span></div><div id="fraPartyCards" class="party-cards"></div></section>
+ <aside class="side-stack">
+  <section class="card vote-dossier"><div class="eyebrow">Профиль политической группы</div><h3 id="fraPartyName"></h3><span id="fraPartyTag" class="party-tag"></span><p id="fraPartyInterest"></p><div class="dossier-field"><b>Позиция по выбранному вопросу</b><p id="fraPartyPosition"></p></div><div class="dossier-field"><b>Где возможен компромисс — и где спор</b><p id="fraPartyConditions"></p></div><div class="dossier-field"><b>Историческая численность группы</b><p id="fraPartySeats"></p></div></section>
+  <section class="card coalition-dossier"><div class="eyebrow">Проект парламентской комбинации</div><h3>Опора по вопросу</h3><div class="coalition-numbers"><div><span>Обозначено «поддержка»</span><strong id="fraYesSeats">0</strong></div><div><span>Дополнительно на переговорах</span><strong id="fraMaybeSeats">0</strong></div></div><div class="coalition-track" id="fraCoalitionTrack"></div><div class="coalition-flag" id="fraCoalitionFlag"></div><p id="fraCoalitionDetail" class="coalition-detail"></p><p class="fineprint">Порог сравнения: 314 из 626 справочных мандатов 1951 года. Это не проверка формальной инвеституры или реального голосования 1955 года.</p><div class="coalition-actions"><button type="button" id="fraCopyCoalition" class="primary">Копировать проект коалиции</button><button type="button" id="fraResetCoalition" class="quiet">Сбросить тему</button></div><span id="fraCopyStatus" class="copy-status" role="status"></span></section>
+ </aside></div>
+<div class="consequence-strip"><b>Почему это важно:</b><span>По Алжиру правительство может собрать одно большинство, по бюджету — другое. Потеря доверия кабинету и провал отдельного законопроекта не одно и то же.</span></div>
 </section>
-<aside class="card"><span class="eyebrow">Дефицит валюты и топлива</span><h3>Какие поставки важны</h3><div class="actor-list" id="fraImports"></div>
-<div class="actor-info"><strong id="fraImportTitle"></strong><p id="fraImportPressure"></p><div class="line"></div><strong>Возможные действия</strong><p id="fraImportNegotiations"></p></div>
-<div class="line"></div><h4>Предварительное предложение</h4><p class="tiny">Сформируйте текст, чтобы затем самостоятельно оформить полноценный игровой пост.</p>
-<button type="button" class="primary" id="fraDraftGenerate">Сформировать черновик для судьи</button>
-<div id="fraDraft" hidden><label for="fraDraftText">Текст-помощник</label><textarea id="fraDraftText" readonly rows="10"></textarea><button type="button" class="quiet" id="fraCopy">Копировать</button><span id="fraCopyStatus" role="status"></span></div>
-</aside></div></section>
-</main>
-<footer><span>ВПИ 1955 · Франция · Национальные механики</span><a href="../index.html">← Все страны</a></footer>
+
+<section id="algeria" class="pane" hidden><div class="section-heading"><span class="eyebrow">02 / Французский Алжир</span><h2>Конфликт не начинается с карты фронта</h2><p>1 ноября 1954 года произошло вооружённое выступление ФНО. В январе 1955 года борьба разворачивается неравномерно: разные районы, национальные организации, местные власти и поселенческие группы создают разные политические задачи.</p></div>
+<div class="algeria-principle"><div><b>Начало войны · 1954</b><p>Уже произошло до начала игры</p></div><div><b>Административная принадлежность</b><p>Часть Французской республики, с глубоким неравенством представительства</p></div><div><b>Решение статуса</b><p>Не предрешено; определяется игровыми решениями</p></div></div>
+<div class="algeria-layout">
+ <section class="card map-card"><div class="card-heading"><div><span class="eyebrow">Региональная обстановка · 01.01.1955</span><h3>Карта ранних очагов и политических узлов</h3></div><span class="soft-tag">Выберите территорию</span></div>
+  <div class="algeria-map-wrap"><svg id="fraAlgeriaMap" viewBox="0 0 660 410" role="group" aria-label="Интерактивная аналитическая карта алжирских регионов на 1 января 1955"></svg></div>
+  <div class="algeria-legend"><span><i class="heat-high"></i> Вооружённый очаг</span><span><i class="heat-medium"></i> Ранняя активность и напряжённость</span><span><i class="heat-base"></i> Другие районы</span></div>
+  <div id="fraAlgeriaZones" class="algeria-region-pills"></div>
+  <p class="fineprint">Заштрихованные зоны — <b>условная географическая иллюстрация исторических районов</b>, не карта юридических границ, фронта или контроля сторон. Операционные направления ФНО 1954 года не следует смешивать с административными департаментами.</p>
+ </section>
+ <aside class="card region-dossier"><span class="eyebrow">Досье региона</span><h3 id="fraRegionName"></h3><div id="fraRegionStatus" class="region-status"></div><div class="region-intro" id="fraRegionContext"></div><div class="dossier-field"><b>Откуда возникает напряжение</b><ul id="fraRegionDrivers" class="text-list"></ul></div><div class="dossier-field"><b>Группы интересов</b><p id="fraRegionStakeholders"></p></div><div class="dossier-field"><b>Последствия для Парижа</b><p id="fraRegionPolitics"></p></div><button class="text-link" type="button" data-jump="parliament" data-issue="algeria">Рассмотреть позиции Национального собрания →</button></aside>
+</div>
+<div class="card actors-wide"><div class="card-heading"><div><span class="eyebrow">Население, администрация и политические организации</span><h3>С кем придётся иметь дело</h3></div></div><div id="fraActorButtons" class="actor-buttons"></div><div class="actor-detail"><div><span class="eyebrow">Участник конфликта</span><h4 id="fraActorName"></h4><p id="fraActorFocus"></p></div><div><b>Предмет возможных решений</b><p id="fraActorMoves"></p></div></div></div>
+<div class="consequence-strip"><b>Сквозная связь:</b><span>Алжир — вопрос министерства внутренних дел, армии, бюджета, местных гражданских прав и парламентских коалиций. Изменения проходят через судейство, а не через шкалу «подавления».</span></div></section>
+
+<section id="europe" class="pane" hidden><div class="section-heading"><span class="eyebrow">03 / Европейская политика</span><h2>Франция может предложить Европу. Но какую?</h2><p>ЕОУС уже объединяет уголь и сталь шести стран. Проект Европейского оборонительного сообщества отклонён французским парламентом в августе 1954 года. Следующий шаг — экономический или политический — нужно изобрести и согласовать.</p></div>
+<div class="europe-status-grid"><div><span class="status-dot done"></span><b>ЕОУС</b><small>Действует с 1952 года</small></div><div><span class="status-dot stalled"></span><b>Европейское оборонительное сообщество</b><small>Договор не вступил в силу</small></div><div><span class="status-dot future"></span><b>Общий рынок всех товаров</b><small>Ещё не существует</small></div></div>
+<div class="europe-columns">
+ <section class="card europe-main"><div class="card-heading"><div><span class="eyebrow">Шесть государств ЕОУС</span><h3>Участники и интересы</h3></div><span class="soft-tag">Ситуация января 1955</span></div>
+  <div class="eu-map-wrap"><svg id="fraEuropeMap" viewBox="0 0 830 650" role="group" aria-label="Интерактивная карта европейских участников ЕОУС"></svg></div><div id="fraEuropePartners" class="eu-partner-pills"></div><p class="fineprint">Использована современная географическая подложка. Саар не следует считать обычной частью ФРГ на стартовую дату; карта не определяет границы 1955 года.</p>
+ </section>
+ <aside class="card europe-partner-dossier"><span class="eyebrow">Партнёр по договору</span><h3 id="fraEuropeName"></h3><div class="dossier-field"><b>Экономическое значение</b><p id="fraEuropeIndustry"></p></div><div class="dossier-field"><b>Что может заинтересовать партнёра</b><p id="fraEuropeInterest"></p></div><div class="dossier-field"><b>Где возникнут споры</b><p id="fraEuropeFriction"></p></div></aside>
+</div>
+<div class="card europe-agenda"><div class="card-heading"><div><span class="eyebrow">Повестка европейских переговоров</span><h3>Пять разных направлений интеграции</h3></div></div><div id="fraEuropeIssues" class="agenda-pills"></div><div class="agenda-detail"><div><span id="fraEuropeIssueStatus" class="issue-label"></span><h4 id="fraEuropeIssueTitle"></h4><p id="fraEuropeIssueCore"></p><div class="dossier-field"><b>Кто должен участвовать</b><ul id="fraEuropeIssueActors" class="text-list"></ul></div></div><div><b>Возможные направления переговоров</b><ul id="fraEuropeIssueChoices" class="text-list benefit"></ul><div class="parliament-impact"><b>Парламентский аспект</b><p id="fraEuropeIssueParliament"></p><button class="text-link" type="button" data-jump="parliament" data-issue="europe">Посмотреть французские фракции →</button></div></div></div></div></section>
+
+<section id="planning" class="pane" hidden><div class="section-heading"><span class="eyebrow">04 / Второй план 1954–1957</span><h2>План как система договорённостей, а не приказов</h2><p>Второй план готовится и обсуждается с участием комиссий, ведомств и предприятий под руководством Этьена Ирша. На 1 января 1955 года нельзя считать его окончательную парламентскую судьбу предрешённой. Франция остаётся смешанной экономикой: бюджет, кредиты, рабочая сила и право собственности определяют реализацию.</p></div>
+<div class="plan-kpis" id="fraPlanStats"></div>
+<div class="card plan-governance"><div class="card-heading"><div><span class="eyebrow">Как действительно работает французское планирование</span><h3>От согласованной цели к работающему предприятию</h3></div><span class="soft-tag">Индикативный план</span></div><div class="plan-chain"><div><small>01 / АНАЛИЗ</small><b>Комиссариат и комиссии</b><p>Эксперты, предприятия и отрасли определяют возможности и дефициты.</p></div><span class="chain-arrow">→</span><div><small>02 / ПОЛИТИКА</small><b>Кабинет и парламент</b><p>Законы, инвестиционные программы и финансирование.</p></div><span class="chain-arrow">→</span><div><small>03 / ФИНАНСЫ</small><b>Банки и государственный кредит</b><p>Доступ к займам, гарантиям и валютному импорту.</p></div><span class="chain-arrow">→</span><div><small>04 / ИСПОЛНЕНИЕ</small><b>Предприятия и рабочие</b><p>Мощности, материалы, кадры и сроки реального ввода.</p></div></div><p class="fineprint">План задаёт ориентиры и механизм согласования, но не превращает все частные фабрики в государственные учреждения и не обеспечивает инвестиции автоматически.</p></div>
+<div class="card industrial-main"><div class="card-heading"><div><span class="eyebrow">Отраслевые приоритеты</span><h3>Где модернизация сталкивается с ограничениями</h3></div><span class="soft-tag">Выберите отрасль</span></div><div id="fraPlanSectors" class="sector-buttons"></div><div class="industrial-dossier"><div class="industrial-title"><span class="eyebrow">Промышленный профиль</span><h4 id="fraSectorTitle"></h4><p id="fraSectorAsset"></p><div id="fraSectorRegion" class="place-tag"></div></div><div class="industrial-split"><div><b>Кто принимает решения и влияет на реализацию</b><div class="pill-list" id="fraSectorPeople"></div><b>Главные узкие места</b><ul id="fraSectorBottlenecks" class="text-list"></ul></div><div><b>Какие меры могут предпринять власти</b><p id="fraSectorPlan"></p><b>Парламент и интересы</b><p id="fraSectorParliament"></p><b>Связанные направления</b><div id="fraSectorLinks" class="linked-sectors"></div></div></div></div></div>
+<div class="plan-conclusion"><b>Историческая специфика:</b> французский план строится на согласовании государства, кредитных институтов и бизнеса. Он может пережить смену кабинета, но отдельные инвестиции зависят от парламентских решений и конкретных исполнителей.</div></section>
+</main><footer class="footer"><div><b>ВПИ 1955 · Франция</b><p>Национальные механики · 1 января 1955 года</p></div><div><b>Исторические источники</b><div id="fraSources" class="source-links"></div></div><a href="../index.html">← Все государства</a></footer>
 </div></body></html>

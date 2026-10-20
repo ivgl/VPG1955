@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+:root{--bg:#f4f5f2;--paper:#fff;--ink:#22363e;--muted:#647b80;--line:#dce6e1;--navy:#284f64;--blue:#557e9f;--teal:#347b70;--wine:#a35f67;--ochre:#b38b60;--soft:#eef5f0;--shadow:0 7px 25px rgba(35,67,63,.045)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);background:var(--bg);font:14px/1.65 Manrope,system-ui,-apple-system,"Segoe UI",sans-serif;overflow-x:hidden}
+button,input,textarea{font:inherit}button{cursor:pointer}a{color:var(--navy)}
+button:focus-visible,a:focus-visible,[role="button"]:focus-visible{outline:3px solid #d5aa65;outline-offset:3px}
+[hidden]{display:none!important}
+.page{max-width:1210px;padding:0 clamp(15px,2.5vw,28px);margin:0 auto;min-width:0}
+.mast{display:flex;justify-content:space-between;align-items:center;min-height:75px;gap:16px;border-bottom:1px solid var(--line)}
+.back{font-size:12px;font-weight:800;text-decoration:none}
+.back:hover{text-decoration:underline}
+.brand{font-size:11px;letter-spacing:.085em;color:#748c88;font-weight:800;text-align:right}.brand strong{color:var(--wine)}
+.eyebrow{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--wine);font-weight:800}
+.hero{padding:44px 0 22px}
+.hero h1{font-size:clamp(37px,5.2vw,66px);font-weight:800;letter-spacing:-.063em;line-height:1.08;margin:12px 0 17px}
+.hero h1 em{color:var(--navy);font-style:normal}
+.hero>p{max-width:930px;color:#637b82;font-size:14px;line-height:1.85;margin:0}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:21px}
+.hero-chips span{font-size:11px;background:#e6f0eb;border:1px solid #d0e3d8;color:#4b7769;border-radius:9px;padding:8px 11px}
+.hero-chips b{color:#286559;margin-right:4px}
+.page>.vpi-parliament{max-width:100%;margin:15px 0 18px}
+.tabs{display:flex;gap:7px;overflow-x:auto;border-bottom:1px solid var(--line);margin:16px 0 24px;padding:0 0 15px;scroll-margin-top:30px;scrollbar-width:thin}
+.tab{display:inline-flex;gap:11px;align-items:center;background:transparent;border:1px solid transparent;border-radius:10px;padding:11px 14px;font-size:12px;font-weight:800;color:#6f858a;white-space:nowrap}
+.tab span{font-size:10px;color:#96a5a5}
+.tab.current,.tab:hover{background:#e4efea;border-color:#c0dace;color:#27645b}
+.pane{padding:4px 0 27px;min-width:0}.pane:not(.current){display:none}
+.section-heading{max-width:920px;margin:0 0 22px}
+.section-heading h2{font-size:clamp(27px,3.7vw,39px);letter-spacing:-.047em;margin:8px 0 10px;line-height:1.15}
+.section-heading p{font-size:13px;line-height:1.8;color:var(--muted);margin:0}
+.card{min-width:0;background:var(--paper);border:1px solid var(--line);border-radius:15px;padding:22px;box-shadow:var(--shadow)}
+.card-heading{display:flex;align-items:start;justify-content:space-between;gap:10px;margin-bottom:16px}
+.card h3{font-size:18px;letter-spacing:-.035em;line-height:1.3;margin:6px 0 0}
+.soft-tag{color:#627f71;font-size:10px;font-weight:750;background:#eef5f0;border:1px solid #d9e8df;border-radius:30px;padding:5px 10px;flex:none}
+.fineprint{font-size:10px;color:#788f8d;line-height:1.7;margin:13px 0 0}
+.political-principle{display:flex;align-items:start;gap:11px;background:#f9f3e8;border:1px solid #e8dac4;padding:13px 16px;border-radius:12px;margin:0 0 14px}
+.political-principle p{font-size:11px;line-height:1.75;color:#756b54;margin:0}
+.principle-mark{display:grid;place-items:center;flex:0 0 21px;height:21px;border-radius:50%;background:#e6ceab;color:#6b5438;font-weight:800}
+.issue-top{margin:0 0 15px}
+.issue-selector,.agenda-pills,.actor-buttons{display:flex;gap:7px;flex-wrap:wrap}
+.issue-selector button,.agenda-pills button{padding:10px 13px;font-size:11px;font-weight:750;border-radius:9px;background:#f7faf8;color:#617d72;border:1px solid #dfebe4}
+.issue-selector button:hover,.issue-selector button.active,.agenda-pills button:hover,.agenda-pills button.active{background:#e1efe7;border-color:#8cb89f;color:#205e51}
+.issue-question{font-size:14px;font-weight:800;color:#2d5854;margin:16px 0 8px}
+.issue-caution{font-size:12px;color:#7e7566;padding:12px 14px;background:#f6f3ed;border-radius:8px;line-height:1.65}
+.political-columns{display:grid;grid-template-columns:minmax(0,1.43fr) minmax(305px,.85fr);gap:14px;align-items:start}
+.side-stack{display:grid;gap:14px;min-width:0}
+.vote-guide{display:flex;gap:10px 17px;flex-wrap:wrap;margin:0 0 13px;color:#678078;font-size:11px}
+.vote-guide span{display:flex;align-items:center;gap:6px}
+.vote-guide i{width:9px;height:9px;display:inline-block;border-radius:3px}
+.vote-guide .vote-yes{background:#6eae88}.vote-guide .vote-maybe{background:#d5af76}.vote-guide .vote-no{background:#c97d7b}
+.party-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.party-tile{border:1px solid #dce7e2;border-left:4px solid var(--party);border-radius:11px;padding:12px;background:#fbfdfb;min-width:0;display:flex;flex-direction:column;gap:8px}
+.party-tile.selected{background:#eff7f1;border-color:#a7c8b8;border-left-color:var(--party)}
+.party-main{border:0;background:transparent;text-align:left;display:flex;flex-direction:column;gap:4px;padding:0}
+.party-main strong{font-size:12px;line-height:1.4;color:#2c4c4a}
+.party-main small{font-size:10px;font-weight:750;color:#8ba09b}
+.party-brief{font-size:11px;line-height:1.5;color:#69817e;flex:1;min-height:61px}
+.party-votes{display:flex;gap:5px}
+.party-votes button{flex:1;min-width:0;background:#eef2ee;border:1px solid #e4ebe6;color:#789188;padding:7px 4px;border-radius:7px;font-size:9px;font-weight:850;line-height:1.2}
+.party-votes button.vote-yes.active,.party-votes button.vote-yes:hover{background:#daf0df;color:#317451;border-color:#9bcaab}
+.party-votes button.vote-maybe.active,.party-votes button.vote-maybe:hover{background:#f8ecd5;color:#956b37;border-color:#e2c58e}
+.party-votes button.vote-no.active,.party-votes button.vote-no:hover{background:#f7e3df;color:#aa5753;border-color:#deaaa4}
+.vote-dossier h3{font-size:21px;margin:6px 0 9px}
+.party-tag{display:inline-flex;color:var(--party);background:#f0f5f1;border-left:3px solid var(--party);font-size:11px;font-weight:800;padding:6px 10px;margin:2px 0 12px}
+.vote-dossier>p{font-size:12px;color:#536f70;line-height:1.8;margin:4px 0 15px}
+.dossier-field{border-top:1px solid #e5ece8;padding-top:13px;margin-top:12px}
+.dossier-field>b,.industrial-split b,.actor-detail b{display:block;font-size:11px;font-weight:800;color:#2d6457}
+.dossier-field p{font-size:12px;color:#647c7c;margin:6px 0 0;line-height:1.75}
+.coalition-dossier h3{margin-bottom:15px}
+.coalition-numbers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.coalition-numbers>div{display:flex;flex-direction:column;gap:8px;border:1px solid #dceae0;background:#f0f7f2;border-radius:10px;padding:12px;min-width:0}
+.coalition-numbers>div:nth-child(2){background:#faf5ec;border-color:#ebe3d5}
+.coalition-numbers span{font-size:10px;color:#70897c;line-height:1.4}
+.coalition-numbers strong{font-size:22px;color:#2b6753;letter-spacing:-.04em;line-height:1.2}
+.coalition-numbers>div:nth-child(2) strong{color:#987548}
+.coalition-track{display:flex;background:#e6eae8;border-radius:30px;height:12px;overflow:hidden;margin:15px 0 11px}
+.coalition-track>span{display:block;height:100%}.coal-yes{background:#5aa077}.coal-maybe{background:#d5b074}
+.coalition-flag{font-weight:800;font-size:12px;line-height:1.65;color:#41695f}
+.coalition-detail{font-size:11px;color:#68807b;line-height:1.8}
+.coalition-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;align-items:center}
+.primary{background:#2c7362;color:white;border:1px solid #286a5b;font-weight:800;padding:11px 14px;border-radius:9px;font-size:11px}
+.primary:hover{background:#215b4d}
+.quiet{background:#f2f6f3;color:#5e7970;font-size:11px;font-weight:800;padding:11px 12px;border:1px solid #dce7df;border-radius:9px}
+.quiet:hover{background:#e7f1e9}
+.copy-status{display:block;color:#59896c;font-size:11px;margin-top:10px}
+.consequence-strip,.plan-conclusion{margin:15px 0 0;padding:15px 19px;background:#eaf2ec;border:1px solid #cfdfd4;border-radius:11px;display:flex;align-items:start;gap:12px}
+.consequence-strip b,.plan-conclusion b{font-size:12px;color:#2c6454;white-space:nowrap}
+.consequence-strip span,.plan-conclusion{font-size:12px;color:#63786f;line-height:1.7}
+/* Algeria analytical regional map */
+.algeria-principle{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-bottom:15px}
+.algeria-principle>div{background:#e9f1eb;border:1px solid #d6e3da;border-radius:11px;padding:12px}
+.algeria-principle b{display:block;font-size:11px;color:#346757}
+.algeria-principle p{font-size:11px;color:#72847b;margin:5px 0 0}
+.algeria-layout{display:grid;grid-template-columns:minmax(0,1.27fr) minmax(305px,.88fr);gap:14px;align-items:start}
+.algeria-map-wrap{background:linear-gradient(160deg,#ebf2ed,#e5efeb);border:1px solid #dbe5dc;border-radius:11px;overflow:hidden}
+#fraAlgeriaMap{width:100%;height:auto;display:block}
+.algeria-base{fill:#e2d2b6}
+.algeria-region{fill:var(--zone);stroke:#fdf8ee;stroke-width:2;vector-effect:non-scaling-stroke;opacity:.88;cursor:pointer;transition:opacity .15s,filter .15s}
+.algeria-region.active,.algeria-region:hover{opacity:1;filter:saturate(1.3) brightness(.95);stroke:#754d48;stroke-width:2.5}
+.algeria-outline{fill:none;stroke:#a58d75;stroke-width:2;pointer-events:none}
+.algeria-graphic-label{pointer-events:none;fill:#4b4643;stroke:#f7eddf;stroke-width:3px;paint-order:stroke;font-size:12px;font-weight:800}
+.algeria-graphic-dot{pointer-events:none;fill:#775e51;stroke:white;stroke-width:2}
+.algeria-legend{display:flex;gap:8px 14px;flex-wrap:wrap;margin:13px 2px}
+.algeria-legend span{display:flex;gap:6px;align-items:center;font-size:10px;color:#698079}
+.algeria-legend i{width:10px;height:10px;border-radius:3px}
+.heat-high{background:#ae696b}.heat-medium{background:#cb847c}.heat-base{background:#cfc5ae}
+.algeria-region-pills{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+.algeria-region-pills button{display:flex;gap:7px;align-items:center;border:1px solid #e3e8df;border-radius:8px;background:#fbfcfa;padding:8px 10px;text-align:left;font-size:11px;font-weight:750;color:#657973}
+.algeria-region-pills button span{width:8px;height:8px;flex:0 0 8px;border-radius:3px}
+.algeria-region-pills button.active,.algeria-region-pills button:hover{background:#eaf3e9;border-color:#9dbdad;color:#2d6255}
+.region-dossier h3{font-size:25px;margin:7px 0}
+.region-status{display:inline-block;border-radius:20px;border:1px solid #e3c5bd;background:#fbf2ec;color:#975b54;padding:5px 10px;font-size:11px;font-weight:750}
+.region-intro{font-size:12px;color:#59726b;line-height:1.8;background:#eff5f0;border-radius:9px;padding:12px;margin:15px 0}
+.text-list{list-style:none;padding:0;margin:10px 0 0;display:grid;gap:7px}
+.text-list li{position:relative;font-size:11px;color:#577069;line-height:1.65;padding:9px 12px 9px 24px;background:#f5f9f6;border:1px solid #e5ece6;border-radius:8px}
+.text-list li:before{content:"";position:absolute;left:10px;top:17px;width:6px;height:6px;border-radius:50%;background:#be907f}
+.text-list.benefit li:before{background:#6da58a}
+.text-link{border:0;background:transparent;text-align:left;color:#2c7863;text-decoration:underline;text-underline-offset:3px;padding:11px 0 0;font-size:11px;font-weight:800}
+.text-link:hover{color:#174e44}
+.actors-wide{margin-top:15px}
+.actor-buttons{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.actor-buttons button{border:1px solid #e0e9e2;border-radius:9px;padding:12px;text-align:left;background:#fafcfa;color:#607972;font-size:11px;font-weight:800;line-height:1.5;min-height:70px}
+.actor-buttons button.active,.actor-buttons button:hover{background:#e6f1e8;border-color:#9cc6ad;color:#2f6958}
+.actor-detail{display:grid;grid-template-columns:1fr 1fr;gap:22px;padding:18px 0 0;margin-top:19px;border-top:1px solid #e1eae4}
+.actor-detail h4{font-size:18px;line-height:1.4;margin:7px 0}
+.actor-detail p{font-size:12px;color:#607b76;line-height:1.8;margin:8px 0 0}
+/* Europe */
+.europe-status-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-bottom:15px}
+.europe-status-grid>div{display:flex;flex-direction:column;gap:5px;align-items:start;padding:13px;background:#ebf3ed;border:1px solid #d6e4dc;border-radius:11px}
+.europe-status-grid b{font-size:12px}.europe-status-grid small{font-size:10px;color:#728a7f}
+.status-dot{width:8px;height:8px;border-radius:50%}.status-dot.done{background:#64aa82}.status-dot.stalled{background:#ba817b}.status-dot.future{background:#b59b6f}
+.europe-columns{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(280px,.8fr);gap:14px;align-items:start}
+.eu-map-wrap{border:1px solid #dce6e0;border-radius:11px;overflow:hidden;background:#eaf0ec;max-height:500px}
+#fraEuropeMap{display:block;width:100%;height:auto;max-height:490px}
+.europe-country{fill:#cad8cf;stroke:#f7fbf7;stroke-width:1.4;vector-effect:non-scaling-stroke}
+.europe-country.member{fill:#9bc1ad;cursor:pointer}
+.europe-country.member:hover,.europe-country.member.active{fill:#447f73;stroke:#2b6559;stroke-width:2}
+.europe-lux{fill:#5b907f;stroke:#f8fbfa;stroke-width:2;cursor:pointer}
+.europe-lux.active,.europe-lux:hover{fill:#246451;stroke:#fff;stroke-width:3}
+.eu-partner-pills{display:flex;gap:7px;flex-wrap:wrap;margin:11px 0}
+.eu-partner-pills button{border:1px solid #d5e5da;background:#f7fbf8;border-radius:8px;padding:9px 12px;color:#5b7b70;font-size:11px;font-weight:800}
+.eu-partner-pills button.active,.eu-partner-pills button:hover{background:#dcefe3;border-color:#83b39b;color:#276553}
+.europe-partner-dossier h3{font-size:26px;margin:7px 0}
+.europe-agenda{margin-top:15px}
+.agenda-pills{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px}
+.agenda-pills button{min-width:0;display:flex;flex-direction:column;justify-content:space-between;text-align:left;gap:7px;min-height:100px}
+.agenda-pills button b{font-size:11px;line-height:1.4}.agenda-pills button small{font-size:10px;line-height:1.3;color:#899e90}
+.agenda-detail{display:grid;grid-template-columns:1fr 1fr;gap:28px;padding:18px 0 0;border-top:1px solid #e1ebe3;margin-top:18px}
+.agenda-detail h4{font-size:22px;line-height:1.35;margin:7px 0 10px}
+.agenda-detail p{font-size:12px;color:#617b76;line-height:1.8}
+.agenda-detail>div>b{font-size:12px;color:#37675a}
+.issue-label{display:inline-block;font-weight:850;font-size:10px;color:#3b826b;background:#e4f1e8;padding:5px 10px;border-radius:15px}
+.parliament-impact{background:#f0f6f0;border-radius:10px;padding:14px;margin-top:15px}
+/* Plan */
+.plan-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:14px}
+.plan-kpi{min-width:0;border:1px solid #dae8dd;background:white;border-radius:12px;padding:15px;display:flex;flex-direction:column;gap:7px}
+.plan-kpi span{font-size:11px;color:#6b857b;font-weight:800}
+.plan-kpi strong{font-size:clamp(17px,2.3vw,26px);color:#2d6457;line-height:1.2;letter-spacing:-.035em;font-variant-numeric:tabular-nums}
+.plan-kpi small{font-size:10px;line-height:1.5;color:#91a09a}
+.plan-chain{display:flex;align-items:stretch;gap:8px;margin:16px 0}
+.plan-chain>div{flex:1;min-width:0;background:#f2f7f3;border:1px solid #dce9df;border-radius:10px;padding:14px}
+.plan-chain small{font-size:9px;font-weight:800;letter-spacing:.08em;color:#73a08e}
+.plan-chain b{display:block;font-size:12px;margin:8px 0;color:#355d53}
+.plan-chain p{font-size:11px;color:#71867d;line-height:1.65;margin:0}
+.chain-arrow{flex:0 0 13px;align-self:center;color:#77a48b;font-size:18px}
+.industrial-main{margin-top:14px}
+.sector-buttons{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin-bottom:19px}
+.sector-buttons button{min-width:0;border:1px solid #dbe7dc;border-radius:9px;background:#f8faf7;padding:12px;text-align:left;display:grid;gap:8px;min-height:85px}
+.sector-buttons button small{font-size:10px;color:#83a18c;font-weight:800}
+.sector-buttons button b{font-size:11px;line-height:1.4;color:#4a7165}
+.sector-buttons button:hover,.sector-buttons button.active{background:#e1f0e5;border-color:#88b69a}
+.industrial-dossier{border-top:1px solid #e0e9e1;padding:19px 0 0}
+.industrial-title h4{font-size:24px;margin:6px 0;letter-spacing:-.042em}
+.industrial-title p{font-size:12px;line-height:1.7;color:#5f7a72;max-width:800px;margin:5px 0 11px}
+.place-tag{display:inline-block;font-size:11px;color:#34725d;background:#e8f3e9;border:1px solid #cae4d3;padding:7px 11px;border-radius:8px}
+.industrial-split{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:22px}
+.industrial-split>div>b{margin-top:15px}
+.industrial-split>div>b:first-child{margin-top:0}
+.industrial-split p{font-size:12px;color:#627d73;line-height:1.8}
+.pill-list{display:flex;flex-wrap:wrap;gap:7px;margin:11px 0}
+.pill-list span{color:#3f7260;background:#edf5ed;border:1px solid #d2e6d4;border-radius:9px;padding:7px 10px;font-size:11px}
+.linked-sectors{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}
+.linked-sectors button{font-size:11px;color:#2c6f59;background:#e6f2e8;border:1px solid #cce0d0;border-radius:7px;padding:8px 10px}
+.linked-sectors button:hover{background:#d6ebdd}
+.plan-conclusion{display:block;line-height:1.8}
+.footer{border-top:1px solid var(--line);padding:26px 0 45px;display:flex;align-items:start;justify-content:space-between;gap:15px 24px;flex-wrap:wrap;color:#78908b}
+.footer>div>b{font-size:12px;color:#4a736a}
+.footer p{font-size:10px;margin:5px 0}
+.footer a{font-size:11px;text-decoration:none}
+.footer a:hover{text-decoration:underline}
+.source-links{max-width:500px;display:flex;flex-wrap:wrap;gap:6px 12px;margin-top:7px}
+@media(max-width:1080px){
+.political-columns,.algeria-layout,.europe-columns{grid-template-columns:minmax(0,1fr)}
+.side-stack{grid-template-columns:repeat(2,minmax(0,1fr))}
+.agenda-pills{grid-template-columns:repeat(3,minmax(0,1fr))}
+.actor-buttons{grid-template-columns:repeat(3,minmax(0,1fr))}
+.plan-chain{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+.chain-arrow{display:none}
+.sector-buttons{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:730px){
+.side-stack{grid-template-columns:1fr}
+.party-cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+.algeria-principle,.europe-status-grid{grid-template-columns:1fr}
+.actor-detail,.agenda-detail,.industrial-split{grid-template-columns:1fr;gap:14px}
+.plan-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+.card-heading{flex-wrap:wrap}
+.consequence-strip{display:block}
+.consequence-strip span{display:block;margin-top:6px}
+.actor-buttons{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:530px){
+.page{padding:0 14px}
+.mast{min-height:66px}.brand{font-size:9px}
+.hero{padding:32px 0 20px}
+.hero h1{font-size:clamp(35px,8vw,45px)}
+.hero>p{font-size:13px}
+.hero-chips span{font-size:10px}
+.tabs{margin-top:17px}
+.card{padding:15px}
+.party-cards{grid-template-columns:1fr}
+.party-brief{min-height:0}
+.issue-selector button{font-size:10px}
+.algeria-region-pills{grid-template-columns:repeat(2,minmax(0,1fr))}
+.algeria-graphic-label{font-size:11px}
+.agenda-pills{grid-template-columns:repeat(2,minmax(0,1fr))}
+.actor-buttons{grid-template-columns:1fr 1fr}
+.actor-buttons button{min-height:58px;padding:10px}
+.plan-chain{grid-template-columns:1fr}
+.sector-buttons{grid-template-columns:repeat(2,minmax(0,1fr))}
+.plan-kpis strong{font-size:18px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+
+/* 1955 geopolitical distinction: eastern Germany is outside ECSC. */
+.europe-gdr{fill:#c1cdc7;stroke:#f7fbf7;stroke-width:1.7;vector-effect:non-scaling-stroke;pointer-events:none}
