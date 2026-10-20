@@ -1,0 +1,117 @@
+@import url("./chn-v2.css");
+:root{--bg:#f4f4ec;--paper:#fffefa;--ink:#293b35;--muted:#70887c;--red:#bc7650;--jade:#3e7c79;--sage:#eef5ed;--line:#e0e8db;--shadow:0 8px 24px rgba(43,76,60,.045)}
+.hero h1 em{color:#387c79}.eyebrow{color:#b27755}
+.tab.active,.tab:hover{background:#e5f1e8;color:#397963;border-color:#a4cbb3}
+.pane>.panel{margin-top:15px}.panel-head h3{color:#355b50}.hint{font-size:10px}.footer{border-top:1px solid var(--line);padding:24px 0 34px;margin-top:25px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:#8b9d90;font-size:11px}
+.footer a{color:#437b62;text-decoration:none}.footer p{font-size:10.5px;color:#83968a}
+.sources{display:flex;gap:7px;flex-wrap:wrap;margin-top:13px}.sources a{font-size:10.5px;color:#547e66;border:1px solid #dae8da;padding:6px 9px;border-radius:7px;background:#f8fbf7;text-decoration:none}
+.vpi-parliament{margin-top:23px;margin-bottom:26px}
+.ind-commission{display:grid;grid-template-columns:minmax(0,1fr) 190px;gap:22px;align-items:center;background:linear-gradient(110deg,#edf5eb,#f5f1e5);border:1px solid #dfebda;border-radius:13px;padding:19px 22px;margin-bottom:15px}
+.ind-commission h3{font-size:20px;letter-spacing:-.035em;margin:5px 0 8px;color:#39745b}
+.ind-commission p{font-size:11.5px;color:#718375;margin:0;line-height:1.8}
+.ind-commission-date{background:#fffdfa;border:1px solid #e4e5d6;border-radius:9px;padding:12px 15px}
+.ind-commission-date small{display:block;color:#97a091;font-size:10px}
+.ind-commission-date strong{display:block;font-size:26px;line-height:1.4;color:#45856d}
+.ind-commission-date span{font-size:10px;color:#99836c}
+.ind-federation-layout{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(310px,.9fr);gap:15px;align-items:stretch}
+.ind-federation-layout .panel{margin:0}
+.ind-country-map{display:block;width:100%;height:auto;max-height:455px;border:1px solid #dceae0;border-radius:10px;overflow:hidden;background:#edf4f0}
+.ind-land{fill:#c0daca;stroke:#f1f8f1;stroke-width:2}
+.ind-map-pin{cursor:pointer}
+.ind-map-pin circle{fill:#ad7352;stroke:#f9faf3;stroke-width:3}
+.ind-map-pin.active circle,.ind-map-pin:hover circle{fill:#387f6c;stroke-width:4}
+.ind-map-pin text{font-size:11px;font-weight:800;fill:#526b59;paint-order:stroke;stroke:#edf7f2;stroke-width:3.5;pointer-events:none}
+.ind-map-pin:focus-visible circle{stroke:#cca05d;stroke-width:5}
+.ind-map-caption{font-size:10px;color:#8e9f91;line-height:1.75;margin:10px 0}
+.ind-region-picker,.ind-dip-picker{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.ind-region-picker button,.ind-dip-picker button{background:#f5f9f5;border:1px solid #dde9df;border-radius:8px;font-size:10px;line-height:1.5;font-weight:800;padding:7px 10px;color:#637f6b}
+.ind-region-picker button.active,.ind-region-picker button:hover,.ind-dip-picker button.active,.ind-dip-picker button:hover{background:#e5f3e9;border-color:#a1c8ad;color:#36755a}
+.ind-region-dossier{display:flex;flex-direction:column}
+.ind-region-dossier h3,.ind-dip-dossier h3{font-size:23px;letter-spacing:-.045em;line-height:1.35;color:#3b7a63;margin:6px 0 5px}
+.ind-region-status{font-size:11px;color:#a27f68;line-height:1.7}
+.ind-dossier-section{margin-top:14px;border-top:1px solid #dfe8df;padding-top:12px}
+.ind-dossier-section b{font-size:11px;color:#478065}
+.ind-dossier-section p{font-size:11.5px;line-height:1.8;color:#718375;margin:6px 0 0}
+.ind-sides{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}
+.ind-sides span{font-size:10px;color:#737e6f;background:#f2f6f0;border:1px solid #e2e9dd;border-radius:8px;padding:6px 8px;line-height:1.45}
+.ind-choice-panel{margin-top:15px}
+.ind-policy-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.ind-policy-grid button{border:1px solid #dfe8de;background:#f9fbf7;border-radius:10px;padding:14px;text-align:left;display:flex;align-items:center;gap:11px;min-height:70px}
+.ind-policy-grid button small{font-size:15px;font-weight:850;color:#9ba99c}
+.ind-policy-grid button strong{font-size:11.5px;line-height:1.5;color:#628174}
+.ind-policy-grid button.active,.ind-policy-grid button:hover{background:#e5f3e7;border-color:#8dbb9d}
+.ind-policy-grid button.active strong{color:#357b5a}
+.ind-policy-result{margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:9px;background:#f5f8f3;border-radius:10px;padding:11px}
+.ind-policy-result>div{padding:10px 12px;background:#fff;border-radius:8px;border:1px solid #e1e9de}
+.ind-policy-result>div:last-child{background:#fbf3eb;border-color:#f0e4d9}
+.ind-policy-result b{font-size:11px;color:#497d66}.ind-policy-result>div:last-child b{color:#a78161}
+.ind-policy-result p{font-size:11.5px;line-height:1.75;color:#748879;margin:5px 0}
+.ind-more{padding:0;overflow:hidden}
+.ind-more summary{list-style:none;display:flex;justify-content:space-between;gap:12px;align-items:center;cursor:pointer;padding:18px 21px}
+.ind-more summary::-webkit-details-marker{display:none}
+.ind-more summary span:first-child{display:flex;flex-direction:column;gap:3px}
+.ind-more summary strong{font-size:13px;color:#497c66}
+.ind-more summary small{font-size:10.5px;color:#85978b}
+.ind-process{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;border-top:1px solid #e0e9de;padding:16px}
+.ind-process-step{background:#f8faf6;border:1px solid #e4ece2;padding:12px;border-radius:8px}
+.ind-process-step small{color:#b08665;font-size:10px;display:block}.ind-process-step b{font-size:11.5px;color:#517f68;display:block;margin-top:5px}
+.ind-process-step p{font-size:11px;color:#7c8d7e;line-height:1.7;margin:5px 0}
+.ind-stats{grid-template-columns:repeat(6,minmax(0,1fr))}
+.ind-stats .stat{padding:14px 12px;min-height:115px}
+.ind-stats .stat strong{font-size:20px}
+.ind-stats .stat span{line-height:1.5}
+.ind-stats .stat.ind-low{background:#f9f0e8;border-color:#eadbcb}
+.ind-stats .stat.ind-low strong{color:#aa754f}
+.ind-plan-note{display:grid;grid-template-columns:1.13fr .87fr;gap:18px;align-items:center;background:linear-gradient(120deg,#f4f9ed,#f9f3e7)}
+.ind-plan-note h3{font-size:20px;line-height:1.35;color:#407858;letter-spacing:-.03em;margin:5px 0 7px}
+.ind-plan-note p{font-size:11.5px;color:#7b8b76;line-height:1.85;margin:0}
+.ind-plan-note>div:last-child{background:rgba(255,255,255,.7);border-left:3px solid #98b49e;border-radius:0 9px 9px 0;padding:12px 14px}
+.ind-plan-note b{color:#56846c;font-size:11px}
+.ind-model-options{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.ind-model-button{min-width:0;padding:13px;text-align:left;background:#f8faf6;border:1px solid #dfe8db;border-radius:9px;min-height:96px}
+.ind-model-button small{color:#a78c6b;font-size:10px;display:block;line-height:1.45}
+.ind-model-button strong{font-size:12.5px;color:#58806a;display:block;line-height:1.5;margin-top:7px}
+.ind-model-button.active,.ind-model-button:hover{background:#e6f4e9;border-color:#96c3a2}
+.ind-development-dossier{display:grid;grid-template-columns:1fr 1fr;gap:17px;background:#f6f9f4;border:1px solid #e0e8df;border-radius:10px;padding:16px;margin-top:12px}
+.ind-development-dossier h4{font-size:21px;color:#39745e;letter-spacing:-.04em;line-height:1.4;margin:5px 0}
+.ind-development-dossier p{font-size:11.5px;color:#748676;line-height:1.8;margin:8px 0}
+.ind-outcome{padding:12px 14px;border-left:3px solid #92b69a;background:#ebf5eb;margin-top:12px;border-radius:0 8px 8px 0}
+.ind-outcome b{font-size:11px;color:#477c60}.ind-outcome p{margin:5px 0 0}
+.ind-development-right{display:grid;gap:8px}
+.ind-development-right>div{padding:10px 12px;background:#fff;border:1px solid #e3ebe2;border-radius:8px}
+.ind-development-right>div:nth-child(2){background:#fbf5ed}
+.ind-development-right b{font-size:11px;color:#59826b}
+.ind-development-right>div:nth-child(2) b{color:#a37e62}
+.ind-development-right ul{padding-left:17px;margin:7px 0}
+.ind-development-right li{font-size:11px;color:#718474;line-height:1.75}
+.ind-development-right p{margin:5px 0}
+.ind-resource-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.ind-resource-grid button,.ind-funding-options button,.ind-approaches button{border:1px solid #dfe9df;border-radius:8px;padding:11px 12px;background:#f7faf6;text-align:left;font-size:11px;color:#64816e;font-weight:800;line-height:1.5}
+.ind-resource-grid button.active,.ind-resource-grid button:hover,.ind-funding-options button.active,.ind-funding-options button:hover,.ind-approaches button.active,.ind-approaches button:hover{background:#e5f3e8;border-color:#9abfa4;color:#367756}
+.ind-resource-detail,.ind-funding-detail,.ind-approach-detail{padding:13px 15px;background:#f3f7f1;border-radius:9px;margin-top:12px;display:grid;grid-template-columns:minmax(165px,.28fr) 1fr;gap:12px}
+.ind-resource-detail b,.ind-funding-detail b,.ind-approach-detail b{font-size:11.5px;color:#3a7860}
+.ind-resource-detail p,.ind-funding-detail p,.ind-approach-detail p{font-size:11.5px;line-height:1.8;color:#748576;margin:0}
+.ind-funding-options,.ind-approaches{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.ind-diplomatic-banner{background:#eaf4eb;border:1px solid #d1e5d3;border-radius:11px;padding:15px 19px;margin-bottom:15px}
+.ind-diplomatic-banner strong{display:block;font-size:17px;color:#397860;margin:6px 0}
+.ind-diplomatic-banner p{color:#708371;font-size:11.5px;line-height:1.8;max-width:980px;margin:0}
+.ind-diplomacy-layout{display:grid;grid-template-columns:minmax(0,1.13fr) minmax(310px,.87fr);gap:15px;align-items:stretch}
+.ind-diplomacy-layout>.panel{margin:0}
+.ind-diplomatic-network{background:#edf4ef;border-radius:11px;border:1px solid #e0eade;overflow:hidden}
+.ind-diplomatic-network svg{width:100%;height:auto;display:block}
+.ind-network-line{stroke:#b4c9b8;stroke-width:1.8;stroke-dasharray:5 5;fill:none}
+.ind-network-center{fill:#b58158;stroke:#fff;stroke-width:4}
+.ind-network-center-text{fill:white;font-size:13px;font-weight:850}
+.ind-network-node{cursor:pointer}
+.ind-network-node circle{fill:#92b49b;stroke:#fff;stroke-width:3}
+.ind-network-node.active circle,.ind-network-node:hover circle{fill:#3d8a78;stroke:#fff;stroke-width:4}
+.ind-network-node:focus-visible circle{stroke:#d9a36a;stroke-width:5}
+.ind-network-node text{fill:#617e68;font-size:11.5px;font-weight:850;paint-order:stroke;stroke:#f5f8f1;stroke-width:3.4;pointer-events:none}
+.ind-dip-dossier h3{font-size:23px}
+.ind-borders-note{background:#f9f5eb}
+.ind-borders-note h3{font-size:18px;letter-spacing:-.03em;color:#867251;margin:5px 0 8px}
+.ind-borders-note p{font-size:11.5px;line-height:1.75;color:#817c6d;margin:0}
+@media(max-width:1040px){.ind-federation-layout,.ind-diplomacy-layout{grid-template-columns:1fr}.ind-stats{grid-template-columns:repeat(3,minmax(0,1fr))}.ind-country-map{max-width:790px;margin:0 auto;max-height:none}.ind-diplomatic-network{max-width:790px}.ind-development-dossier{grid-template-columns:1fr}}
+@media(max-width:760px){.ind-commission,.ind-plan-note{grid-template-columns:1fr}.ind-model-options,.ind-funding-options,.ind-approaches{grid-template-columns:repeat(2,minmax(0,1fr))}.ind-policy-grid{grid-template-columns:1fr 1fr 1fr}.ind-process{grid-template-columns:repeat(2,minmax(0,1fr))}.ind-commission-date{max-width:220px}.ind-stats .stat strong{font-size:21px}}
+@media(max-width:600px){.ind-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.ind-policy-grid{grid-template-columns:1fr}.ind-policy-grid button{min-height:59px}.ind-policy-result{grid-template-columns:1fr}.ind-resource-detail,.ind-funding-detail,.ind-approach-detail{grid-template-columns:1fr}.ind-resource-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.ind-commission-date{max-width:none}.ind-country-map{margin:0}.ind-region-dossier h3{font-size:20px}}
+@media(max-width:430px){.shell{padding:0 13px}.topbar{min-height:65px}.topbrand{font-size:9px}.hero{padding-top:27px}.hero h1{font-size:36px}.tab{padding:10px;font-size:11px}.panel{padding:15px}.ind-commission{padding:15px}.ind-stats .stat strong{font-size:19px}.ind-model-button{min-height:95px;padding:10px}.ind-policy-grid button{padding:10px}.ind-federation-layout,.ind-diplomacy-layout{gap:10px}.ind-development-dossier{padding:12px}.ind-model-options{gap:6px}.ind-resource-grid button,.ind-funding-options button,.ind-approaches button{padding:9px;font-size:10.5px}}
