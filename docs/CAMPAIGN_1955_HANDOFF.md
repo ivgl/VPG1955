@@ -9,6 +9,7 @@
 - Кампания `VPI1955_MAIN` (не прототип 1977), `rules_version: RC0.8`, `HEAD.phase: PREPARE`, `campaign_config.public_launch_ready: false`. Эти флаги нельзя изменять без явного решения администратора.
 - 12 отдельных Google Sheets-паспортов игроков уже подготовлены. Сводная выдача: https://docs.google.com/spreadsheets/d/1dFMXlMDTeoxZpoOqHNg91Ev3DZmfL--SEjaJCIofNLc/edit . Изначальные вкладки — `1955`. Таблицы — производное отображение state, не самостоятельный источник истины.
 - Правила RC0.8: https://docs.google.com/document/d/1aDTHIsopslAY2ykxgZXe05mHaxSEFOtjpEurRoIYJsY/edit .
+- Черновик **трёх сообщений для Discord-канала правил**: https://github.com/ivgl/VPG1955/blob/main/docs/DISCORD_RULES_RC08_DRAFT.md . Текст не публиковался в Discord; подстроить размещение и порядок под скриншоты каналов администратора. Сайт https://ivgl.github.io/VPG1955/rules.html теперь нейтральная техническая справка, а не основной формат.
 - Календарь исторических **событий-кандидатов**: https://docs.google.com/document/d/1VNwqa-QAOXFPK1II2VEkviytanbe3Yt2WNhUBdqju94/edit . Он не утверждает, что события будущего уже произошли.
 - Судейский регламент: https://docs.google.com/document/d/1dRnfbK6K8O2ajh49c6-MwtJaXWG1m-gYFgygGgP6SG4/edit .
 - Краткий безопасный read-only прогон: https://github.com/ivgl/VPG1955/blob/main/docs/DRY_RUN_1955_READONLY_2026-10-20.md . Пройдены 8/8 модельных проверок; это не реальный коммит 1956.
