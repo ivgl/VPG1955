@@ -113,9 +113,11 @@ function sectorIsAffected(s){
 }
 function renderSupplyLoop(){
  const s=sectors.find(s=>s.id===sector);
+ $("jpnCycleSectorName").textContent=s.name;
+ $("jpnCyclePortName").textContent=ports.find(x=>x.id===port).name;
  $("jpnSupplyLoop").innerHTML=A.supplyLoopStages.map((stage,i)=>{
  const on=loopStage===stage.id,atRisk=sectorIsAffected(s)&&shock!=="normal"&&((shock==="ore"&&["import","power","market","return"].includes(stage.id))||(shock==="fuel"&&["port","power","market","return"].includes(stage.id))||(shock==="freight"&&["port","market","return"].includes(stage.id)));
- return '<button type="button" data-loop-stage="'+stage.id+'" class="loop-stage'+(on?" active":"")+(atRisk?" at-risk":"")+'" aria-pressed="'+on+'"><small>0'+(i+1)+' / '+safe(stage.verb)+'</small><strong>'+safe(stage.name)+'</strong><span>'+safe(stage.description)+'</span></button>'
+ return '<button type="button" data-loop-stage="'+stage.id+'" class="loop-stage'+(on?" active":"")+(atRisk?" at-risk":"")+'" aria-pressed="'+on+'"><small>0'+(i+1)+' · '+safe(stage.verb)+'</small><strong>'+safe(stage.name)+'</strong></button>'
  }).join("");
  const current=A.supplyLoopStages.find(x=>x.id===loopStage);
  $("jpnLoopStageName").textContent=s.name+" · "+current.name;
@@ -124,15 +126,24 @@ function renderSupplyLoop(){
  $("jpnSupplyLoop").querySelectorAll("[data-loop-stage]").forEach(b=>b.onclick=()=>{loopStage=b.dataset.loopStage;renderSupplyLoop()});
 }
 function renderCascade(){
- const s=sectors.find(x=>x.id===sector),p=ports.find(x=>x.id===port),q=shocks.find(x=>x.id===shock),hit=sectorIsAffected(s);
+ const s=sectors.find(x=>x.id===sector),p=ports.find(x=>x.id===port),q=shocks.find(x=>x.id===shock),hit=sectorIsAffected(s),normal=shock==="normal";
+ $("jpnImpactIndicator").textContent=normal?"Штатное снабжение":q.name;
+ $("jpnImpactIndicator").className="jpn-impact-indicator"+(normal?"":hit?" risk":" indirect");
+ $("jpnImpactTitle").textContent=normal?"Что обеспечивает следующий цикл импорта":hit?"Как перебой передаётся по цепочке":"Что меняется при этом перебое";
+ $("jpnCascade").hidden=normal;
+ if(normal){
+  $("jpnCascade").innerHTML="";
+  $("jpnCascadeConclusion").textContent="Поступление ресурсов, выпуск продукции и получение экспортной выручки зависят от контрактов и сроков. Чтобы проверить конкретную уязвимость, выбери перебой в блоке отрасли рядом с картой.";
+  return;
+ }
  const stage=[
- {title:"1 · Ресурс",body:shock==="normal"?"Нужны иностранный поставщик, сырьё и валюта.":shock==="ore"?"Поставки железной руды и связанных металлов могут задержаться.":shock==="fuel"?"Дорожает топливо, растут затраты на электричество и перевозки.":"Фрахт и доставка могут стать дороже или медленнее."},
- {title:"2 · Порт и завод",body:hit?"Возможны задержки доставки или дополнительные производственные издержки в цепочке «"+s.name+"».":"В выбранной цепочке нет выделенного прямого воздействия; сохраняются обычные ограничения."},
- {title:"3 · Экспортный заказ",body:hit?"Производственная задержка способна сдвинуть отгрузку и выполнение контракта.":"Исполнение договора зависит от качества продукции, фрахта и сроков."},
- {title:"4 · Следующий валютный платёж",body:hit?"Если экспортный платёж задержится, следующую импортную закупку придётся финансировать иначе.":"Экспортная выручка появляется только после оплаченной продажи и доступного валютного расчёта."}
+ {title:"1 · Поставка",body:shock==="ore"?"Руда или металл могут поступить позже необходимого срока.":shock==="fuel"?"Затраты на топливо и энергоснабжение увеличиваются.":"Доставка и морские перевозки могут задержаться."},
+ {title:"2 · Производство",body:hit?"Для "+s.name.toLowerCase()+" возникают дополнительные издержки, задержка сырья или ограничение выпуска.":"Прямого сбоя в выбранной отрасли не выделено; остаётся зависимость от общих перевозок и поставщиков."},
+ {title:"3 · Продажа",body:hit?"Отгрузка готовой продукции и получение платежа по контракту могут сдвинуться.":"Изменения спроса, качества или стоимости перевозок всё равно могут повлиять на исполнение договора."},
+ {title:"4 · Следующая закупка",body:hit?"Запоздавшая экспортная выручка ограничивает доступную валюту для новых иностранных заказов.":"Следующий цикл импорта зависит от того, когда поступит доступная валютная выручка."}
  ];
- $("jpnCascade").innerHTML=stage.map((a,i)=>'<div class="cascade-step'+(hit&&i>0?" risk":"")+'"><small>'+safe(a.title)+'</small><p>'+safe(a.body)+'</p></div>').join("");
- $("jpnCascadeConclusion").textContent="Выбрано: "+s.name+" · "+p.name+" · "+q.name+". "+(shock==="normal"?"Внешние поставки, производство и экспорт должны быть обеспечены договорами и оплатой.":hit?"Под угрозой не только текущий выпуск, но и поступление валюты на следующий цикл закупок.":"Воздействие остаётся косвенным; проверьте общие транспортные и энергетические зависимости.")+" Последствия зависят от контрактов, запасов и мер правительства.";
+ $("jpnCascade").innerHTML=stage.map((x,i)=>'<div class="cascade-step'+(hit&&i>0?" risk":"")+'"><small>'+safe(x.title)+'</small><p>'+safe(x.body)+'</p></div>').join("");
+ $("jpnCascadeConclusion").textContent="Цепочка: "+s.name+" · "+p.name+". "+(hit?"Под угрозой не только нынешний выпуск, но и оплата следующего импорта.":"Прямого сбоя в выбранной отрасли не выявлено; проверь косвенные зависимости.")+" Масштаб последствий зависит от резервов сырья, контрактов и действий правительства.";
 }
 
 const sHub=id=>sectors.find(x=>x.id===id).hub;

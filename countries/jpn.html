@@ -53,35 +53,71 @@
 </section>
 
 <section id="industry" class="pane" hidden>
-<div class="heading"><span class="eyebrow">02 / Производство, островная энергия и порты</span><h2>Сырьё должно доплыть. Завод — заработать. Товар — найти покупателя.</h2><p>Экспортная промышленность зависит от нефтяного топлива, угля, электроэнергии, иностранной руды и технического оборудования. Порты и промышленные районы образуют общую хозяйственную систему, а не независимые отрасли.</p></div>
-<section class="panel production-cycle">
-<div class="panel-head"><div><span class="eyebrow">Единый цикл островной экономики</span><h3>От иностранного платежа до новой валютной выручки</h3></div><span class="small-tag">Выберите звено цепочки</span></div>
-<div id="jpnSupplyLoop" class="supply-loop"></div>
-<div class="loop-info"><div><span class="eyebrow">Выбранный этап</span><h4 id="jpnLoopStageName"></h4><p id="jpnLoopStageDetail"></p></div>
-<div class="loop-status"><span>Главная зависимость отрасли</span><p id="jpnLoopCoreRisk"></p><button class="text-link" type="button" data-jump="currency">Посмотреть валютный бюджет →</button></div></div>
-</section>
-<div class="industry-head">
-<section class="panel industry-map">
-<div class="panel-head"><div><span class="eyebrow">Промышленные центры и транспорт</span><h3>Островная карта снабжения</h3></div><span class="small-tag">Восемь узлов</span></div>
-<div class="map-frame"><svg id="japanMap" viewBox="0 0 755 760" role="group" aria-label="Географическая карта промышленных и портовых узлов Японии"></svg></div>
-<div class="map-legend"><span><i class="pin"></i> Промышленный порт</span><span><i class="affected"></i> Проблема снабжения</span><span><i class="selected"></i> Выбранный узел</span></div>
-<div id="jpnPortNav" class="port-nav"></div><p class="fine">Карта использует упрощённые контуры островов. Окинава находится под управлением США и не относится к обычной внутренней сети портов японского правительства.</p>
-</section>
-<aside class="panel port-dossier"><span class="eyebrow">Выбранный промышленный район</span><h3 id="jpnPortName"></h3><span class="status" id="jpnPortArea"></span><p class="lead" id="jpnPortRole"></p>
-<div class="dossier-section"><b>Снабжение и энергетика</b><p id="jpnPortSupply"></p></div>
-<div class="dossier-section"><b>Связанные отрасли и грузы</b><p id="jpnPortChain"></p></div>
-<div class="dossier-section"><b>Хозяйственная проблема</b><p id="jpnPortLimit"></p></div><div class="dossier-section"><b>Связанные отрасли</b><div id="jpnPortIndustries" class="port-industry-links"></div></div>
-<div class="shock-section"><b>Проверить уязвимость поставок</b><div id="jpnSupplyScenarios" class="supply-buttons"></div><div id="jpnSupplyDescription" class="supply-result"></div></div></aside>
+<div class="heading"><span class="eyebrow">02 / Производство, энергия и порты</span><h2>Островная машина: от сырья до валютной выручки</h2>
+<p>Выбери промышленную отрасль и посмотри, через какие порты она получает ресурсы. Затем изучи всю цепочку производства или проверь, что произойдёт при нарушении поставок.</p></div>
+<div class="jpn-workflow-steps" aria-label="Порядок изучения экономики">
+<div><span>01</span><b>Отрасль и порт</b><small>Где производится и что нужно завезти</small></div>
+<div><span>02</span><b>Условие снабжения</b><small>При необходимости выбери перебой</small></div>
+<div><span>03</span><b>Цикл и последствия</b><small>Проследи выпуск и возврат валюты</small></div>
 </div>
-<section class="panel industrial-chain">
-<div class="panel-head"><div><span class="eyebrow">От сырья до экспортного контракта</span><h3>Пять отраслей и их взаимозависимости</h3></div></div>
-<div id="jpnIndustryButtons" class="industry-buttons"></div>
-<div class="industry-detail">
-<div><span class="eyebrow">Промышленное досье</span><h4 id="jpnIndustryName"></h4><p id="jpnIndustryBase"></p><div class="industry-formula" id="jpnIndustryChain"></div><div class="dossier-section"><b>Зависимость от энергетики</b><p id="jpnIndustryEnergy"></p></div></div>
-<div><b>Что предстоит импортировать</b><p id="jpnIndustryImports"></p><b>Что ограничивает выпуск</b><p id="jpnIndustryLimit"></p><b>Фирмы и государственные учреждения</b><p id="jpnIndustryStake"></p><button id="jpnToCurrency" type="button" class="text-link">Открыть связанную валютную категорию →</button></div></div>
+
+<div class="jpn-industry-workspace">
+<section class="panel industry-map">
+<div class="panel-head"><div><span class="eyebrow">География производства</span><h3>Порты и промышленные районы</h3></div><span class="small-tag">Восемь узлов</span></div>
+<div class="map-frame"><svg id="japanMap" viewBox="0 0 755 760" role="group" aria-label="Географическая карта промышленных и портовых узлов Японии"></svg></div>
+<div class="map-legend"><span><i class="pin"></i> Промышленный порт</span><span><i class="affected"></i> Затронут поставками</span><span><i class="selected"></i> Выбранный узел</span></div>
+<div id="jpnPortNav" class="port-nav" aria-label="Порты Японии"></div>
+<div class="jpn-map-port-brief">
+<div class="jpn-port-head"><div><span class="eyebrow">Выбранный промышленный район</span><h4 id="jpnPortName"></h4></div><span class="status" id="jpnPortArea"></span></div>
+<p class="jpn-port-role" id="jpnPortRole"></p>
+<div class="jpn-port-facts">
+<div><b>Снабжение и энергия</b><p id="jpnPortSupply"></p></div>
+<div><b>Основные грузы и отрасли</b><p id="jpnPortChain"></p></div>
+</div>
+<div class="jpn-port-bottleneck"><b>Хозяйственная проблема</b><p id="jpnPortLimit"></p></div>
+<div class="jpn-port-links"><b>Производство в регионе</b><div id="jpnPortIndustries" class="port-industry-links"></div></div>
+</div>
+<p class="fine">Контуры островов упрощены. Окинава находится под управлением США и не входит в обычную портовую сеть правительства Японии.</p>
 </section>
-<section class="panel cascade-panel"><div class="panel-head"><div><span class="eyebrow">Цепная реакция нарушения снабжения</span><h3>Как сбой ударит по выпуску и валюте</h3></div></div><div class="cascade-grid" id="jpnCascade"></div><div class="cascade-conclusion" id="jpnCascadeConclusion"></div></section>
-<section class="supply-synthesis"><div><b>Внутренние источники энергии</b><p>Уголь Хоккайдо и Кюсю, гидроэнергия и каботаж снижают часть рисков, но не заменяют всю потребность в нефти и коксующемся угле.</p></div><div><b>Самое чувствительное место</b><p>Импорт сырья и оборудования требует одновременно валютного выделения, контракта, грузового места и работоспособного порта.</p></div></section>
+
+<aside class="panel jpn-industry-controls">
+<div class="panel-head"><div><span class="eyebrow">Шаг 1 / отрасль</span><h3>Что развивает Япония?</h3></div></div>
+<div id="jpnIndustryButtons" class="industry-buttons" aria-label="Выбор промышленной отрасли"></div>
+<div class="jpn-sector-dossier">
+<div class="jpn-sector-heading"><span class="eyebrow">Выбранная отрасль</span><h4 id="jpnIndustryName"></h4></div>
+<p id="jpnIndustryBase" class="jpn-sector-lead"></p>
+<div class="industry-formula" id="jpnIndustryChain"></div>
+<div class="jpn-sector-facts">
+<div><b>Энергия</b><p id="jpnIndustryEnergy"></p></div>
+<div><b>Импорт</b><p id="jpnIndustryImports"></p></div>
+<div><b>Ограничитель выпуска</b><p id="jpnIndustryLimit"></p></div>
+</div>
+<details class="jpn-sector-organizations"><summary>Участники отрасли</summary><p id="jpnIndustryStake"></p></details>
+<button id="jpnToCurrency" type="button" class="text-link">Связанная категория импорта →</button>
+</div>
+<div class="jpn-scenario-controls">
+<div class="jpn-scenario-head"><span class="eyebrow">Шаг 2 / проверка снабжения</span><h4>Что нарушилось?</h4></div>
+<div id="jpnSupplyScenarios" class="supply-buttons" aria-label="Сценарии перебоев поставок"></div>
+<div id="jpnSupplyDescription" class="supply-result" aria-live="polite"></div>
+<p class="jpn-scenario-tip">Выбранный сценарий отмечается на карте и в производственном цикле ниже.</p>
+</div>
+</aside>
+</div>
+
+<section class="panel production-cycle jpn-cycle-workspace">
+<div class="panel-head"><div><span class="eyebrow">Шаг 3 / движение ресурсов и денег</span><h3>Единый цикл выбранной отрасли</h3></div><span class="small-tag">Выбирай любое звено</span></div>
+<div class="jpn-cycle-context"><span>Производственная цепочка: <strong id="jpnCycleSectorName"></strong></span><span>Основной порт: <strong id="jpnCyclePortName"></strong></span></div>
+<div id="jpnSupplyLoop" class="supply-loop" aria-label="Шесть этапов промышленного цикла"></div>
+<div class="loop-info">
+<div><span class="eyebrow">Выбранный этап производства</span><h4 id="jpnLoopStageName"></h4><p id="jpnLoopStageDetail"></p></div>
+<div class="loop-status"><span>Главная зависимость отрасли</span><p id="jpnLoopCoreRisk"></p><button class="text-link" type="button" data-jump="currency">Посмотреть валютный бюджет →</button></div>
+</div>
+<div class="jpn-impact-panel">
+<div class="jpn-impact-head"><div><span class="eyebrow">Влияние на весь цикл</span><h4 id="jpnImpactTitle">Производство и валютные поступления</h4></div><span id="jpnImpactIndicator" class="jpn-impact-indicator">Поставки без выбранного сбоя</span></div>
+<div id="jpnCascade" class="cascade-grid" aria-live="polite"></div>
+<div id="jpnCascadeConclusion" class="cascade-conclusion"></div>
+</div>
+</section>
 </section>
 
 <section id="currency" class="pane" hidden>
