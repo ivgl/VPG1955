@@ -84,9 +84,10 @@
    '<text class="cn-map-territory" x="49" y="155">КНР</text><text class="cn-map-water" x="335" y="212">Восточно-Китайское море</text><text class="cn-map-water" x="296" y="475">Тайваньский пролив</text><text class="cn-map-territory cn-map-taiwan-label" x="520" y="442">Тайвань</text>';
   const coords={mainland:[10,-13],kinmen:[-128,20],matsu:[-90,-13],dachen:[25,35],yijiangshan:[-120,-28],penghu:[-102,37],taiwan:[55,-38]};
   const spots=S.sites.map(x=>{
-   const sx=mapX(x.lon),sy=mapY(x.lat),o=coords[x.id]||[12,-9],labelX=sx+o[0],labelY=sy+o[1],on=x.id===site;
+   const ax=mapX(x.lon),ay=mapY(x.lat),dx=x.id==="mainland"?-28:x.id==="dachen"?16:x.id==="yijiangshan"?-18:0,dy=x.id==="dachen"?19:x.id==="yijiangshan"?-25:0,sx=ax+dx,sy=ay+dy,o=coords[x.id]||[12,-9],labelX=sx+o[0],labelY=sy+o[1],on=x.id===site;
    const destX=labelX+(o[0]<0?52:-6);
    return '<g tabindex="0" role="button" class="cn-site-mark '+x.side+(on?' active':'')+'" data-site-map="'+x.id+'" aria-label="'+html(x.name)+'">'+
+    (dx||dy?'<path d="M'+ax.toFixed(1)+','+ay.toFixed(1)+' L'+sx.toFixed(1)+','+sy.toFixed(1)+'" class="cn-pin-guide"/>':'')+
     (Math.abs(o[0])>40?'<path d="M'+sx.toFixed(1)+','+sy.toFixed(1)+' L'+destX.toFixed(1)+','+(labelY+4).toFixed(1)+'" class="cn-pin-guide"/>':'')+
     '<circle cx="'+sx.toFixed(1)+'" cy="'+sy.toFixed(1)+'" r="'+(on?12:8)+'" class="cn-map-hit"/>'+
     '<circle cx="'+sx.toFixed(1)+'" cy="'+sy.toFixed(1)+'" r="'+(on?6:4.6)+'" class="cn-site-pin"/>'+
