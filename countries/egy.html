@@ -1,19 +1,73 @@
 <!doctype html>
 <html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Египет 1955: Суэцкий канал приносит международное значение, но не всю выручку в казну. Нил обещает инфраструктуру только после строительства, а офицерам нужны гражданские ведомства.">
-<title>Египет · Национальные механики · ВПИ 1955</title>
-<link rel="stylesheet" href="../css/remaining-mechanics.css"><link rel="stylesheet" href="../css/national-v2.css">
-<script src="../data/egy-draft.js" defer></script><script src="../js/remaining-geo.js" defer></script><script src="../js/remaining-mechanics.js" defer></script><script src="../js/national-v2-geography.js" defer></script><script src="../js/national-v3.js" defer></script><script src="../js/national-v2.js" defer></script></head>
-<body data-country="egy"><div class="container">
-<header class="topbar"><a href="../index.html" class="back">← Все государства</a><span class="topbrand">ВПИ <em>1955</em><span>НАЦИОНАЛЬНЫЕ МЕХАНИКИ</span></span></header>
-<section class="hero"><span class="eyebrow">Египет · 1 января 1955</span>
-<h1>Революция управляет государством<em>.</em></h1><p>Суэцкий канал приносит международное значение, но не всю выручку в казну. Нил обещает инфраструктуру только после строительства, а офицерам нужны гражданские ведомства.</p>
-<div class="hero-facts"><span>Гамаль Абдель Насер · премьер-министр</span><span>Вывод Британии по соглашению 1954 года</span><span>Компания Суэцкого канала</span><span>Земельная реформа</span></div></section>
+<title>Египет · Национальные механики · ВПИ 1955</title><meta name="description" content="Египет 1955: Суэцкий канал и его доходы, Нил, земельная реформа и Высотная Асуанская плотина, влияние Каира в арабском мире.">
+<link rel="stylesheet" href="../css/egy-v2.css"><script src="../data/egy-v2.js" defer></script><script src="../js/egy-v2.js" defer></script></head>
+<body><div class="shell">
+<header class="topbar"><a href="../index.html">← Все государства</a><span class="topbrand">ВПИ <b>1955</b> / НАЦИОНАЛЬНЫЕ МЕХАНИКИ</span></header>
+<section class="hero"><span class="eyebrow">Египет · 1 января 1955 года</span><h1>Революция на берегах<br><em>двух морей.</em></h1>
+<p>Суэцкий канал связывает мировую торговлю, но основная часть доходов ещё не принадлежит египетской казне. Страна зависит от воды Нила и экспортного хлопка, а Насер стремится превратить Каир в центр арабской политики.</p>
+<div class="hero-tags"><span>Гамаль Абдель Насер · премьер-министр</span><span>Соглашение о выводе Британии · 1954</span><span>Земельная реформа · с 1952</span><span>Лига арабских государств</span></div></section>
+<nav class="tabs" aria-label="Механики Египта">
+<button type="button" class="tab active" data-tab="suez" aria-selected="true"><small>01</small> Суэцкий канал</button>
+<button type="button" class="tab" data-tab="nile" aria-selected="false"><small>02</small> Нил и земля</button>
+<button type="button" class="tab" data-tab="arab" aria-selected="false"><small>03</small> Каир и арабский мир</button></nav>
+<main>
+<section id="suez" class="pane" data-pane="suez">
+<div class="section-title"><span class="eyebrow">01 / Суверенитет и мировая торговля</span><h2>Канал принадлежит Египту по географии. А кому достаются деньги?</h2>
+<p>Британские войска покидают зону канала по соглашению 1954 года. Но права коммерческой компании, военное присутствие и сборы с проходящих судов — разные вопросы. Изменив условия, Каир может получить средства для преобразования страны.</p></div>
+<div class="egy-stats" id="egySuezFacts"></div>
+<section class="panel"><div class="panel-head"><div><span class="eyebrow">Сколько может получать государство</span><h3>Три варианта будущего канала</h3></div><span class="hint">Нажми на вариант</span></div>
+<div id="egySuezSchemes" class="egy-scheme-options"></div>
+<div class="egy-scheme-result">
+<div class="egy-scheme-money"><span class="eyebrow" id="egySuezSchemeStatus"></span><h4 id="egySuezIncome"></h4><p>Египетских фунтов в год</p><div class="egy-budget-bar"><span id="egySuezBudgetBar"></span></div><div class="egy-budget-foot"><b id="egySuezBudgetShare"></b><small>обычных государственных расходов</small></div></div>
+<div class="egy-scheme-info"><h4 id="egySuezSchemeName"></h4><p id="egySuezSchemeExplained"></p>
+<div class="egy-scheme-consequences"><div><b>Возможности</b><p id="egySuezSchemeAction"></p></div><div><b>Чем рискует правительство</b><p id="egySuezSchemeRisk"></p></div></div></div>
+</div>
+<p class="egy-note">Для сравнения использованы обычные расходы египетского бюджета 1954/55 года. Сценарии улучшения условий показывают потенциальные годовые поступления при сохранении транзита; они не гарантированы ни одним решением.</p>
+</section>
+<div class="egy-suez-layout">
+<section class="panel"><div class="panel-head"><div><span class="eyebrow">География и управление</span><h3>Зона канала</h3></div></div>
+<svg id="egySuezMap" viewBox="0 0 610 495" role="group" aria-label="Схема Суэцкого канала от Порт-Саида до Суэца"></svg><p class="map-note">Схема маршрута и ключевых объектов; не инженерная карта и не линия британской юрисдикции.</p>
+<div class="egy-place-buttons" id="egySuezPlaces"></div></section>
+<aside class="panel egy-object-dossier"><span class="eyebrow">Объект и интересы сторон</span><h3 id="egySuezPlaceName"></h3><span id="egySuezPlacePosition" class="egy-muted"></span>
+<div class="egy-info-part"><b>Значение для Египта</b><p id="egySuezFocus"></p></div><div class="egy-info-part"><b>Права и управление</b><p id="egySuezRights"></p></div><div class="egy-info-part"><b>Что усложняет решение</b><p id="egySuezPressure"></p></div></aside></div>
+<section class="panel"><div class="panel-head"><div><span class="eyebrow">Соглашение октября 1954 года</span><h3>Как меняется положение британских войск</h3></div></div><div id="egySuezTimeline" class="egy-timeline"></div>
+<p class="egy-note">Поэтапный вывод не равнозначен передаче концессии. Канал продолжает работу, а вопрос собственников и режима судоходства требует отдельных решений.</p></section>
+</section>
 
-<nav class="tabs" aria-label="Египет — разделы"><button type="button" class="tab current" data-tab="suez" aria-selected="true"><span>01</span> Суэц</button>
-<button type="button" class="tab" data-tab="nile" aria-selected="false"><span>02</span> Нил и хлопок</button>
-<button type="button" class="tab" data-tab="power" aria-selected="false"><span>03</span> Офицеры и ведомства</button></nav>
-<main><section id="pane-suez" class="pane current" data-pane="suez" ><p>Загрузка раздела...</p></section>
-<section id="pane-nile" class="pane" data-pane="nile" hidden><p>Загрузка раздела...</p></section>
-<section id="pane-power" class="pane" data-pane="power" hidden><p>Загрузка раздела...</p></section></main>
-<footer class="footer"><span>ВПИ 1955 · Национальные механики</span><a href="../index.html">← Каталог государств</a></footer></div></body></html>
+<section id="nile" class="pane" data-pane="nile" hidden>
+<div class="section-title"><span class="eyebrow">02 / Вода, пашня и государственные преобразования</span><h2>Плодородной земли мало, а потребностей всё больше</h2>
+<p>Нил определяет и земледелие, и промышленное будущее Египта. Нужно снабжать население продовольствием, продавать хлопок за рубеж и улучшать жизнь крестьян, располагая ограниченными водными и земельными ресурсами.</p></div>
+<div id="egyEconomicFacts" class="egy-stats"></div>
+<section class="panel"><div class="panel-head"><div><span class="eyebrow">Почему Нил определяет экономику</span><h3>Одна река — несколько задач</h3></div></div>
+<div class="egy-nile-flow"><div class="egy-nile-head"><span>≈</span><strong>Вода Нила и орошаемая земля</strong><small>Главная сельскохозяйственная основа страны</small></div>
+<div class="egy-nile-fork">↙ <span>↘</span></div><div class="egy-nile-split">
+<div><b>Хлопок и экспорт</b><p>Приток внешних средств, текстильная промышленность, импорт машин</p></div>
+<div><b>Продовольствие и деревня</b><p>Снабжение населения, крестьянский доход и цены на продукты</p></div></div></div>
+<div class="egy-resource-conclusion"><b>Решения можно совмещать.</b> Земельная реформа, орошение и сельский кредит часто помогают друг другу. Противоречие возникает, когда хлопок и продовольственные культуры требуют одной и той же земли и воды, а проекты — денег и работников.</div>
+</section>
+<section class="panel"><div class="panel-head"><div><span class="eyebrow">Сельскохозяйственные преобразования</span><h3>Какие программы может развивать Египет?</h3></div><span class="hint">Они не взаимоисключающие</span></div>
+<div class="egy-agr-options" id="egyAgrOptions"></div>
+<div class="egy-agr-detail"><div class="egy-agr-head"><span class="eyebrow">Выбранная программа</span><h4 id="egyAgrTitle"></h4><p id="egyAgrWhy"></p></div><div class="egy-agr-columns">
+<div><b>Что потребуется</b><ul id="egyAgrNeeds"></ul></div><div><b>Что можно сочетать</b><p id="egyAgrSynergies"></p><b class="egy-limit-label">Где возникает конкуренция</b><p id="egyAgrTradeoffs"></p></div></div></div>
+</section>
+<section class="panel egy-aswan-panel"><div class="panel-head"><div><span class="eyebrow">Национальный суперпроект</span><h3>Высотная Асуанская плотина</h3></div><span class="pill">Планирование</span></div>
+<div class="egy-aswan-intro"><div><span class="eyebrow">Замысел нового Нила</span><p id="egyAswanIntro"></p></div><div class="egy-aswan-sketch" aria-hidden="true"><span>Нил</span><div class="egy-aswan-water"></div><div class="egy-aswan-wall"></div><small>Плотина</small></div></div>
+<div class="egy-aswan-steps" id="egyAswanSteps"></div><div class="egy-aswan-buttons" id="egyAswanButtons"></div>
+<div class="egy-aswan-detail"><b id="egyAswanName"></b><p id="egyAswanValue"></p></div></section>
+<details class="panel egy-more"><summary><span><strong>География Нила — четыре хозяйственных района</strong><small>Дельта, Каир, долина и Асуан</small></span><span>⌄</span></summary>
+<div class="egy-region-wrap"><svg id="egyNileMap" viewBox="0 0 610 490" role="group" aria-label="Условная географическая схема Нила и египетских районов"></svg>
+<div><div id="egyNileRegions" class="egy-place-buttons"></div><h4 id="egyRegionName"></h4><span class="egy-muted" id="egyRegionRole"></span><p id="egyRegionDetail"></p></div></div></details>
+</section>
+
+<section id="arab" class="pane" data-pane="arab" hidden>
+<div class="section-title"><span class="eyebrow">03 / Дипломатия и политическое влияние</span><h2>Каир претендует на голос арабского мира</h2><p id="egyArabIntro"></p></div>
+<section class="panel"><div class="panel-head"><div><span class="eyebrow">Региональные интересы</span><h3>Кто рядом с Египтом — и что им нужно?</h3></div><span class="hint">Выбери государство или вопрос</span></div>
+<div class="egy-arab-layout"><div><div class="egy-arab-network" id="egyArabNetwork"></div><p class="egy-note">Схема дипломатических связей Каира. Расстояния и расположение узлов не являются географической картой.</p><div id="egyArabButtons" class="egy-place-buttons"></div></div>
+<aside class="egy-arab-dossier"><span class="eyebrow">Выбранный вопрос</span><h3 id="egyArabName"></h3><span id="egyArabStatus" class="egy-muted"></span>
+<div class="egy-info-part"><b>Почему это важно</b><p id="egyArabFocus"></p></div><div class="egy-info-part"><b>Возможность для Каира</b><p id="egyArabOpportunity"></p></div><div class="egy-info-part"><b>Ограничения</b><p id="egyArabCost"></p></div></aside></div></section>
+<section class="panel"><div class="panel-head"><div><span class="eyebrow">Власть и общеарабские амбиции</span><h3>Что позволяет Насеру влиять на соседей?</h3></div></div>
+<div id="egyArabTensions" class="egy-tensions"></div><p class="egy-note">Египет обладает значительным дипломатическим весом, но остальные арабские страны не подчинены Каиру. Военные союзы, войны и объединения будущих лет ещё не определены.</p></section></section>
+</main>
+<footer class="footer"><div><strong>ВПИ 1955 · Египет</strong><p>Исходное положение на 1 января 1955 года. Будущие решения Египта и других государств определят дальнейшую историю.</p><div id="egySources" class="sources"></div></div><a href="../index.html">← Каталог стран</a></footer>
+</div></body></html>
