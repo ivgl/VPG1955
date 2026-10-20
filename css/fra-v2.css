@@ -397,3 +397,25 @@ button:focus-visible,a:focus-visible,[role="button"]:focus-visible{outline:3px s
  .sector-buttons{grid-template-columns:repeat(2,minmax(0,1fr))}
  .europe-workspace #fraEuropeMap{height:250px;max-height:250px}
 }
+
+
+/* France-specific 1955 ECSC map, repaired joined GDR exterior. */
+.europe-workspace .eu-map-wrap{background:linear-gradient(155deg,#eaf4ed 0%,#e8efeb 65%,#dce9e4 100%);border:1px solid #cee0d7;border-radius:12px;box-shadow:inset 0 0 24px rgba(83,124,106,.045);overflow:hidden}
+.europe-country{fill:#c9d5ce;stroke:#f0f6f1;stroke-width:1.2;vector-effect:non-scaling-stroke;stroke-linejoin:round}
+.europe-country.member{fill:#a1c5b3;stroke:#f2f8f3;stroke-width:1.55}
+.europe-country.member:hover{fill:#78ad95;stroke:#366f61;stroke-width:2}
+.europe-country.member.priority{stroke:#6f9d85;stroke-width:1.75}
+.europe-country.member.active{fill:#458b78;stroke:#2b6f5d;stroke-width:2.3}
+.europe-gdr{fill:#b9c8bf;stroke:#aebeb6;stroke-width:1.3;stroke-linejoin:round;vector-effect:non-scaling-stroke;pointer-events:all}
+.europe-germany-outline{fill:none;stroke:#738d7d;stroke-width:1.2;stroke-linejoin:round;vector-effect:non-scaling-stroke;pointer-events:none}
+.europe-lux{fill:#4d987e;stroke:#fff;stroke-width:2.8;cursor:pointer}
+.europe-lux.active,.europe-lux:hover{fill:#26745e;stroke:#f1f8eb;stroke-width:4}
+.europe-map-label{font-family:Manrope,system-ui,sans-serif;fill:#547668;paint-order:stroke;stroke:#eaf2ea;stroke-width:3px;stroke-linejoin:round;font-size:12px;font-weight:800;letter-spacing:.02em;pointer-events:none}
+.europe-map-label.emphasis{font-size:18px;letter-spacing:.07em;fill:#286452;stroke:#e2f0e5;stroke-width:4}
+.europe-map-label.east-label{fill:#647b72;stroke:#e1eae3}
+.eu-map-legend{display:flex;flex-wrap:wrap;align-items:center;gap:8px 17px;padding:10px 4px 4px;font-size:11px;font-weight:750;color:#648176}
+.eu-map-legend span{display:inline-flex;gap:7px;align-items:center}
+.eu-map-legend i{width:11px;height:11px;border-radius:3px;display:inline-block;flex:0 0 11px}
+.eu-legend-member{background:#a1c5b3;border:1px solid #79ad90}
+.eu-legend-east{background:#b9c8bf;border:1px solid #a0b4a9}
+@media(max-width:490px){.europe-map-label{font-size:11px}.europe-map-label.emphasis{font-size:15px}.eu-map-legend{font-size:10.5px}}

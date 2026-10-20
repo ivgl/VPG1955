@@ -1,7 +1,7 @@
 "use strict";
 /* VPI 1955 | France political mechanics v3. Interface only; no state writes or automatic judging. */
 (function(){
-const B=window.VPI_FRA_DRAFT,D=window.VPI_FRA_ATLAS_1955,G=window.VPI_FRA_GEO,E=window.VPI1955_MAPS?.europe;
+const B=window.VPI_FRA_DRAFT,D=window.VPI_FRA_ATLAS_1955,G=window.VPI_FRA_GEO,E=window.VPI_FRA_EUROPE_MAP_1955;
 if(!B||!D){console.error("France data missing");return}
 const el=id=>document.getElementById(id);
 const esc=x=>String(x??"").replace(/[&<>"']/g,k=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[k]));
@@ -96,9 +96,21 @@ renderAlgeria();
 // Europe: compact West-European map beside issue barriers and negotiated proposals.
 const codeEurope={France:"france",Germany:"frg",Italy:"ita",Belgium:"bel",Netherlands:"nld"};
 function drawEurope(){
- if(!E)return;const visible=new Set(["France","Germany","Italy","Belgium","Netherlands","Austria","Switzerland"]),i=D.europeIssues.find(x=>x.id===project);
- el("fraEuropeMap").innerHTML=E.countries.filter(c=>visible.has(c.name)).map(c=>{const id=codeEurope[c.name]||"";return '<path class="europe-country'+(id?" member"+(partner===id?" active":"")+(i.priorityPartners.includes(id)?" priority":""):"")+'" d="'+c.d+'"'+(id?' data-europe="'+id+'" role="button" tabindex="0" aria-label="'+esc(c.name)+'"':"")+'><title>'+esc(c.name)+'</title></path>'}).join("")+
- '<path class="europe-gdr" d="'+E.gdr+'" aria-label="ГДР"><title>ГДР, вне ЕОУС</title></path><circle class="europe-lux'+(partner==="lux"?" active":"")+'" data-europe="lux" role="button" tabindex="0" aria-label="Люксембург" cx="89" cy="237" r="7"><title>Люксембург</title></circle>';
+ if(!E)return;
+ const selected=D.europeIssues.find(x=>x.id===project),germany=E.countries.find(c=>c.name==="Germany");
+ const countryShapes=E.countries.map(c=>{
+  const id=codeEurope[c.name]||"",isPriority=id&&selected.priorityPartners.includes(id);
+  return '<path class="europe-country'+(id?" member"+(partner===id?" active":"")+(isPriority?" priority":""):"")+'" d="'+c.d+'"'+(id?' data-europe="'+id+'" role="button" tabindex="0" aria-label="'+esc(c.name)+'"':"")+'><title>'+esc(c.name)+'</title></path>';
+ }).join("");
+ const labels=E.labels.map(l=>{
+  const emphasis=["france","frg","gdr","ita"].includes(l.id);
+  return '<text x="'+l.x+'" y="'+l.y+'" class="europe-map-label'+(emphasis?" emphasis":"")+(l.id==="gdr"?" east-label":"")+'" text-anchor="middle">'+esc(l.title)+'</text>';
+ }).join("");
+ const legendPath='<path class="europe-gdr" d="'+E.gdrOutline+'" aria-label="ГДР — вне ЕОУС"><title>ГДР — вне ЕОУС</title></path>';
+ const border='<path class="europe-germany-outline" d="'+germany.d+'"></path>';
+ const lux='<circle class="europe-lux'+(partner==="lux"?" active":"")+'" data-europe="lux" role="button" tabindex="0" aria-label="Люксембург" cx="89" cy="237" r="8"><title>Люксембург · участник ЕОУС</title></circle>';
+ el("fraEuropeMap").setAttribute("viewBox",E.viewBox);
+ el("fraEuropeMap").innerHTML='<defs><linearGradient id="franceEuropeLand" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#edf6f0"/><stop offset="100%" stop-color="#e3eee8"/></linearGradient></defs>'+countryShapes+legendPath+border+lux+labels;
  el("fraEuropeMap").querySelectorAll("[data-europe]").forEach(x=>{const choose=()=>{partner=x.dataset.europe;renderPartners()};x.addEventListener("click",choose);x.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();choose()}})});
 }
 function renderPartners(){
