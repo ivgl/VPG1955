@@ -22,78 +22,219 @@ button{font:inherit;cursor:pointer}button:focus-visible,a:focus-visible,[role=bu
 .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin-bottom:14px}
 .stat{background:var(--paper);border:1px solid var(--line);padding:14px 16px;border-radius:10px;display:flex;flex-direction:column;gap:5px;min-width:0}
 .stat small{font-size:10px;color:#7e9586;font-weight:750}.stat strong{font-size:23px;letter-spacing:-.04em;color:#3e765e;line-height:1.3}.stat span{font-size:10px;color:#9c9f96;line-height:1.5}
-.two-col{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);align-items:start;gap:15px}
-.project-options{display:grid;gap:9px}.project-choice{display:grid;grid-template-columns:37px minmax(0,1fr);gap:8px;text-align:left;align-items:start;padding:13px 15px;border:1px solid #e2e8e2;background:#fafbf8;border-radius:10px;min-width:0}
-.project-choice .number{width:32px;height:32px;border-radius:8px;background:#eef3ee;color:#759982;display:grid;place-items:center;font-weight:900}
-.project-choice strong{font-size:12px;color:#436d5a;display:block}.project-choice small{font-size:10.5px;color:#879a89;display:block;margin-top:3px;line-height:1.6}
-.project-choice.active,.project-choice:hover{background:#edf5ed;border-color:#8bb9a1}.project-choice.active .number{background:#4b9470;color:#fff}
-.project-dossier h4{font-size:23px;line-height:1.32;letter-spacing:-.04em;color:#3e6b55;margin:5px 0 8px}.project-dossier p{font-size:12px;color:#6c8171;line-height:1.82;margin:8px 0}
-.project-tag{font-weight:850;font-size:10.5px;color:#9a756a;letter-spacing:.05em}
-.bottleneck{border-left:3px solid #bd8b6b;background:#fcf5ec;padding:12px 14px;margin:13px 0;border-radius:0 8px 8px 0}
-.bottleneck b,.checklist-title{font-size:10.5px;color:#a27862}.bottleneck p{color:#80695e!important;margin:4px 0!important}
-.checklist{margin:8px 0 12px;padding:0;list-style:none;display:grid;gap:6px}
-.checklist li{position:relative;padding:8px 10px 8px 23px;background:#f2f7f2;border-radius:7px;color:#597766;font-size:11px}
-.checklist li:before{content:"";position:absolute;left:9px;top:16px;width:6px;height:6px;border-radius:50%;background:#74aa88}
-.downstream{background:#f0f5ef;border-radius:8px;padding:12px;font-size:11px;color:#537260;line-height:1.7}
-.project-flow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px}
-.flow-node{text-align:left;background:#f8faf7;border:1px solid #e1e9e1;border-radius:10px;padding:12px;min-height:100px;display:flex;flex-direction:column;gap:7px;position:relative}
-.flow-node:not(:last-child):after{content:"→";position:absolute;right:-10px;top:39%;font-size:15px;color:#85a392;font-weight:900}
-.flow-node small{font-size:10px;color:#a38478;font-weight:850}.flow-node strong{font-size:12px;color:#447864;line-height:1.45}
-.flow-node.active,.flow-node:hover{background:#e6f3e9;border-color:#8fbda0}
-.stage-detail{margin-top:12px;border-top:1px solid var(--line);padding-top:13px;display:flex;gap:18px;align-items:start;justify-content:space-between}
-.stage-detail h4{font-size:17px;color:#407059;margin:4px 0}.stage-detail p{font-size:11.5px;color:#697d6c;margin:3px 0}
-.stage-caveat{max-width:300px;background:#f7f1e9;border-radius:7px;color:#8f745e;padding:10px 12px;font-size:10.5px}
-.policy-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
-.policy-btn{text-align:left;background:#f8faf7;border:1px solid #e2e9e1;border-radius:9px;padding:12px;min-height:80px}
-.policy-btn b{display:block;font-size:11.5px;color:#477563}.policy-btn small{color:#8d9f94;font-size:10px}
-.policy-btn.active,.policy-btn:hover{background:#eaf4ea;border-color:#8cb89b}
-.policy-note{display:grid;grid-template-columns:1fr 2fr;align-items:start;gap:12px;margin-top:13px;padding:14px;background:#f2f7f1;border-radius:9px;color:#5c7767}
-.policy-note strong{color:#39705a;font-size:12px}.policy-note p{font-size:11.5px;margin:0;line-height:1.7}
-.gov-flow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
-.gov-stage{padding:12px 10px;border:1px solid #e1eae2;background:#f8faf7;border-radius:9px;text-align:left;min-height:106px}
-.gov-stage small{display:block;color:#ab8979;font-weight:850;font-size:10px}.gov-stage strong{color:#467865;font-size:11.5px;display:block;margin:5px 0}
-.gov-stage.active,.gov-stage:hover{border-color:#93bfa5;background:#eaf4ed}
-.gov-detail{padding:14px 16px;border-left:3px solid #8cb89d;background:#f2f8f2;margin-top:12px;color:#607f6b;line-height:1.8;font-size:12px}
-.region-layout{display:grid;grid-template-columns:minmax(0,1.07fr) minmax(0,.93fr);gap:15px;margin-top:15px;align-items:start}
-.region-map{position:relative;background:#edf3ef;border:1px solid #dce6df;border-radius:10px;overflow:hidden}
-.region-map svg{width:100%;height:auto;display:block;max-height:460px}
-.cn-land{fill:#c4d9c5;stroke:#f9faf7;stroke-width:2;vector-effect:non-scaling-stroke}
-.map-region{cursor:pointer}.map-region circle{fill:#a25b51;stroke:#fff;stroke-width:2.8}
-.map-region.active circle{fill:#357c64;stroke:#fff;stroke-width:3.8}
-.map-region.affected circle{fill:#c79648}
-.map-region.active.affected circle{fill:#31775d;stroke:#c79648;stroke-width:5}
-.map-region text{font-size:11px;fill:#3c6958;font-weight:850;paint-order:stroke;stroke:#f7f9f4;stroke-width:2.6px;pointer-events:none}
-.map-water{fill:#9bb8b3;font:italic 15px Georgia,serif}
-.map-note{font-size:10px;color:#889b91;margin-top:9px;line-height:1.6}
-.region-scenarios{display:flex;gap:7px;flex-wrap:wrap;margin-top:13px}
-.region-scenarios button{font-size:10.5px;font-weight:800;border:1px solid #dbe8dc;background:#f7faf7;color:#62816d;border-radius:8px;padding:8px 10px}
-.region-scenarios button.active,.region-scenarios button:hover{background:#e9f3e9;border-color:#9cbda3;color:#35705a}
-.region-dossier h4{font-size:22px;color:#47765e;letter-spacing:-.04em;margin:5px 0}
-.region-dossier p{font-size:12px;line-height:1.75;color:#6d8174;margin:8px 0 12px}
-.region-section{border-top:1px solid var(--line);padding:12px 0}.region-section b{font-size:11px;color:#477461}.region-section p{margin:5px 0 0}
-.region-status{font-size:10.5px;color:#977963}
-.case-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
-.case-btn{padding:13px 12px;text-align:left;background:#f7faf7;border:1px solid #e2ebe1;border-radius:9px;min-height:110px;display:flex;flex-direction:column;gap:7px}
-.case-btn small{font-size:10px;color:#a08679}.case-btn strong{font-size:12px;line-height:1.45;color:#477663}.case-btn span{font-size:10px;line-height:1.55;color:#8f9f92}
-.case-btn.active,.case-btn:hover{background:#e7f2e9;border-color:#8bb69b}
-.world-dossier{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:15px}
-.world-dossier h4{font-size:22px;letter-spacing:-.04em;color:#3e7560;margin:7px 0 9px}
-.world-dossier p{color:#647e70;font-size:11.5px;line-height:1.85;margin:8px 0 13px}
-.world-dossier .status{display:inline-flex;border:1px solid #e0d0bd;background:#fcf4ea;color:#92735b;font-size:10px;font-weight:850;padding:6px 11px;border-radius:99px}
-.world-dossier .world-cost{padding:13px 15px;border-radius:9px;background:#f4f7f2}
-.world-cost b{color:#517967;font-size:11px}
-.strait-map{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;margin-top:13px}
-.strait-map>div{padding:12px;border-radius:9px;background:#f2f5f2;border:1px solid #e3e8df;display:flex;flex-direction:column;gap:6px}
-.strait-map strong{color:#3a735d;font-size:12px}.strait-map small{font-size:10px;line-height:1.65;color:#8b9b8f}
-.strait-map .disputed{background:#fbf1e7;border-color:#ecdcc9}.strait-map .disputed strong{color:#9a7356}
-.trade-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:15px}
-.trade-rows{display:grid;gap:7px}.trade-row{display:grid;grid-template-columns:132px 1fr 38px;gap:8px;align-items:center;font-size:10.5px;color:#657d6d}
-.trade-row .bar{height:9px;border-radius:99px;background:#eaf1e9;overflow:hidden}.trade-row .bar span{height:100%;display:block;background:#6b9d80;border-radius:99px}
-.trade-row .bar span.import{background:#bc9173}
-.trade-note{font-size:10.5px;color:#87998f;line-height:1.75;margin:12px 0 0}
-.sources{display:flex;gap:9px;flex-wrap:wrap;margin-top:15px}
-.sources a{font-size:10.5px;color:#537d6b;border:1px solid #dbe8de;background:#f6faf6;padding:6px 9px;border-radius:7px;text-decoration:none}
-.footer{border-top:1px solid var(--line);padding:24px 0 34px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:#8b9d90;font-size:11px}
-@media(max-width:970px){.two-col,.region-layout,.world-dossier{grid-template-columns:1fr}.project-flow,.gov-flow{grid-template-columns:repeat(3,minmax(0,1fr))}.flow-node:nth-child(3):after{content:none}.case-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.region-map svg{max-height:460px}}
-@media(max-width:720px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.policy-row{grid-template-columns:repeat(2,minmax(0,1fr))}.trade-grid{grid-template-columns:1fr}.project-flow,.gov-flow{grid-template-columns:repeat(2,minmax(0,1fr))}.flow-node:nth-child(3):after{content:"→"}.flow-node:nth-child(2n):after{content:none}.stage-detail{flex-direction:column}.stage-caveat{max-width:none}.region-map svg{max-height:400px}}
-@media(max-width:470px){.shell{padding:0 13px}.topbar{min-height:65px}.topbrand{font-size:9px}.hero{padding-top:28px}.hero h1{font-size:35px}.tab{padding:9px 10px;font-size:11px}.panel{padding:15px}.panel-head h3{font-size:17px}.case-grid,.policy-row{grid-template-columns:1fr 1fr}.project-flow,.gov-flow{grid-template-columns:1fr 1fr}.stat strong{font-size:19px}.policy-note{grid-template-columns:1fr}.strait-map{grid-template-columns:1fr}.region-map svg{max-height:330px}.trade-row{grid-template-columns:110px 1fr 33px}}
+
+/* General China national layout */
+.panel+.panel{margin-top:15px}
+.stats{grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+.stat{padding:13px 12px;min-height:120px}
+.stat strong{font-size:20px;line-height:1.35}
+.stat small{font-size:10px}
+.stat span{font-size:10px;line-height:1.55}
+.stat-warning{background:#fbf3ec;border-color:#e7d9c7}
+.stat-warning strong{color:#9e564c}
+.stat-warning em{color:#ab665b;background:#f8e3d8;padding:3px 5px;border-radius:5px;font-size:9.5px;line-height:1.5;font-style:normal;font-weight:800}
+.pane>.panel,.pane>.cn-plan-banner{margin-top:15px}
+.cn-plan-banner{background:linear-gradient(120deg,#f0f6ed 20%,#eef3eb 65%,#f5eee2);display:grid;grid-template-columns:minmax(0,1.32fr) minmax(260px,.68fr);gap:22px;align-items:center}
+.cn-plan-banner h3{font-size:23px;letter-spacing:-.045em;line-height:1.4;margin:5px 0 8px;color:#2e6754}
+.cn-plan-banner p{font-size:11.5px;color:#637c6c;line-height:1.75;margin:0}
+.plan-banner-meta{display:flex;gap:7px;flex-wrap:wrap;margin-top:13px}
+.plan-banner-meta span{font-size:10px;padding:6px 8px;border:1px solid #ccdfce;border-radius:7px;background:#f8fbf6;color:#537763}
+.plan-banner-aside{background:rgba(255,255,255,.65);padding:13px 15px;border-radius:10px;border-left:3px solid #9db69d}
+.plan-banner-aside b{font-size:11px;color:#547866;display:block;margin-bottom:5px}
+.cn-project-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.cn-project-choice{border:1px solid #dfe7dd;background:#f8faf7;border-radius:10px;padding:13px;display:flex;align-items:center;gap:11px;text-align:left;min-width:0;min-height:84px}
+.cn-project-choice:hover,.cn-project-choice.active{background:#e9f3e9;border-color:#89b598}
+.cn-project-number{font-size:17px;font-weight:900;color:#8caf97;background:#e9eee8;border-radius:9px;padding:8px 9px;flex:none}
+.cn-project-choice.active .cn-project-number{color:#fff;background:#47866c}
+.cn-project-choice strong{display:block;color:#3e755a;font-size:12px;line-height:1.45}
+.cn-project-choice small{display:block;color:#819788;font-size:10px;line-height:1.5;margin-top:3px}
+.cn-project-dossier{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:19px;background:#f7faf5;border:1px solid #dce9dd;border-radius:11px;padding:17px;margin-top:12px}
+.cn-project-main,.cn-project-aside{min-width:0}
+.cn-project-main h4{font-size:22px;letter-spacing:-.043em;line-height:1.35;color:#3e6e57;margin:5px 0 4px}
+.project-tag{font-size:10px;color:#a87a66;font-weight:800}
+.cn-project-main>p,.cn-project-gain p,.cn-project-aside p{font-size:11.5px;line-height:1.75;color:#698071;margin:6px 0 0}
+.cn-project-gain{padding-top:11px;margin-top:11px;border-top:1px solid #dfe9df}
+.cn-project-gain b{font-size:11px;color:#3c735c}
+.cn-project-aside{display:grid;grid-template-rows:1fr 1fr;gap:9px}
+.cn-project-aside>div{background:#fff;border:1px solid #e3ece3;border-radius:9px;padding:12px 14px}
+.cn-project-aside b{font-size:11px;color:#9b705e}
+.cn-resource-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
+.cn-resource-node{display:flex;flex-direction:column;text-align:left;gap:5px;border-radius:10px;border:1px solid #e0e8df;background:#fafbf8;padding:11px 13px;min-height:95px}
+.cn-resource-node small{font-size:9.5px;color:#a7897b;font-weight:800}
+.cn-resource-node strong{font-size:12px;color:#627d6b;line-height:1.4}
+.cn-resource-node span{font-size:9.5px;color:#9ba99b}
+.cn-resource-node.needed{background:#edf5ed;border-color:#c5dfce}
+.cn-resource-node.needed strong{color:#3c795b}
+.cn-resource-node.active,.cn-resource-node:hover{border-color:#609b76;background:#dff0e3}
+.cn-resource-detail{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;border-top:1px solid var(--line);margin-top:15px;padding-top:15px}
+.cn-resource-detail h4{margin:5px 0;color:#37735a;font-size:18px}
+.cn-resource-detail p{font-size:11.5px;color:#667f70;line-height:1.75;margin:6px 0 0}
+.cn-resource-risk{border-left:3px solid #c9a07d;padding:10px 13px;background:#fbf5ec;border-radius:0 8px 8px 0}
+.cn-resource-risk b{font-size:11px;color:#98705b}
+.cn-channels{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
+.cn-channel-btn{min-width:0;text-align:left;padding:12px;background:#f7faf7;border:1px solid #e0e9e1;border-radius:9px;min-height:78px}
+.cn-channel-btn strong{display:block;color:#467662;font-size:11.5px;line-height:1.5}
+.cn-channel-btn small{color:#8f9f91;font-size:10px}
+.cn-channel-btn.active,.cn-channel-btn:hover{background:#e9f4ea;border-color:#9fc4a7}
+.cn-channel-detail{display:grid;grid-template-columns:minmax(160px,.3fr) 1fr;align-items:start;gap:16px;padding:13px 15px;background:#f2f7f1;border-radius:9px;margin-top:12px}
+.cn-channel-detail b{font-size:11.5px;color:#357158}
+.cn-channel-detail p{font-size:11.5px;line-height:1.75;color:#5d7867;margin:0}
+
+/* Rural dilemma */
+.cn-grain-flow{max-width:870px;margin:0 auto}
+.cn-grain-source{background:#eaf4ea;border:1px solid #cce1cf;border-radius:11px;padding:17px 20px;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap}
+.grain-icon{font-family:Georgia,serif;font-size:32px;line-height:1;color:#619271}
+.cn-grain-source strong{font-size:17px;color:#34715a}
+.cn-grain-source small{color:#829a85;font-size:11px}
+.cn-grain-fork{display:flex;justify-content:space-around;font-size:25px;color:#8daf94;line-height:1.6}
+.cn-grain-branches{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.cn-grain-branches>div{border:1px solid #dfe9dd;padding:16px;border-radius:10px;background:#f7faf6;min-width:0}
+.cn-grain-branches>div:nth-child(2){background:#f8f4ed;border-color:#ebe1d2}
+.cn-grain-branches strong{display:block;color:#416f58;font-size:14px;margin-top:6px}
+.cn-grain-branches p{font-size:11px;color:#718475;line-height:1.75;margin:5px 0 0}
+.cn-grain-note{display:grid;grid-template-columns:minmax(110px,.23fr) 1fr;gap:12px;align-items:center;padding:12px 15px;background:#f9f1e8;border-radius:9px;border-left:3px solid #c79d7c;margin-top:15px}
+.cn-grain-note b{font-size:11px;color:#98745c}
+.cn-grain-note p{font-size:11.5px;color:#8a7666;line-height:1.75;margin:0}
+.cn-rural-policies{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.cn-rural-option{min-width:0;min-height:96px;text-align:left;background:#f9faf7;border:1px solid #e0e9df;border-radius:10px;padding:13px 12px;display:flex;flex-direction:column;gap:7px}
+.cn-rural-option small{color:#a68b73;font-size:10px;line-height:1.35}
+.cn-rural-option strong{color:#46745c;font-size:12px;line-height:1.5}
+.cn-rural-option.active,.cn-rural-option:hover{background:#e9f3e9;border-color:#87b799}
+.cn-rural-dossier{margin-top:13px;border-radius:11px;background:#f8faf6;border:1px solid #dde9de;padding:16px}
+.cn-rural-dossier-title h4{font-size:20px;line-height:1.35;letter-spacing:-.038em;color:#3a715b;margin:6px 0 12px}
+.cn-rural-consequences{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.cn-rural-consequences>div{padding:13px;border:1px solid #d9e8df;border-radius:9px;background:#fff}
+.cn-rural-consequences>.village{background:#edf5eb}
+.cn-rural-consequences b,.cn-rural-caution b{font-size:11px;color:#3e7960}
+.cn-rural-consequences p,.cn-rural-caution p{font-size:11.5px;line-height:1.75;color:#688173;margin:6px 0 0}
+.cn-rural-caution{display:grid;grid-template-columns:minmax(120px,.25fr) 1fr;gap:11px;align-items:center;margin-top:11px;background:#f9f1e7;padding:12px;border-radius:8px}
+.cn-rural-caution b{color:#a37c5f}
+.cn-regions-details,.cn-private-details{padding:0;overflow:hidden}
+.cn-regions-details>summary,.cn-private-details>summary{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:18px 20px;list-style:none;cursor:pointer}
+.cn-regions-details>summary::-webkit-details-marker,.cn-private-details>summary::-webkit-details-marker{display:none}
+.cn-regions-details>summary span:first-child,.cn-private-details>summary span:first-child{display:flex;flex-direction:column;gap:3px}
+.cn-regions-details>summary strong,.cn-private-details>summary strong{font-size:13px;color:#416f59}
+.cn-regions-details>summary small,.cn-private-details>summary small{font-size:10.5px;color:#85988a;line-height:1.4}
+.cn-open-arrow{font-size:22px;color:#9daea0;transition:transform .2s}
+.cn-regions-details[open] .cn-open-arrow,.cn-private-details[open] .cn-open-arrow{transform:rotate(180deg)}
+.cn-region-layout{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:18px;border-top:1px solid #e0e8df;padding:19px}
+.region-map{border:1px solid #d7e6d8;border-radius:9px;overflow:hidden;background:#edf5f1}
+.region-map svg{display:block;width:100%;height:auto;max-height:450px}
+.cn-land{fill:#bbd7c6;stroke:#fff;stroke-width:2}
+.cn-region-point{cursor:pointer}
+.cn-region-point circle{fill:#a66255;stroke:#fff;stroke-width:2.5}
+.cn-region-point.active circle{fill:#337d61;stroke-width:4}
+.cn-region-point text{font-size:11px;font-weight:800;fill:#416d57;paint-order:stroke;stroke:#f6f9f3;stroke-width:3;pointer-events:none}
+.cn-region-point:focus-visible circle{stroke:#bb9259;stroke-width:5}
+.cn-region-choices{display:flex;gap:6px;flex-wrap:wrap;margin-top:11px}
+.cn-region-choices button{background:#f5f9f5;color:#567c65;border:1px solid #d7e4d8;border-radius:7px;font-size:10px;font-weight:800;padding:6px 9px}
+.cn-region-choices button.active,.cn-region-choices button:hover{background:#e1f0e3;border-color:#85b994;color:#32714f}
+.cn-region-dossier{padding:8px 5px}
+.cn-region-dossier h4{font-size:21px;color:#3b775f;margin:6px 0 5px;letter-spacing:-.04em}
+.region-status{font-size:11px;color:#9c745f}
+.cn-region-dossier>div{margin-top:15px;border-top:1px solid #e1e8e0;padding-top:13px}
+.cn-region-dossier b{font-size:11px;color:#477962}
+.cn-region-dossier p{font-size:11.5px;color:#657e6f;line-height:1.78;margin:5px 0}
+.map-note{font-size:10px;color:#8e9f93;line-height:1.65;margin:10px 0}
+.cn-private-details>p{border-top:1px solid #e0e8df;margin:0;padding:17px 21px;font-size:11.5px;line-height:1.85;color:#607b6b}
+
+/* Taiwan Strait */
+.cn-strait-banner{background:#f7f0e8;border:1px solid #e9dcca;border-left:4px solid #b7856b;border-radius:10px;padding:15px 19px;margin-bottom:15px}
+.cn-strait-banner p{font-size:12px;color:#816a5c;line-height:1.8;margin:5px 0 0}
+.cn-strait-layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(315px,.85fr);gap:15px;align-items:stretch}
+.cn-strait-map-panel,.cn-strait-dossier{min-width:0}
+.cn-strait-map-wrap{border-radius:10px;border:1px solid #d9e6e0;overflow:hidden;background:#e3efe9}
+.cn-strait-map-wrap svg{display:block;width:100%;height:auto;max-height:480px}
+.cn-strait-coast{fill:#c2d9c7}
+.cn-strait-coastline{fill:none;stroke:#f9faf3;stroke-width:2.5}
+.cn-strait-taiwan{fill:#dbc6a4;stroke:#f7f8ee;stroke-width:2.8}
+.cn-strait-small-islands{fill:#b5947f}
+.cn-map-territory{fill:#5d9072;font-size:25px;font-weight:850;opacity:.45}
+.cn-map-taiwan-label{font-size:18px;fill:#9b856d}
+.cn-map-water{fill:#9ab7af;font:italic 15px Georgia,serif}
+.cn-site-mark{cursor:pointer}
+.cn-site-mark text{font-size:12px;font-weight:900;fill:#426d60;stroke:#f1f7f3;stroke-width:3.5;paint-order:stroke;pointer-events:none}
+.cn-site-mark.roc text{fill:#9a675b}
+.cn-map-hit{fill:rgba(255,255,255,.4);stroke:#fff;stroke-width:1.8}
+.cn-site-pin{fill:#4b8f76;stroke:#fff;stroke-width:1.5}
+.cn-site-mark.roc .cn-site-pin{fill:#aa6b5a}
+.cn-site-mark.active .cn-map-hit{fill:rgba(247,197,110,.24);stroke:#d7aa62;stroke-width:3}
+.cn-pin-guide{stroke:#9eb9af;stroke-width:1.6;stroke-dasharray:3 3;fill:none}
+.cn-site-mark:focus-visible .cn-map-hit{stroke:#d4a45b;stroke-width:4}
+.cn-map-legend{display:flex;gap:9px 17px;flex-wrap:wrap;margin:11px 0 3px;font-size:10px;color:#71877b}
+.cn-map-legend span{display:flex;align-items:center;gap:5px}
+.cn-map-legend i,.cn-site-btn i{width:10px;height:10px;flex:none;border-radius:50%;background:#4b8f76;display:inline-block}
+.cn-map-legend i.cn-roc-dot,.cn-site-btn i.roc{background:#ae705b}
+.cn-map-legend i.cn-selected-dot{background:#d8b071;box-shadow:0 0 0 2px #f3d79e}
+.cn-site-picker{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.cn-site-btn{font-size:10.5px;font-weight:750;display:inline-flex;gap:6px;align-items:center;padding:7px 10px;background:#f8faf8;border-radius:8px;border:1px solid #dce7de;color:#647d6d}
+.cn-site-btn.active,.cn-site-btn:hover{background:#e4f2e7;border-color:#8ebd9b;color:#306d54}
+.cn-strait-dossier{display:flex;flex-direction:column}
+.cn-strait-dossier h3{font-size:23px;letter-spacing:-.045em;line-height:1.3;margin:6px 0 13px;color:#39705a}
+.cn-control-status{display:flex;align-items:center;flex-wrap:wrap;gap:9px;font-size:10.5px;color:#7c9082}
+.cn-control-status b{display:inline-block;padding:5px 9px;border:1px solid #d1e2d4;background:#ebf5eb;color:#377357;border-radius:20px;font-size:10.5px}
+.cn-control-status b.roc{border-color:#e5cdbb;background:#fbf0e6;color:#985f50}
+.cn-site-context{color:#637d6d;font-size:12px;line-height:1.8;margin:15px 0}
+.cn-lenses{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;padding:4px;background:#f1f5f0;border-radius:8px;margin:4px 0 0}
+.cn-lenses button{background:transparent;border:1px solid transparent;border-radius:7px;padding:9px 5px;font-size:10.5px;color:#7b9080;font-weight:750;line-height:1.4}
+.cn-lenses button.active,.cn-lenses button:hover{background:#fff;border-color:#d8e8d9;color:#317256}
+.cn-lens-result{background:#f7faf6;border:1px solid #e4ece3;border-radius:9px;margin-top:11px;padding:15px}
+.cn-lens-result p{font-size:11.5px;line-height:1.85;color:#617b69;margin:7px 0 0}
+.cn-lens-help{padding:13px 15px;background:#f8f2ea;border-radius:9px;margin-top:auto;border-left:3px solid #c69e78}
+.cn-lens-help b{font-size:11px;color:#9b765a}
+.cn-lens-help p{font-size:11px;color:#846e5e;line-height:1.75;margin:6px 0 0}
+.cn-strait-lower{margin-top:15px}
+.cn-timeline{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.cn-time-event{border-top:3px solid #a8c6af;background:#f6faf5;padding:12px 14px;border-radius:0 0 9px 9px}
+.cn-time-event b{font-size:11.5px;color:#3f765b}
+.cn-time-event p{font-size:11px;line-height:1.75;color:#678070;margin:7px 0 0}
+.cn-diplomacy-note{background:#f9f1e7;border-radius:8px;padding:14px 16px;margin-top:13px;display:grid;grid-template-columns:180px 1fr;gap:15px}
+.cn-diplomacy-note b{font-size:11px;color:#966c59}
+.cn-diplomacy-note p{font-size:11.5px;line-height:1.8;color:#816e5d;margin:0}
+.footer{border-top:1px solid var(--line);margin-top:28px;padding:24px 0 35px;display:flex;align-items:start;justify-content:space-between;flex-wrap:wrap;gap:15px;font-size:11px;color:#87968a}
+.footer strong{font-weight:850}.footer p{font-size:10.5px;color:#92a095}
+.footer a{color:#3c775b;text-decoration:none}
+.sources{display:flex;gap:7px;flex-wrap:wrap;margin-top:13px}
+.sources a{font-size:10.5px;border:1px solid #d9e6dc;border-radius:7px;padding:6px 9px;background:#fff;text-decoration:none}
+
+@media(max-width:1080px){
+ .stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .cn-strait-layout{grid-template-columns:1fr}
+ .cn-strait-map-wrap{max-width:790px;margin:0 auto}
+ .cn-strait-map-wrap svg{max-height:none}
+ .cn-lens-help{margin-top:14px}
+}
+@media(max-width:830px){
+ .cn-plan-banner{grid-template-columns:1fr}
+ .cn-resource-grid,.cn-channels,.cn-rural-policies{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .cn-region-layout{grid-template-columns:1fr}
+ .cn-project-dossier{grid-template-columns:1fr}
+ .cn-project-aside{grid-template-rows:unset;grid-template-columns:repeat(2,minmax(0,1fr))}
+ .cn-project-options{grid-template-columns:1fr 1fr 1fr}
+ .cn-project-choice{padding:10px}
+}
+@media(max-width:650px){
+ .hero h1{font-size:40px}
+ .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .cn-project-options{grid-template-columns:1fr}
+ .cn-project-choice{min-height:65px}
+ .cn-project-aside,.cn-resource-detail,.cn-grain-branches,.cn-rural-consequences{grid-template-columns:1fr}
+ .cn-grain-note,.cn-rural-caution,.cn-channel-detail,.cn-diplomacy-note{grid-template-columns:1fr}
+ .cn-timeline{grid-template-columns:1fr}
+ .cn-strait-dossier h3{font-size:21px}
+ .cn-region-layout{padding:14px}
+ .cn-lenses button{font-size:10px}
+}
+@media(max-width:430px){
+ .shell{padding:0 13px}
+ .panel{padding:15px}
+ .hero{padding:27px 0 18px}
+ .hero h1{font-size:37px}
+ .topbar{min-height:66px}.topbrand{font-size:9px}
+ .tab{padding:9px 11px;font-size:11px}
+ .stat strong{font-size:19px}.stat{padding:11px;min-height:115px}
+ .cn-resource-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .cn-channel-btn,.cn-rural-option{padding:10px;min-height:91px}
+ .cn-strait-map-panel,.cn-strait-dossier{padding:12px}
+ .cn-strait-map-wrap{margin:0 -2px}
+}
