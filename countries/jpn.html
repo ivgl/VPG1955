@@ -54,74 +54,78 @@
 
 <section id="industry" class="pane" hidden>
 <div class="heading"><span class="eyebrow">02 / Производство, энергия и порты</span><h2>Островная машина: от сырья до валютной выручки</h2>
-<p>Карта показывает, где сосредоточены портовые и промышленные узлы. Справа выбери отрасль и возможный перебой: ниже карта продолжится производственным циклом, а рядом появятся последствия для выпуска и валютной выручки.</p></div>
-<div class="jpn-workflow-steps" aria-label="Порядок изучения экономики">
-<div><span>01</span><b>Найди промышленный узел</b><small>Выбери порт на карте</small></div>
-<div><span>02</span><b>Выбери отрасль и условие</b><small>Справа укажи производство и возможный сбой</small></div>
-<div><span>03</span><b>Проследи последствия</b><small>Под картой — цикл, справа — эффект для выпуска и валюты</small></div>
-</div>
-<div class="jpn-selection-ribbon" aria-live="polite" aria-label="Текущий выбор для анализа">
-<span>Текущий разбор</span><div><small>Порт</small><strong id="jpnSelectedPort">—</strong></div><div><small>Отрасль</small><strong id="jpnSelectedSector">—</strong></div><div><small>Условие</small><strong id="jpnSelectedShock">—</strong></div>
-</div>
+<p>Выбери промышленный район на карте, затем отрасль. Ниже показан полный путь от оплаты импорта до валютной выручки. Отдельно можно проверить, как перебой поставок повлияет на производство.</p></div>
 
-<div class="jpn-industry-workspace">
+<div class="jpn-geo-layout">
 <section class="panel industry-map">
-<div class="panel-head"><div><span class="eyebrow">Карта / выбери место</span><h3>Порты и промышленные районы</h3></div><span class="small-tag">Восемь узлов</span></div>
+<div class="panel-head"><div><span class="eyebrow">География промышленности</span><h3>Порты и промышленные районы</h3></div><span class="small-tag">8 узлов</span></div>
 <div class="map-frame"><svg id="japanMap" viewBox="0 0 755 760" role="group" aria-label="Географическая карта промышленных и портовых узлов Японии"></svg></div>
 <div class="map-legend"><span><i class="pin"></i> Промышленный порт</span><span><i class="affected"></i> Затронут поставками</span><span><i class="selected"></i> Выбранный узел</span></div>
 <div id="jpnPortNav" class="port-nav" aria-label="Порты Японии"></div>
-<div class="jpn-map-port-brief">
-<div class="jpn-port-head"><div><span class="eyebrow">Выбранный промышленный район</span><h4 id="jpnPortName"></h4></div><span class="status" id="jpnPortArea"></span></div>
+<p class="fine">Контуры островов упрощены. Окинава находится под управлением США и не входит в обычную портовую сеть правительства Японии.</p>
+</section>
+
+<aside class="panel jpn-port-dossier">
+<div class="panel-head"><div><span class="eyebrow">Выбранный промышленный район</span><h3 id="jpnPortName"></h3></div></div>
+<span class="status" id="jpnPortArea"></span>
 <p class="jpn-port-role" id="jpnPortRole"></p>
 <div class="jpn-port-facts">
 <div><b>Снабжение и энергия</b><p id="jpnPortSupply"></p></div>
 <div><b>Основные грузы и отрасли</b><p id="jpnPortChain"></p></div>
 </div>
-<div class="jpn-port-bottleneck"><b>Хозяйственная проблема</b><p id="jpnPortLimit"></p></div>
-<div class="jpn-port-links"><b>Производство в регионе</b><div id="jpnPortIndustries" class="port-industry-links"></div></div>
+<div class="jpn-port-bottleneck"><b>Главное хозяйственное ограничение</b><p id="jpnPortLimit"></p></div>
+<div class="jpn-port-links"><b>Производство в этом районе</b><div id="jpnPortIndustries" class="port-industry-links"></div></div>
+<p class="jpn-geo-help">Нажми на другой порт на карте: сведения о районе обновятся здесь, а соответствующее производство будет выбрано ниже.</p>
+</aside>
 </div>
-<p class="fine">Контуры островов упрощены. Окинава находится под управлением США и не входит в обычную портовую сеть правительства Японии.</p>
-</section>
 
-<aside class="panel jpn-industry-controls">
-<div class="panel-head"><div><span class="eyebrow">Выбор / пять отраслей</span><h3>Какое производство изучаем?</h3></div></div>
+<section class="panel jpn-sector-workspace">
+<div class="panel-head"><div><span class="eyebrow">Промышленная специализация</span><h3>Какое производство изучаем?</h3></div><span class="small-tag">5 отраслей</span></div>
 <div id="jpnIndustryButtons" class="industry-buttons" aria-label="Выбор промышленной отрасли"></div>
 <div class="jpn-sector-dossier">
+<div class="jpn-sector-overview">
+<div>
 <div class="jpn-sector-heading"><span class="eyebrow">Выбранная отрасль</span><h4 id="jpnIndustryName"></h4></div>
 <p id="jpnIndustryBase" class="jpn-sector-lead"></p>
 <div class="industry-formula" id="jpnIndustryChain"></div>
+</div>
 <div class="jpn-sector-facts">
 <div><b>Энергия</b><p id="jpnIndustryEnergy"></p></div>
 <div><b>Импорт</b><p id="jpnIndustryImports"></p></div>
 <div><b>Ограничитель выпуска</b><p id="jpnIndustryLimit"></p></div>
 </div>
+</div>
+<div class="jpn-sector-footer">
 <details class="jpn-sector-organizations"><summary>Участники отрасли</summary><p id="jpnIndustryStake"></p></details>
 <button id="jpnToCurrency" type="button" class="text-link">Связанная категория импорта →</button>
 </div>
-<div class="jpn-scenario-controls">
-<div class="jpn-scenario-head"><span class="eyebrow">Проверка / условия поставок</span><h4>Какой перебой проверяем?</h4></div>
-<div id="jpnSupplyScenarios" class="supply-buttons" aria-label="Сценарии перебоев поставок"></div>
-<div id="jpnSupplyDescription" class="supply-result" aria-live="polite"></div>
-<p class="jpn-scenario-tip">Выбор подсвечивает затронутые порты и этапы цикла. Это качественная проверка связей, а не автоматический расчёт потерь.</p>
 </div>
-</aside>
+</section>
 
 <section class="panel production-cycle jpn-cycle-workspace">
-<div class="panel-head"><div><span class="eyebrow">Цепочка / под картой</span><h3>Шесть звеньев производства</h3></div><span class="small-tag">Выбирай любое звено</span></div>
-<div class="jpn-cycle-context"><span>Производственная цепочка: <strong id="jpnCycleSectorName"></strong></span><span>Основной порт: <strong id="jpnCyclePortName"></strong></span></div>
+<div class="panel-head"><div><span class="eyebrow">Производство, торговля и валюта</span><h3>Единый производственный цикл</h3></div><span class="small-tag">Выбери этап для подробностей</span></div>
+<div class="jpn-cycle-context"><span>Отрасль: <strong id="jpnCycleSectorName"></strong></span><span>Порт: <strong id="jpnCyclePortName"></strong></span></div>
 <div id="jpnSupplyLoop" class="supply-loop" aria-label="Шесть этапов промышленного цикла"></div>
-<p class="jpn-cycle-return">↺ Валютная выручка шестого звена позволяет оплатить импорт следующего цикла. Нажми на звено, чтобы увидеть его зависимость.</p>
+<p class="jpn-cycle-return">↺ Выручка от оплаченного экспорта может обеспечить иностранные закупки следующего производственного цикла.</p>
 <div class="loop-info">
 <div><span class="eyebrow">Выбранный этап производства</span><h4 id="jpnLoopStageName"></h4><p id="jpnLoopStageDetail"></p></div>
 <div class="loop-status"><span>Главная зависимость отрасли</span><p id="jpnLoopCoreRisk"></p><button class="text-link" type="button" data-jump="currency">Посмотреть валютный бюджет →</button></div>
 </div>
 </section>
-<section class="panel jpn-impact-panel jpn-impact-workspace">
-<div class="jpn-impact-head"><div><span class="eyebrow">Последствия / справа от цикла</span><h4 id="jpnImpactTitle">Производство и валютные поступления</h4></div><span id="jpnImpactIndicator" class="jpn-impact-indicator">Поставки без выбранного сбоя</span></div>
+
+<details class="panel jpn-scenario-panel" id="jpnScenarioPanel">
+<summary class="jpn-scenario-toggle"><span class="jpn-scenario-toggle-icon" aria-hidden="true">⚠</span><span class="jpn-scenario-toggle-title"><strong>Проверить перебой поставок</strong><small>Дополнительный сценарий: как сбой распространяется от порта к выпуску и валюте</small></span><span class="jpn-scenario-current" id="jpnActiveScenarioLabel">Обычные поставки</span><span class="jpn-toggle-arrow" aria-hidden="true">⌄</span></summary>
+<div class="jpn-scenario-content">
+<div id="jpnSupplyScenarios" class="supply-buttons" aria-label="Сценарии перебоев поставок"></div>
+<div id="jpnSupplyDescription" class="supply-result" aria-live="polite"></div>
+<div id="jpnImpactResults" class="jpn-impact-results" hidden>
+<div class="jpn-impact-head"><div><span class="eyebrow">Как меняются выпуск и валютная выручка</span><h4 id="jpnImpactTitle">Последствия выбранного перебоя</h4></div><span id="jpnImpactIndicator" class="jpn-impact-indicator">Обычные поставки</span></div>
 <div id="jpnCascade" class="cascade-grid" aria-live="polite"></div>
 <div id="jpnCascadeConclusion" class="cascade-conclusion"></div>
-</section>
 </div>
+<p class="jpn-scenario-tip">Подсветка показывает качественные связи и уязвимости, а не точные проценты потерь. Сценарий можно вернуть к обычным поставкам.</p>
+</div>
+</details>
 </section>
 
 <section id="currency" class="pane" hidden>
