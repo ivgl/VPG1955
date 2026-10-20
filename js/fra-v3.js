@@ -29,7 +29,7 @@ function renderParties(){
  el("fraIssuePositionOverview").innerHTML=["likely","conditional","mixed","opposed"].map(st=>'<div class="stance-overview-cell stance-'+st+'"><strong>'+parties.filter(p=>politicalData(p)===st).length+'</strong><span>'+sl[st]+'</span></div>').join("");
  el("fraPartyCards").innerHTML=sorted.map(p=>{
   const st=politicalData(p),v=votes[issue][p.id],info=profiles[p.id];
-  return '<article class="party-tile stance-'+st+(party===p.id?" selected":"")+'"><div class="party-tile-top"><button class="party-main" type="button" data-party-select="'+p.id+'"><strong>'+esc(p.name)+'</strong><small>'+p.seats1951+' мест · 1951</small></button><span class="stance-flag stance-'+st+'">'+sl[st]+'</span></div><p class="party-brief">'+esc(info.topic[issue][0])+'</p><div class="party-votes">'+[["yes","Поддержка"],["maybe","Обсуждать"],["no","Не рассчитывать"]].map(([key,name])=>'<button type="button" data-vote-party="'+p.id+'" data-vote="'+key+'" aria-pressed="'+(v===key)+'" class="vote-'+key+(v===key?" active":"")+'">'+name+'</button>').join("")+'</div></article>';
+  return '<article class="party-tile stance-'+st+(party===p.id?" selected":"")+'"><div class="party-tile-top"><button class="party-main" type="button" data-party-select="'+p.id+'"><strong>'+esc(p.name)+'</strong><small>'+p.seats1951+' мест</small></button><span class="stance-flag stance-'+st+'">'+sl[st]+'</span></div><p class="party-brief">'+esc(info.topic[issue][0])+'</p><div class="party-votes">'+[["yes","Поддержка"],["maybe","Обсуждать"],["no","Не рассчитывать"]].map(([key,name])=>'<button type="button" data-vote-party="'+p.id+'" data-vote="'+key+'" aria-pressed="'+(v===key)+'" class="vote-'+key+(v===key?" active":"")+'">'+name+'</button>').join("")+'</div></article>';
  }).join("");
  el("fraPartyCards").querySelectorAll("[data-party-select]").forEach(b=>b.onclick=()=>{party=b.dataset.partySelect;renderParties();renderPartyDetail()});
  el("fraPartyCards").querySelectorAll("[data-vote-party]").forEach(b=>b.onclick=()=>{party=b.dataset.voteParty;votes[issue][party]=votes[issue][party]===b.dataset.vote?"undecided":b.dataset.vote;renderParties();renderPartyDetail();renderCoalition()});
@@ -39,22 +39,22 @@ function renderPartyDetail(){
  el("fraPartyName").textContent=p.name;
  el("fraPartyTag").textContent=info.tag;
  el("fraPartyTag").style.setProperty("--party","#81988f");
- el("fraPartyForecast").className="party-forecast stance-"+st;el("fraPartyForecast").textContent=sl[st]+" · историческая оценка, не договор";
+ el("fraPartyForecast").className="party-forecast stance-"+st;el("fraPartyForecast").textContent=sl[st]+" по выбранному вопросу";
  el("fraPartyInterest").textContent=info.interest;
  el("fraPartyPosition").textContent=info.topic[issue][0];
  el("fraPartyConditions").textContent=info.topic[issue][1];
- el("fraPartySeats").textContent=p.seats1951+" депутатов по исходному распределению 1951 года. Состав и дисциплина групп на начало 1955 года не установлены.";
+ el("fraPartySeats").textContent=p.seats1951+" из "+seats+" мест Национального собрания.";
 }
 function renderCoalition(){
  const v=votes[issue],group=k=>parties.filter(p=>v[p.id]===k),n=a=>a.reduce((s,p)=>s+p.seats1951,0),y=group("yes"),m=group("maybe"),no=group("no"),a=n(y),b=n(m);
  el("fraYesSeats").textContent=fmt(a)+" / "+seats;el("fraMaybeSeats").textContent=fmt(b);
  el("fraCoalitionTrack").innerHTML='<span class="coal-yes" style="width:'+(a/seats*100)+'%"></span><span class="coal-maybe" style="width:'+(b/seats*100)+'%"></span>';
- el("fraCoalitionFlag").textContent=a>=314?"Численная опора по снимку 1951 года условно превышает половину; реальное голосование не подтверждено.":a+b>=314?"Есть условная возможность достичь половины с переговорными группами, но договорённости ещё не заключены.":"Условной численной опоры пока недостаточно; ищите дополнительные соглашения.";
+ el("fraCoalitionFlag").textContent=a>=314?"Вы отметили большинство: "+a+" из "+seats+" мест. Для проведения инициативы закрепите поддержку фракций.":a+b>=314?"С учётом переговорных групп возможно большинство. Нужно договориться как минимум о "+(314-a)+" дополнительных местах.":"До большинства не хватает "+(314-a)+" мест. Найдите дополнительные группы для переговоров.";
  el("fraCoalitionDetail").textContent="Поддержка: "+(y.map(p=>p.name).join(", ")||"не отмечена")+". Переговоры: "+(m.map(p=>p.name).join(", ")||"не отмечены")+". Не рассчитывать: "+(no.map(p=>p.name).join(", ")||"нет")+".";
 }
 el("fraResetCoalition").onclick=()=>{parties.forEach(p=>votes[issue][p.id]="undecided");renderPolitics()};
 el("fraCopyCoalition").onclick=async()=>{const grp=k=>parties.filter(p=>votes[issue][p.id]===k).map(p=>p.name).join(", ")||"не указано";
- const txt=["Франция · проект переговоров 1955","Инициатива: "+issues.find(x=>x.id===issue).name,"Поддержка: "+grp("yes"),"Переговоры: "+grp("maybe"),"Не рассчитывать: "+grp("no"),"Состав 1951 года — ориентир, не подтверждённые голоса 1955-го.","Игровая договорённость требует фактического поста, суда и утверждения."].join("\n");
+ const txt=["Франция · проект переговоров 1955","Инициатива: "+issues.find(x=>x.id===issue).name,"Поддержка: "+grp("yes"),"Переговоры: "+grp("maybe"),"Не рассчитывать: "+grp("no"),"Состав Национального собрания: "+seats+" мест, большинство — 314.","Договорённости с отмеченными группами и содержание законопроекта необходимо согласовать."].join("\n");
  try{await navigator.clipboard.writeText(txt);el("fraCopyStatus").textContent="Проект скопирован"}catch(e){el("fraCopyStatus").textContent="Буфер недоступен: скопируйте текст карточки вручную"}
 };
 renderPolitics();
@@ -69,7 +69,7 @@ function drawAlgeria(){
 function renderActors(){
  const z=D.zones.find(x=>x.id===region);if(!z.actors.includes(actor))actor=z.actors[0];
  el("fraRegionActors").innerHTML=z.actors.map(id=>{const a=B.algeria.actors.find(x=>x.id===id);return '<button type="button" data-actor="'+id+'" class="'+(actor===id?"active":"")+'">'+esc(a.name)+'</button>'}).join("");
- const a=B.algeria.actors.find(x=>x.id===actor);el("fraActorName").textContent=a.name;el("fraActorFocus").textContent=a.focus;el("fraActorMoves").textContent="Возможные решения: "+a.moves;
+ const a=B.algeria.actors.find(x=>x.id===actor);el("fraActorName").textContent=a.name;el("fraActorFocus").textContent=a.focus;el("fraActorMoves").textContent="Предмет переговоров: "+a.moves;
  el("fraRegionActors").querySelectorAll("[data-actor]").forEach(x=>x.onclick=()=>{actor=x.dataset.actor;renderActors()});
 }
 function renderAlgeria(){
@@ -88,7 +88,7 @@ function renderAlgeriaPolicy(){
  el("fraAlgeriaPolicyTitle").textContent=p.title;el("fraAlgeriaPolicyCore").textContent=p.core;
  el("fraAlgeriaPolicySteps").innerHTML=p.agenda.map(x=>'<li>'+esc(x)+'</li>').join("");
  el("fraAlgeriaPolicyObstacles").innerHTML=p.obstacles.map(x=>'<li>'+esc(x)+'</li>').join("");
- el("fraAlgeriaPolicyConsequence").textContent="В регионе «"+z.name+"» необходимо учитывать: "+z.risk.slice(0,2).join("; ")+". Никаких гарантированных исходов.";
+ el("fraAlgeriaPolicyConsequence").textContent="В регионе «"+z.name+"» необходимо учитывать: "+z.risk.slice(0,2).join("; ")+". Оцените расходы, полномочия ведомств и поддержку Ассамблеи.";
  el("fraAlgeriaParliamentJump").dataset.issue=p.parliamentTopic;
  el("fraAlgeriaPolicyButtons").querySelectorAll("[data-algeria-path]").forEach(x=>x.onclick=()=>{policy=x.dataset.algeriaPath;renderAlgeriaPolicy()});
 }
@@ -123,7 +123,7 @@ function renderEuropeAgenda(){
 renderEuropeAgenda();renderPartners();
 // Indicative planning: material dependencies, financing, competing programmes, no automatic bonuses.
 const sectors=D.planSectors,names={energy:"Энергетика",steel:"Сталь и металлургия",rail:"Железные дороги",machines:"Машины и оборудование",agriculture:"Сельское хозяйство",housing:"Строительство и жильё"};
-el("fraPlanStats").innerHTML=[["Инвестиции",fmt(D.economy.investmentPct)+"% ВВП","Общая игровая доля инвестиций"],["Промышленность",fmt(D.economy.industryPct)+"%","Игровой секторный показатель"],["Экспорт",fmt(D.economy.tradeExports,2)+" млрд G$","Итог игрового экспорта"],["Импорт",fmt(D.economy.tradeImports,2)+" млрд G$","Итог игрового импорта"]].map(s=>'<div class="plan-kpi"><span>'+s[0]+'</span><strong>'+s[1]+'</strong><small>'+s[2]+'</small></div>').join("");
+el("fraPlanStats").innerHTML=[["Инвестиции",fmt(D.economy.investmentPct)+"% ВВП","Доля инвестиций в экономике"],["Промышленность",fmt(D.economy.industryPct)+"%","Доля промышленности в ВВП"],["Экспорт",fmt(D.economy.tradeExports,2)+" млрд G$","Годовой объём"],["Импорт",fmt(D.economy.tradeImports,2)+" млрд G$","Годовой объём"]].map(s=>'<div class="plan-kpi"><span>'+s[0]+'</span><strong>'+s[1]+'</strong><small>'+s[2]+'</small></div>').join("");
 function renderPlanning(){
  const s=sectors[sector],oldNames={energy:"Энергетика",steel:"Металлургия",rail:"Транспорт",machines:"Машины",agriculture:"Сельское хозяйство",housing:"Жильё"};
  el("fraPlanConstraints").innerHTML=D.planConstraints.map(c=>'<article class="plan-constraint'+(c.affected.includes(sector)?" related":"")+'"><div><b>'+esc(c.name)+'</b><span>'+(c.affected.includes(sector)?"Важно сейчас":"Общее ограничение")+'</span></div><p>'+esc(c.meaning)+'</p></article>').join("");
@@ -136,7 +136,7 @@ function renderPlanning(){
  el("fraSectorLinks").innerHTML=s.connections.map(id=>'<button type="button" data-sector-link="'+id+'">'+names[id]+' ↗</button>').join("");
  el("fraSectorLevers").innerHTML=s.levers.map((a,k)=>'<button type="button" data-project="'+k+'" aria-pressed="'+(k===lever)+'" class="plan-lever'+(k===lever?" active":"")+'"><span>ПРОЕКТ 0'+(k+1)+'</span><b>'+esc(a.title)+'</b></button>').join("");
  el("fraSectorLeverDetail").innerHTML='<div><b>Что нужно подтвердить</b><p>'+esc(s.levers[lever].condition)+'</p></div><div><b>Главное препятствие</b><p>'+esc(s.levers[lever].risk)+'</p></div>';
- el("fraSectorOutcome").textContent=s.outcome+". Возможные последствия требуют оценки судьи, а не присваиваются автоматически.";
+ el("fraSectorOutcome").textContent=s.outcome+". Масштаб изменений зависит от финансирования, договоров и фактического исполнения программы.";
  el("fraPlanSectors").querySelectorAll("[data-sector]").forEach(x=>x.onclick=()=>{sector=x.dataset.sector;lever=0;renderPlanning()});
  el("fraSectorLinks").querySelectorAll("[data-sector-link]").forEach(x=>x.onclick=()=>{sector=x.dataset.sectorLink;lever=0;renderPlanning()});
  el("fraSectorLevers").querySelectorAll("[data-project]").forEach(x=>x.onclick=()=>{lever=Number(x.dataset.project);renderPlanning()});

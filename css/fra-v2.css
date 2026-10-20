@@ -354,3 +354,46 @@ button:focus-visible,a:focus-visible,[role="button"]:focus-visible{outline:3px s
 @media(max-width:960px){.europe-workspace{grid-template-columns:minmax(0,1fr)}.europe-workspace .eu-map-wrap{max-height:315px}.europe-workspace #fraEuropeMap{height:315px;max-height:315px}.europe-workspace .europe-main{display:block}.europe-decision .agenda-pills{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:720px){.stance-overview{grid-template-columns:repeat(2,minmax(0,1fr))}.algeria-path-layout{grid-template-columns:1fr}.europe-decision .agenda-pills{grid-template-columns:repeat(2,minmax(0,1fr))}.project-bot-grid{grid-template-columns:1fr}.plan-constraints{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:490px){.algeria-region-pills{grid-template-columns:repeat(2,minmax(0,1fr))}.algeria-path-switch{grid-template-columns:1fr}.europe-barrier-grid,.plan-lever-detail,.plan-levers{grid-template-columns:1fr}.europe-workspace #fraEuropeMap{height:250px;max-height:250px}.plan-constraints{grid-template-columns:1fr}}
+
+
+/* France final player-facing polish: readable captions and balanced controls. */
+.fineprint,.soft-tag,.footer p,.source-links a{font-size:11px;line-height:1.65}
+.fra-stance-explain{font-size:12px!important;line-height:1.7!important}
+.stance-overview-cell span,.stance-flag,.party-forecast{font-size:10.5px}
+.party-brief{font-size:12px;line-height:1.65}
+.party-main small{font-size:11px}
+.party-votes button{font-size:10.5px;min-height:36px;padding:8px 5px}
+.issue-selector button,.agenda-pills button,.eu-partner-pills button{font-size:11.5px}
+.algeria-legend span,.algeria-region-pills button,.region-actors button{font-size:11px}
+.region-actor-dossier p,.region-actor-dossier small{font-size:11.5px;line-height:1.7}
+.algeria-path-switch button span,.algeria-path-layout p{font-size:12px}
+.europe-decision .agenda-pills button b{font-size:11.5px}
+.europe-decision .agenda-pills button small,.europe-barrier span,.project-barriers-head span,.plan-lever span{font-size:10px}
+.europe-barrier p,.europe-barrier b,.plan-constraint p,.plan-constraint b,.plan-constraint span{font-size:11px;line-height:1.65}
+.project-bot-grid .text-list li,.industrial-dossier .text-list li,.algeria-path-layout .text-list li{font-size:11.5px}
+.partner-brief p,.industrial-split p,.plan-lever-detail p,.plan-expected p{font-size:12px;line-height:1.7}
+.plan-kpi small,.plan-kpi span{font-size:11px}
+.sector-buttons button b,.sector-buttons button small{font-size:11.5px}
+.plan-constraints,.europe-workspace,.algeria-layout,.political-columns{min-width:0}
+.card-heading>div{min-width:0}
+.party-tile,.europe-barrier,.plan-constraint,.plan-kpi,.plan-lever{overflow-wrap:break-word}
+@media(max-width:700px){
+ .section-heading p{font-size:13px}
+ .plan-constraints{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .europe-decision .agenda-pills{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:500px){
+ .page{padding:0 14px}
+ .tabs{gap:5px}
+ .tab{padding:9px 12px;font-size:11.5px}
+ .card{padding:15px}
+ .card-heading{gap:8px}
+ .soft-tag{max-width:100%;white-space:normal}
+ .political-columns,.algeria-layout,.europe-workspace,.industrial-split{grid-template-columns:minmax(0,1fr)}
+ .stance-overview-cell span{font-size:10.5px}
+ .party-cards{grid-template-columns:1fr}
+ .algeria-region-pills{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .plan-constraints{grid-template-columns:1fr}
+ .sector-buttons{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .europe-workspace #fraEuropeMap{height:250px;max-height:250px}
+}
