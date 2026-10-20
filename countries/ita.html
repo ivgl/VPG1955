@@ -2,7 +2,7 @@
 <title>Италия · Национальные механики · ВПИ 1955</title>
 <meta name="description" content="Италия 1955: программа Ванони, промышленность FIAT и IRI, энергетика ENI, профсоюзы, левое движение и работа для Юга.">
 <link rel="stylesheet" href="../css/ita-v2.css"><link rel="stylesheet" href="../css/parliament-1955.css">
-<script src="../data/ita-v2.js" defer></script><script src="../js/ita-v2.js" defer></script>
+<script src="../data/ita-v2.js" defer></script><script src="../js/remaining-geo.js" defer></script><script src="../js/ita-v2.js" defer></script>
 <script src="../data/parliaments-1955.js" defer></script><script src="../js/parliament-1955.js" data-parliament="ita" defer></script>
 </head><body><div class="shell">
 <header class="topbar"><a href="../index.html">← Все государства</a><span class="topbrand">ВПИ <b>1955</b> / НАЦИОНАЛЬНЫЕ МЕХАНИКИ</span></header>
@@ -24,9 +24,13 @@
 <section class="panel"><div class="panel-head"><div><span class="eyebrow">Экономические решения</span><h3>За счёт каких отраслей расти?</h3></div><span class="hint">Направления можно сочетать, но не ресурсы на них</span></div>
 <div id="itaIndustries" class="ita-four-options"></div>
 <div class="ita-double-dossier"><div><span class="eyebrow">Производственное направление</span><h4 id="itaIndustryName"></h4><span id="itaIndustryLabel" class="ita-tag"></span><p id="itaIndustryAssets"></p><div class="ita-gain"><b>Что получает страна</b><p id="itaIndustryGain"></p></div></div><div class="ita-dossier-facts"><div><b>Главное ограничение</b><p id="itaIndustryProblem"></p></div><div><b>С кем придётся работать</b><p id="itaIndustryPartners"></p></div></div></div></section>
-<section class="panel"><div class="panel-head"><div><span class="eyebrow">Взаимосвязанные ресурсы</span><h3>Что задерживает расширение производства?</h3></div><span class="hint">Выбери ресурс</span></div><div id="itaIndustryResources" class="ita-resource-grid"></div><div class="ita-resource-detail"><div><b id="itaResourceName"></b><p id="itaResourceGood"></p></div><div><b>Если возникает нехватка</b><p id="itaResourceRisk"></p></div></div></section>
-<details class="panel ita-more"><summary><span><strong>Промышленный треугольник и европейские рынки</strong><small>FIAT, IRI, Olivetti и торговля углём и сталью</small></span><span class="ita-arrow" aria-hidden="true">⌄</span></summary>
-<div class="ita-industry-map-layout"><div><svg id="itaIndustryMap" viewBox="0 0 640 445" role="group" aria-label="Схема четырёх промышленных городов Северной Италии"></svg><div id="itaIndustryCities" class="ita-chips"></div><p class="ita-map-note">Схема хозяйственных связей, а не административные границы.</p></div><div class="ita-city-dossier"><span class="eyebrow">Промышленный центр</span><h4 id="itaCityName"></h4><b id="itaCityRole"></b><p id="itaCityTradeoff"></p><div class="ita-europe-note"><b>Европейское объединение угля и стали</b><p id="itaEuropeNote"></p></div></div></div>
+<section class="panel"><div class="panel-head"><div><span class="eyebrow">Итальянский путь индустриализации</span><h3>Кому нужно договориться, чтобы предприятие выросло?</h3></div><span class="hint">Меняется вместе с выбранной отраслью</span></div>
+<p class="ita-agreement-lead">В Италии нельзя построить промышленность одним распоряжением. Частные собственники, государственные предприятия и работники принимают разные решения — поэтому важно согласовать их интересы.</p>
+<div id="itaIndustryAgreements" class="ita-agreement-grid"></div>
+<div class="ita-agreement-tension"><b>Где возникает конфликт</b><p id="itaAgreementTension"></p></div>
+</section>
+<details class="panel ita-more" open><summary><span><strong>Промышленный треугольник и европейские рынки</strong><small>FIAT, IRI, Olivetti и торговля углём и сталью</small></span><span class="ita-arrow" aria-hidden="true">⌄</span></summary>
+<div class="ita-industry-map-layout"><div><svg id="itaIndustryMap" viewBox="150 10 215 160" role="group" aria-label="Географическая карта Северной Италии, города Турин, Милан, Генуя и Ивреа"></svg><div id="itaIndustryCities" class="ita-chips"></div><p class="ita-map-note">Географический контур Natural Earth; увеличен север Италии. Линии между городами показывают хозяйственные связи, а не государственные границы.</p></div><div class="ita-city-dossier"><span class="eyebrow">Промышленный центр</span><h4 id="itaCityName"></h4><b id="itaCityRole"></b><p id="itaCityTradeoff"></p><div class="ita-europe-note"><b>Европейское объединение угля и стали</b><p id="itaEuropeNote"></p></div></div></div>
 </details>
 </section>
 <section id="energy" class="pane" data-pane="energy" hidden>
@@ -43,7 +47,13 @@
 <div class="section-title"><span class="eyebrow">03 / Работа, регионы и политическое противостояние</span><h2>Красная оппозиция и две экономики</h2><p id="itaSocietyIntro"></p></div>
 <div class="ita-political-balance"><div><span class="eyebrow">Палата депутатов · результаты выборов 1953 года</span><strong><span id="itaLeftSeats"></span> мест</strong><small>Коммунисты PCI и социалисты PSI вместе</small></div><div class="ita-left-bar"><span id="itaLeftWidth"></span></div><div><strong id="itaLeftPct"></strong><small>выборных мест Палаты</small></div><p>Левые партии обладают большим представительством, но правительство формируют христианские демократы с партнёрами. Поддержка профсоюзов и городов не означает автоматического парламентского большинства.</p></div>
 <section class="panel"><div class="panel-head"><div><span class="eyebrow">Три профсоюзные конфедерации</span><h3>Рабочие интересы не представлены единой организацией</h3></div><span class="hint">Выбери сторону переговоров</span></div><div id="itaUnions" class="ita-union-options"></div><div class="ita-union-detail"><div><span class="eyebrow">Профсоюзное движение</span><h4 id="itaUnionName"></h4><span id="itaUnionTag" class="ita-tag"></span><p id="itaUnionDetails"></p></div><div><b>Предмет переговоров</b><p id="itaUnionNegotiation"></p><b>Где возникают разногласия</b><p id="itaUnionFriction"></p></div></div></section>
-<section class="panel"><div class="panel-head"><div><span class="eyebrow">Социальная география</span><h3>Почему рабочие едут на Север, а Юг остаётся без мест?</h3></div><span class="hint">Выбери город или регион</span></div><div class="ita-society-layout"><div><svg id="itaRegionsMap" viewBox="0 0 640 540" role="group" aria-label="Схематическая карта Италии с социальными и трудовыми узлами"></svg><p class="ita-map-note">Точки показывают хозяйственные вопросы, не точные границы регионов.</p><div id="itaRegionButtons" class="ita-chips"></div></div><aside class="ita-region-dossier"><span class="eyebrow">Региональная задача</span><h4 id="itaRegionName"></h4><span class="ita-tag" id="itaRegionRole"></span><div><b>Что мешает развитию</b><p id="itaRegionProblem"></p></div><div><b>С чего можно начать</b><p id="itaRegionSolution"></p></div></aside></div></section>
+<section class="panel ita-regional-panel"><div class="panel-head"><div><span class="eyebrow">Рабочие места и региональные различия</span><h3>Разные города — разные проблемы занятости</h3></div><span class="hint">Выбери хозяйственный центр</span></div>
+<div id="itaRegionButtons" class="ita-region-grid"></div>
+<div class="ita-social-region-detail">
+<div><span class="eyebrow">Выбранный район</span><h4 id="itaRegionName"></h4><span class="ita-tag" id="itaRegionRole"></span></div>
+<div><b>Главное препятствие</b><p id="itaRegionProblem"></p><b>Какие действия могут помочь</b><p id="itaRegionSolution"></p></div>
+</div>
+</section>
 <section class="panel"><div class="panel-head"><div><span class="eyebrow">Занятость и развитие регионов</span><h3>Что может изменить правительство?</h3></div><span class="hint">Это совместимые меры, а не жёсткие команды</span></div><div id="itaSocialLevers" class="ita-four-options"></div><div class="ita-lever-detail"><div><b id="itaLeverName"></b><p id="itaLeverGain"></p></div><div><b>Ограничение</b><p id="itaLeverCost"></p></div></div>
 <div class="ita-cassa"><b>Касса по развитию Юга · действует с 1950 года</b><p id="itaCassaInfo"></p></div>
 </section></section></main>
