@@ -1,10 +1,10 @@
 "use strict";
-/* Analytic geographical and settlement scenario. NOT HISTORICAL TRADE COUNTS or canonical state. */
+/* Administrator-approved scenario trade-geography baseline; NOT historical transaction/currency statistics. */
 window.VPI_GBR_TRADE_ZONES_1955={
   "version": "2026-10-20-01",
   "referenceDate": "1955-01-01",
-  "modelStatus": "PROPOSED_FOR_ADMIN_REVIEW",
-  "method": "Sector totals follow official GBR export/import shares and G$ trade totals; zone allocation is an explicit editorial game balance scenario to be reviewed, NOT measured historic trade, not actual foreign currency payments, and not approved canonical state.",
+  "modelStatus": "APPROVED_GAMEPLAY_BASELINE",
+  "method": "Administrator-approved gameplay baseline for the geographical distribution of official British export/import totals and sector shares across settlement/trade networks. Analytic estimate, NOT historical trade measurements, NOT literal currency of invoice; no automatic policy effects.",
   "notes": {
     "methodology": "Каждый сектор распределён между четырьмя торгово-расчётными контурами. Сумма долей сектора равна 100%; суммы по контурам складываются в официальный общий экспорт/импорт. Это не статистика валюты каждой сделки.",
     "map": "География на основе современных контуров. В 1955 году границы и суверенный статус ряда территорий отличались. Цвет обозначает ведущую институциональную связь, а не единственную валюту торговли.",
@@ -292,5 +292,7 @@ window.VPI_GBR_TRADE_ZONES_1955={
       "title": "Банк Англии: годовой отчёт 1955",
       "url": "https://www.bankofengland.co.uk/-/media/boe/files/annual-report/1955/boe-1955.pdf"
     }
-  ]
+  ],
+  "approvalId": "GBR-MECH-1955-TRADE-20261020",
+  "approvedOn": "2026-10-20"
 };

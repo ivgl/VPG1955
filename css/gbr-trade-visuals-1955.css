@@ -112,3 +112,6 @@
  .gbr-matrix-summary{display:block}
  .gbr-matrix-summary span{display:block;margin-top:7px}
 }
+
+/* Актуальный статус: модель официально утверждена для игры, не историческое измерение валют. */
+.gbr-proposal-tag{background:#eaf4ed;border-color:#cadecf;color:#336b52}
