@@ -6,7 +6,7 @@ const $=id=>document.getElementById(id);
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const money=(v,dec=3)=>Number(v).toLocaleString("ru-RU",{minimumFractionDigits:dec,maximumFractionDigits:dec});
 const tabs=["sterling","empire","economy"];
-let currentTab="sterling",selectedFx="dollar",selectedPlace="suez",selectedIndustry="ship",selectedSocial="labour",worldFilter="all";
+let currentTab="sterling",selectedPlace="suez",selectedIndustry="ship",selectedSocial="labour",worldFilter="all";
 function switchTab(id,move=true){
  if(!tabs.includes(id))return;
  currentTab=id;
@@ -35,22 +35,6 @@ const stats=[
  {name:"Резервы · старт 1955",value:money(fi.reserves)+" млрд G$",note:"Игровой внешний резерв, не долларовая наличность"}
 ];
 $("sterlingStats").innerHTML=stats.map(s=>'<div class="stat-tile'+(s.highlight?" subdued":"")+'"><span>'+esc(s.name)+'</span><strong>'+esc(s.value)+'</strong><small>'+esc(s.note)+'</small></div>').join("");
-function renderFx(){
- $("fxNodes").innerHTML=atlas.financeLinks.map(x=>'<button type="button" data-finance="'+esc(x.key)+'" class="fx-node'+(x.key===selectedFx?" active":"")+'" aria-pressed="'+(x.key===selectedFx)+'"><span><b>'+esc(x.title)+'</b><small>'+esc(x.subtitle)+'</small></span><i aria-hidden="true">↗</i></button>').join("");
- const x=atlas.financeLinks.find(y=>y.key===selectedFx)||atlas.financeLinks[0];
- $("fxDetailTitle").textContent=x.title;
- $("fxDetailSubtitle").textContent=x.subtitle;
- $("fxDetailConstraint").textContent=x.constraint;
- $("fxDetailMechanism").textContent=x.mechanism;
- $("fxDetailPolicy").textContent=x.policy;
- $("fxNodes").querySelectorAll("[data-finance]").forEach(b=>b.onclick=()=>{selectedFx=b.dataset.finance;renderFx()});
-}
-renderFx();
-const trade=base.tradeStructure||{exports:[],imports:[]};
-$("tradeGrid").innerHTML=[
- {label:"Экспорт · источники валютной выручки",items:trade.exports,cls:"export"},
- {label:"Импорт · зависимость внутренней экономики",items:trade.imports,cls:"import"}
-].map(col=>'<div class="trade-column '+col.cls+'"><div class="trade-column-head"><i></i><b>'+esc(col.label)+'</b></div>'+col.items.map((x,i)=>'<div class="trade-item"><span class="trade-item-no">0'+(i+1)+'</span><div><strong>'+esc(x.label)+'</strong><p>'+esc(x.detail)+'</p></div></div>').join("")+'</div>').join("");
 const filters=[
  ["all","Все объекты"],
  ["colony","Территории"],
