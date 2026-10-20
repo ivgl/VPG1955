@@ -1,22 +1,67 @@
 <!doctype html>
 <html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Израиль 1955: Коалиции Кнессета, приём переселенцев, вода и мобилизационный резерв образуют связанные задачи: людей надо разместить и трудоустроить, а внешнюю валюту и безопасность нельзя считать бесконечными.">
-<title>Израиль · Национальные механики · ВПИ 1955</title>
-<link rel="stylesheet" href="../css/remaining-mechanics.css"><link rel="stylesheet" href="../css/national-v2.css">
-<script src="../data/isr-draft.js" defer></script><script src="../js/remaining-geo.js" defer></script><script src="../js/remaining-mechanics.js" defer></script><script src="../js/national-v2-geography.js" defer></script><script src="../js/national-v3.js" defer></script><script src="../js/national-v2.js" defer></script><link rel="stylesheet" href="../css/parliament-1955.css">
-<script src="../data/parliaments-1955.js" defer></script>
-<script src="../js/parliament-1955.js" data-parliament="isr" defer></script>
-</head>
-<body data-country="isr"><div class="container">
-<header class="topbar"><a href="../index.html" class="back">← Все государства</a><span class="topbrand">ВПИ <em>1955</em><span>НАЦИОНАЛЬНЫЕ МЕХАНИКИ</span></span></header>
-<section class="hero"><span class="eyebrow">Израиль · 1 января 1955</span>
-<h1>Новая страна, старые ограничения<em>.</em></h1><p>Коалиции Кнессета, приём переселенцев, вода и мобилизационный резерв образуют связанные задачи: людей надо разместить и трудоустроить, а внешнюю валюту и безопасность нельзя считать бесконечными.</p>
-<div class="hero-facts"><span>Моше Шарет · премьер-министр</span><span>Кнессет: 120 мест</span><span>МАПАЙ и коалиционные партнёры</span><span>Абсорбция иммиграции</span></div></section>
-
-<nav class="tabs" aria-label="Израиль — разделы"><button type="button" class="tab current" data-tab="knesset" aria-selected="true"><span>01</span> Коалиция</button>
-<button type="button" class="tab" data-tab="people" aria-selected="false"><span>02</span> Люди, жильё, вода</button>
-<button type="button" class="tab" data-tab="security" aria-selected="false"><span>03</span> Резерв и перемирия</button></nav>
-<main><section id="pane-knesset" class="pane current" data-pane="knesset" ><p>Загрузка раздела...</p></section>
-<section id="pane-people" class="pane" data-pane="people" hidden><p>Загрузка раздела...</p></section>
-<section id="pane-security" class="pane" data-pane="security" hidden><p>Загрузка раздела...</p></section></main>
-<footer class="footer"><span>ВПИ 1955 · Национальные механики</span><a href="../index.html">← Каталог государств</a></footer></div></body></html>
+<title>Израиль · Национальные механики · ВПИ 1955</title><meta name="description" content="Израиль 1955: абсорбция иммиграции, финансирование строительства и расчёт экономической цены резервной армии.">
+<link rel="stylesheet" href="../css/isr-v2.css"><link rel="stylesheet" href="../css/parliament-1955.css">
+<script src="../data/isr-v2.js" defer></script><script src="../js/isr-v2.js" defer></script>
+<script src="../data/parliaments-1955.js" defer></script><script src="../js/parliament-1955.js" data-parliament="isr" defer></script>
+</head><body><div class="shell">
+<header class="topbar"><a href="../index.html">← Все государства</a><span class="topbrand">ВПИ <b>1955</b> / НАЦИОНАЛЬНЫЕ МЕХАНИКИ</span></header>
+<section class="hero"><span class="eyebrow">Государство Израиль · 1 января 1955 года</span><h1>Страна, которую<br><em>ещё строят.</em></h1>
+<p>Новые граждане меняют города и хозяйство. Им нужны постоянные дома, рабочие места и вода — в то время как безопасность требует обученного резерва, а строительная техника и топливо поступают во многом из-за рубежа.</p>
+<div class="hero-tags"><span>Моше Шарет · премьер-министр</span><span>МАПАЙ и коалиционные партнёры</span><span>Кнессет · 120 мест</span><span>Иммиграция и новые поселения</span></div></section>
+<!-- Shared parliamentary visualization is inserted immediately above nav.tabs -->
+<nav class="tabs" aria-label="Национальные механики Израиля">
+<button type="button" class="tab active" data-tab="people" aria-selected="true"><small>01</small> Новые жители</button>
+<button type="button" class="tab" data-tab="development" aria-selected="false"><small>02</small> Строительство государства</button>
+<button type="button" class="tab" data-tab="security" aria-selected="false"><small>03</small> Армия резервистов</button>
+</nav>
+<main>
+<section id="people" class="pane" data-pane="people">
+<div class="section-title"><span class="eyebrow">01 / Иммиграция и равные возможности</span><h2>Принять людей — лишь начало</h2>
+<p>Израиль принял значительное число переселенцев после 1948 года. Системы временного размещения, обучения и трудоустройства пока не обеспечивают каждому человеку устойчивые условия жизни. Государству предстоит решать, где создавать новые поселения и как связывать их с рабочими местами.</p></div>
+<div id="isrPopulationStats" class="stats isr-stats"></div>
+<section class="panel isr-people-intro"><div><span class="eyebrow">Положение на начало 1955 года</span><h3>От временного лагеря к постоянному дому</h3><p id="isrPeopleIntro"></p></div><div class="isr-mabarot-card"><span class="isr-mabarot-symbol" aria-hidden="true">⌂</span><b>Маабарот</b><p>Временное жильё спасает от бездомности, но не заменяет доступ к работе, постоянной инфраструктуре и социальной интеграции.</p></div></section>
+<section class="panel"><div class="panel-head"><div><span class="eyebrow">Цепочка интеграции</span><h3>Какие проблемы приходится решать одновременно?</h3></div><span class="hint">Выбери этап</span></div>
+<div id="isrPeopleSteps" class="isr-steps"></div><div class="isr-people-detail"><div><span class="eyebrow">Выбранный этап</span><h4 id="isrStepName"></h4><span id="isrStepTag" class="isr-soft-tag"></span><p id="isrStepBrief"></p></div><div><b>Главное ограничение</b><p id="isrStepBarrier"></p><b>Что необходимо развивать</b><p id="isrStepConnections"></p></div></div></section>
+<section class="panel"><div class="panel-head"><div><span class="eyebrow">Расселение и экономика</span><h3>В каких районах есть возможности и ограничения?</h3></div><span class="hint">Выбери место на схеме или в списке</span></div>
+<div class="isr-people-geography"><div><svg id="isrSettlementMap" viewBox="0 0 565 435" role="group" aria-label="Схема районов расселения Израиля"></svg><p class="isr-note">Географическая схема условная: точки отражают хозяйственные центры, а не линии перемирия или точные границы.</p><div id="isrRegionButtons" class="isr-chips"></div></div>
+<aside class="isr-region-dossier"><span class="eyebrow">Район расселения</span><h4 id="isrRegionName"></h4><span id="isrRegionType" class="isr-soft-tag"></span><div><b>Возможности</b><p id="isrRegionCapacity"></p></div><div><b>Главная трудность</b><p id="isrRegionChallenge"></p></div><div><b>Что можно улучшить</b><p id="isrRegionOpportunity"></p></div></aside></div></section>
+<details class="panel isr-more"><summary><span><strong>Долгосрочные вопросы интеграции</strong><small>Жильё, образование, равные возможности и городская инфраструктура</small></span><span class="isr-chevron" aria-hidden="true">⌄</span></summary><div id="isrSocialIssues" class="isr-social-grid"></div></details>
+</section>
+<section id="development" class="pane" data-pane="development" hidden>
+<div class="section-title"><span class="eyebrow">02 / Промышленность, жильё и иностранные поставки</span><h2>За счёт чего построить новое государство?</h2><p id="isrDevelopmentIntro"></p></div>
+<div id="isrTradeStats" class="stats isr-stats"></div>
+<section class="panel isr-trade-panel"><div class="panel-head"><div><span class="eyebrow">Внешняя торговля</span><h3>Страна закупает существенно больше, чем продаёт</h3></div></div>
+<div id="isrTradeBars" class="isr-trade-comparison"></div>
+<div class="isr-trade-note">Разница между импортом и экспортом требует финансирования. Кредиты, переводы и товарные поставки — разные источники средств; их нельзя автоматически приравнивать к экспортной выручке.</div></section>
+<section class="panel"><div class="panel-head"><div><span class="eyebrow">Стратегические стройки</span><h3>Четыре направления развития</h3></div><span class="hint">Все программы конкурируют за часть ресурсов</span></div>
+<div id="isrProjectOptions" class="isr-project-options"></div>
+<div class="isr-project-detail"><div><span class="eyebrow">Выбранное направление</span><h4 id="isrProjectName"></h4><span class="isr-soft-tag" id="isrProjectTag"></span><p id="isrProjectIntro"></p><div class="isr-gain"><b>Что меняется в перспективе</b><p id="isrProjectPayoff"></p></div></div><div class="isr-project-facts"><div><b>Главное препятствие</b><p id="isrProjectBottleneck"></p></div><div><b>С кем работать</b><p id="isrProjectPartners"></p></div></div></div></section>
+<section class="panel"><div class="panel-head"><div><span class="eyebrow">Узкие места</span><h3>Чего не хватает выбранной программе?</h3></div><span class="hint">Подсвечены её необходимые ресурсы</span></div><div id="isrResourceOptions" class="isr-resource-grid"></div><div class="isr-resource-detail"><div><b id="isrResourceName"></b><p id="isrResourceWhy"></p></div><div><b>Если возникает нехватка</b><p id="isrResourcePressure"></p></div></div></section>
+<section class="panel"><div class="panel-head"><div><span class="eyebrow">Источники капитала и оборудования</span><h3>Откуда взять средства на развитие?</h3></div></div><div id="isrFundingOptions" class="isr-funding-options"></div><div class="isr-funding-detail"><div><span class="eyebrow">Источник финансирования</span><h4 id="isrFundingName"></h4><p id="isrFundingDetail"></p></div><div><b>Условия и ограничения</b><p id="isrFundingRisk"></p></div></div></section>
+<details class="panel isr-more"><summary><span><strong>Вода и переговоры с соседями</strong><small>Городское снабжение, орошение и бассейн Иордана</small></span><span class="isr-chevron" aria-hidden="true">⌄</span></summary><div class="isr-water-body"><h4 id="isrWaterName"></h4><p id="isrWaterIntro"></p><div id="isrWaterIssues" class="isr-social-grid"></div></div></details>
+</section>
+<section id="security" class="pane" data-pane="security" hidden>
+<div class="section-title"><span class="eyebrow">03 / Национальная безопасность и труд</span><h2>Резерв защищает страну. Но кто работает вместо резервистов?</h2><p id="isrSecurityIntro"></p></div>
+<div class="stats isr-stats" id="isrSecurityStats"></div>
+<section class="panel isr-reserve-panel"><div class="panel-head"><div><span class="eyebrow">Расчёт рабочего времени</span><h3>Гражданская цена мобилизации</h3></div><span class="pill">Живой расчёт</span></div>
+<div class="isr-reserve-workbench">
+<div class="isr-reserve-controls">
+<div class="isr-range"><div class="isr-range-title"><label for="isrCalledRange">Призвано резервистов</label><output id="isrCalledNumber" for="isrCalledRange">60 000</output></div><input type="range" id="isrCalledRange" min="0" max="115000" step="5000" value="60000"><div class="isr-range-ends"><span>0</span><span>115 000 человек</span></div></div>
+<div class="isr-range"><div class="isr-range-title"><label for="isrDaysRange">Продолжительность службы</label><output id="isrDaysNumber" for="isrDaysRange">40 дней</output></div><input type="range" id="isrDaysRange" min="0" max="180" step="5" value="40"><div class="isr-range-ends"><span>0</span><span>180 дней</span></div></div>
+<div class="isr-reserve-assumption"><b>Условия расчёта</b><p>80% призванных резервистов работали в гражданской экономике до службы; рабочий год — 250 дней. Это предположения для сравнения сценариев.</p></div>
+</div>
+<div class="isr-reserve-output" aria-live="polite" aria-atomic="true">
+<div class="isr-output-hero"><span class="eyebrow">Потеря годового гражданского рабочего времени</span><strong id="isrAnnualLoss">1,25%</strong><div class="isr-output-meter"><span id="isrAnnualMeter"></span></div><small>От совокупного рабочего времени занятых в стране</small></div>
+<div class="isr-output-cards"><div><span>Одновременно отсутствует</span><b id="isrImmediateLoss">7,8%</b><small>От числа занятых</small></div><div><span>Потерянные рабочие дни</span><b id="isrLostWorkdays">1,92 млн</b><small>За указанный срок службы</small></div><div><span>Эквивалент рабочих лет</span><b id="isrEquivalentJobs">7 680</b><small>250 рабочих дней в году</small></div></div>
+</div>
+</div>
+<p class="isr-model-note">Потеря рабочего времени не означает равного процента падения ВВП. На фактический выпуск влияют замещение работников, сверхурочные, важность конкретных специалистов, распределение призыва по времени и другие условия.</p>
+</section>
+<section class="panel"><div class="panel-head"><div><span class="eyebrow">Оборона и международное положение</span><h3>Почему численности армии недостаточно?</h3></div></div>
+<div id="isrSecurityCases" class="isr-security-options"></div><div class="isr-security-detail"><div><span class="eyebrow">Выбранный вопрос</span><h4 id="isrSecurityName"></h4><span id="isrSecurityStatus" class="isr-soft-tag"></span><p id="isrSecurityRole"></p></div><div><b>Ограничение</b><p id="isrSecurityRisk"></p><b>Возможные направления действий</b><p id="isrSecurityMoves"></p></div></div></section>
+<details class="panel isr-more"><summary><span><strong>Как считается экономическая цена службы</strong><small>Допущения и границы расчёта</small></span><span class="isr-chevron" aria-hidden="true">⌄</span></summary><div class="isr-assumptions" id="isrReserveAssumptions"></div></details>
+</section>
+</main>
+<footer class="footer"><div><strong>ВПИ 1955 · Государство Израиль</strong><p>Исходное положение на 1 января 1955 года. Дальнейшая история зависит от решений государств.</p><div id="isrSources" class="sources"></div></div><a href="../index.html">← Каталог стран</a></footer>
+</div></body></html>
