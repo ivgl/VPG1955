@@ -115,6 +115,9 @@ function renderSupplyLoop(){
  const s=sectors.find(s=>s.id===sector);
  $("jpnCycleSectorName").textContent=s.name;
  $("jpnCyclePortName").textContent=ports.find(x=>x.id===port).name;
+ $("jpnSelectedSector").textContent=s.name;
+ $("jpnSelectedPort").textContent=ports.find(x=>x.id===port).name;
+ $("jpnSelectedShock").textContent=shocks.find(x=>x.id===shock).name;
  $("jpnSupplyLoop").innerHTML=A.supplyLoopStages.map((stage,i)=>{
  const on=loopStage===stage.id,atRisk=sectorIsAffected(s)&&shock!=="normal"&&((shock==="ore"&&["import","power","market","return"].includes(stage.id))||(shock==="fuel"&&["port","power","market","return"].includes(stage.id))||(shock==="freight"&&["port","market","return"].includes(stage.id)));
  return '<button type="button" data-loop-stage="'+stage.id+'" class="loop-stage'+(on?" active":"")+(atRisk?" at-risk":"")+'" aria-pressed="'+on+'"><small>0'+(i+1)+' · '+safe(stage.verb)+'</small><strong>'+safe(stage.name)+'</strong></button>'
