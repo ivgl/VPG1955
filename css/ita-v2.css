@@ -123,3 +123,38 @@ body{background:var(--bg);color:var(--ink)}.hero h1 em{color:#66816a}.eyebrow{co
 @media(max-width:590px){.ita-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.ita-resource-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.ita-resource-detail{grid-template-columns:1fr}.ita-union-options{grid-template-columns:1fr}.ita-union-options button{min-height:64px}.ita-energy-chain .ita-chain-cell{min-height:90px}.ita-vanoni-goals{gap:7px}.ita-vanoni{padding:16px}}
 @media(max-width:435px){.shell{padding:0 13px}.hero{padding:27px 0 18px}.hero h1{font-size:36px}.topbar{min-height:65px}.topbrand{font-size:9px}.tab{font-size:10.5px;padding:10px}.panel{padding:15px}.ita-stats .stat strong{font-size:19px}.ita-four-options button{min-height:85px;padding:10px}.ita-double-dossier{padding:12px}.ita-goal{padding:10px}.ita-goal strong{font-size:17px}.ita-political-balance{padding:13px}.ita-industry-map-layout,.ita-society-layout{padding:13px}.ita-energy-chain .ita-chain-cell{padding:10px}.ita-chain-cell b{font-size:11px}}
 @media(prefers-reduced-motion:reduce){.ita-arrow{transition:none}}
+
+
+/* Italy revision: accurate Natural Earth coastline, actual projected urban locations. */
+.ita-natural-land{fill:#d4e3cc;stroke:#f9fcf8;stroke-width:.9;stroke-linejoin:round}
+.ita-industry-links{stroke:#bd9a60;stroke-width:.9;stroke-dasharray:2.2 1.6;fill:none;stroke-linejoin:round;opacity:.95}
+.ita-geo-ocean{fill:#89a6ab;font:italic 5px Georgia,serif}
+.ita-geo-pin{cursor:pointer}
+.ita-geo-pin circle{fill:#b87d54;stroke:#fff;stroke-width:1.1}
+.ita-geo-pin.active circle,.ita-geo-pin:hover circle{fill:#327d63;stroke-width:1.5}
+.ita-geo-pin:focus-visible circle{stroke:#deb562;stroke-width:1.8}
+.ita-geo-pin text{fill:#3c6754;font-size:4.6px;font-weight:850;paint-order:stroke;stroke:#f8fcf5;stroke-width:1.6;pointer-events:none}
+.ita-geo-leader{stroke:#7d9c83;stroke-width:.65;fill:none}
+.ita-agreement-lead{font-size:11.5px;line-height:1.8;color:#778677;margin:0 0 13px;max-width:940px}
+.ita-agreement-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.ita-agreement-party{position:relative;border:1px solid #dce9de;background:#f7fbf7;border-radius:10px;padding:14px;min-width:0}
+.ita-agreement-party:nth-child(2){background:#eef4ed}
+.ita-agreement-party:nth-child(3){background:#f9f5ee;border-color:#eee3d6}
+.ita-party-number{display:block;color:#9baf9e;font-size:10px;font-weight:850;margin-bottom:7px}
+.ita-agreement-party b{color:#4c7c5c;font-size:12px;display:block}
+.ita-agreement-party p{color:#738574;font-size:11.5px;line-height:1.8;margin:8px 0 0}
+.ita-agreement-tension{display:grid;grid-template-columns:minmax(125px,.22fr) 1fr;gap:14px;background:#fbf3e9;border-left:3px solid #c5a076;border-radius:0 9px 9px 0;margin-top:12px;padding:13px 15px}
+.ita-agreement-tension b{font-size:11px;color:#a07a59}
+.ita-agreement-tension p{font-size:11.5px;line-height:1.75;color:#827c70;margin:0}
+.ita-region-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.ita-region-grid button{background:#f9fbf8;border:1px solid #e0e8dc;text-align:left;border-radius:9px;padding:13px;display:flex;flex-direction:column;gap:5px;min-height:79px}
+.ita-region-grid button strong{font-size:12px;color:#597d5e;line-height:1.4}
+.ita-region-grid button small{font-size:10px;color:#91a092;line-height:1.5}
+.ita-region-grid button.active,.ita-region-grid button:hover{background:#e6f3e6;border-color:#8db99b}
+.ita-region-grid button.active strong{color:#387853}
+.ita-social-region-detail{margin-top:12px;background:#f5f9f2;border:1px solid #e1eade;border-radius:10px;padding:16px;display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:20px}
+.ita-social-region-detail h4{font-size:21px;letter-spacing:-.04em;color:#507b5b;margin:5px 0}
+.ita-social-region-detail b{font-size:11px;color:#5c7c63}
+.ita-social-region-detail p{font-size:11.5px;color:#758676;line-height:1.75;margin:5px 0 12px}
+@media(max-width:790px){.ita-agreement-grid{grid-template-columns:1fr 1fr}.ita-agreement-party:last-child{grid-column:1 / -1}.ita-region-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:540px){.ita-agreement-grid,.ita-social-region-detail{grid-template-columns:1fr}.ita-agreement-party:last-child{grid-column:auto}.ita-agreement-tension{grid-template-columns:1fr;gap:4px}.ita-region-grid button{min-height:74px}}
