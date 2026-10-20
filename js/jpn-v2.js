@@ -117,6 +117,7 @@ function renderSupplyLoop(){
  $("jpnCycleSectorName").textContent=s.name;
  $("jpnCyclePortName").textContent=ports.find(x=>x.id===port).name;
 
+ const loopScrollLeft=$("jpnSupplyLoop").scrollLeft;
  $("jpnSupplyLoop").innerHTML=A.supplyLoopStages.map((stage,i)=>{
  const on=loopStage===stage.id,atRisk=sectorIsAffected(s)&&shock!=="normal"&&((shock==="ore"&&["import","power","market","return"].includes(stage.id))||(shock==="fuel"&&["port","power","market","return"].includes(stage.id))||(shock==="freight"&&["port","market","return"].includes(stage.id)));
  return '<button type="button" data-loop-stage="'+stage.id+'" class="loop-stage'+(on?" active":"")+(atRisk?" at-risk":"")+'" aria-pressed="'+on+'"><small>0'+(i+1)+' · '+safe(stage.verb)+'</small><strong>'+safe(stage.name)+'</strong></button>'
@@ -125,7 +126,8 @@ function renderSupplyLoop(){
  $("jpnLoopStageName").textContent=s.name+" · "+current.name;
  $("jpnLoopStageDetail").textContent=stageDescription(s,loopStage);
  $("jpnLoopCoreRisk").textContent=s.loop.coreRisk;
- $("jpnSupplyLoop").querySelectorAll("[data-loop-stage]").forEach(b=>b.onclick=()=>{loopStage=b.dataset.loopStage;renderSupplyLoop()});
+ $("jpnSupplyLoop").scrollLeft=loopScrollLeft;
+ $("jpnSupplyLoop").querySelectorAll("[data-loop-stage]").forEach(b=>b.onclick=()=>{loopStage=b.dataset.loopStage;renderSupplyLoop();$("jpnSupplyLoop").querySelector(`[data-loop-stage="${loopStage}"]`)?.focus({preventScroll:true})});
 }
 function renderCascade(){
  const s=sectors.find(x=>x.id===sector),p=ports.find(x=>x.id===port),q=shocks.find(x=>x.id===shock),hit=sectorIsAffected(s),normal=shock==="normal";
