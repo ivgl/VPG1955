@@ -1,104 +1,69 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="ФРГ 1955: дорожная карта суверенитета, экономическое чудо, социальный рынок и интерактивная карта германского вопроса">
-<title>ФРГ · Национальные механики · ВПИ 1955</title>
-<link rel="stylesheet" href="../css/frg.css">
-<script src="../js/geography-1955.js" defer></script>
-<script src="../js/frg.js" defer></script><script src="../js/frg-updates.js" defer></script>
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="ФРГ 1955: суверенитет, Бундесвер, промышленное чудо и социальный рынок, германский вопрос, федерация и земли.">
+<title>ФРГ · национальные механики · ВПИ 1955</title>
+<link rel="stylesheet" href="../css/frg-v2.css">
 <link rel="stylesheet" href="../css/parliament-1955.css">
+<script src="../data/frg-atlas-1955.js" defer></script>
+<script src="../js/geography-1955.js" defer></script>
 <script src="../data/parliaments-1955.js" defer></script>
 <script src="../js/parliament-1955.js" data-parliament="frg" defer></script>
-</head>
-<body>
-<div class="shell">
-<header class="header"><a href="../index.html" class="back">← Все страны</a><div class="site-name">ВПИ <b>1955</b> <span>/ НАЦИОНАЛЬНЫЕ МЕХАНИКИ</span></div></header>
-<section class="hero">
-<div class="eyebrow">Федеративная Республика Германия · 01.01.1955</div>
-<h1>Возрождение <span>Западной Германии.</span></h1>
-<p>Дипломатия возвращает государственные полномочия, экономика создаёт возможности, общественный компромисс определяет цену быстрого роста.</p>
-<div class="hero-tags"><span>Конрад Аденауэр</span><span>Бонн</span><span>Парижские соглашения подписаны</span><span>Бундесвер ещё не создан</span></div>
-</section>
-
-<nav class="tabs" aria-label="Разделы ФРГ">
-<button type="button" class="tab active" data-tab="sovereignty"><small>01</small> Суверенитет и армия</button>
-<button type="button" class="tab" data-tab="industry"><small>02</small> Экономическое чудо</button>
-<button type="button" class="tab" data-tab="social"><small>03</small> Социальный рынок</button>
-<button type="button" class="tab" data-tab="germany"><small>04</small> Германское досье</button>
+<script src="../js/frg-v2.js" defer></script>
+</head><body><div class="shell">
+<header class="mast"><a href="../index.html">← Каталог государств</a><span>ВПИ <b>1955</b> / НАЦИОНАЛЬНЫЕ МЕХАНИКИ</span></header>
+<section class="hero"><span class="eyebrow">Федеративная Республика Германия · 01.01.1955</span>
+<h1>Экономическая мощь.<br><em>Ещё не полный суверенитет.</em></h1>
+<p>Бонн строит промышленную державу, возвращает политические полномочия и одновременно отвечает за судьбу разделённой Германии. Новая армия, растущие заводы, социальный компромисс и самостоятельность земель требуют разных согласований.</p>
+<div class="hero-tags"><span><b>Канцлер</b> Конрад Аденауэр</span><span><b>Экономика</b> Людвиг Эрхард</span><span><b>Столица</b> Бонн</span><span><b>Оборона</b> Аппарат Бланка</span></div></section>
+<nav class="tabs" aria-label="Четыре механики ФРГ">
+<button type="button" class="tab active" data-tab="sovereignty" aria-selected="true"><small>01</small> Суверенитет и армия</button>
+<button type="button" class="tab" data-tab="economy" aria-selected="false"><small>02</small> Экономическое чудо</button>
+<button type="button" class="tab" data-tab="division" aria-selected="false"><small>03</small> Германский вопрос</button>
+<button type="button" class="tab" data-tab="federation" aria-selected="false"><small>04</small> Федерация и земли</button>
 </nav>
 <main>
 <section class="pane active" id="sovereignty">
-<div class="section-title"><div><div class="eyebrow">FRG-01 · Этапы развития</div><h2>Возвращение в число держав</h2><p>От международных соглашений — к формированию своих вооружённых сил. Нажмите доступный этап, чтобы отметить его как достигнутый <em>в пробном сценарии</em>.</p></div><button type="button" class="subtle-button" id="resetMilestones">Сбросить сценарий</button></div>
-<div class="layout-2"><section class="panel">
-<div class="panel-header"><div><div class="eyebrow">Путь к восстановлению</div><h3>Ключевые этапы</h3></div><span id="milestoneCount" class="number-pill"></span></div>
-<div class="roadmap" id="roadmap"></div>
-<div class="roadmap-note">На 1 января 1955 года Парижские соглашения уже подписаны, но ещё не действуют. Исторические события после начала игры не наступают автоматически. Альтернативные договорённости судья оценивает отдельно.</div>
+<div class="section-heading"><span class="eyebrow">01 / Бонн и западные союзники</span><h2>Государство возвращает себе полномочия</h2>
+<p>Парижские соглашения подписаны в октябре 1954 года, но ещё не вступили в силу. Вопрос не сводится к тому, чтобы «открыть» армию: стране нужны правовые полномочия, союзнические договорённости, кадры, вооружение и контроль парламента.</p></div>
+<div class="status-band"><div><small>Парижские соглашения</small><b>Подписаны</b></div><div><small>Федеральные вооружённые силы</small><b>Не учреждены</b></div><div><small>Военное планирование</small><b>Аппарат Бланка</b></div><div><small>Бундестаг</small><b>Действующий 2-й созыв</b></div></div>
+<div class="grid-strategy">
+<section class="panel"><div class="panel-head"><div><span class="eyebrow">Кабинет стратегических решений</span><h3>Предмет переговоров и законов</h3></div></div><div id="frgSecurityTopics" class="decision-list"></div>
 </section>
-<aside class="panel milestone-detail">
-<div class="eyebrow">Подробности этапа</div><h3 id="milestoneTitle"></h3><p class="muted" id="milestoneText"></p>
-<div class="rulebox"><strong>Что необходимо</strong><p id="milestoneNeeds"></p></div>
-<div class="rulebox"><strong>Что открывает</strong><p id="milestoneUnlocks"></p></div>
-<div class="fine" id="milestoneState"></div>
+<aside class="panel strategy-detail"><span class="eyebrow">Досье инициативы</span><h3 id="frgSecurityTitle"></h3><div id="frgSecurityState" class="status-pill"></div><p class="lead" id="frgSecurityLead"></p>
+<div class="detail-section"><b>Что необходимо</b><ul class="text-list" id="frgSecurityNeeds"></ul></div><div class="detail-section"><b>Кто участвует</b><div class="stake-pills" id="frgSecurityStake"></div></div>
 </aside></div>
-<div class="panel army-panel">
-<div class="panel-header"><div><div class="eyebrow">После открытия прав на создание войск</div><h3>Организационная готовность армии</h3></div><span id="armyGrade" class="number-pill"></span></div>
-<p class="muted">Здесь отдельно учитываются инструкторы и личный состав, вооружение, казармы и снабжение. Формирование армии не равно готовности боевых соединений.</p>
-<div id="armyLock" class="lockline"></div>
-<div class="army-grid" id="armyControls"></div><div class="frg-army-document"><div class="eyebrow">Публичное состояние на 01.01.1955</div><div id="frgArmyReadiness"></div><p class="fine">Это сведения о сформированных структурах, а не рычаг моментального повышения боеготовности. Чтобы они изменились, судья должен подтвердить создание кадров, инфраструктуры и соединений по игровым постам.</p></div>
-<div class="army-footer"><div class="mini-meter"><span id="armyMeter"></span></div><strong id="armyComment"></strong></div>
-</div>
+<section class="panel proposal"><div class="panel-head"><div><span class="eyebrow">Пакет возможных решений</span><h3>Как действовать Бонну</h3></div></div><div class="proposal-grid" id="frgSecurityOptions"></div><div id="frgSecurityCross" class="crosslinks"></div></section>
+<div class="join-note"><b>Перевооружение и западная интеграция затрагивают германский вопрос:</b> укрепление безопасности ФРГ меняет условия переговоров о судьбе Германии, но не решает статус ГДР и Берлина.</div></section>
+
+<section class="pane" id="economy" hidden>
+<div class="section-heading"><span class="eyebrow">02 / Социальная рыночная экономика</span><h2>Машина экономического чуда</h2><p>Быстрый промышленный рост зависит не только от инвестиций. Немецкая специфика — конкуренция, экспортные контракты, участие работников в управлении предприятиями и послевоенные социальные обязательства.</p></div>
+<div id="frgEcoMetrics" class="metrics"></div>
+<div class="economy-top">
+<section class="panel sectors-panel"><div class="panel-head"><div><span class="eyebrow">Промышленные узлы</span><h3>Отрасли и география роста</h3></div></div><div id="frgSectorButtons" class="sectors-grid"></div><div class="sector-focus">
+<span class="eyebrow">Выбранная отрасль</span><h3 id="frgSectorName"></h3><div id="frgSectorPlace" class="small-chip"></div><p id="frgSectorHook"></p><b>Что ограничивает расширение выпуска</b><p id="frgSectorBottleneck"></p></div></section>
+<aside class="panel sector-dossier"><span class="eyebrow">Условия модернизации</span><h3>Кто, что и чем обеспечивает</h3>
+<div class="detail-section"><b>Потребности производства</b><ul id="frgSectorNeeds" class="text-list"></ul></div><div class="detail-section"><b>Участники решений</b><div id="frgSectorActors" class="stake-pills"></div></div><div class="detail-section"><b>Связанные отрасли</b><div id="frgSectorDeps" class="crosslinks"></div></div></aside></div>
+<section class="panel proposal"><div class="panel-head"><div><span class="eyebrow">Правительственная повестка</span><h3>Возможные промышленные инициативы</h3></div></div><div id="frgSectorLevers" class="proposal-grid"></div><div id="frgSectorLeverDetail" class="selected-outcome"></div><div id="frgSectorCross" class="crosslinks"></div></section>
+<section class="panel social-panel"><div class="panel-head"><div><span class="eyebrow">Социальный компромисс</span><h3>Институты, которые удерживают рост</h3></div><span class="small-chip">Не шкала «рынок — социальная защита»</span></div>
+<div id="frgSocialButtons" class="social-buttons"></div><div class="social-detail"><div><span class="eyebrow">Действующие правила и проекты</span><h4 id="frgSocialTitle"></h4><div id="frgSocialStatus" class="status-pill"></div><p id="frgSocialTradeoff"></p><b>Заинтересованные стороны</b><div id="frgSocialActors" class="stake-pills"></div></div><div><b>Какие предложения можно внести</b><ul id="frgSocialChoices" class="text-list benefit"></ul><div id="frgSocialLink" class="crosslinks"></div></div></div>
+</section></section>
+
+<section class="pane" id="division" hidden><div class="section-heading"><span class="eyebrow">03 / Дипломатия разделённой страны</span><h2>Одна нация, несколько правовых режимов</h2><p>Западный Берлин, ГДР и Саар требуют принципиально разных решений. Бонн не может распоряжаться ни правами западных держав в Берлине, ни администрацией Восточной Германии, ни статусом Саара единолично.</p></div>
+<div class="germany-workspace">
+<section class="panel map-panel"><div class="panel-head"><div><span class="eyebrow">Германские территории и узлы</span><h3>Карта политического вопроса</h3></div></div><div class="map-frame"><svg id="frgDivisionMap" viewBox="0 0 650 570" role="group" aria-label="ФРГ, ГДР, Саар и Западный Берлин"></svg></div><div class="map-key"><span><i class="west"></i> ФРГ</span><span><i class="east"></i> ГДР</span><span><i class="saar"></i> Саар</span><span><i class="berlin"></i> Западный Берлин</span></div><p class="fine">Регионы обозначают основные политические и административные пространства. Западный Берлин показан отдельной меткой; его сектора и маршруты отображаются в досье.</p>
+<div id="frgRegionButtons" class="map-actions"></div></section>
+<aside class="panel geo-dossier"><span class="eyebrow">Территориальная политика</span><h3 id="frgRegionTitle"></h3><div id="frgRegionStatus" class="status-pill"></div><p class="lead" id="frgRegionSubtitle"></p><p id="frgRegionCore"></p>
+<div class="detail-section"><b>Уязвимые места</b><ul class="text-list danger-list" id="frgRegionRisks"></ul></div><div class="detail-section"><b>С кем необходимо договариваться</b><div id="frgRegionPartners" class="stake-pills"></div></div></aside></div>
+<section class="panel proposal"><div class="panel-head"><div><span class="eyebrow">Практические политические решения</span><h3>Варианты дипломатической линии</h3></div></div><div id="frgDivisionOptions" class="proposal-grid"></div><div id="frgDivisionCross" class="crosslinks"></div></section>
+<section class="panel berlin-card"><div class="panel-head"><div><span class="eyebrow">Особое положение</span><h3>Западный Берлин: не только точка на карте</h3></div></div>
+<div class="berlin-routes"><div><span>01</span><b>Автомобильные дороги</b><p>Транзитные процедуры и договорённости о доступе.</p></div><div><span>02</span><b>Железные дороги</b><p>Снабжение города и перевозки через восточную территорию.</p></div><div><span>03</span><b>Водные пути</b><p>Грузы, порты и использование каналов.</p></div><div><span>04</span><b>Воздушные коридоры</b><p>Особые права западных союзников и воздушное сообщение.</p></div></div><button type="button" class="text-link" data-region-link="berlin">Открыть досье Западного Берлина →</button></section>
 </section>
 
-<section class="pane" id="industry" hidden>
-<div class="section-title"><div><div class="eyebrow">FRG-02 · Промышленный двигатель</div><h2>Экономическое чудо не бесконечно</h2><p>Выберите отрасль и примерный темп её развития. Параллельное ускорение всех отраслей повышает нагрузку на подготовленные кадры, энергию, капитал и транспорт.</p></div><span class="small-chip">Экспериментальная модель</span></div>
-<div class="layout-2 industry-layout">
-<section class="panel"><div class="panel-header"><div><div class="eyebrow">Ключевые отрасли</div><h3>Состояние промышленности</h3></div><span class="mini-muted">Выберите отрасль</span></div><div id="industryCards" class="industry-grid"></div>
-<div class="sector-details"><div class="eyebrow">Активная отрасль</div><h3 id="sectorTitle"></h3><p id="sectorText" class="muted"></p><div class="inline-label"><span>Сценарный темп развития</span><strong id="sectorLabel"></strong></div><div id="growthOptions" class="growth-options"></div><p class="fine">Темп на экране — предположение игрока для проверки ограничений, а не автоматически начисляемый прирост производства.</p></div>
-</section>
-<aside class="panel resource-panel"><div class="eyebrow">Предложение и спрос на кадры</div><h3>Предел расширения</h3><p class="muted">Ускорение сразу нескольких отраслей повышает потребность в инженерах и квалифицированных рабочих.</p>
-<div class="indicator-row"><span>Потребность отраслей</span><strong id="workersDemand"></strong></div>
-<div class="indicator-row"><span>Доступные кадры (модель)</span><strong id="workersSupply"></strong></div>
-<div class="labour-meter"><div id="labourFill"></div></div>
-<div id="labourMessage" class="labour-message"></div>
-<div class="resource-control"><div class="inline-label"><label for="training">Подготовка специалистов</label><strong id="trainingValue"></strong></div><input id="training" type="range" min="0" max="30" step="5" value="15"><p class="fine">Расширение учебных мест требует денег и времени; выпускники появляются не мгновенно.</p></div>
-<div class="resource-control"><div class="inline-label"><label for="migration">Привлечение работников по соглашениям</label><strong id="migrationValue"></strong></div><input id="migration" type="range" min="0" max="30" step="5" value="10"><p class="fine">Нужны международные договорённости, жильё и социальная интеграция. Значение отражает только возможный сценарий.</p></div>
-<div class="resource-tags"><span>Станки и материалы</span><span>Энергетика</span><span>Кредиты</span><span>Экспортный спрос</span></div><div class="frg-market"><div class="eyebrow">Спрос и структурные ограничения</div><h3>Кому продавать выросший выпуск?</h3><div id="frgMarketMessage" class="muted"></div><div id="frgMarketContext" class="fine"></div></div>
-</aside></div>
-</section>
-
-<section class="pane" id="social" hidden>
-<div class="section-title"><div><div class="eyebrow">FRG-03 · Хозяйство и общество</div><h2>Цена социального компромисса</h2><p>От минимального государственного вмешательства до более сильной защиты работников. Сдвиг экономического курса влияет на стимулы к инвестициям и социальную устойчивость, но не определяет реальные результаты без законов и финансирования.</p></div><span class="small-chip">Поиск баланса</span></div>
-<div class="layout-2"><section class="panel">
-<div class="panel-header"><div><div class="eyebrow">Политический курс · сценарий</div><h3>Экономическая свобода ↔ Социальные гарантии</h3></div><span id="socialNumber" class="number-pill">50 / 100</span></div>
-<div class="scale-titles"><span>Меньше регулирования</span><span>Больше социальной защиты</span></div>
-<input id="socialSlider" class="main-slider" type="range" min="0" max="100" step="5" value="50" aria-label="Направление социальной и экономической политики">
-<div class="scale-labels"><span>0</span><span>25</span><span>50</span><span>75</span><span>100</span></div>
-<div id="socialExplanation" class="rulebox social-description"></div>
-<div class="society-institutions"><div><strong>Предприниматели</strong><span>Капитал, спрос и свобода инвестиций</span></div><div><strong>Профсоюзы</strong><span>Тарифные договоры и условия труда</span></div><div><strong>Государство</strong><span>Налоги, законы и страхование</span></div></div>
-</section><aside class="panel"><div class="eyebrow">Модельные последствия</div><h3>Индикаторы курса</h3>
-<div id="socialSignals" class="social-signals"></div>
-<div class="rulebox"><strong>Никаких гарантированных бонусов</strong><p>Либерализация не гарантирует рост ВВП, а социальные расходы не обеспечивают равенство или образование без исполнения. Показатели лишь иллюстрируют направления, которые судья затем оценивает на основе статистики.</p></div>
-</aside></div>
-</section>
-
-<section class="pane" id="germany" hidden>
-<div class="section-title"><div><div class="eyebrow">Германское досье · дипломатия</div><h2>Одна нация — разные статусы</h2><p>Выберите территорию на географической карте. ГДР, Саар и Западный Берлин не находятся в одинаковом правовом положении и не являются обычными федеральными землями ФРГ в январе 1955 года.</p></div><span class="small-chip">Схема территории</span></div>
-<div class="layout-2 map-layout">
-<section class="panel map-panel"><div class="panel-header"><div><div class="eyebrow">Географический ориентир</div><h3>Разделённая Германия</h3></div><span class="mini-muted">Нажимайте на регионы</span></div>
-<div class="map-frame"><svg id="germanMap" viewBox="0 0 650 570" role="group" aria-label="Кликабельная схема ФРГ, ГДР, Саара и Берлина"></svg></div>
-<div class="map-legend"><span><i class="lg-frg"></i> ФРГ</span><span><i class="lg-gdr"></i> ГДР</span><span><i class="lg-saar"></i> Саар</span><span><i class="lg-berlin"></i> Западный Берлин</span></div>
-<p class="fine">Рисунок сглаживает внутренние границы ФРГ и ГДР, показывая их едиными территориями. Географические контуры приблизительны и не являются точной картой юридических границ января 1955 года. Западный Берлин обозначен символом, без реконструкции границ секторов.</p>
-</section>
-<aside class="panel dossier"><div class="eyebrow">Территориальная карточка</div><h3 id="geoTitle"></h3>
-<div class="dossier-status" id="geoStatus"></div>
-<div class="label-small">Положение на старте</div><p id="geoContext" class="muted"></p>
-<div class="label-small">Отношения и ограничения</div><p id="geoRelations" class="muted"></p>
-<div class="label-small">Ближайшая задача</div><p id="geoNear"></p>
-<div class="label-small">Долгосрочный вопрос</div><p id="geoLong" class="muted"></p>
-<div class="rulebox"><strong>Германский вопрос — не шкала объединения</strong><p>Любое изменение статуса потребует политических и международно-правовых действий, а не накопления абстрактных очков.</p></div>
-</aside></div></section>
-</main>
-<footer class="footer"><span>ВПИ 1955 · ФРГ · Национальные механики</span><a href="../index.html">← Каталог стран</a></footer>
-</div>
-</body></html>
+<section class="pane" id="federation" hidden><div class="section-heading"><span class="eyebrow">04 / Федерализм</span><h2>Бонн принимает закон. Земли обеспечивают его действие.</h2><p>У ФРГ девять федеральных земель со своими правительствами. Бундесрат представляет именно земельные кабинеты, а полномочия образования, административного исполнения и части финансов распределены между несколькими уровнями власти.</p></div>
+<div class="federal-intro"><div><b>9 земель</b><small>Действующий состав федерации</small></div><div><b>Бундесрат</b><small>Представляет правительства земель</small></div><div><b>Западный Берлин</b><small>Особый статус, не обычная голосующая земля</small></div><div><b>Саар</b><small>Вне состава ФРГ на старте</small></div></div>
+<div class="federal-columns">
+<section class="panel federal-map-panel"><div class="panel-head"><div><span class="eyebrow">Федеральные земли · январь 1955</span><h3>Региональные интересы</h3></div></div><div class="map-frame"><svg id="frgFederalMap" viewBox="0 0 650 570" role="group" aria-label="Девять земель ФРГ, статус Саара и Берлина отмечен отдельно"></svg></div><div id="frgLandButtons" class="land-buttons"></div><p class="fine">Географическая подложка отображает расположение земель. Саар и Западный Берлин выделены отдельно, вне состава девяти земель.</p></section>
+<aside class="panel land-dossier"><span class="eyebrow">Региональное досье</span><h3 id="frgLandName"></h3><div class="small-chip" id="frgLandFocus"></div><div class="detail-section"><b>Региональные запросы</b><ul id="frgLandNeeds" class="text-list"></ul></div><div class="detail-section"><b>Полномочия земли</b><p id="frgLandAuthority"></p></div><div class="detail-section"><b>Связанные экономические направления</b><div id="frgLandSectors" class="crosslinks"></div></div></aside></div>
+<section class="panel federal-cases"><div class="panel-head"><div><span class="eyebrow">Исполнение федерального решения</span><h3>Где требуется согласие и координация</h3></div></div><div id="frgFederalCaseButtons" class="federal-case-buttons"></div><div class="case-dossier"><div><span class="eyebrow">Выбранный проект</span><h4 id="frgCaseTitle"></h4><p id="frgCaseQuestion"></p><b>Уровни принятия решений</b><ol id="frgCaseLevels" class="levels"></ol></div><div><b>Что может помешать</b><ul id="frgCaseBarriers" class="text-list danger-list"></ul><div class="federal-rule">Участие Бундесрата зависит от вида законопроекта: для одних решений необходимо согласие земельной палаты, для других действует процедура возражения.</div><button type="button" class="text-link" id="frgCaseJump">Посмотреть связанную отрасль →</button></div></div></section>
+</section></main>
+<footer class="footer"><div><b>ФРГ · ВПИ 1955</b><p>Политические и экономические механики · 1 января 1955 года</p></div><div><b>Документы и исторические источники</b><div id="frgSources" class="source-links"></div></div><a href="../index.html">← Все страны</a></footer>
+</div></body></html>
