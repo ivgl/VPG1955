@@ -180,3 +180,62 @@ a{color:#2c6d66}
 @media(max-width:620px){.page{padding:0 14px}.mast{min-height:65px}.hero{padding:32px 0 20px}.hero h1{font-size:38px}.heading p{font-size:12.5px}.tab{padding:9px 11px;font-size:11px}.panel{padding:15px}.party-list{grid-template-columns:1fr 1fr}.party-card{padding:11px;min-height:90px}.route-detail{grid-template-columns:1fr}.route-detail>div:first-child{grid-column:auto}.industry-detail,.supply-synthesis,.fx-law,.fx-consequences{grid-template-columns:1fr}.trade-cats{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:460px){.mast span{font-size:9px}.hero h1{font-size:35px}.hero-tags span{font-size:10px}.panel-head{flex-wrap:wrap}.party-list,.political-routes{grid-template-columns:1fr}.party-card{min-height:65px}.industry-buttons{grid-template-columns:repeat(2,minmax(0,1fr))}.fx-flow{grid-template-columns:1fr}.trade-cats{grid-template-columns:1fr}.fx-metric strong{font-size:18px}.map-frame svg{max-height:460px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+
+/* Japan 1955 cabinet minority and continuous island industrial cycle. */
+.cabinet-crisis{margin-bottom:14px}
+.cabinet-state{background:#e6f1e8;border:1px solid #cee4d4;border-radius:25px;padding:6px 11px;color:#39745a;font-weight:800;font-size:10.5px;white-space:nowrap}
+.cabinet-strategy{display:grid;grid-template-columns:minmax(0,1.13fr) minmax(280px,.87fr);gap:24px}
+.cabinet-count{background:#f5f9f6;border:1px solid #e2eae4;border-radius:11px;padding:18px}
+.cabinet-score{display:flex;justify-content:space-between;align-items:end;gap:12px}
+.cabinet-score>strong{font-size:36px;line-height:1.1;color:#37745c;letter-spacing:-.055em}
+.cabinet-score>strong small{font-size:17px;color:#89a191}
+.cabinet-score>span{font-size:11px;max-width:150px;color:#759080;text-align:right}
+.cabinet-bar{position:relative;height:18px;overflow:visible;border-radius:10px;background:#e2eae2;margin:20px 0 8px}
+.cabinet-basis{height:100%;background:#538b6e;border-radius:10px 0 0 10px}
+.cabinet-threshold{height:27px;border-left:3px dashed #b67c66;display:block;position:absolute;top:-4px}
+.cabinet-score-caption{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px 9px;color:#829689;font-size:10px}
+.cabinet-score-caption strong{color:#a16d58}
+.cabinet-count>p{font-size:11.5px;line-height:1.75;color:#6a8474;margin-bottom:0}
+.cabinet-arithmetic>b{font-size:11.5px;color:#386e59}
+.cabinet-support-group{display:grid;grid-template-columns:1fr auto;gap:1px 12px;border-bottom:1px solid #e3eae5;padding:9px 0}
+.cabinet-support-group span{font-size:11.5px;color:#526f66;font-weight:800}
+.cabinet-support-group strong{font-size:12px;color:#347761}
+.cabinet-support-group small{grid-column:1/-1;color:#8a9d91;font-size:10.5px}
+.cabinet-crisis-footer{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:16px}
+.cabinet-crisis-footer>div{background:#eff6f0;border-left:3px solid #97b9a2;border-radius:0 8px 8px 0;padding:12px}
+.cabinet-crisis-footer b{font-size:11px;color:#386d57}
+.cabinet-crisis-footer p{font-size:11px;line-height:1.68;color:#708676;margin:5px 0 0}
+.party-seats{background:#e4f0e7;border:1px solid #d1e2d6;color:#37705c;border-radius:8px;padding:8px 11px;font-size:11px;font-weight:800;line-height:1.45;margin:10px 0}
+
+.production-cycle{margin-bottom:14px}
+.supply-loop{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+.loop-stage{position:relative;min-width:0;text-align:left;display:flex;flex-direction:column;gap:8px;background:#f5f9f6;border:1px solid #dfeae2;border-radius:10px;padding:12px 11px;min-height:148px}
+.loop-stage:not(:last-child):after{content:"→";position:absolute;right:-10px;top:40%;z-index:2;font-size:14px;font-weight:900;color:#829f8f;pointer-events:none}
+.loop-stage small{font-size:9px;line-height:1.45;color:#8aa28d;font-weight:850}
+.loop-stage strong{font-size:13px;line-height:1.35;color:#3b755d}
+.loop-stage>span{font-size:10px;line-height:1.56;color:#788f81}
+.loop-stage.active,.loop-stage:hover{background:#e4f3e8;border-color:#7fb598}
+.loop-stage.at-risk:not(.active){background:#fbf4e9;border-color:#e5d5c1}
+.loop-stage.at-risk:not(.active) strong{color:#9b7251}
+.loop-info{display:grid;grid-template-columns:1fr minmax(240px,.64fr);gap:16px;padding-top:16px;margin-top:16px;border-top:1px solid #dfece4}
+.loop-info h4{font-size:20px;letter-spacing:-.038em;margin:6px 0}
+.loop-info p{font-size:12px;color:#647e70;line-height:1.78;margin:8px 0}
+.loop-status{background:#eef5ee;border-radius:9px;padding:13px 15px}
+.loop-status>span{font-size:10.5px;color:#57816a;font-weight:850}
+.loop-status>p{font-weight:650;color:#55796b;line-height:1.75;margin:6px 0}
+.port-industry-links{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}
+.port-industry-links button{font-size:10.5px;padding:8px 10px;border-radius:8px;color:#3b7660;background:#eaf4ee;border:1px solid #cfdfd6;font-weight:750}
+.port-industry-links button:hover{background:#dbece1}
+.cascade-panel{margin-top:15px}
+.cascade-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.cascade-step{background:#f1f7f2;border:1px solid #dfeae1;border-radius:10px;padding:13px}
+.cascade-step small{font-size:10.5px;font-weight:850;color:#487761}
+.cascade-step p{font-size:11.5px;color:#667f70;line-height:1.75;margin:7px 0 0}
+.cascade-step.risk{background:#fcf4ea;border-color:#e8ddcf}
+.cascade-step.risk small{color:#9d6e56}
+.cascade-conclusion{background:#eaf3ec;border-left:4px solid #93b99e;border-radius:0 9px 9px 0;padding:13px 15px;margin-top:14px;color:#517560;font-size:12px;line-height:1.8}
+@media(max-width:1100px){.supply-loop{grid-template-columns:repeat(3,minmax(0,1fr))}.loop-stage{min-height:123px}.loop-stage:nth-child(3):after{content:none}.loop-info{grid-template-columns:1fr 1fr}}
+@media(max-width:860px){.cabinet-strategy{grid-template-columns:1fr}.cabinet-arithmetic{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.cabinet-arithmetic>b{grid-column:1/-1}.cabinet-support-group{border:1px solid #e2eae3;border-radius:9px;padding:12px}.cascade-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.cabinet-crisis-footer{grid-template-columns:1fr}.cabinet-arithmetic{grid-template-columns:1fr}.supply-loop{grid-template-columns:repeat(2,minmax(0,1fr))}.loop-stage:nth-child(3):after{content:"→"}.loop-stage:nth-child(2n):after{content:none}.loop-info{grid-template-columns:1fr}.loop-stage{min-height:110px}.loop-stage strong{font-size:12px}.cascade-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:430px){.cabinet-score>strong{font-size:30px}.cabinet-score-caption{font-size:9px}.supply-loop{gap:7px}.loop-stage{padding:10px;min-height:105px}.loop-stage>span{font-size:9.5px}.cascade-grid{grid-template-columns:1fr}.cabinet-crisis-footer p{font-size:10.5px}}

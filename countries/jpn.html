@@ -25,9 +25,20 @@
 <section id="politics" class="pane current">
 <div class="heading"><span class="eyebrow">01 / Палата представителей и политические движения</span><h2>Какой станет партийная система Японии?</h2><p>Демократы Хатоямы и либералы конкурируют за консервативный электорат. Левые и правые социалисты разделены, но могут договориться об общей партии. Возможны партийные объединения, новые коалиции и левое правительство — исход зависит от парламентских соглашений и выборов.</p></div>
 <div class="politics-stats"><div><small>Палата представителей</small><strong>466 мест</strong><span>Для большинства — 234</span></div><div><small>Демократы Хатоямы</small><strong>124 депутата</strong><span>При формировании партии · ноябрь 1954</span></div><div><small>Консервативные силы</small><strong>Разделены</strong><span>Демократы и либералы</span></div><div><small>Социалистические силы</small><strong>Два крыла</strong><span>Левые и правые социалисты</span></div></div>
+<section class="panel cabinet-crisis">
+<div class="panel-head"><div><span class="eyebrow">Кабинет меньшинства · декабрь 1954</span><h3>Сколько опоры есть у Хатоямы?</h3></div><span class="cabinet-state">Действующее правительство</span></div>
+<div class="cabinet-strategy">
+<div class="cabinet-count"><div class="cabinet-score"><strong>124 <small>/ 466</small></strong><span>Депутаты Демократической партии</span></div>
+<div class="cabinet-bar"><div class="cabinet-basis" style="width:26.61%"></div><i class="cabinet-threshold" style="left:50.21%"></i></div>
+<div class="cabinet-score-caption"><span>Правительственная партия</span><strong>До большинства: 110</strong><span>Порог — 234 места</span></div>
+<p>У нового кабинета нет собственного большинства. Другие партии могут поддерживать отдельные законопроекты, но это не делает их членами правительства.</p></div>
+<div class="cabinet-arithmetic"><b>С кем можно обсуждать поддержку</b><div class="cabinet-support-group"><span>Либералы</span><strong>180 мест</strong><small>Конкуренты по лидерству и внешнему курсу</small></div><div class="cabinet-support-group"><span>Левые и правые социалисты</span><strong>74 + 61</strong><small>Общая программа потребует соглашения по безопасности</small></div><div class="cabinet-support-group"><span>Малые группы и независимые</span><strong>17 мест</strong><small>Даже все вместе не обеспечивают большинству Хатоямы</small></div></div>
+</div>
+<div class="cabinet-crisis-footer"><div><b>Парламентский путь</b><p>Проводить бюджет и законы через соглашения с другими фракциями, одновременно решая спор о руководстве.</p></div><div><b>Досрочные выборы</b><p>Роспуск Палаты — отдельное решение, способное изменить соотношение сил. Он не гарантирует нового большинства.</p></div></div>
+</section>
 <div class="party-overview panel">
 <div class="panel-head"><div><span class="eyebrow">Политические силы</span><h3>Кто за что выступает</h3></div><span class="small-tag">Выберите партию</span></div>
-<div class="political-layout"><div id="jpnPartyList" class="party-list"></div><aside class="party-dossier"><span class="eyebrow">Партийное досье</span><h3 id="jpnPartyName"></h3><span id="jpnPartyFamily" class="family-tag"></span><div class="party-leader" id="jpnPartyLeader"></div><p id="jpnPartyAgenda"></p>
+<div class="political-layout"><div id="jpnPartyList" class="party-list"></div><aside class="party-dossier"><span class="eyebrow">Партийное досье</span><h3 id="jpnPartyName"></h3><span id="jpnPartyFamily" class="family-tag"></span><div class="party-leader" id="jpnPartyLeader"></div><div class="party-seats" id="jpnPartySeats"></div><p id="jpnPartyAgenda"></p>
 <div class="dossier-section"><b>Что обсуждать на переговорах</b><p id="jpnPartyDeal"></p></div><div class="dossier-section"><b>Главное препятствие</b><p id="jpnPartyBarrier"></p></div>
 <div class="dossier-section"><b>Позиция по выбранной теме</b><div id="jpnIssueButtons" class="issue-buttons"></div><p id="jpnPartyIssue"></p></div>
 </aside></div></div>
@@ -43,6 +54,12 @@
 
 <section id="industry" class="pane" hidden>
 <div class="heading"><span class="eyebrow">02 / Производство, островная энергия и порты</span><h2>Сырьё должно доплыть. Завод — заработать. Товар — найти покупателя.</h2><p>Экспортная промышленность зависит от нефтяного топлива, угля, электроэнергии, иностранной руды и технического оборудования. Порты и промышленные районы образуют общую хозяйственную систему, а не независимые отрасли.</p></div>
+<section class="panel production-cycle">
+<div class="panel-head"><div><span class="eyebrow">Единый цикл островной экономики</span><h3>От иностранного платежа до новой валютной выручки</h3></div><span class="small-tag">Выберите звено цепочки</span></div>
+<div id="jpnSupplyLoop" class="supply-loop"></div>
+<div class="loop-info"><div><span class="eyebrow">Выбранный этап</span><h4 id="jpnLoopStageName"></h4><p id="jpnLoopStageDetail"></p></div>
+<div class="loop-status"><span>Главная зависимость отрасли</span><p id="jpnLoopCoreRisk"></p><button class="text-link" type="button" data-jump="currency">Посмотреть валютный бюджет →</button></div></div>
+</section>
 <div class="industry-head">
 <section class="panel industry-map">
 <div class="panel-head"><div><span class="eyebrow">Промышленные центры и транспорт</span><h3>Островная карта снабжения</h3></div><span class="small-tag">Восемь узлов</span></div>
@@ -53,7 +70,7 @@
 <aside class="panel port-dossier"><span class="eyebrow">Выбранный промышленный район</span><h3 id="jpnPortName"></h3><span class="status" id="jpnPortArea"></span><p class="lead" id="jpnPortRole"></p>
 <div class="dossier-section"><b>Снабжение и энергетика</b><p id="jpnPortSupply"></p></div>
 <div class="dossier-section"><b>Связанные отрасли и грузы</b><p id="jpnPortChain"></p></div>
-<div class="dossier-section"><b>Хозяйственная проблема</b><p id="jpnPortLimit"></p></div>
+<div class="dossier-section"><b>Хозяйственная проблема</b><p id="jpnPortLimit"></p></div><div class="dossier-section"><b>Связанные отрасли</b><div id="jpnPortIndustries" class="port-industry-links"></div></div>
 <div class="shock-section"><b>Проверить уязвимость поставок</b><div id="jpnSupplyScenarios" class="supply-buttons"></div><div id="jpnSupplyDescription" class="supply-result"></div></div></aside>
 </div>
 <section class="panel industrial-chain">
@@ -63,6 +80,7 @@
 <div><span class="eyebrow">Промышленное досье</span><h4 id="jpnIndustryName"></h4><p id="jpnIndustryBase"></p><div class="industry-formula" id="jpnIndustryChain"></div><div class="dossier-section"><b>Зависимость от энергетики</b><p id="jpnIndustryEnergy"></p></div></div>
 <div><b>Что предстоит импортировать</b><p id="jpnIndustryImports"></p><b>Что ограничивает выпуск</b><p id="jpnIndustryLimit"></p><b>Фирмы и государственные учреждения</b><p id="jpnIndustryStake"></p><button id="jpnToCurrency" type="button" class="text-link">Открыть связанную валютную категорию →</button></div></div>
 </section>
+<section class="panel cascade-panel"><div class="panel-head"><div><span class="eyebrow">Цепная реакция нарушения снабжения</span><h3>Как сбой ударит по выпуску и валюте</h3></div></div><div class="cascade-grid" id="jpnCascade"></div><div class="cascade-conclusion" id="jpnCascadeConclusion"></div></section>
 <section class="supply-synthesis"><div><b>Внутренние источники энергии</b><p>Уголь Хоккайдо и Кюсю, гидроэнергия и каботаж снижают часть рисков, но не заменяют всю потребность в нефти и коксующемся угле.</p></div><div><b>Самое чувствительное место</b><p>Импорт сырья и оборудования требует одновременно валютного выделения, контракта, грузового места и работоспособного порта.</p></div></section>
 </section>
 

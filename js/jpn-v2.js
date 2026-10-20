@@ -9,7 +9,7 @@ const items=x=>x.map(v=>'<li>'+safe(v)+'</li>').join("");
 const pills=x=>x.map(v=>'<span>'+safe(v)+'</span>').join("");
 const num=(x,d=2)=>Number(x).toLocaleString("ru-RU",{minimumFractionDigits:d,maximumFractionDigits:d});
 const tabs=["politics","industry","currency"];
-let party="dem",issue="government",route="conserv",port="kitakyushu",shock="normal",sector="steel",trade="energy",priority="exports";
+let party="dem",issue="government",route="conserv",port="kitakyushu",shock="normal",sector="steel",loopStage="fx",trade="energy",priority="exports";
 function openTab(id,scroll=false){
  if(!tabs.includes(id))return;
  document.querySelectorAll(".tab").forEach(b=>{const on=b.dataset.tab===id;b.classList.toggle("current",on);b.setAttribute("aria-selected",String(on))});
@@ -33,6 +33,8 @@ function renderParty(){
  $("jpnPartyList").innerHTML=parties.map(x=>'<button type="button" data-party="'+x.id+'" class="party-card '+x.family+(party===x.id?" active":"")+'" aria-pressed="'+(party===x.id)+'"><strong>'+safe(x.name)+'</strong><span>'+safe(x.tag)+'</span></button>').join("");
  $("jpnPartyName").textContent=p.name;$("jpnPartyLeader").textContent=p.leader;$("jpnPartyAgenda").textContent=p.agenda;
  $("jpnPartyFamily").textContent=p.tag;$("jpnPartyFamily").className="family-tag "+p.family;
+ const c=A.parliament.caucuses.find(x=>x.id===p.id);
+ $("jpnPartySeats").textContent=c?"Депутаты в Палате представителей: "+c.seats+" из "+A.parliament.size:"";
  $("jpnPartyDeal").textContent=p.negotiation;$("jpnPartyBarrier").textContent=p.barrier;
  $("jpnIssueButtons").innerHTML=polIssues.map(x=>'<button type="button" data-issue="'+x.id+'" class="'+(issue===x.id?"active":"")+'" aria-pressed="'+(issue===x.id)+'">'+safe(x.name)+'</button>').join("");
  $("jpnPartyIssue").textContent=p.issues[issue];
@@ -52,13 +54,15 @@ renderParty();renderRoutes();
 // Island ports: approximate coastline and eight geographic centers.
 const projection=(lon,lat)=>[(lon-123.8)*30,(47.2-lat)*37];
 const ports=A.ports,shocks=A.shocks,sectors=A.sectors;
+const portSector={muroran:"steel",niigata:"steel",tokyo:"electronics",nagoya:"cars",osaka:"textiles",kobe:"ships",kitakyushu:"steel",nagasaki:"ships"};
+const industryAtPort=id=>sectors.filter(s=>s.hub===id||portSector[id]===s.id||(id==="kobe"&&s.id==="textiles")||(id==="muroran"&&s.id==="ships"));
 function drawMap(){
  $("japanMap").innerHTML=G.islands.map(d=>'<path class="japan-coast" d="'+d+'"></path>').join("")+
  '<text x="48" y="290" class="water-label">Японское море</text><text x="525" y="605" class="water-label">Тихий океан</text>'+
  ports.map(p=>{const [x,y]=projection(p.lon,p.lat),affected=shocks.find(s=>s.id===shock).affected.includes(p.id);
  return '<g data-port-map="'+p.id+'" tabindex="0" role="button" class="port-point'+(port===p.id?" selected":"")+(affected?" affected":"")+'" aria-label="'+safe(p.name)+'"><circle class="port-halo" cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="'+(port===p.id?17:13)+'"></circle><circle class="port-dot" cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="7"></circle><title>'+safe(p.name)+'</title></g>'}).join("");
  $("japanMap").querySelectorAll("[data-port-map]").forEach(el=>{
- const go=()=>{port=el.dataset.portMap;renderPort()};
+ const go=()=>{port=el.dataset.portMap;sector=portSector[port]||sector;renderIndustry();renderPort()};
  el.addEventListener("click",go);el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go()}});
  });
 }
@@ -67,13 +71,15 @@ function renderPort(){
  $("jpnPortNav").innerHTML=ports.map(x=>'<button type="button" data-port="'+x.id+'" class="'+(x.id===port?"active":"")+'" aria-pressed="'+(x.id===port)+'">'+safe(x.name)+'</button>').join("");
  $("jpnPortName").textContent=p.name;$("jpnPortArea").textContent=p.area;$("jpnPortRole").textContent=p.specialty;
  $("jpnPortSupply").textContent=p.dependency;$("jpnPortChain").textContent=p.lines;$("jpnPortLimit").textContent=p.options;
+ $("jpnPortIndustries").innerHTML=industryAtPort(port).map(s=>'<button type="button" data-port-industry="'+s.id+'">'+safe(s.name)+' ↗</button>').join("");
+ $("jpnPortIndustries").querySelectorAll("[data-port-industry]").forEach(b=>b.onclick=()=>{sector=b.dataset.portIndustry;renderIndustry()});
  $("jpnSupplyScenarios").innerHTML=shocks.map(x=>'<button type="button" data-shock="'+x.id+'" class="'+(x.id===shock?"active":"")+'" aria-pressed="'+(x.id===shock)+'">'+safe(x.name)+'</button>').join("");
  const hit=s.affected.includes(port),isNormal=shock==="normal";
  $("jpnSupplyDescription").className="supply-result"+(!isNormal?" warning":"");
  $("jpnSupplyDescription").innerHTML='<strong>'+safe(s.name)+'</strong><p>'+safe(s.impact)+'</p><p><b>'+safe(p.name)+':</b> '+(isNormal?"Снабжение зависит от действующих контрактов, мощности портов и валютных платежей.":hit?"Узел затронут напрямую. Нужно оценить пропускную способность, дополнительные расходы и запасные маршруты.":"Прямого воздействия на этот узел не выделено. Возможны косвенные последствия через смежные отрасли.")+'</p>';
- $("jpnPortNav").querySelectorAll("[data-port]").forEach(b=>b.onclick=()=>{port=b.dataset.port;renderPort()});
+ $("jpnPortNav").querySelectorAll("[data-port]").forEach(b=>b.onclick=()=>{port=b.dataset.port;sector=portSector[port]||sector;renderIndustry();renderPort()});
  $("jpnSupplyScenarios").querySelectorAll("[data-shock]").forEach(b=>b.onclick=()=>{shock=b.dataset.shock;renderPort()});
- drawMap();
+ drawMap();renderSupplyLoop();renderCascade();
 }
 function renderIndustry(){
  const s=sectors.find(x=>x.id===sector);
@@ -82,8 +88,53 @@ function renderIndustry(){
  $("jpnIndustryChain").textContent=s.chain;$("jpnIndustryEnergy").textContent=s.energy;
  $("jpnIndustryImports").textContent=s.imports;$("jpnIndustryLimit").textContent=s.limit;$("jpnIndustryStake").textContent=s.stakeholders;
  $("jpnToCurrency").dataset.jump="currency";$("jpnToCurrency").dataset.targetTrade=s.foreign;
- $("jpnIndustryButtons").querySelectorAll("[data-sector]").forEach(b=>b.onclick=()=>{sector=b.dataset.sector;port=b.dataset.sector==="steel"?"kitakyushu":sHub(b.dataset.sector);renderIndustry();renderPort()});
+ $("jpnIndustryButtons").querySelectorAll("[data-sector]").forEach(b=>b.onclick=()=>{sector=b.dataset.sector;port=sHub(b.dataset.sector);renderIndustry();renderPort()});
+ renderSupplyLoop();renderCascade();
 }
+
+function stageDescription(s,id){
+ const l=s.loop;
+ return ({
+ fx:"Для этой отрасли необходима оплачиваемая иностранная закупка: "+s.fx+" Выделение иенового кредита само по себе не даёт валюты.",
+ import:"Иностранный платёж направляется на: "+l.import+". Нужны импортная лицензия, согласованный контракт и расчёты.",
+ port:l.transport+". Без причала, фрахта и внутренней доставки зарубежная закупка ещё не становится ресурсом завода.",
+ power:l.power+". Производственный этап: "+l.produce+". Нехватка энергии или комплектующих может остановить последующие стадии.",
+ market:l.sell+". Должны выполняться требования по качеству, срокам поставки и доступу на рынок.",
+ return:l.earn+". Если экспорт не оплачен, валютный бюджет не пополнен, даже если продукция изготовлена."
+ })[id];
+}
+function sectorIsAffected(s){
+ const p=sectors.find(x=>x.id===sector),hit=shocks.find(x=>x.id===shock).affected.includes(port);
+ if(shock==="normal")return false;
+ if(shock==="ore")return ["steel","ships","cars"].includes(s.id)||hit;
+ if(shock==="freight")return true;
+ if(shock==="fuel")return hit||s.loop.energyExposure==="high";
+ return hit;
+}
+function renderSupplyLoop(){
+ const s=sectors.find(s=>s.id===sector);
+ $("jpnSupplyLoop").innerHTML=A.supplyLoopStages.map((stage,i)=>{
+ const on=loopStage===stage.id,atRisk=sectorIsAffected(s)&&shock!=="normal"&&((shock==="ore"&&["import","power","market","return"].includes(stage.id))||(shock==="fuel"&&["port","power","market","return"].includes(stage.id))||(shock==="freight"&&["port","market","return"].includes(stage.id)));
+ return '<button type="button" data-loop-stage="'+stage.id+'" class="loop-stage'+(on?" active":"")+(atRisk?" at-risk":"")+'" aria-pressed="'+on+'"><small>0'+(i+1)+' / '+safe(stage.verb)+'</small><strong>'+safe(stage.name)+'</strong><span>'+safe(stage.description)+'</span></button>'
+ }).join("");
+ const current=A.supplyLoopStages.find(x=>x.id===loopStage);
+ $("jpnLoopStageName").textContent=s.name+" · "+current.name;
+ $("jpnLoopStageDetail").textContent=stageDescription(s,loopStage);
+ $("jpnLoopCoreRisk").textContent=s.loop.coreRisk;
+ $("jpnSupplyLoop").querySelectorAll("[data-loop-stage]").forEach(b=>b.onclick=()=>{loopStage=b.dataset.loopStage;renderSupplyLoop()});
+}
+function renderCascade(){
+ const s=sectors.find(x=>x.id===sector),p=ports.find(x=>x.id===port),q=shocks.find(x=>x.id===shock),hit=sectorIsAffected(s);
+ const stage=[
+ {title:"1 · Ресурс",body:shock==="normal"?"Нужны иностранный поставщик, сырьё и валюта.":shock==="ore"?"Поставки железной руды и связанных металлов могут задержаться.":shock==="fuel"?"Дорожает топливо, растут затраты на электричество и перевозки.":"Фрахт и доставка могут стать дороже или медленнее."},
+ {title:"2 · Порт и завод",body:hit?"Возможны задержки доставки или дополнительные производственные издержки в цепочке «"+s.name+"».":"В выбранной цепочке нет выделенного прямого воздействия; сохраняются обычные ограничения."},
+ {title:"3 · Экспортный заказ",body:hit?"Производственная задержка способна сдвинуть отгрузку и выполнение контракта.":"Исполнение договора зависит от качества продукции, фрахта и сроков."},
+ {title:"4 · Следующий валютный платёж",body:hit?"Если экспортный платёж задержится, следующую импортную закупку придётся финансировать иначе.":"Экспортная выручка появляется только после оплаченной продажи и доступного валютного расчёта."}
+ ];
+ $("jpnCascade").innerHTML=stage.map((a,i)=>'<div class="cascade-step'+(hit&&i>0?" risk":"")+'"><small>'+safe(a.title)+'</small><p>'+safe(a.body)+'</p></div>').join("");
+ $("jpnCascadeConclusion").textContent="Выбрано: "+s.name+" · "+p.name+" · "+q.name+". "+(shock==="normal"?"Внешние поставки, производство и экспорт должны быть обеспечены договорами и оплатой.":hit?"Под угрозой не только текущий выпуск, но и поступление валюты на следующий цикл закупок.":"Воздействие остаётся косвенным; проверьте общие транспортные и энергетические зависимости.")+" Последствия зависят от контрактов, запасов и мер правительства.";
+}
+
 const sHub=id=>sectors.find(x=>x.id===id).hub;
 renderPort();renderIndustry();
 // Fixed-rate, game G$ ledger with all six canonical categories.
