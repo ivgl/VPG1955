@@ -234,3 +234,123 @@ button:focus-visible,a:focus-visible,[role="button"]:focus-visible{outline:3px s
 
 /* 1955 geopolitical distinction: eastern Germany is outside ECSC. */
 .europe-gdr{fill:#c1cdc7;stroke:#f7fbf7;stroke-width:1.7;vector-effect:non-scaling-stroke;pointer-events:none}
+
+
+/* --- Франция RC 0.3 · coherent risk/negotiation interfaces, 20 October 2026 --- */
+/* Political affinity is never a party's heraldic colour: only the CURRENT issue stance. */
+.fra-stance-explain{padding:10px 12px;background:#f3f8f4;border-radius:9px;margin:0 0 11px!important;color:#55786c!important}
+.stance-overview{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin:0 0 12px}
+.stance-overview-cell{display:flex;gap:5px;align-items:center;flex-direction:column;justify-content:center;background:var(--stance-bg);border:1px solid var(--stance-line);border-radius:9px;padding:9px 5px;text-align:center}
+.stance-overview-cell strong{font-size:18px;line-height:1;color:var(--stance-ink)}
+.stance-overview-cell span{font-size:9px;color:var(--stance-ink);font-weight:800;line-height:1.4}
+.stance-likely{--stance-bg:#e5f3e8;--stance-line:#b1d5b8;--stance-ink:#286f48;--status:#7aaf87}
+.stance-conditional{--stance-bg:#faf3e4;--stance-line:#e8d6ac;--stance-ink:#9b7232;--status:#d6ab60}
+.stance-opposed{--stance-bg:#fae9e7;--stance-line:#dfb5b0;--stance-ink:#a65e58;--status:#c67b78}
+.stance-mixed{--stance-bg:#eef1f4;--stance-line:#d4dbe1;--stance-ink:#637c8a;--status:#92a2ad}
+.party-tile{border-left-color:var(--status);background:#fff}
+.party-tile.stance-likely{background:#fbfefa}.party-tile.stance-opposed{background:#fefdfd}.party-tile.stance-conditional{background:#fffdf9}.party-tile.stance-mixed{background:#fbfcfe}
+.party-tile.selected{border-color:#9cc6b2;border-left-color:var(--status);box-shadow:0 2px 13px rgba(37,100,70,.08)}
+.party-tile-top{display:flex;flex-direction:column;align-items:flex-start;gap:7px}
+.party-main{min-height:42px}
+.party-brief{min-height:50px}
+.party-votes button{font-size:9px;line-height:1.3;padding:8px 3px}
+.stance-flag,.party-forecast{display:inline-block;border-radius:7px;font-size:9px;line-height:1.4;font-weight:850;background:var(--stance-bg);color:var(--stance-ink);border:1px solid var(--stance-line);padding:5px 8px}
+.party-forecast{font-size:11px;display:block;margin:2px 0 11px;width:max-content;max-width:100%}
+.party-tag{color:#60776f;background:#f0f4f1;border-left-color:#93b3a1}
+/* Algeria: geographic POINTS in verified outline, not arbitrary polygons */
+.algeria-map-wrap{background:linear-gradient(150deg,#e4f0ec,#f6ead8);min-width:0}
+#fraAlgeriaMap{aspect-ratio:660/350;width:100%;height:auto}
+.algeria-base{fill:url(#algeriaShade);stroke:none}
+.algeria-outline{fill:none;stroke:#aa9986;stroke-width:1.8;pointer-events:none}
+.algeria-geo-node{cursor:pointer;outline:none}
+.algeria-node-halo{fill:var(--zone);fill-opacity:.23;stroke:var(--zone);stroke-opacity:.7;stroke-width:1.5;transition:fill-opacity .14s}
+.algeria-node-dot{fill:var(--zone);stroke:white;stroke-width:2.8}
+.algeria-node-num{fill:white;stroke:none;font-size:12px;font-weight:850;pointer-events:none}
+.algeria-geo-node:hover .algeria-node-halo,.algeria-geo-node.active .algeria-node-halo{fill-opacity:.46;stroke-width:3}
+.algeria-geo-node:focus-visible .algeria-node-halo{stroke:#214f4a;stroke-width:4}
+.algeria-region-pills{grid-template-columns:repeat(2,minmax(0,1fr))}
+.algeria-region-pills button{align-items:center}
+.algeria-region-pills button .region-number{display:grid;place-items:center;flex:0 0 21px;width:21px;height:21px;background:#e4eee3;color:#456f60;border:1px solid #d1e1d7;font-size:10px;font-weight:900;border-radius:50%}
+.algeria-region-pills button.active .region-number{background:#4e8874;color:#fff;border-color:#4e8874}
+.crisis-list li:before{background:#bd7b77}
+.region-actors{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.region-actors button{font-size:10px;line-height:1.45;border:1px solid #d8e6de;background:#f3f8f4;color:#557b6d;border-radius:7px;padding:7px 9px}
+.region-actors button.active,.region-actors button:hover{background:#e0eee5;color:#215f49;border-color:#91bd9d}
+.region-actor-dossier{padding:12px;border:1px solid #d9e5dd;border-radius:9px;background:#f8fbf9}
+.region-actor-dossier strong{font-size:12px;color:#386b5d}
+.region-actor-dossier p{font-size:11px;color:#5c7972;line-height:1.65;margin:7px 0}
+.region-actor-dossier small{font-size:10px;color:#7c9187;line-height:1.55}
+.algeria-policy-workspace{margin-top:14px}
+.algeria-path-switch{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:14px 0 19px}
+.algeria-path-switch button{min-width:0;display:flex;gap:6px;flex-direction:column;text-align:left;padding:14px 15px;background:#f7faf7;border:1px solid #dbe6dd;border-radius:11px}
+.algeria-path-switch button strong{color:#466a5f;font-size:13px}
+.algeria-path-switch button span{color:#788a84;font-size:11px;line-height:1.5}
+.algeria-path-switch button.active,.algeria-path-switch button:hover{background:#e7f2e9;border-color:#89b79b}
+.algeria-path-layout{display:grid;grid-template-columns:1fr 1fr;gap:25px}
+.algeria-path-layout h4{margin:6px 0 11px;font-size:20px;letter-spacing:-.04em}
+.algeria-path-layout p{font-size:12px;line-height:1.7;color:#647c76}
+.algeria-path-layout b{color:#386c5c;font-size:11px}
+.algeria-politic-cross{background:#f2f7f2;border:1px solid #dfebe2;border-radius:9px;padding:13px;margin-top:13px}
+.algeria-politic-cross p{margin:6px 0}
+.algeria-politic-cross .text-link{display:block}
+/* European projects: agenda and barriers visible BESIDE cropped west-Europe map. */
+.europe-workspace{display:grid;grid-template-columns:minmax(0,.87fr) minmax(0,1.23fr);gap:14px;align-items:start}
+.europe-workspace .eu-map-wrap{max-height:355px;background:#eaf1ed}
+.europe-workspace #fraEuropeMap{height:355px;max-height:355px;width:100%;display:block}
+.europe-workspace .europe-main{padding:17px}
+.europe-workspace .card-heading{margin-bottom:11px}
+.europe-workspace .card h3{font-size:17px}
+.europe-workspace .eu-partner-pills{gap:5px}
+.europe-workspace .eu-partner-pills button{padding:6px 9px;font-size:10px}
+.europe-country.priority{stroke:#498b71;stroke-width:2}
+.partner-brief{border-top:1px solid #e2ece5;padding:12px 0 0}
+.partner-brief b{display:block;font-size:15px;color:#375f53;margin:5px 0}
+.partner-brief strong{font-size:10px;color:#35725e}
+.partner-brief p{font-size:11px;line-height:1.65;color:#617e73;margin:4px 0 9px}
+.europe-decision .agenda-pills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+.europe-decision .agenda-pills button{min-height:67px;text-align:left;padding:10px 12px}
+.europe-decision .agenda-pills b{font-size:10px}
+.europe-project{margin-top:15px;padding-top:16px;border-top:1px solid #dfebe4}
+.europe-project h4{font-size:19px;letter-spacing:-.035em;margin:7px 0}
+.europe-project>p{font-size:12px;color:#5d7970;line-height:1.7}
+.project-state{display:inline-block;font-size:10px;font-weight:800;color:#31725b;background:#e5f3e8;border-radius:16px;padding:5px 9px}
+.project-tradeoff{color:#8d6c45;font-size:11px;line-height:1.7;padding:12px 14px;background:#faf4e9;border:1px solid #efe1ca;border-radius:9px;margin:14px 0}
+.project-barriers-head{display:flex;justify-content:space-between;gap:6px;align-items:center;margin:15px 0 9px}
+.project-barriers-head b{font-size:12px;color:#386a5b}
+.project-barriers-head span{font-size:9px;color:#9f8d73}
+.europe-barrier-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.europe-barrier{background:#fcf8f3;border:1px solid #efdfd1;border-radius:9px;padding:11px 12px}
+.europe-barrier span{font-size:9px;font-weight:850;color:#b17b6d;letter-spacing:.075em}
+.europe-barrier b{display:block;color:#7c5852;font-size:11px;margin:5px 0}
+.europe-barrier p{margin:5px 0 0;font-size:10px;color:#8b756b;line-height:1.65}
+.project-bot-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:13px}
+.project-bot-grid b{font-size:11px;color:#426e60}
+/* Specific French indicative planning constraints and project alternatives */
+.plan-constraints{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin:0 0 14px}
+.plan-constraint{border:1px solid #e1e8e2;background:#fff;border-radius:10px;padding:12px}
+.plan-constraint.related{border-color:#acd1b7;background:#eff7ef}
+.plan-constraint>div{display:flex;flex-direction:column;gap:5px}
+.plan-constraint b{color:#396e5c;font-size:11px}
+.plan-constraint span{color:#85a08d;font-size:9px;font-weight:850}
+.plan-constraint p{font-size:10px;color:#6e867b;line-height:1.65;margin:8px 0 0}
+.industrial-dependencies{background:#f0f6ee;border:1px solid #d9e8d8;border-radius:9px;padding:12px;margin-top:15px}
+.industrial-dependencies b{display:block;font-size:11px;color:#336a58;margin-bottom:9px}
+.industrial-dependencies>div{display:flex;flex-wrap:wrap;gap:7px}
+.industrial-dependencies span{font-size:10px;background:white;border:1px solid #d8e6d9;border-radius:7px;padding:6px 9px;color:#537966}
+.plan-interventions{border-top:1px solid #e1eae4;padding-top:17px;margin-top:18px}
+.plan-interventions>.eyebrow{display:block;margin:0 0 11px}
+.plan-levers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.plan-lever{border:1px solid #d9e7de;border-radius:10px;background:#f6faf6;padding:14px;text-align:left;display:flex;flex-direction:column;gap:7px}
+.plan-lever.active,.plan-lever:hover{background:#e4f2e8;border-color:#94c2a2}
+.plan-lever span{font-size:9px;color:#81a28c;font-weight:850}
+.plan-lever b{color:#3f715d;font-size:12px;line-height:1.45}
+.plan-lever-detail{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:13px;margin:11px 0 0;border:1px solid #e2e9e1;border-radius:9px;background:#fbfdfb}
+.plan-lever-detail b{color:#376e59;font-size:11px}
+.plan-lever-detail p{font-size:11px;color:#6b8178;line-height:1.7;margin:6px 0 0}
+.plan-expected{margin-top:14px;border-left:3px solid #9cb9a6;background:#eff5f1;padding:12px 15px;border-radius:0 9px 9px 0}
+.plan-expected b{font-size:11px;color:#376752}
+.plan-expected p{margin:5px 0;color:#61786c;font-size:11px;line-height:1.7}
+@media(max-width:1130px){.europe-workspace{grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr)}.plan-constraints{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:960px){.europe-workspace{grid-template-columns:minmax(0,1fr)}.europe-workspace .eu-map-wrap{max-height:315px}.europe-workspace #fraEuropeMap{height:315px;max-height:315px}.europe-workspace .europe-main{display:block}.europe-decision .agenda-pills{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:720px){.stance-overview{grid-template-columns:repeat(2,minmax(0,1fr))}.algeria-path-layout{grid-template-columns:1fr}.europe-decision .agenda-pills{grid-template-columns:repeat(2,minmax(0,1fr))}.project-bot-grid{grid-template-columns:1fr}.plan-constraints{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:490px){.algeria-region-pills{grid-template-columns:repeat(2,minmax(0,1fr))}.algeria-path-switch{grid-template-columns:1fr}.europe-barrier-grid,.plan-lever-detail,.plan-levers{grid-template-columns:1fr}.europe-workspace #fraEuropeMap{height:250px;max-height:250px}.plan-constraints{grid-template-columns:1fr}}
