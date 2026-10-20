@@ -70,6 +70,7 @@ function renderPort(){
  const p=ports.find(x=>x.id===port),s=shocks.find(x=>x.id===shock);
  $("jpnPortNav").innerHTML=ports.map(x=>'<button type="button" data-port="'+x.id+'" class="'+(x.id===port?"active":"")+'" aria-pressed="'+(x.id===port)+'">'+safe(x.name)+'</button>').join("");
  $("jpnPortName").textContent=p.name;$("jpnPortArea").textContent=p.area;$("jpnPortRole").textContent=p.specialty;
+ $("jpnActiveScenarioLabel").textContent=shock==="normal"?"Обычные поставки":s.name;
  $("jpnPortSupply").textContent=p.dependency;$("jpnPortChain").textContent=p.lines;$("jpnPortLimit").textContent=p.options;
  $("jpnPortIndustries").innerHTML=industryAtPort(port).map(s=>'<button type="button" data-port-industry="'+s.id+'">'+safe(s.name)+' ↗</button>').join("");
  $("jpnPortIndustries").querySelectorAll("[data-port-industry]").forEach(b=>b.onclick=()=>{sector=b.dataset.portIndustry;renderIndustry()});
@@ -115,9 +116,7 @@ function renderSupplyLoop(){
  const s=sectors.find(s=>s.id===sector);
  $("jpnCycleSectorName").textContent=s.name;
  $("jpnCyclePortName").textContent=ports.find(x=>x.id===port).name;
- $("jpnSelectedSector").textContent=s.name;
- $("jpnSelectedPort").textContent=ports.find(x=>x.id===port).name;
- $("jpnSelectedShock").textContent=shocks.find(x=>x.id===shock).name;
+
  $("jpnSupplyLoop").innerHTML=A.supplyLoopStages.map((stage,i)=>{
  const on=loopStage===stage.id,atRisk=sectorIsAffected(s)&&shock!=="normal"&&((shock==="ore"&&["import","power","market","return"].includes(stage.id))||(shock==="fuel"&&["port","power","market","return"].includes(stage.id))||(shock==="freight"&&["port","market","return"].includes(stage.id)));
  return '<button type="button" data-loop-stage="'+stage.id+'" class="loop-stage'+(on?" active":"")+(atRisk?" at-risk":"")+'" aria-pressed="'+on+'"><small>0'+(i+1)+' · '+safe(stage.verb)+'</small><strong>'+safe(stage.name)+'</strong></button>'
@@ -134,9 +133,10 @@ function renderCascade(){
  $("jpnImpactIndicator").className="jpn-impact-indicator"+(normal?"":hit?" risk":" indirect");
  $("jpnImpactTitle").textContent=normal?"Что обеспечивает следующий цикл импорта":hit?"Как перебой передаётся по цепочке":"Что меняется при этом перебое";
  $("jpnCascade").hidden=normal;
+ $("jpnImpactResults").hidden=normal;
  if(normal){
   $("jpnCascade").innerHTML="";
-  $("jpnCascadeConclusion").textContent="Поступление ресурсов, выпуск продукции и получение экспортной выручки зависят от контрактов и сроков. Чтобы проверить конкретную уязвимость, выбери перебой в блоке отрасли рядом с картой.";
+  $("jpnCascadeConclusion").textContent="Поступление ресурсов, выпуск продукции и получение экспортной выручки зависят от контрактов и сроков. Чтобы проверить уязвимости, раскрой «Проверить перебой поставок» под производственным циклом.";
   return;
  }
  const stage=[
