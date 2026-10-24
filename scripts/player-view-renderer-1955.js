@@ -7,7 +7,7 @@ const sum=x=>Object.values(x||{}).reduce((a,b)=>a+Number(b||0),0);
 if(Math.abs(sum(E.trade_export_shares)-100)>1e-6||Math.abs(sum(E.trade_import_shares)-100)>1e-6)throw Error(o.id+" trade shares invalid");
 if(!Array.isArray(inv)||inv.length!==15)throw Error(o.id+" missing military inventory");
 const R=[],add=(cells,kind="data")=>R.push({cells,kind}),sec=s=>add([s],"section"),head=()=>add(["Показатель","Значение","Единица","Пояснение"],"head");
-const n=x=>x==null?"—":Math.round(x*1000)/1000;
+const n=x=>x==null?"—":(typeof x==="number"?Math.round(x*1000)/1000:x);
 const p=(name,val,unit="",note="")=>add([name,typeof val==="string"&&val.length>48?"":n(val),unit,typeof val==="string"&&val.length>48?(val+(note?"; "+note:"")):note]);
 add([names[o.id]+" · ПАСПОРТ ГОСУДАРСТВА · 1955"],"title");
 add(["Положение на 1 января 1955 года  |  Публичное представление статистики"],"subtitle");
