@@ -2,13 +2,14 @@
 function makePlayerView(o,inv,prod,cap=180,id=5551955){
 const S=o.economy.stats,E=o.economy,P=o.politics,M=o.military;
 const names={USA:"США",URS:"СССР",GBR:"Великобритания",FRA:"Франция",FRG:"ФРГ",JPN:"Япония",CHN:"КНР",EGY:"Египет",IND:"Индия",ISR:"Израиль",ITA:"Италия",YUG:"Югославия"};
+const systems={USA:"Федеративная президентская республика",URS:"Советская партийно-государственная система",GBR:"Парламентская монархия",FRA:"Парламентская республика (Четвёртая республика)",FRG:"Федеративная парламентская республика",JPN:"Конституционная монархия, парламент",CHN:"Социалистическая партийно-государственная система",EGY:"Революционная республика",IND:"Федеративная парламентская республика",ISR:"Парламентская республика",ITA:"Парламентская республика",YUG:"Социалистическая федерация с самоуправлением"};
 const cats=[["energy","Энергоресурсы"],["food","Продовольствие"],["raw_materials","Сырьё"],["machinery_technology","Машины и технологии"],["finished_goods","Готовая продукция"],["services","Услуги"]];
 const sum=x=>Object.values(x||{}).reduce((a,b)=>a+Number(b||0),0);
 if(Math.abs(sum(E.trade_export_shares)-100)>1e-6||Math.abs(sum(E.trade_import_shares)-100)>1e-6)throw Error(o.id+" trade shares invalid");
 if(!Array.isArray(inv)||inv.length!==15)throw Error(o.id+" missing military inventory");
 const R=[],add=(cells,kind="data")=>R.push({cells,kind}),sec=s=>add([s],"section"),head=()=>add(["Показатель","Значение","Единица","Пояснение"],"head");
 const n=x=>x==null?"—":(typeof x==="number"?Math.round(x*1000)/1000:x);
-const p=(name,val,unit="",note="")=>add([name,typeof val==="string"&&val.length>48?"":n(val),unit,typeof val==="string"&&val.length>48?(val+(note?"; "+note:"")):note]);
+const p=(name,val,unit="",note="")=>add([name,n(val),unit,note]);
 add([names[o.id]+" · ПАСПОРТ ГОСУДАРСТВА · 1955"],"title");
 add(["Положение на 1 января 1955 года  |  Публичное представление статистики"],"subtitle");
 add(["Денежные суммы — млрд игровых G$, ВВП по ППС — в международных долларах 2011 года. Официальные изменения учитываются только после судейства."],"note");
@@ -37,7 +38,7 @@ if(S.income_gini!=null)p("Индекс Джини",S.income_gini,"0–100","Вы
 sec("06  /  СОЦИАЛЬНЫЕ И АДМИНИСТРАТИВНЫЕ ПОКАЗАТЕЛИ");head();
 for(const [t,k,h] of [["Образование","education_index","Выше — лучше"],["Здравоохранение","healthcare_index","Выше — лучше"],["Работоспособность институтов","institutional_capacity_index","Выше — лучше"],["Коррупционные риски","corruption_exposure_index","Выше — риски больше"]])p(t,S[k],"шкала 0–100","Игровая оценка. "+h);
 sec("07  /  ПОЛИТИЧЕСКОЕ УСТРОЙСТВО");head();
-p("Политическая система",(P.system||"").replaceAll("_"," "),"система","Описание институтов — в национальных механиках");
+p("Политическая система",systems[o.id]||P.system,"система","Описание институтов — в национальных механиках");
 p("Руководство",P.head_of_government);
 p("Правящая сила",P.governing_force);
 if(P.legislature)p("Законодательный орган",P.legislature);
@@ -85,7 +86,7 @@ for(let i=0;i<R.length;i++){
 const k=R[i].kind;if(["title","subtitle","note","section","sub","caution","foot"].includes(k)){
 req.push({mergeCells:{range:{sheetId:id,startRowIndex:i,endRowIndex:i+1,startColumnIndex:0,endColumnIndex:4},mergeType:"MERGE_ALL"}});
 req.push({updateDimensionProperties:{range:{sheetId:id,dimension:"ROWS",startIndex:i,endIndex:i+1},properties:{pixelSize:k==="title"?46:k==="note"||k==="foot"?55:k==="caution"?62:34},fields:"pixelSize"}});
-}else if(k==="data"){const x=R[i].cells;const lines=Math.max(...x.map((v,j)=>Math.ceil(String(v||"").length/[34,20,24,55][j])));if(lines>=3)req.push({updateDimensionProperties:{range:{sheetId:id,dimension:"ROWS",startIndex:i,endIndex:i+1},properties:{pixelSize:Math.min(164,lines*16+12)},fields:"pixelSize"}})}
+}else if(k==="data"){const x=R[i].cells;const lines=Math.max(...x.map((v,j)=>Math.ceil(String(v||"").length/[34,20,24,55][j])));if(lines>=3)req.push({updateDimensionProperties:{range:{sheetId:id,dimension:"ROWS",startIndex:i,endIndex:i+1},properties:{pixelSize:Math.min(260,lines*16+12)},fields:"pixelSize"}})}
 }
 return {requests:req,metric:{id:o.id,rows:R.length,inv:inv.length,exportTotal:sum(E.trade_export_shares),importTotal:sum(E.trade_import_shares)}};
 }
