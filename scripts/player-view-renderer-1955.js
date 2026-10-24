@@ -4,7 +4,7 @@ const S=o.economy.stats,E=o.economy,P=o.politics,M=o.military;
 const names={USA:"США",URS:"СССР",GBR:"Великобритания",FRA:"Франция",FRG:"ФРГ",JPN:"Япония",CHN:"КНР",EGY:"Египет",IND:"Индия",ISR:"Израиль",ITA:"Италия",YUG:"Югославия"};
 const cats=[["energy","Энергоресурсы"],["food","Продовольствие"],["raw_materials","Сырьё"],["machinery_technology","Машины и технологии"],["finished_goods","Готовая продукция"],["services","Услуги"]];
 const sum=x=>Object.values(x||{}).reduce((a,b)=>a+Number(b||0),0);
-if(sum(E.trade_export_shares)!==100||sum(E.trade_import_shares)!==100)throw Error(o.id+" trade shares invalid");
+if(Math.abs(sum(E.trade_export_shares)-100)>1e-6||Math.abs(sum(E.trade_import_shares)-100)>1e-6)throw Error(o.id+" trade shares invalid");
 if(!Array.isArray(inv)||inv.length!==15)throw Error(o.id+" missing military inventory");
 const R=[],add=(cells,kind="data")=>R.push({cells,kind}),sec=s=>add([s],"section"),head=()=>add(["Показатель","Значение","Единица","Пояснение"],"head");
 const n=x=>x==null?"—":Math.round(x*1000)/1000;
