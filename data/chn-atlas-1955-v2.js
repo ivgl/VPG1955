@@ -384,12 +384,8 @@ window.VPI_CHN_ATLAS_1955={
   },
   "sources": [
     {
-      "label": "Данные КНР · 1955",
-      "url": "https://docs.google.com/spreadsheets/d/109y3wB9wwCQUm4GR4hL5C1mVGuPKPDaNo0cJTR5bhKo/edit"
-    },
-    {
       "label": "История пятилетки",
-      "url": "https://www.chinacoop.gov.cn/HTML/2016/04/21/106354.html"
+      "url": "https://www.chnmuseum.cn/zp/zpml/gshww/202104/t20210408_249624.shtml"
     },
     {
       "label": "Тайваньский кризис",
