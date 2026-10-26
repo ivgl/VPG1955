@@ -427,10 +427,6 @@ window.VPI_ITALY_1955={
   },
   "sources": [
     {
-      "label": "Экономика Италии · ВПИ",
-      "url": "https://docs.google.com/spreadsheets/d/1BkFvBkZaCdqISkN7ia7ZT5cOGBfs95iAct7LD16B5aA/edit"
-    },
-    {
       "label": "План Ванони · Treccani",
       "url": "https://www.treccani.it/enciclopedia/ezio-vanoni_%28Dizionario-Biografico%29/"
     },
