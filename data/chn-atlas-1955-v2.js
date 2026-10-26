@@ -384,7 +384,11 @@ window.VPI_CHN_ATLAS_1955={
   },
   "sources": [
     {
-      "label": "Первая пятилетка · архив Национального музея",
+      "label": "Первая пятилетка · оценка экономики 1954 (США, англ.)",
+      "url": "https://history.state.gov/historicaldocuments/frus1952-54v14p1/d209"
+    },
+    {
+      "label": "Первая пятилетка · Национальный музей Китая (кит.)",
       "url": "https://www.chnmuseum.cn/zp/zpml/gshww/202104/t20210408_249624.shtml"
     },
     {
