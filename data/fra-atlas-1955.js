@@ -1043,7 +1043,7 @@ window.VPI_FRA_ATLAS_1955={
   "sources": [
     {
       "name": "Assemblée nationale — biographie Мендес-Франса",
-      "url": "https://www2.assemblee-nationale.fr/sycomore/fiche?num_dept=5176"
+      "url": "https://www2.assemblee-nationale.fr/sycomore/fiche/5176"
     },
     {
       "name": "Посольство Алжира — начало восстания, пять направлений",
