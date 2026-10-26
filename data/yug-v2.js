@@ -3,7 +3,6 @@ window.VPI_YUGOSLAVIA_1955={
   "as_of": "1955-01-01",
   "country": "YUG",
   "leader": "Иосип Броз Тито",
-  "player_sheet_url": "https://docs.google.com/spreadsheets/d/1UQphmyOQlQ-ZfpnZLVA9DwC8Zmdqvk8dgYbo8nMdg4M/edit",
   "economy": {
     "population": 17300000,
     "gdp": 55,
@@ -244,20 +243,12 @@ window.VPI_YUGOSLAVIA_1955={
   },
   "sources": [
     {
-      "name": "Югославия · официальные стартовые показатели",
-      "url": "https://docs.google.com/spreadsheets/d/1UQphmyOQlQ-ZfpnZLVA9DwC8Zmdqvk8dgYbo8nMdg4M/edit"
-    },
-    {
       "name": "МВФ · самоуправление югославских предприятий",
       "url": "https://www.elibrary.imf.org/view/journals/024/1952/002/article-A003-en.xml"
     },
     {
       "name": "Всемирный банк · экономика самоуправления",
       "url": "https://documents1.worldbank.org/curated/en/532061468915640475/pdf/Understanding-self-management-in-Yugoslavia.pdf"
-    },
-    {
-      "name": "Индия · доклад МИД 1954–55",
-      "url": "https://www.mea.gov.in/"
     },
     {
       "name": "Косово и Метохия · историческая справка",
