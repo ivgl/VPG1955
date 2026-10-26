@@ -456,20 +456,16 @@ window.VPI_INDIA_1955={
   },
   "sources": [
     {
-      "name": "Экономика Индии · ВПИ",
-      "url": "https://docs.google.com/spreadsheets/d/15MV5M01mgd4-UhyuDaOTWAdXbpJ5QeqFBn9Yo5BNt4U/edit"
-    },
-    {
-      "name": "Комиссия по штатам · 1955",
-      "url": "https://www.mha.gov.in/sites/default/files/2022-08/State%2520Reorganisation%2520Commisison%2520Report%2520of%25201955_270614%5B1%5D.pdf"
+      "name": "Комиссия по штатам · архив МВД",
+      "url": "https://origin1504-mha.nic.in/en/commoncontent/commissions-committees"
     },
     {
       "name": "Отчёт комиссии · документы Неру",
       "url": "https://nehruarchive.in/documents/to-chief-ministers-30-september-1955-5y8nk"
     },
     {
-      "name": "Госпланирование Индии · NITI",
-      "url": "https://digitallibrary.niti.gov.in/items/443a5304-7d32-45b8-813f-56b4994e8fce"
+      "name": "Первая пятилетка Индии · доклад 1951",
+      "url": "https://digitallibrary.niti.gov.in/items/a2ae48d1-9b64-400b-aab5-ffbef625c3ab"
     },
     {
       "name": "Выборы в парламент",
