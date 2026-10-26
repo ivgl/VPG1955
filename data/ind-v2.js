@@ -457,7 +457,7 @@ window.VPI_INDIA_1955={
   "sources": [
     {
       "name": "Комиссия по штатам · архив МВД",
-      "url": "https://origin1504-mha.nic.in/en/commoncontent/commissions-committees"
+      "url": "https://www.mha.gov.in/commissions-committees"
     },
     {
       "name": "Отчёт комиссии · документы Неру",
