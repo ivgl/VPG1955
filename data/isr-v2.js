@@ -327,10 +327,6 @@ window.VPI_ISR_1955={
   },
   "sources": [
     {
-      "name": "Показатели Израиля · ВПИ 1955",
-      "url": "https://docs.google.com/spreadsheets/d/1UHCwt3fqOcrtGVTndOdzk_fpjHS0UHoeUXdAuYBSjao/edit"
-    },
-    {
       "name": "ФРГ: Люксембургское соглашение",
       "url": "https://www.bundesarchiv.de/themen-entdecken/online-entdecken/geschichtsgalerien/das-luxemburger-abkommen/"
     },
