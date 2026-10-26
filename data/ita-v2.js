@@ -439,8 +439,8 @@ window.VPI_ITALY_1955={
       "url": "https://timeline.worldbank.org/en/timeline/eventdetail/2491"
     },
     {
-      "label": "Профсоюзы · исторический архив",
-      "url": "https://siusa-archivi.cultura.gov.it/cgi-bin/siusa/pagina.pl?Chiave=30850&TipoPag=prodente"
+      "label": "Профсоюз CISL · исторический архив",
+      "url": "https://siusa-archivi.cultura.gov.it/cgi-bin/siusa/pagina.pl?Chiave=70&TipoPag=profist"
     },
     {
       "label": "Европейская интеграция · ЕОУС",
