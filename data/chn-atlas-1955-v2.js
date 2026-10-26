@@ -384,7 +384,7 @@ window.VPI_CHN_ATLAS_1955={
   },
   "sources": [
     {
-      "label": "История пятилетки",
+      "label": "Первая пятилетка · архив Национального музея",
       "url": "https://www.chnmuseum.cn/zp/zpml/gshww/202104/t20210408_249624.shtml"
     },
     {
