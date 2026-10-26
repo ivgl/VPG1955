@@ -324,10 +324,6 @@ window.VPI_EGYPT_1955={
   },
   "sources": [
     {
-      "name": "ВПИ · показатели Египта",
-      "url": "https://docs.google.com/spreadsheets/d/14XES71rFh7RCJEyukpnZDjPl0jb9M_tc2RTyF1_k4Rw/edit"
-    },
-    {
       "name": "ООН · сборы Суэцкого канала",
       "url": "https://digitallibrary.un.org/record/831388/files/E_3635--ST_ECA_69-EN.pdf"
     },
