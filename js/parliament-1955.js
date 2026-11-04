@@ -7,6 +7,8 @@
   const code=(script?.dataset?.parliament||"").toLowerCase();
   const d=DATA[code];
   if(!d)return;
+  const displayYear=String(d.asOf||"1955-01-01").slice(0,4);
+  const displayDate="1 ЯНВАРЯ "+displayYear;
   const nav=document.querySelector("nav.tabs");
   if(!nav)return;
   const safe=x=>String(x??"").replace(/[&<>"']/g,k=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[k]));
@@ -42,13 +44,13 @@
     }).join("");
     return '<svg class="vpi-parl-svg" viewBox="0 0 760 375" role="img" aria-label="'+safe(ch.name)+" — "+count+" мест по парламентским группам"+'">'+
     '<path d="M 65 340 H 695" stroke="currentColor" opacity=".1" stroke-width="2"/>'+dots+
-    '<text x="380" y="352" text-anchor="middle" class="vpi-parl-centre">1955</text></svg>';
+    '<text x="380" y="352" text-anchor="middle" class="vpi-parl-centre">'+safe(displayYear)+'</text></svg>';
   }
   function render(){
     const ch=d.chambers[chosenChamber],total=ch.groups.reduce((s,g)=>s+g.seats,0);
     const g=ch.groups[chosenGroup]||ch.groups[0];
     box.innerHTML=
-    '<div class="vpi-parl-heading"><div><span class="vpi-parl-kicker">ИНСТИТУТЫ · 1 ЯНВАРЯ 1955</span><h2>Парламент и выборы</h2><p>'+safe(d.government)+'</p></div>'+
+    '<div class="vpi-parl-heading"><div><span class="vpi-parl-kicker">ИНСТИТУТЫ · '+safe(displayDate)+'</span><h2>Парламент и выборы</h2><p>'+safe(d.government)+'</p></div>'+
     '<div class="vpi-parl-clock"><span>Ближайшие выборы</span><strong>'+safe(d.next)+'</strong><small>'+safe(d.nextNote)+'</small></div></div>'+
     '<div class="vpi-parl-dates"><span><b>Предыдущие выборы:</b> '+safe(d.previous)+'</span><span>'+safe(d.info)+'</span></div>'+
     '<div class="vpi-parl-wrap"><div class="vpi-parl-main">'+
