@@ -5,6 +5,7 @@
 <title>Франция · IV Республика · ВПИ 1955</title>
 <link rel="stylesheet" href="../css/fra-v2.css">
 <link rel="stylesheet" href="../css/parliament-1955.css">
+<link rel="stylesheet" href="../css/fra-coalition-1956.css">
 <script src="../data/fra-draft.js" defer></script>
 <script src="../data/fra-atlas-1955.js" defer></script>
 <script src="../js/fra-map.js" defer></script>
@@ -12,6 +13,7 @@
 <script src="../data/parliaments-1955.js" defer></script>
 <script src="../js/parliament-1955.js" data-parliament="fra" defer></script>
 <script src="../js/fra-v3.js" defer></script>
+<script src="../js/fra-coalition-1956.js" defer></script>
 </head><body><div class="page">
 <header class="mast"><a class="back" href="../index.html">← Каталог государств</a><span class="brand">ВПИ <strong>1955</strong> / НАЦИОНАЛЬНЫЕ МЕХАНИКИ</span></header>
 <section class="hero"><div class="eyebrow">Французская республика / 01.01.1955</div><h1>Сильное государство.<br><em>Хрупкое большинство.</em></h1><p>Франция способна строить заводы, определять европейскую политику и управлять обширной администрацией. Но кабинет зависит от меняющихся союзов, а алжирский конфликт связывает безопасность, гражданские права и судьбу правительства.</p>
@@ -20,6 +22,18 @@
 <main>
 <section id="parliament" class="pane current"><div class="section-heading"><span class="eyebrow">01 / Четвёртая республика</span><h2>Одно собрание — разные большинства</h2><p>Фракция может поддержать социальную реформу, но не доверять премьеру. Составьте политическую комбинацию по конкретному вопросу и посмотрите, где предстоят самые трудные переговоры.</p></div>
 <div class="political-principle"><span class="principle-mark">!</span><p><b>Как считать:</b> в Национальном собрании 626 депутатов, для большинства нужно <b>314 мест</b>. Стартовый состав взят за основу после выборов 1951 года. Выбери вопрос и отмечай, какие фракции поддерживают твою инициативу, с кем идут переговоры и чью оппозицию придётся преодолеть.</p></div>
+
+<section class="fco" id="fco1956" aria-labelledby="fco1956Title">
+ <div class="fco-head"><div><span class="fco-eyebrow">Кабинет и Ассамблея · сценарий 1956 года</span><h3 id="fco1956Title">Коалиция Шарля де Голля</h3><p>Кто обеспечивает большинство, какими ведомствами управляют союзные партии и где их интересы совпадают или расходятся.</p></div><span class="fco-status">Предварительный проект</span></div>
+ <div class="fco-numbers"><div class="fco-number"><small>Правительственная коалиция</small><strong>323 / 626</strong></div><div class="fco-number"><small>Запас абсолютного большинства</small><strong>+9 мест</strong></div><div class="fco-number"><small>Предложенный итог инвеституры</small><strong>337 голосов</strong></div></div>
+ <div class="fco-bar" data-fco-bar role="img" aria-label="Проект коалиции: голлисты 89, MRP 86, радикалы 60, CNIP 88, остальные 303 места вне коалиции"></div>
+ <div class="fco-legend"><span><i style="background:#537d9c"></i>Голлисты · 89</span><span><i style="background:#b78b46"></i>MRP · 86</span><span><i style="background:#9971a0"></i>Радикалы · 60</span><span><i style="background:#579179"></i>CNIP · 88</span><span><i style="background:#e1e9e5"></i>Вне коалиции · 303</span></div>
+ <span class="fco-eyebrow">Нажмите на участника коалиции</span><div class="fco-parties" data-fco-parties></div>
+ <div class="fco-detail" data-fco-detail aria-live="polite"></div>
+ <div class="fco-topics"><span class="fco-eyebrow">Коалиция в действии</span><h4>Где сходятся интересы — и где начинаются споры</h4><p>Выберите тему, чтобы увидеть политическую логику переговоров между министерствами и фракциями.</p><div class="fco-topic-buttons" data-fco-topics></div><div class="fco-topic-content" data-fco-issue aria-live="polite"></div></div>
+ <div class="fco-foot"><b>Как работает кабинет:</b> председатель Совета определяет общий курс, но министры союзных партий обладают самостоятельным влиянием. Потеря десяти голосов лишит коалицию собственного абсолютного большинства, но отдельный провал законопроекта не означает немедленной отставки. Ни одна партийная карточка не создаёт автоматического права вето. Ниже сохранён конструктор голосований по конкретным вопросам.</div>
+ <p class="fco-caution"><b>Статус:</b> коалиция 323/626 и назначения министров — проект судейства 1956 года, не официально внесённый в канонический JSON результат. Стартовый состав 1951 года остаётся справочной основой, а все реальные политические изменения требуют утверждённого решения администратора.</p>
+</section>
 <div class="issue-top card"><div class="card-heading"><div><div class="eyebrow">Законопроект и переговоры</div><h3>Выберите предмет голосования</h3></div><span class="soft-tag">Позиции сохраняются отдельно для каждой темы</span></div><div id="fraIssueButtons" class="issue-selector"></div><p id="fraIssueQuestion" class="issue-question"></p><div class="issue-caution" id="fraIssueConflict"></div></div>
 <div class="political-columns">
  <section class="card parties-panel"><div class="card-heading"><div><span class="eyebrow">Восемь парламентских групп</span><h3>Кого привлекать к голосованию</h3></div><span class="soft-tag">626 депутатов · большинство 314</span></div>
