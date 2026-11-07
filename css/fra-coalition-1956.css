@@ -1,0 +1,48 @@
+/* France parliamentary mechanic: optional 1956 coalition scenario. No canonical state writes. */
+.fco{margin:24px 0 26px;padding:24px;border:1px solid #d9e5df;border-radius:18px;background:linear-gradient(145deg,#fff 0%,#fafcf9 100%);box-shadow:0 7px 25px rgba(35,67,63,.045);--fco-gaullist:#537d9c;--fco-mrp:#b78b46;--fco-radical:#9971a0;--fco-cnip:#579179}
+.fco *{box-sizing:border-box}
+.fco-head{display:flex;justify-content:space-between;align-items:start;gap:16px;flex-wrap:wrap}
+.fco-eyebrow{font-size:10px;letter-spacing:.1em;font-weight:800;text-transform:uppercase;color:#588678}
+.fco h3{font:800 clamp(23px,3.4vw,30px)/1.22 Manrope,sans-serif;margin:4px 0 7px;color:#25434d}
+.fco-head p{margin:0;max-width:690px;color:#5e777b}
+.fco-status{font-size:11px;border:1px solid #e1d5b7;background:#f9f4e9;color:#856637;padding:6px 10px;border-radius:99px;font-weight:800;white-space:nowrap}
+.fco-numbers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:18px 0 12px}
+.fco-number{padding:14px 16px;background:#f4f8f5;border:1px solid #e0e9e4;border-radius:12px}
+.fco-number small{display:block;color:#6a8285;font-size:11px;font-weight:650}
+.fco-number strong{display:block;font-size:24px;line-height:1.25;font-weight:800;color:#304b54;letter-spacing:-.025em}
+.fco-number:first-child strong{color:#287656}
+.fco-bar{height:15px;border-radius:99px;overflow:hidden;display:flex;background:#e1e9e5}
+.fco-bar span{display:block;height:100%}
+.fco-legend{display:flex;flex-wrap:wrap;gap:4px 15px;margin:10px 0 18px;font-size:11px;color:#63777a}
+.fco-legend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px}
+.fco-parties{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
+.fco-party{appearance:none;text-align:left;background:#fff;color:#324c55;border:1px solid #dbe5df;border-radius:13px;padding:14px;min-width:0;min-height:99px;display:flex;flex-direction:column;gap:5px;transition:transform .15s,border-color .15s,box-shadow .15s}
+.fco-party:hover{transform:translateY(-2px);box-shadow:0 5px 14px #36535416}
+.fco-party[aria-pressed="true"]{border:2px solid #346b73;padding:13px;background:#f6faf7;box-shadow:0 4px 15px #315f5f13}
+.fco-party-top{display:flex;align-items:center;justify-content:space-between;gap:5px}
+.fco-dot{display:inline-block;width:11px;height:11px;border-radius:3px}
+.fco-party-count{font-weight:800;font-size:20px}
+.fco-party-name{font-size:15px;font-weight:800;line-height:1.25}
+.fco-party-sub{font-size:11px;color:#6e8384;line-height:1.45}
+.fco-detail{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;margin:14px 0 24px}
+.fco-detail-card{background:#fff;border:1px solid #dfe8e4;border-radius:13px;padding:16px;min-width:0}
+.fco-detail-card h4{font-size:16px;margin:5px 0 9px;line-height:1.3}
+.fco-detail-card p{margin:6px 0 0;color:#5a7479;font-size:12px;line-height:1.65}
+.fco-detail-card b{display:block;color:#3d6468;font-size:11px;margin-top:12px}
+.fco-ministers{list-style:none;padding:0;margin:6px 0 0;display:flex;flex-wrap:wrap;gap:6px}
+.fco-ministers li{background:#edf4ef;border:1px solid #d9e8dd;color:#3b635b;border-radius:7px;font-size:11px;padding:5px 8px;line-height:1.4}
+.fco-detail-card.fco-accent{border-left:4px solid #537d9c}
+.fco-topics h4{margin:0;font-size:17px}
+.fco-topics>p{font-size:12px;color:#627e80;margin:5px 0 12px}
+.fco-topic-buttons{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px}
+.fco-topic-buttons button{border:1px solid #d0ded8;border-radius:9px;background:white;color:#3f6368;padding:8px 12px;font-size:12px;font-weight:750}
+.fco-topic-buttons button[aria-pressed="true"]{background:#284f64;border-color:#284f64;color:#fff}
+.fco-topic-content{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fco-topic-content>div{background:#f5f8f5;border-left:3px solid #6f9d85;border-radius:7px;padding:12px}
+.fco-topic-content>div+div{border-left-color:#c69b72;background:#faf8f3}
+.fco-topic-content b{font-size:12px;color:#355b5d}
+.fco-topic-content p{font-size:12px;margin:4px 0 0;color:#647b7d}
+.fco-foot{margin-top:14px;padding:12px 15px;background:#edf4ef;border-radius:10px;font-size:12px;color:#526b6b}
+.fco-caution{font-size:11px;color:#7b6b50;margin:13px 0 0}
+@media(max-width:780px){.fco-parties{grid-template-columns:repeat(2,minmax(0,1fr))}.fco-detail{grid-template-columns:1fr}.fco{padding:17px}}
+@media(max-width:520px){.fco-numbers{grid-template-columns:1fr}.fco-number{display:flex;align-items:baseline;justify-content:space-between;gap:10px}.fco-number strong{font-size:21px}.fco-topic-content{grid-template-columns:1fr}.fco-parties{gap:7px}.fco-party{padding:11px}.fco-party[aria-pressed="true"]{padding:10px}}
